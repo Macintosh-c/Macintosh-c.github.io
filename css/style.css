@@ -393,7 +393,7 @@ body >header {
   -webkit-box-shadow: 2px 4px 5px rgba(3,3,3,0.2);
   box-shadow: 2px 4px 5px rgba(3,3,3,0.2);
   background: url("../img/menu.jpg") center #2ca6cb;
-  color: #000;
+  color: #2ca6cb;
   padding: 1em 0 0.8em;
 }
 @media only screen and (min-width: 1024px) {
@@ -414,7 +414,7 @@ body >header >div {
 }
 body >header a {
   display: block;
-  color: #000;
+  color: #2ca6cb;
 }
 #imglogo {
   float: left;
@@ -494,6 +494,9 @@ body >header a {
     display: none;
   }
 }
+.animated a {
+  color: #2ca6cb;
+}
 .navbutton::before {
   font-family: "FontAwesome";
   -webkit-font-smoothing: antialiased;
@@ -560,8 +563,8 @@ header nav ul li a:hover {
   -webkit-appearance: textfield;
   font-size: 0.87em;
   line-height: 1.7;
-  border: 1px solid #000;
-  color: #000;
+  border: 1px solid #2ca6cb;
+  color: #2ca6cb;
   background: transparent;
   width: 80%;
   padding-left: 0.5em;
@@ -583,7 +586,7 @@ header nav ul li a:hover {
   display: none;
 }
 ::-webkit-input-placeholder {
-  color: #000;
+  color: #2ca6cb;
 }
 /* index layout */
 #container {
