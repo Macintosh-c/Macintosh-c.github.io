@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>麦金托什独立博客</title>
+  <title>macintosh-c&#39;s bog</title>
   <icon>https://www.gravatar.com/avatar/aec2ea475468bef1ef6aafb32d76a922</icon>
-  <subtitle>爱生活爱编码</subtitle>
+  <subtitle>当你的才华撑不起你的野心时，就应该静下心来好好学习。</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.github.io/"/>
-  <updated>2018-07-30T07:48:11.408Z</updated>
+  <updated>2018-08-11T01:35:16.006Z</updated>
   <id>http://macintosh-c.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://macintosh-c.github.io/2018/07/30/my-new-post/"/>
     <id>http://macintosh-c.github.io/2018/07/30/my-new-post/</id>
     <published>2018-07-30T07:25:25.000Z</published>
-    <updated>2018-07-30T07:48:11.408Z</updated>
+    <updated>2018-08-11T01:35:16.006Z</updated>
     
     <content type="html"><![CDATA[<p>hello，大家好。我是麦金托什<br><a id="more"></a><br>刚捣鼓的独立主页</p>]]></content>
     
@@ -31,10 +31,10 @@
     
     </summary>
     
-      <category term="blog" scheme="http://macintosh-c.github.io/categories/blog/"/>
+      <category term="hexo" scheme="http://macintosh-c.github.io/categories/hexo/"/>
     
     
-      <category term="blog" scheme="http://macintosh-c.github.io/tags/blog/"/>
+      <category term="自我介绍" scheme="http://macintosh-c.github.io/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/"/>
     
   </entry>
   
