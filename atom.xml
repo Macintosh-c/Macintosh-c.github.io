@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.github.io/"/>
-  <updated>2018-08-11T01:35:16.006Z</updated>
+  <updated>2018-08-12T04:58:47.959Z</updated>
   <id>http://macintosh-c.github.io/</id>
   
   <author>
@@ -17,24 +17,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>第一篇文章</title>
-    <link href="http://macintosh-c.github.io/2018/07/30/my-new-post/"/>
-    <id>http://macintosh-c.github.io/2018/07/30/my-new-post/</id>
-    <published>2018-07-30T07:25:25.000Z</published>
-    <updated>2018-08-11T01:35:16.006Z</updated>
+    <title>写在独立博客开创时</title>
+    <link href="http://macintosh-c.github.io/2018/08/12/%E5%86%99%E5%9C%A8%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%88%9B%E6%97%B6/"/>
+    <id>http://macintosh-c.github.io/2018/08/12/写在独立博客开创时/</id>
+    <published>2018-08-12T03:09:55.000Z</published>
+    <updated>2018-08-12T04:58:47.959Z</updated>
     
-    <content type="html"><![CDATA[<p>hello，大家好。我是麦金托什<br><a id="more"></a><br>刚捣鼓的独立主页</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。</p><p>更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭这么一个博客呢，原因有下面几点：</p><ol><li>积累。希望能借助这个博客平台多积累技术，改掉平时随手乱记，无纲要，无逻辑的习惯。<br></li><li>坚持。转行IT这条路对于我来说不知道还能走多远，这条路对于我来说能有多宽，那总要有一个坚持的方法。<br></li><li>总结。总感觉越大写作的能力在直线下滑，有时候有很多感慨和想法，想写却写不出来，有这么个博客，可以锻炼这方面的能力。<br></li></ol><p>网上关于如何用Hexo+Github来搭建独立博客的分享很多，我也不打算再去用篇幅讲述搭建详细了，主要参考了<a href="http://tengj.top/" target="_blank" rel="noopener">tengj</a>和<a href="https://whatbeg.com/" target="_blank" rel="noopener">whatbeg</a>两位兄台的分享，十分感谢！</p><h2 id="博客进展"><a href="#博客进展" class="headerlink" title="博客进展"></a>博客进展</h2><p>有必要简单讲述一下这个博客搭建的进展，以及后续还需要完善的地方，来继续鞭策自己</p><p>到目前为止已完成：</p><ul><li>hexo环境搭建，github关联。</li><li>初步熟悉hexo的基本配置，更换主题jacman，修改布局，新建文章，标签，分类等。</li><li>添加简单<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">文章，网站访问量统计</a>功能。</li><li>RSS订阅功能</li><li>Markdown语法，边写边学习。</li><li>添加了文章<a href="https://whatbeg.com/2016/05/18/hexo-donate.html" target="_blank" rel="noopener">打赏</a>功能。</li></ul><p>下一步还需要做的有：</p><ul><li>安装统计插件</li><li>添加站内搜索</li><li>提交搜索引擎</li></ul><h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p>首先希望这个博客能在自我的坚持中一直写下去，让我在将来回头看时，有留下些许东西。主要涉猎的技术文章可能关于java，android，web，微信小程序等等。能力有限，仅供自己学习总结。其次，平时生活中的感想，感悟，感慨等，成长过程的脚印，总结也会用独立的分类篇幅来记录。再则，工作生活中阅读到的一些好的书本，语录等也会收集分享。希望勤能补拙。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这次部署过程中受益于网络上各路大神们的细心总结，赠人玫瑰，手有余香。感谢！</p><p>就写到这吧，Markdown也不是很熟悉。总之，持之以恒，继续努力！</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;hello，大家好。我是麦金托什&lt;br&gt;
+      
+      
+        &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估
+      
     
     </summary>
     
-      <category term="hexo" scheme="http://macintosh-c.github.io/categories/hexo/"/>
+      <category term="成长之路 | Biography" scheme="http://macintosh-c.github.io/categories/%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF-Biography/"/>
     
     
-      <category term="自我介绍" scheme="http://macintosh-c.github.io/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/"/>
+      <category term="随笔" scheme="http://macintosh-c.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
