@@ -1,0 +1,143 @@
+##### Menu 菜单 
+menu:
+  首页(Home): /
+  归档(Archives): /archives
+  标签(Tags): /tags
+  分类(Categories): /categories
+## you can create `tags` and `categories` folders in `../source`.
+## And create a `index.md` file in each of them.
+## set `front-matter`as
+## layout: tags (or categories)
+## title: tags (or categories)
+## ---
+
+#### Widgets 右边显示部分，按着排序进行排序，我用到了分类，标签，友情链接，微博，rss
+widgets: 
+- github-card
+- category
+- tag
+
+- archive
+- tagcloud
+- links
+- rss
+  ## provide eight widgets:github-card,category,tag,rss,archive,tagcloud,links,weibo
+
+
+#### RSS 地址
+rss: /atom.xml ## RSS address.
+
+#### Image 图片。包括各种图片，可以在jacman主题下source下img文件下找到各种图片，想要换成你的直接换就ok，当然名字扩展名最好用一样的
+imglogo:
+  enable: true             ## display image logo true/false.
+  src: img/logo_me.jpg        ## `.svg` and `.png` are recommended,please put image into the theme folder `/jacman/source/img`.
+favicon: img/favicon.ico   ## size:32px*32px,`.ico` is recommended,please put image into the theme folder `/jacman/source/img`.     
+apple_icon: img/jacman.jpg ## size:114px*114px,please put image into the theme folder `/jacman/source/img`.
+author_img: img/logo_me.jpg ## size:220px*220px.display author avatar picture.if don't want to display,please don't set this.
+banner_img: img/menu.jpg ## size:1920px*200px+. Banner Picture
+### Theme Color 
+theme_color:
+    theme: '#2ca6cb'    ##the defaut theme color is blue
+
+# 代码高亮主题
+# available: default | night
+highlight_theme: default
+
+#### index post is expanding or not 首页文章是否展开。默认为展开式，显示 Read More。
+index:
+  expand: false           ## default is unexpanding,so you can only see the short description of each post.
+  excerpt_link: Read More  
+###是否在文章页面自动关闭侧边栏
+
+close_aside: false  #close sidebar in post page if true
+mathjax: false      #enable mathjax if true
+
+### Creative Commons License Support, see http://creativecommons.org/ 
+### you can choose: by , by-nc , by-nc-nd , by-nc-sa , by-nd , by-sa , zero
+creative_commons: none
+
+#### Author information作者信息，显示在网站底部。主要包括，文字介绍，以及图片。还有各种你的链接包括微博等等。换成你id就行；
+author:
+  intro_line1:  "静下心来，好好做你该做的事！"    ## your introduction on the bottom of the page
+  intro_line2:  "This is my blog,Try to do better."  ## the 2nd line
+  weibo:      ## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895
+  weibo_verifier: b3593ceb    ## e.g. b3593ceb Your weibo-show widget verifier ,if you use weibo-show it is needed.
+  tsina:      ## e.g. 2176287895  Your weibo ID,It will be used in share button.
+  douban:     ## e.g. wuchong1014 or your id for https://www.douban.com/people/wuchong1014
+  zhihu:      ## e.g. jark  for http://www.zhihu.com/people/jark
+  email:      ## e.g. imjark@gmail.com
+  twitter:    ## e.g. jarkwu for https://twitter.com/jarkwu
+  github: Macintosh-c    ## e.g. wuchong for https://github.com/wuchong
+  facebook:   ## e.g. imjark for https://facebook.com/imjark
+  linkedin:   ## e.g. wuchong1014 for https://www.linkedin.com/in/wuchong1014
+  google_plus:    ## e.g. "111190881341800841449" for https://plus.google.com/u/0/111190881341800841449, the "" is needed!
+  stackoverflow:  ## e.g. 3222790 for http://stackoverflow.com/users/3222790/jark
+## if you set them, the corresponding  share button will show on the footer
+
+#### Toc目录，是否在文章中显示目录。显示在侧边栏；
+toc:
+  article: true   ## show contents in article.
+  aside: true     ## show contents in aside.
+## you can set both of the value to true of neither of them.
+## if you don't want display contents in a specified post,you can modify `front-matter` and add `toc: false`.
+
+#### Links友情链接
+links:
+  开发者头条: http://toutiao.io/
+  csdn: http://blog.csdn.net/peace1213
+#### 评论 国内用多说很好。注册账号，写在这里就ok
+duoshuo_shortname: 嘟嘟MD   ## e.g. wuchong   your duoshuo short name.
+disqus_shortname:    ## e.g. wuchong   your disqus short name.
+
+#### Share button主题自带分享，这里用了false
+jiathis:
+  enable: false ## if you use jiathis as your share tool,the built-in share tool won't be display.
+  id:    ## e.g. 1889330 your jiathis ID. 
+  tsina: ## e.g. 2176287895 Your weibo id,It will be used in share button.
+
+#### Analytics网站统计，我用的时cnzz统计
+google_analytics:
+  enable: false
+  id:        ## e.g. UA-46321946-2 your google analytics ID.
+  site:      ## e.g. wuchong.me your google analytics site or set the value as auto.
+## You MUST upgrade to Universal Analytics first!
+## https://developers.google.com/analytics/devguides/collection/upgrade/?hl=zh_CN
+baidu_tongji:
+  enable: true
+  sitecode: e6d1f421bbc9962127a50488f9ed37d1 ## e.g. e6d1f421bbc9962127a50488f9ed37d1 your baidu tongji site code
+cnzz_tongji:
+  enable: false
+  siteid:    ## e.g. 1253575964 your cnzz tongji site id
+
+#### Miscellaneous
+ShowCustomFont: true  ## you can change custom font in `variable.styl` and `font.styl` which in the theme folder `/jacman/source/css`.
+fancybox: true        ## if you use gallery post or want use fancybox please set the value to true.
+#返回顶部按钮，totop。在博客右下脚显示一件返回顶部按钮
+totop: true           ## if you want to scroll to top in every post set the value to true
+
+
+#### Custom Search 自定义搜索，我用的时百度搜索
+google_cse: 
+  enable: false
+  cx:   ## e.g. 018294693190868310296:abnhpuysycw your Custom Search ID.
+## https://www.google.com/cse/ 
+## To enable the custom search You must create a "search" folder in '/source' and a "index.md" file
+## set the 'front-matter' as
+## layout: search 
+## title: search
+## ---
+baidu_search:     ## http://zn.baidu.com/
+  enable: false
+  id:   ## e.g. "783281470518440642"  for your baidu search id
+  site: http://zhannei.baidu.com/cse/search  ## your can change to your site instead of the default site
+  
+tinysou_search:     ## http://tinysou.com/
+  enable: false
+  id:  ## e.g. "4ac092ad8d749fdc6293" for your tiny search id
+
+donate:
+  enable: true
+  text: 打赏我的人，运气都不会太差~
+  wechat: https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg
+  alipay: https://wx3.sinaimg.cn/mw690/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg
+  web: true
