@@ -11,13 +11,13 @@
     
 
     
-    <meta name="description" content="基础查询1.查询一张表：select * from 表名； 2.查询指定字段：select 字段1，字段2，字段3… from 表名； 条件查询1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；例:1select * from t_studect where id=1; 1select * from t_student where age&amp;gt;">
+    <meta name="description" content="基础查询1.查询一张表：select * from 表名； 2.查询指定字段：select 字段1，字段2，字段3… from 表名； 条件查询1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；例:select * from t_studect where id=1;select * from t_student where age&amp;gt;22;">
 <meta name="keywords" content="database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库基础(三):查询">
 <meta property="og:url" content="http://macintosh-c.github.io/2018/08/13/数据库基础-三/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s bog">
-<meta property="og:description" content="基础查询1.查询一张表：select * from 表名； 2.查询指定字段：select 字段1，字段2，字段3… from 表名； 条件查询1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；例:1select * from t_studect where id=1; 1select * from t_student where age&amp;gt;">
+<meta property="og:description" content="基础查询1.查询一张表：select * from 表名； 2.查询指定字段：select 字段1，字段2，字段3… from 表名； 条件查询1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；例:select * from t_studect where id=1;select * from t_student where age&amp;gt;22;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.imgur.com/lAI0UMv.png">
 <meta property="og:image" content="https://i.imgur.com/cvzRAO5.png">
@@ -32,10 +32,10 @@
 <meta property="og:image" content="https://i.imgur.com/Tcm5dbz.png">
 <meta property="og:image" content="https://i.imgur.com/IsflZBa.png">
 <meta property="og:image" content="https://i.imgur.com/lyn1Iym.png">
-<meta property="og:updated_time" content="2018-08-13T06:47:39.283Z">
+<meta property="og:updated_time" content="2018-08-13T06:55:04.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库基础(三):查询">
-<meta name="twitter:description" content="基础查询1.查询一张表：select * from 表名； 2.查询指定字段：select 字段1，字段2，字段3… from 表名； 条件查询1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；例:1select * from t_studect where id=1; 1select * from t_student where age&amp;gt;">
+<meta name="twitter:description" content="基础查询1.查询一张表：select * from 表名； 2.查询指定字段：select 字段1，字段2，字段3… from 表名； 条件查询1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；例:select * from t_studect where id=1;select * from t_student where age&amp;gt;22;">
 <meta name="twitter:image" content="https://i.imgur.com/lAI0UMv.png">
 
     
@@ -120,34 +120,33 @@
 		
 		<h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><p>1.查询一张表：select * from 表名；</p>
 <p>2.查询指定字段：select 字段1，字段2，字段3… from 表名；</p>
-<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；<br><br>例:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t_studect where id=1;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t_student where age&gt;22;</span><br></pre></td></tr></table></figure>
-<p>2.带in关键字查询：select 字段1，字段2 from 表名 where 字段 [not]in(元素1，元素2)；<br><br>例：<br><br><code>select * from t_student where age in (21,23);</code><br><code>select * frome t_student where age not between 21 and 29;</code></p>
-<p>3.带between and的范围查询：select 字段1，字段2 from 表名 where 字段 [not]between 取值1 and 取值2；<br><br>例：<br><br><code>select * frome t_student where age between 21 and 29;</code><br><code>select * frome t_student where age not between 21 and 29;</code></p>
-<p>4.带like的模糊查询：select 字段1，字段2… from 表名 where 字段 [not] like ‘字符串’；<br><br>“%”代表任意字符；“_”代表单个字符；<br>例：<br><br><code>select * frome t_student where stuName like &#39;张三&#39;；</code><br><code>select * frome t_student where stuName like &#39;张三%&#39;；</code><br><code>select * frome t_student where stuName like &#39;%张三%&#39;；</code><br><code>select * frome t_student where stuName like &#39;张三_&#39;</code></p>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；<br>例:<br><code>select * from t_studect where id=1;</code><br><code>select * from t_student where age&gt;22;</code></p>
+<p>2.带in关键字查询：select 字段1，字段2 from 表名 where 字段 [not]in(元素1，元素2)；<br>例：<br><code>select * from t_student where age in (21,23);</code><br><code>select * frome t_student where age not between 21 and 29;</code></p>
+<p>3.带between and的范围查询：select 字段1，字段2 from 表名 where 字段 [not]between 取值1 and 取值2；<br>例：<br><code>select * frome t_student where age between 21 and 29;</code><br><code>select * frome t_student where age not between 21 and 29;</code></p>
+<p>4.带like的模糊查询：select 字段1，字段2… from 表名 where 字段 [not] like ‘字符串’；&lt;<br>“%”代表任意字符；“_”代表单个字符；<br>例：<br><code>select * frome t_student where stuName like &#39;张三&#39;；</code><br><code>select * frome t_student where stuName like &#39;张三%&#39;；</code><br><code>select * frome t_student where stuName like &#39;%张三%&#39;；</code><br><code>select * frome t_student where stuName like &#39;张三_&#39;</code></p>
 <p>5.空值查询：select 字段1，字段2… from 表名 where 字段  is[not] null;</p>
 <p>6.distinct去重复查询：select distinct 字段名 from 表名；</p>
-<p>7.对查询结果排序order by：select 字段1，字段2… from 表名 order by 属性名 [asc|desc]<br><br>例：<br><br><code>select * frome t_student order by age desc；//降序，从大到小</code><br><code>select * frome t_student order by age asc；//升序，asc默认可以不写</code></p>
-<h2 id="多条件查询"><a href="#多条件查询" class="headerlink" title="多条件查询"></a>多条件查询</h2><p>1.带and的多条件查询：select 字段1，字段2… from 表名 where 条件表达式1 and 条件表达式2 [and 条件表达式n]<br><br>例：<br><br><code>select * frome t_student where gradeName=&#39;一年级&#39; and age=23；</code></p>
-<p>2.带or的多条件查询：select 字段1，字段2… from 表名 where 条件表达式1 or 条件表达式2 [or 条件表达式n]<br>例：<br><br><code>select * frome t_student where gradeName=’一年级’ or age=23；//或者，条件只要满足一个</code></p>
+<p>7.对查询结果排序order by：select 字段1，字段2… from 表名 order by 属性名 [asc|desc]<br>例：<br><code>select * frome t_student order by age desc；//降序，从大到小</code><br><code>select * frome t_student order by age asc；//升序，asc默认可以不写</code></p>
+<h2 id="多条件查询"><a href="#多条件查询" class="headerlink" title="多条件查询"></a>多条件查询</h2><p>1.带and的多条件查询：select 字段1，字段2… from 表名 where 条件表达式1 and 条件表达式2 [and 条件表达式n]<br>例：<br><code>select * frome t_student where gradeName=&#39;一年级&#39; and age=23；</code></p>
+<p>2.带or的多条件查询：select 字段1，字段2… from 表名 where 条件表达式1 or 条件表达式2 [or 条件表达式n]<br>例：<br><code>select * frome t_student where gradeName=’一年级’ or age=23；//或者，条件只要满足一个</code></p>
 <h2 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h2><p>分组查询:group by 属性名 [having 条件表达式][with rollup]</p>
 <ul>
-<li><p>1.与group_concat()函数一起使用；例：<br><br><code>select gradeName,group_concat(stuName) from t_student group by gradeName;</code><br><img src="https://i.imgur.com/lAI0UMv.png" alt=""></p>
+<li><p>1.与group_concat()函数一起使用；例：<br><code>select gradeName,group_concat(stuName) from t_student group by gradeName;</code><br><img src="https://i.imgur.com/lAI0UMv.png" alt=""></p>
 </li>
-<li><p>2.与聚合函数一起使用；例：<br><br><code>select gradeName,count(stuName) from t_student group by gradeName;</code><br><img src="https://i.imgur.com/cvzRAO5.png" alt=""></p>
+<li><p>2.与聚合函数一起使用；例：<br><code>select gradeName,count(stuName) from t_student group by gradeName;</code><br><img src="https://i.imgur.com/cvzRAO5.png" alt=""></p>
 </li>
-<li><p>3.与having一起使用（显示输出的结果)；例：<br><br><code>select gradeName,count(stuName) from t_student group by gradeName having count(stuName)&gt;3;</code><br><img src="https://i.imgur.com/Jd8eTvh.png" alt=""></p>
+<li><p>3.与having一起使用（显示输出的结果)；例：<br><code>select gradeName,count(stuName) from t_student group by gradeName having count(stuName)&gt;3;</code><br><img src="https://i.imgur.com/Jd8eTvh.png" alt=""></p>
 </li>
-<li><p>4.与with rollup 一起使用（最后加入一个总和行）；例：<br><br><code>select gradeName,group_concat(stuName) from t_student group by gradeName with rollup;</code><br><img src="https://i.imgur.com/mX5qbfP.png" alt=""></p>
+<li><p>4.与with rollup 一起使用（最后加入一个总和行）；例：<br><code>select gradeName,group_concat(stuName) from t_student group by gradeName with rollup;</code><br><img src="https://i.imgur.com/mX5qbfP.png" alt=""></p>
 </li>
 </ul>
-<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>limit 分页查询：select 字段1，字段2，…from 表名 limit 初始位置，记录数；<br>例：<br><br><code>select * from t_student limit 0,5；</code></p>
-<h2 id="多表连接查询"><a href="#多表连接查询" class="headerlink" title="多表连接查询"></a>多表连接查询</h2><p>表一：t_book<br><br><img src="https://i.imgur.com/rT0u5XC.png" alt=""><br><br>表二：t_bookType<br><br><img src="https://i.imgur.com/Nm4vlpK.png" alt=""><br><br>表三：t_priceLevel<br><br><img src="https://i.imgur.com/jEUZQPS.png" alt=""><br></p>
-<p><code>select * from t_book,t_bookType;</code><br><br><img src="https://i.imgur.com/BFFzDw6.png" alt=""></p>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>limit 分页查询：select 字段1，字段2，…from 表名 limit 初始位置，记录数；<br>例：<br><code>select * from t_student limit 0,5；</code></p>
+<h2 id="多表连接查询"><a href="#多表连接查询" class="headerlink" title="多表连接查询"></a>多表连接查询</h2><p>表一：t_book<br><img src="https://i.imgur.com/rT0u5XC.png" alt=""><br>表二：t_bookType<br><img src="https://i.imgur.com/Nm4vlpK.png" alt=""><br>表三：t_priceLevel<br><img src="https://i.imgur.com/jEUZQPS.png" alt=""></p>
+<p><code>select * from t_book,t_bookType;</code><br><img src="https://i.imgur.com/BFFzDw6.png" alt=""></p>
 <ul>
-<li><p>1.内连接查询（两张或以上的表连接起来查询需要的数据）<br><br>根据表一的bookTypeId查询出所有bookTypeName<br><code>select * from t_book,t_bookType where t_book.bookTypeId=t_bookType.id;</code><br><img src="https://i.imgur.com/SrvlHlw.png" alt=""><br>查询某几个字段：<br><code>select bookNme,author from t_book,t_bookType where t_book.bookTypeId=t_bookType.id;</code><br><img src="https://i.imgur.com/u9ysxxo.png" alt=""></p>
+<li><p>1.内连接查询（两张或以上的表连接起来查询需要的数据）<br>根据表一的bookTypeId查询出所有bookTypeName<br><code>select * from t_book,t_bookType where t_book.bookTypeId=t_bookType.id;</code><br><img src="https://i.imgur.com/SrvlHlw.png" alt=""><br>查询某几个字段：<br><code>select bookNme,author from t_book,t_bookType where t_book.bookTypeId=t_bookType.id;</code><br><img src="https://i.imgur.com/u9ysxxo.png" alt=""></p>
 </li>
-<li><p>2.外连接查询（两张或以上的表连接起来查询某张表的信息）<br><br>  左连接查询<br><code>select * from t_book left join t_bookType on t_book.bookTypeId=t_bookType.id;</code><br>如下图：表一（左边表）t_book的数据全部查出 表二没有的字段用null代替<br><img src="https://i.imgur.com/Tcm5dbz.png" alt=""></p>
+<li><p>2.外连接查询（两张或以上的表连接起来查询某张表的信息）<br>  左连接查询<br><code>select * from t_book left join t_bookType on t_book.bookTypeId=t_bookType.id;</code><br>如下图：表一（左边表）t_book的数据全部查出 表二没有的字段用null代替<br><img src="https://i.imgur.com/Tcm5dbz.png" alt=""></p>
 <p>  右连接查询<br><code>select * from t_book right join t_bookType on t_book.bookTypeId=t_bookType.id;</code><br>查出表二（右边表）的所有信息，表一没有的用null代替<br><img src="https://i.imgur.com/IsflZBa.png" alt=""></p>
 </li>
 <li><p>3.多条件连接查询<br><code>select * from t_book,t_bookType where t_book.bookTypeId=t_bookType.id and t_book.price&gt;70;</code><br><img src="https://i.imgur.com/lyn1Iym.png" alt=""></p>
