@@ -4,25 +4,39 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>写在独立博客开创时 | macintosh-c&#39;s bog</title>
+    <title>数据库基础(三):查询 | macintosh-c&#39;s bog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="写在前面这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。 更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭">
-<meta name="keywords" content="随笔">
+    <meta name="description" content="基础查询1.查询一张表：select * from 表名； 2.查询指定字段：select 字段1，字段2，字段3… from 表名； 条件查询1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；例:1select * from t_studect where id=1; 1select * from t_student where age&amp;gt;">
+<meta name="keywords" content="database">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写在独立博客开创时">
-<meta property="og:url" content="http://macintosh-c.github.io/2018/08/12/写在独立博客开创时/index.html">
+<meta property="og:title" content="数据库基础(三):查询">
+<meta property="og:url" content="http://macintosh-c.github.io/2018/08/13/数据库基础-三/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s bog">
-<meta property="og:description" content="写在前面这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。 更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭">
+<meta property="og:description" content="基础查询1.查询一张表：select * from 表名； 2.查询指定字段：select 字段1，字段2，字段3… from 表名； 条件查询1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；例:1select * from t_studect where id=1; 1select * from t_student where age&amp;gt;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-12T04:58:47.959Z">
+<meta property="og:image" content="https://i.imgur.com/lAI0UMv.png">
+<meta property="og:image" content="https://i.imgur.com/cvzRAO5.png">
+<meta property="og:image" content="https://i.imgur.com/Jd8eTvh.png">
+<meta property="og:image" content="https://i.imgur.com/mX5qbfP.png">
+<meta property="og:image" content="https://i.imgur.com/rT0u5XC.png">
+<meta property="og:image" content="https://i.imgur.com/Nm4vlpK.png">
+<meta property="og:image" content="https://i.imgur.com/jEUZQPS.png">
+<meta property="og:image" content="https://i.imgur.com/BFFzDw6.png">
+<meta property="og:image" content="https://i.imgur.com/SrvlHlw.png">
+<meta property="og:image" content="https://i.imgur.com/u9ysxxo.png">
+<meta property="og:image" content="https://i.imgur.com/Tcm5dbz.png">
+<meta property="og:image" content="https://i.imgur.com/IsflZBa.png">
+<meta property="og:image" content="https://i.imgur.com/lyn1Iym.png">
+<meta property="og:updated_time" content="2018-08-13T06:47:39.283Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写在独立博客开创时">
-<meta name="twitter:description" content="写在前面这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。 更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭">
+<meta name="twitter:title" content="数据库基础(三):查询">
+<meta name="twitter:description" content="基础查询1.查询一张表：select * from 表名； 2.查询指定字段：select 字段1，字段2，字段3… from 表名； 条件查询1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；例:1select * from t_studect where id=1; 1select * from t_student where age&amp;gt;">
+<meta name="twitter:image" content="https://i.imgur.com/lAI0UMv.png">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s bog" type="application/atom+xml">
@@ -84,14 +98,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/08/12/写在独立博客开创时/" title="写在独立博客开创时" itemprop="url">写在独立博客开创时</a>
+      <a href="/2018/08/13/数据库基础-三/" title="数据库基础(三):查询" itemprop="url">数据库基础(三):查询</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2018-08-12T03:09:55.000Z" itemprop="datePublished"> 发表于 2018-08-12</time>
+    <time datetime="2018-08-13T04:49:36.000Z" itemprop="datePublished"> 发表于 2018-08-13</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次 
   </p>
 </header>
@@ -100,37 +114,63 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客进展"><span class="toc-number">2.</span> <span class="toc-text">博客进展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#愿景"><span class="toc-number">3.</span> <span class="toc-text">愿景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础查询"><span class="toc-number">1.</span> <span class="toc-text">基础查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件查询"><span class="toc-number">2.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多条件查询"><span class="toc-number">3.</span> <span class="toc-text">多条件查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分组查询"><span class="toc-number">4.</span> <span class="toc-text">分组查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分页查询"><span class="toc-number">5.</span> <span class="toc-text">分页查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多表连接查询"><span class="toc-number">6.</span> <span class="toc-text">多表连接查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子查询"><span class="toc-number">7.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并查询"><span class="toc-number">8.</span> <span class="toc-text">合并查询</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。</p>
-<p>更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭这么一个博客呢，原因有下面几点：</p>
-<ol>
-<li>积累。希望能借助这个博客平台多积累技术，改掉平时随手乱记，无纲要，无逻辑的习惯。<br></li>
-<li>坚持。转行IT这条路对于我来说不知道还能走多远，这条路对于我来说能有多宽，那总要有一个坚持的方法。<br></li>
-<li>总结。总感觉越大写作的能力在直线下滑，有时候有很多感慨和想法，想写却写不出来，有这么个博客，可以锻炼这方面的能力。<br></li>
-</ol>
-<p>网上关于如何用Hexo+Github来搭建独立博客的分享很多，我也不打算再去用篇幅讲述搭建详细了，主要参考了<a href="http://tengj.top/" target="_blank" rel="noopener">tengj</a>和<a href="https://whatbeg.com/" target="_blank" rel="noopener">whatbeg</a>两位兄台的分享，十分感谢！</p>
-<h2 id="博客进展"><a href="#博客进展" class="headerlink" title="博客进展"></a>博客进展</h2><p>有必要简单讲述一下这个博客搭建的进展，以及后续还需要完善的地方，来继续鞭策自己</p>
-<p>到目前为止已完成：</p>
+		<h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><p>1.查询一张表：select * from 表名；</p>
+<p>2.查询指定字段：select 字段1，字段2，字段3… from 表名；</p>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>1.where条件查询：select 字段1，字段2，字段3 from 表名 where 条件表达式；<br><br>例:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t_studect where id=1;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from t_student where age&gt;22;</span><br></pre></td></tr></table></figure>
+<p>2.带in关键字查询：select 字段1，字段2 from 表名 where 字段 [not]in(元素1，元素2)；<br><br>例：<br><br><code>select * from t_student where age in (21,23);</code><br><code>select * frome t_student where age not between 21 and 29;</code></p>
+<p>3.带between and的范围查询：select 字段1，字段2 from 表名 where 字段 [not]between 取值1 and 取值2；<br><br>例：<br><br><code>select * frome t_student where age between 21 and 29;</code><br><code>select * frome t_student where age not between 21 and 29;</code></p>
+<p>4.带like的模糊查询：select 字段1，字段2… from 表名 where 字段 [not] like ‘字符串’；<br><br>“%”代表任意字符；“_”代表单个字符；<br>例：<br><br><code>select * frome t_student where stuName like &#39;张三&#39;；</code><br><code>select * frome t_student where stuName like &#39;张三%&#39;；</code><br><code>select * frome t_student where stuName like &#39;%张三%&#39;；</code><br><code>select * frome t_student where stuName like &#39;张三_&#39;</code></p>
+<p>5.空值查询：select 字段1，字段2… from 表名 where 字段  is[not] null;</p>
+<p>6.distinct去重复查询：select distinct 字段名 from 表名；</p>
+<p>7.对查询结果排序order by：select 字段1，字段2… from 表名 order by 属性名 [asc|desc]<br><br>例：<br><br><code>select * frome t_student order by age desc；//降序，从大到小</code><br><code>select * frome t_student order by age asc；//升序，asc默认可以不写</code></p>
+<h2 id="多条件查询"><a href="#多条件查询" class="headerlink" title="多条件查询"></a>多条件查询</h2><p>1.带and的多条件查询：select 字段1，字段2… from 表名 where 条件表达式1 and 条件表达式2 [and 条件表达式n]<br><br>例：<br><br><code>select * frome t_student where gradeName=&#39;一年级&#39; and age=23；</code></p>
+<p>2.带or的多条件查询：select 字段1，字段2… from 表名 where 条件表达式1 or 条件表达式2 [or 条件表达式n]<br>例：<br><br><code>select * frome t_student where gradeName=’一年级’ or age=23；//或者，条件只要满足一个</code></p>
+<h2 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h2><p>分组查询:group by 属性名 [having 条件表达式][with rollup]</p>
 <ul>
-<li>hexo环境搭建，github关联。</li>
-<li>初步熟悉hexo的基本配置，更换主题jacman，修改布局，新建文章，标签，分类等。</li>
-<li>添加简单<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">文章，网站访问量统计</a>功能。</li>
-<li>RSS订阅功能</li>
-<li>Markdown语法，边写边学习。</li>
-<li>添加了文章<a href="https://whatbeg.com/2016/05/18/hexo-donate.html" target="_blank" rel="noopener">打赏</a>功能。</li>
+<li><p>1.与group_concat()函数一起使用；例：<br><br><code>select gradeName,group_concat(stuName) from t_student group by gradeName;</code><br><img src="https://i.imgur.com/lAI0UMv.png" alt=""></p>
+</li>
+<li><p>2.与聚合函数一起使用；例：<br><br><code>select gradeName,count(stuName) from t_student group by gradeName;</code><br><img src="https://i.imgur.com/cvzRAO5.png" alt=""></p>
+</li>
+<li><p>3.与having一起使用（显示输出的结果)；例：<br><br><code>select gradeName,count(stuName) from t_student group by gradeName having count(stuName)&gt;3;</code><br><img src="https://i.imgur.com/Jd8eTvh.png" alt=""></p>
+</li>
+<li><p>4.与with rollup 一起使用（最后加入一个总和行）；例：<br><br><code>select gradeName,group_concat(stuName) from t_student group by gradeName with rollup;</code><br><img src="https://i.imgur.com/mX5qbfP.png" alt=""></p>
+</li>
 </ul>
-<p>下一步还需要做的有：</p>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>limit 分页查询：select 字段1，字段2，…from 表名 limit 初始位置，记录数；<br>例：<br><br><code>select * from t_student limit 0,5；</code></p>
+<h2 id="多表连接查询"><a href="#多表连接查询" class="headerlink" title="多表连接查询"></a>多表连接查询</h2><p>表一：t_book<br><br><img src="https://i.imgur.com/rT0u5XC.png" alt=""><br><br>表二：t_bookType<br><br><img src="https://i.imgur.com/Nm4vlpK.png" alt=""><br><br>表三：t_priceLevel<br><br><img src="https://i.imgur.com/jEUZQPS.png" alt=""><br></p>
+<p><code>select * from t_book,t_bookType;</code><br><br><img src="https://i.imgur.com/BFFzDw6.png" alt=""></p>
 <ul>
-<li>安装统计插件</li>
-<li>添加站内搜索</li>
-<li>提交搜索引擎</li>
+<li><p>1.内连接查询（两张或以上的表连接起来查询需要的数据）<br><br>根据表一的bookTypeId查询出所有bookTypeName<br><code>select * from t_book,t_bookType where t_book.bookTypeId=t_bookType.id;</code><br><img src="https://i.imgur.com/SrvlHlw.png" alt=""><br>查询某几个字段：<br><code>select bookNme,author from t_book,t_bookType where t_book.bookTypeId=t_bookType.id;</code><br><img src="https://i.imgur.com/u9ysxxo.png" alt=""></p>
+</li>
+<li><p>2.外连接查询（两张或以上的表连接起来查询某张表的信息）<br><br>  左连接查询<br><code>select * from t_book left join t_bookType on t_book.bookTypeId=t_bookType.id;</code><br>如下图：表一（左边表）t_book的数据全部查出 表二没有的字段用null代替<br><img src="https://i.imgur.com/Tcm5dbz.png" alt=""></p>
+<p>  右连接查询<br><code>select * from t_book right join t_bookType on t_book.bookTypeId=t_bookType.id;</code><br>查出表二（右边表）的所有信息，表一没有的用null代替<br><img src="https://i.imgur.com/IsflZBa.png" alt=""></p>
+</li>
+<li><p>3.多条件连接查询<br><code>select * from t_book,t_bookType where t_book.bookTypeId=t_bookType.id and t_book.price&gt;70;</code><br><img src="https://i.imgur.com/lyn1Iym.png" alt=""></p>
+</li>
 </ul>
-<h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p>首先希望这个博客能在自我的坚持中一直写下去，让我在将来回头看时，有留下些许东西。主要涉猎的技术文章可能关于java，android，web，微信小程序等等。能力有限，仅供自己学习总结。其次，平时生活中的感想，感悟，感慨等，成长过程的脚印，总结也会用独立的分类篇幅来记录。再则，工作生活中阅读到的一些好的书本，语录等也会收集分享。希望勤能补拙。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这次部署过程中受益于网络上各路大神们的细心总结，赠人玫瑰，手有余香。感谢！</p>
-<p>就写到这吧，Markdown也不是很熟悉。总之，持之以恒，继续努力！</p>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><ul>
+<li><p>1.带in关键字的子查询（一个查询语句的条件可能落在另一个select语句的查询结果中）<br><code>select * from t_book where bookType in(select id from t_bookType);</code><br><code>select * from t_book where bookType not in(select id from t_bookType);</code></p>
+</li>
+<li><p>2.带比较运算符的子查询（子查询可以使用比较运算符）<br><code>select * from t_book where price&gt;=(select price from t_priceLevel where priceLevel=1);</code></p>
+</li>
+<li><p>3.带exists关键字的子查询（加入子查询查询到记录，则进行外层查询，否则，不执行外层查询）<br><code>select * from t_book where exists(select * from t_booktype);</code><br><code>select * from t_book where not exists(select * from t_booktype);</code></p>
+</li>
+<li><p>4.带any关键字的子查询（any关键字表示满足其中任一条件）<br><code>select * from t_book where price&gt;= any(select price from t_priceLevel);</code></p>
+</li>
+<li><p>5.带all关键字的子查询（all关键字表示满足所有条件）<br><code>select * from t_book where price&gt;= all(select price from t_priceLevel);</code></p>
+</li>
+</ul>
+<h2 id="合并查询"><a href="#合并查询" class="headerlink" title="合并查询"></a>合并查询</h2><ul>
+<li><p>1.union<br>使用union关键字是，数据库系统会将所有的查询结果合并到一起，然后去掉相同的记录；<br><code>select id from t_book union select id from t_bookType;</code></p>
+</li>
+<li><p>2.union all<br>使用union all，不会去除掉重复的记录；<br><code>select id from t_book union all select id from t_bookType;</code></p>
+</li>
+</ul>
   
 	</div>
 	
@@ -244,13 +284,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/成长之路-Biography/">成长之路 | Biography</a>
+  <a class="article-category-link" href="/categories/数据库-Database/">数据库 | Database</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/随笔/">随笔</a>
+  <span></span> <a href="/tags/database/">database</a>
   </div>
 
 </div>
@@ -259,7 +299,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.github.io/2018/08/12/写在独立博客开创时/" data-title="写在独立博客开创时 | macintosh-c&#39;s bog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.github.io/2018/08/13/数据库基础-三/" data-title="数据库基础(三):查询 | macintosh-c&#39;s bog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -272,20 +312,20 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/08/13/数据库基础-一/" title="数据库基础(一):DDL/DML/DCL/TCL基本概念">
-  <strong>上一篇：</strong><br/>
-  <span>
-  数据库基础(一):DDL/DML/DCL/TCL基本概念</span>
+
+<div class="next">
+<a href="/2018/08/13/数据库基础-二/"  title="数据库基础(二):经典练习案例">
+ <strong>下一篇：</strong><br/> 
+ <span>数据库基础(二):经典练习案例
+</span>
 </a>
 </div>
-
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2018/08/12/写在独立博客开创时/" data-title="写在独立博客开创时" data-url="http://macintosh-c.github.io/2018/08/12/写在独立博客开创时/"></div>
+	<div class="ds-thread" data-thread-key="2018/08/13/数据库基础-三/" data-title="数据库基础(三):查询" data-url="http://macintosh-c.github.io/2018/08/13/数据库基础-三/"></div>
 </section>
 
 
@@ -297,7 +337,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客进展"><span class="toc-number">2.</span> <span class="toc-text">博客进展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#愿景"><span class="toc-number">3.</span> <span class="toc-text">愿景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础查询"><span class="toc-number">1.</span> <span class="toc-text">基础查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件查询"><span class="toc-number">2.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多条件查询"><span class="toc-number">3.</span> <span class="toc-text">多条件查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分组查询"><span class="toc-number">4.</span> <span class="toc-text">分组查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分页查询"><span class="toc-number">5.</span> <span class="toc-text">分页查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多表连接查询"><span class="toc-number">6.</span> <span class="toc-text">多表连接查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子查询"><span class="toc-number">7.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并查询"><span class="toc-number">8.</span> <span class="toc-text">合并查询</span></a></li></ol>
  
   </div>
 
