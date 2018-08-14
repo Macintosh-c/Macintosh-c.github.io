@@ -70,8 +70,9 @@ theme: jacman
 ## Docs: https://hexo.io/docs/deployment.html
 deploy: 
   type: git
-  repository: https://Macintosh-c:loveyl0429@github.com/Macintosh-c/Macintosh-c.github.io.git
-  branch: master
+  repository: 
+		github: https://Macintosh-c:loveyl0429@github.com/Macintosh-c/Macintosh-c.github.io.git,master
+		coding: https://Macintosh-c:loveyl0429@git.coding.net/Macintosh-c/HexoBlog.git,master
 
 feed: 
 	type: atom
