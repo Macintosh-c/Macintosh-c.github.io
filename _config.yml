@@ -72,7 +72,7 @@ deploy:
   type: git
   repository: 
 		github: https://Macintosh-c:loveyl0429@github.com/Macintosh-c/Macintosh-c.github.io.git,master
-		coding: https://Macintosh-c:loveyl0429@git.coding.net/Macintosh-c/HexoBlog.git,master
+		coding: https://Macintosh-c:loveyl0429@git.coding.net/Macintosh-c/Macintosh-c.git,master
 
 feed: 
 	type: atom
