@@ -61,12 +61,13 @@
 					
 					<li>
  					
-						<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=14512095850844642904' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+						<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=10231555544562790968' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
 					
 					</li>
 				</ul>
-			</nav>						
+			</nav>
 </div>
+
     </header>
     <div id="container">
       <div id="main">
@@ -200,13 +201,14 @@ Mybatis 的Mapper.xml语句中parameterType向SQL语句传参有两种方式：#
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2018/08/22/mysql-5-7-主从配置/" title="mysql之---主从配置（windows，mysql5.7）" itemprop="url">
+    <a href="/2018/08/22/mysql5-7版本下载与安装/" title="mysql之---下载与安装（windows，mysql5.7免安装版）" itemprop="url">
   
-    <h1 itemprop="name">mysql之---主从配置（windows，mysql5.7）</h1>
+    <h1 itemprop="name">mysql之---下载与安装（windows，mysql5.7免安装版）</h1>
     
      
-           <p itemprop="description" >利用MySQL主从配置，实现读写分离，减轻数据库压力。条件有限，本篇使用binlog的方式，只在一台windows上实验ok。方法记录如下：
-mysql主(称master)从(称slave)复制的原理：1.master将数据改变记录到二进制日志(binary log)中,也即是配</p>
+           <p itemprop="description" >近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下
+下载
+链接：https://dev.mysql.com/downloads/mysql/</p>
         
     
     <time datetime="2018-08-22T06:34:16.000Z" itemprop="datePublished">2018-08-22</time>
@@ -221,14 +223,13 @@ mysql主(称master)从(称slave)复制的原理：1.master将数据改变记录�
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2018/08/22/mysql5-7版本下载与安装/" title="mysql之---下载与安装（windows，mysql5.7免安装版）" itemprop="url">
+    <a href="/2018/08/22/mysql-5-7-主从配置/" title="mysql之---主从配置（windows，mysql5.7）" itemprop="url">
   
-    <h1 itemprop="name">mysql之---下载与安装（windows，mysql5.7免安装版）</h1>
+    <h1 itemprop="name">mysql之---主从配置（windows，mysql5.7）</h1>
     
      
-           <p itemprop="description" >近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下
-下载
-链接：https://dev.mysql.com/downloads/mysql/</p>
+           <p itemprop="description" >利用MySQL主从配置，实现读写分离，减轻数据库压力。条件有限，本篇使用binlog的方式，只在一台windows上实验ok。方法记录如下：
+mysql主(称master)从(称slave)复制的原理：1.master将数据改变记录到二进制日志(binary log)中,也即是配</p>
         
     
     <time datetime="2018-08-22T06:34:16.000Z" itemprop="datePublished">2018-08-22</time>
