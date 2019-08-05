@@ -1,0 +1,736 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>hexo搭建博客之---总结篇 | macintosh-c&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Macintosh-c">
+    
+
+    
+    <meta name="description" content="hexo搭建博客流程汇总(简述)一、环境搭建1.安装Node.js安装Hexo：npm install -g hexo在存放博客原始文件夹建立网站所需要的所有文件：hexo init安装依赖包:npm install（关于hexo的几个常用指令：hexo clean；hexo g；hexo s；hexo d自行了解） 2.安装Git客户端配置SSH添加SSH key到你的Github账户 3.注册">
+<meta name="keywords" content="blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo搭建博客之---总结篇">
+<meta property="og:url" content="http://macintosh-c.github.io/2018/08/17/hexo搭建博客之-总结/index.html">
+<meta property="og:site_name" content="macintosh-c&#39;s blog">
+<meta property="og:description" content="hexo搭建博客流程汇总(简述)一、环境搭建1.安装Node.js安装Hexo：npm install -g hexo在存放博客原始文件夹建立网站所需要的所有文件：hexo init安装依赖包:npm install（关于hexo的几个常用指令：hexo clean；hexo g；hexo s；hexo d自行了解） 2.安装Git客户端配置SSH添加SSH key到你的Github账户 3.注册">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-01T09:07:49.115Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo搭建博客之---总结篇">
+<meta name="twitter:description" content="hexo搭建博客流程汇总(简述)一、环境搭建1.安装Node.js安装Hexo：npm install -g hexo在存放博客原始文件夹建立网站所需要的所有文件：hexo init安装依赖包:npm install（关于hexo的几个常用指令：hexo clean；hexo g；hexo s；hexo d自行了解） 2.安装Git客户端配置SSH添加SSH key到你的Github账户 3.注册">
+
+    
+    <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo_me.jpg" alt="macintosh-c&#39;s blog" title="macintosh-c&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="macintosh-c&#39;s blog">macintosh-c&#39;s blog</a></h1>
+				<h2 class="blog-motto">当你的才华撑不起你的野心时，就应该静下心来好好学习。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页(Home)</a></li>
+					
+						<li><a href="/archives">归档(Archives)</a></li>
+					
+						<li><a href="/tags">标签(Tags)</a></li>
+					
+						<li><a href="/categories">分类(Categories)</a></li>
+					
+					<li>
+ 					
+						<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=14512095850844642904' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+					
+					</li>
+				</ul>
+			</nav>						
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/08/17/hexo搭建博客之-总结/" title="hexo搭建博客之---总结篇" itemprop="url">hexo搭建博客之---总结篇</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
+		
+  <p class="article-time">
+    <time datetime="2018-08-17T06:59:00.000Z" itemprop="datePublished"> 发表于 2018-08-17</time>
+		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次 
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo搭建博客流程汇总-简述"><span class="toc-number">1.</span> <span class="toc-text">hexo搭建博客流程汇总(简述)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、环境搭建"><span class="toc-number">1.1.</span> <span class="toc-text">一、环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-安装Node-js"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.安装Node.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-安装Git客户端"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.安装Git客户端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-注册Github帐号"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.注册Github帐号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、简单配置"><span class="toc-number">1.2.</span> <span class="toc-text">二、简单配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-部署本地hexo文件到github建好的仓库"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.部署本地hexo文件到github建好的仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-安装hexo-deployer-git模块"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.安装hexo-deployer-git模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、发表及访问"><span class="toc-number">1.3.</span> <span class="toc-text">三、发表及访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、主题安装及优化，更新"><span class="toc-number">1.4.</span> <span class="toc-text">四、主题安装及优化，更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-安装jacman主题"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.安装jacman主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-启用"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.启用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-后续更新"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.后续更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-优化处理"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.优化处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、其他功能配置"><span class="toc-number">1.5.</span> <span class="toc-text">五、其他功能配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-配置RSS订阅"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.配置RSS订阅</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-不蒜子-网页，网站极简计数器-即总pv计数和总uv计数"><span class="toc-number">1.5.2.</span> <span class="toc-text">2.不蒜子-网页，网站极简计数器:即总pv计数和总uv计数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-托管coding"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.托管coding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-多地更新博客：原始文件托管"><span class="toc-number">1.5.4.</span> <span class="toc-text">4.多地更新博客：原始文件托管</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-打赏功能"><span class="toc-number">1.5.5.</span> <span class="toc-text">5.打赏功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-注册域名并绑定"><span class="toc-number">1.5.6.</span> <span class="toc-text">6.注册域名并绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-添加百度站内搜索，以及提交百度，360，搜狗搜索引擎"><span class="toc-number">1.5.7.</span> <span class="toc-text">7.添加百度站内搜索，以及提交百度，360，搜狗搜索引擎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-添加百度统计"><span class="toc-number">1.5.8.</span> <span class="toc-text">8.添加百度统计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-添加评论插件"><span class="toc-number">1.5.9.</span> <span class="toc-text">9.添加评论插件</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="hexo搭建博客流程汇总-简述"><a href="#hexo搭建博客流程汇总-简述" class="headerlink" title="hexo搭建博客流程汇总(简述)"></a>hexo搭建博客流程汇总(简述)</h2><h3 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h3><h4 id="1-安装Node-js"><a href="#1-安装Node-js" class="headerlink" title="1.安装Node.js"></a>1.安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></h4><p>安装Hexo：<code>npm install -g hexo</code><br>在存放博客原始文件夹建立网站所需要的所有文件：<code>hexo init</code><br>安装依赖包:<code>npm install</code><br>（关于hexo的几个常用指令：hexo clean；hexo g；hexo s；hexo d自行了解）</p>
+<h4 id="2-安装Git客户端"><a href="#2-安装Git客户端" class="headerlink" title="2.安装Git客户端"></a>2.安装<a href="https://git-scm.com/download" target="_blank" rel="noopener">Git</a>客户端</h4><p>配置SSH<br>添加SSH key到你的Github账户</p>
+<h4 id="3-注册Github帐号"><a href="#3-注册Github帐号" class="headerlink" title="3.注册Github帐号"></a>3.注册Github帐号</h4><p>github上创建用于博客的repository仓库</p>
+<h3 id="二、简单配置"><a href="#二、简单配置" class="headerlink" title="二、简单配置"></a>二、简单配置</h3><h4 id="1-部署本地hexo文件到github建好的仓库"><a href="#1-部署本地hexo文件到github建好的仓库" class="headerlink" title="1.部署本地hexo文件到github建好的仓库"></a>1.部署本地hexo文件到github建好的仓库</h4><p>配置根目录：_config.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:</span><br><span class="line">      github: ***(仓库地址),master(代表仓库的哪个分支)</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-安装hexo-deployer-git模块"><a href="#2-安装hexo-deployer-git模块" class="headerlink" title="2.安装hexo-deployer-git模块"></a>2.安装hexo-deployer-git模块</h4><p>尝试推送到github访问：<br><code>hexo g</code><br><code>hexo d</code><br>如果报错,安装一下hexo-deployer-git这个模块：<br><code>npm install hexo-deployer-git --save</code></p>
+<h3 id="三、发表及访问"><a href="#三、发表及访问" class="headerlink" title="三、发表及访问"></a>三、发表及访问</h3><p>发表一篇文章<br>Git Bash执行命令：hexo new “my new post”<br>在博客原始文件夹路径下\hexo\source_post中打开my-new-post.md，打开方式使用记事本或者其他文本工具。推荐使用markdown，可自行下载安装，并研究语法，很容易上手。<br>写完文章后，使用</p>
+<pre><code>1. $ hexo g生成静态文件。
+2. $ hexo s在本地预览效果。访问地址localhost:4000。
+3. hexo d同步到github，然后使用github上仓库名在浏览器进行访问。
+</code></pre><h3 id="四、主题安装及优化，更新"><a href="#四、主题安装及优化，更新" class="headerlink" title="四、主题安装及优化，更新"></a>四、主题安装及优化，更新</h3><h4 id="1-安装jacman主题"><a href="#1-安装jacman主题" class="headerlink" title="1.安装jacman主题"></a>1.安装jacman主题</h4><p><code>git clone https://github.com/wuchong/jacman.git themes/jacman</code></p>
+<h4 id="2-启用"><a href="#2-启用" class="headerlink" title="2.启用"></a>2.启用</h4><p>修改你的博客根目录下的config.yml配置文件中的theme属性，将其设置为jacman。</p>
+<h4 id="3-后续更新"><a href="#3-后续更新" class="headerlink" title="3.后续更新"></a>3.后续更新</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes/jacman</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<p>注：由于后来用git托管hexo原始文件时，删除了jacman下的git库所有不能更新，可以另外建一个目录来更新这个主题，然后合并到原始文件目录下面，再提交，达到一样更新的效果</p>
+<h4 id="4-优化处理"><a href="#4-优化处理" class="headerlink" title="4.优化处理"></a>4.优化处理</h4><ul>
+<li><p>menu 默认没有启用 /tags 和 /categories 页面，如果需要启用请在博客目录下的source文件夹中分别建立tags和categories文件夹每个文件夹中分别包含一个index.md文件。内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">layout: tags (或categories)</span><br><span class="line">title: tags (或categories)</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加搜素，需要在博客目录下的source文件夹中建立search文件夹并包含一个index.md文件。内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">layout: search</span><br><span class="line">title: search</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置文章模板，修改根目录下\scaffolds\post.md文件，配置好基本的信息，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">categories: </span><br><span class="line">tags: </span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>另外修改了博客的整体颜色，logo图片，导航栏背景，博客座右铭，侧边栏自动隐藏等，具体修改方法不再详述</p>
+<h3 id="五、其他功能配置"><a href="#五、其他功能配置" class="headerlink" title="五、其他功能配置"></a>五、其他功能配置</h3><h4 id="1-配置RSS订阅"><a href="#1-配置RSS订阅" class="headerlink" title="1.配置RSS订阅"></a>1.配置RSS订阅</h4><p>安装插件：<code>npm install hexo-generator-feed --save</code><br>根目录下面_config.yml配置文件中添加如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br><span class="line">  hub:</span><br></pre></td></tr></table></figure></p>
+<p>themes\jacman下的_config.yml默认会有下面代码，如果你的没有就添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\#### RSS </span><br><span class="line">rss: /atom.xml ## RSS address.</span><br></pre></td></tr></table></figure></p>
+<p>编译部署exo deploy -g<br>查看是否成功，输入你的博客域名，后面加上/atom.xml,如果打开有代码数据就表示成功</p>
+<h4 id="2-不蒜子-网页，网站极简计数器-即总pv计数和总uv计数"><a href="#2-不蒜子-网页，网站极简计数器-即总pv计数和总uv计数" class="headerlink" title="2.不蒜子-网页，网站极简计数器:即总pv计数和总uv计数"></a>2.<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a>-网页，网站极简计数器:即总pv计数和总uv计数</h4><p>总uv数添加(添加双**中间的代码)：themes\jacman\layout_partial\footer.ejs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">		&lt;a href=&quot;&lt;%= config.url %&gt;&quot; title=&quot;&lt;%= config.title %&gt;&quot;&gt;&lt;%= config.title %&gt;&lt;/a&gt;</span><br><span class="line">		&lt;% &#125; %&gt;</span><br><span class="line">		**&lt;/br&gt;</span><br><span class="line">		&lt;script async src=&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">		&lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;</span><br><span class="line">		    &amp;nbsp;&amp;nbsp;Total visits:&amp;nbsp;&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;</span><br><span class="line">		&lt;/span&gt;</span><br><span class="line">		&lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;</span><br><span class="line">		  &amp;nbsp;&amp;nbsp;You are Visiter No.&lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;</span><br><span class="line">		&lt;/span&gt;**</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>总pv数添加：emes\jacman\layout_partial\post\header.ejs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  &lt;p class=&quot;article-time&quot;&gt;</span><br><span class="line">    &lt;time datetime=&quot;&lt;%= date_xml(item.date) %&gt;&quot; itemprop=&quot;datePublished&quot;&gt; &lt;%= __(&apos;datepublished&apos;) %&gt; &lt;%= item.date.format(config.date_format) %&gt;&lt;/time&gt;</span><br><span class="line">		**&lt;span id=&quot;busuanzi_container_page_pv&quot;&gt; 总阅读 &lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt; &lt;/span&gt;次 **</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">&lt;/header&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-托管coding"><a href="#3-托管coding" class="headerlink" title="3.托管coding"></a>3.托管coding</h4><p>国外github访问以及上传都比较慢，于是托管到coding，具体详细步骤见：<a href="http://www.macintosh-c.online/2018/08/14/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%BA%8C/" target="_blank" rel="noopener">hexo搭建博客之—托管coding</a><br>简述：<br>1.注册coding账号，新建一个和用户名一样的仓库<br>2.配置根目录下_config.yml文件的deploy，hexo d可以向两个仓库上传<br>3.coding上page静态部署</p>
+<h4 id="4-多地更新博客：原始文件托管"><a href="#4-多地更新博客：原始文件托管" class="headerlink" title="4.多地更新博客：原始文件托管"></a>4.多地更新博客：原始文件托管</h4><p>由于离开了本地pc，不方便持续更新博客，便想把原始文件也托管到coding，这样到其他电脑上，环境ok就可以直接clone下来更新微博，方便快捷，具体见：<a href="http://www.macintosh-c.online/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/" target="_blank" rel="noopener">hexo搭建博客之—github管理原始文件，异地更新博客</a>,同样的方法配置，托管到coding。<br>简述：<br>1.在coding上博客的仓库新建一个hexo分支<br>2.将该分支设为默认分支<br>3.本地clone下来，可以删除里面的文件，然后把自己本地hexo的原始文件添加上传至hexo分支<br>4.每次异地记得先git pull，npm install，写完更新后，git add,git push 到远程coding仓库</p>
+<h4 id="5-打赏功能"><a href="#5-打赏功能" class="headerlink" title="5.打赏功能"></a>5.<a href="https://whatbeg.com/2016/05/18/hexo-donate.html" target="_blank" rel="noopener">打赏</a>功能</h4><p>出于好玩，在自己的博客上也添加了打赏功能，具体操作：<br>在themes\jacman_config.yml文件中添加如下语句（微信和支付宝的图片链接当然要换成你自己的）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">donate:</span><br><span class="line">  enable: true</span><br><span class="line">  text: 打赏我的人，运气都不会太差~</span><br><span class="line">  wechat: https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg</span><br><span class="line">  alipay: https://wx3.sinaimg.cn/mw690/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg</span><br><span class="line">  web: true</span><br></pre></td></tr></table></figure></p>
+<p>然后themes\jacman\layout_partial\post\article.ejs在<code>&lt;div class=&quot;article-content&quot;&gt;...&lt;/div&gt;</code>的下面，<code>&lt;%- partial(&#39;footer&#39;) %&gt;</code>的上面插入如下HTML代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">	&lt;% if (theme.donate) &#123; %&gt;</span><br><span class="line">	&lt;!-- css --&gt;</span><br><span class="line">	&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">	    .center &#123;</span><br><span class="line">	        text-align: center;</span><br><span class="line">	    &#125;</span><br><span class="line">	    .hidden &#123;</span><br><span class="line">	        display: none;</span><br><span class="line">	    &#125;</span><br><span class="line">		.donate_bar a.btn_donate&#123;</span><br><span class="line">			display: inline-block;</span><br><span class="line">			width: 82px;</span><br><span class="line">			height: 82px;</span><br><span class="line">			background: url(&quot;http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif&quot;) no-repeat;</span><br><span class="line">			_background: url(&quot;http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif&quot;) no-repeat;</span><br><span class="line"></span><br><span class="line">			&lt;!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif</span><br><span class="line">			     因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，</span><br><span class="line">				 为了在让打赏按钮显示效果正常 而 添加了以下几行 css，</span><br><span class="line">				 嵌入其它博客时不一定要它们。--&gt;</span><br><span class="line">			-webkit-transition: background 0s;</span><br><span class="line">			-moz-transition: background 0s;</span><br><span class="line">			-o-transition: background 0s;</span><br><span class="line">			-ms-transition: background 0s;</span><br><span class="line">			transition: background 0s;</span><br><span class="line">			&lt;!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束--&gt;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		.donate_bar a.btn_donate:hover&#123; background-position: 0px -82px;&#125;</span><br><span class="line">		.donate_bar .donate_txt &#123;</span><br><span class="line">			display: block;</span><br><span class="line">			color: #9d9d9d;</span><br><span class="line">			font: 14px/2 &quot;Microsoft Yahei&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		.bold&#123; font-weight: bold; &#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">	&lt;!-- /css --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- Donate Module --&gt;</span><br><span class="line">    &lt;div id=&quot;donate_module&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- btn_donate &amp; tips --&gt;</span><br><span class="line">	&lt;div id=&quot;donate_board&quot; class=&quot;donate_bar center&quot;&gt;</span><br><span class="line">	    &lt;br&gt;</span><br><span class="line">	    ------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line">	    &lt;br&gt;</span><br><span class="line">		&lt;a id=&quot;btn_donate&quot; class=&quot;btn_donate&quot; target=&quot;_self&quot; href=&quot;javascript:;&quot; title=&quot;Donate 打赏&quot;&gt;&lt;/a&gt;</span><br><span class="line">		&lt;span class=&quot;donate_txt&quot;&gt;</span><br><span class="line">			&lt;%= theme.donate.text %&gt;</span><br><span class="line">		&lt;/span&gt;</span><br><span class="line">			</span><br><span class="line">		</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">	&lt;!-- /btn_donate &amp; tips --&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- donate guide --&gt;</span><br><span class="line">    </span><br><span class="line">	&lt;div id=&quot;donate_guide&quot; class=&quot;donate_bar center hidden&quot;&gt;</span><br><span class="line">        &lt;br&gt;</span><br><span class="line">	    ------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line">	    &lt;br&gt;</span><br><span class="line">	    &lt;% if(theme.donate.web) &#123; %&gt;</span><br><span class="line">	    &lt;div width=&quot;100%&quot; align=&quot;center&quot;&gt;&lt;div name=&quot;dashmain&quot; id=&quot;dash-main-id-87895f&quot; class=&quot;dash-main-3 87895f-0.99&quot;&gt;&lt;/div&gt;&lt;/div&gt;</span><br><span class="line">		&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;http://www.dashangcloud.com/static/ds.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">		&lt;% &#125; %&gt;</span><br><span class="line"></span><br><span class="line">		&lt;a href=&quot;&lt;%= theme.donate.wechat %&gt;&quot; title=&quot;用微信扫一扫哦~&quot; class=&quot;fancybox&quot; rel=&quot;article0&quot;&gt;</span><br><span class="line">			&lt;img src=&quot;&lt;%= theme.donate.wechat %&gt;&quot; title=&quot;微信打赏 Donate&quot; height=&quot;190px&quot; width=&quot;auto&quot;/&gt;</span><br><span class="line">		&lt;/a&gt;</span><br><span class="line">        </span><br><span class="line">        &amp;nbsp;&amp;nbsp;</span><br><span class="line"></span><br><span class="line">		&lt;a href=&quot;&lt;%= theme.donate.alipay %&gt;&quot; title=&quot;用支付宝扫一扫即可~&quot; class=&quot;fancybox&quot; rel=&quot;article0&quot;&gt;</span><br><span class="line">			&lt;img src=&quot;&lt;%= theme.donate.alipay %&gt;&quot; title=&quot;支付宝打赏 Donate&quot; height=&quot;190px&quot; width=&quot;auto&quot;/&gt;</span><br><span class="line">		&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">		&lt;span class=&quot;donate_txt&quot;&gt;</span><br><span class="line">			&lt;%= theme.donate.text %&gt;</span><br><span class="line">		&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">	&lt;!-- /donate guide --&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- donate script --&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">		document.getElementById(&apos;btn_donate&apos;).onclick = function() &#123;</span><br><span class="line">			$(&apos;#donate_board&apos;).addClass(&apos;hidden&apos;);</span><br><span class="line">	    $(&apos;#donate_guide&apos;).removeClass(&apos;hidden&apos;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		function donate_on_web()&#123;</span><br><span class="line">			$(&apos;#donate&apos;).submit();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">		var original_window_onload = window.onload;</span><br><span class="line">        window.onload = function () &#123;</span><br><span class="line">            if (original_window_onload) &#123;</span><br><span class="line">                original_window_onload();</span><br><span class="line">            &#125;</span><br><span class="line">            document.getElementById(&apos;donate_board_wdg&apos;).className = &apos;hidden&apos;;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">	&lt;!-- /donate script --&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- /Donate Module --&gt;</span><br><span class="line">   &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>有兴趣的可以自行研究下代码逻辑。</p>
+<h4 id="6-注册域名并绑定"><a href="#6-注册域名并绑定" class="headerlink" title="6.注册域名并绑定"></a>6.注册域名并绑定</h4><p>可以尝试注册自己的域名，来绑定博客的地址，可以选一些比较便宜的，本人注册域名为：<a href="www.macintosh-c.online">www.macintosh-c.online</a>,首年7元。推荐使用万网（阿里），在其他网站碰到很多坑，阿里的万网处理以及实名认证还是很迅速的。<br>1.万网注册账号并登陆，地址：<a href="https://wanwang.aliyun.com/" target="_blank" rel="noopener">https://wanwang.aliyun.com/</a><br>2.挑选域名，并购买及实名认证<br>3.配置2个CNAME，解析到自己的博客网址<br>4.coding项目页，&gt;代码&gt;pages服务&gt;设置&gt;自定义域名,绑定刚刚购买的域名即可通过域名来访问博客主页。</p>
+<h4 id="7-添加百度站内搜索，以及提交百度，360，搜狗搜索引擎"><a href="#7-添加百度站内搜索，以及提交百度，360，搜狗搜索引擎" class="headerlink" title="7.添加百度站内搜索，以及提交百度，360，搜狗搜索引擎"></a>7.添加百度站内搜索，以及提交百度，360，搜狗搜索引擎</h4><p>具体要实现的就是在网站上搜索框换成百度的，同时搜索可以链接到百度的站内搜索，并且将自己的博客网站提交给百度，360，搜狗搜索引擎，这样别人就可以通过搜索引擎搜到你的文章并点击进入。<br>1.先到百度搜索资源平台注册账号登录：<a href="https://ziyuan.baidu.com/site/index" target="_blank" rel="noopener">https://ziyuan.baidu.com/site/index</a><br>2.新建站点，填上自己注册的域名（此时域名已绑定到coding的博客地址，否则填博客源地址）<br>3.进入到百度站内搜索,新建搜索引擎，也就是域名地址，进入管理后台：<a href="https://zn.baidu.com/cse/engine/list" target="_blank" rel="noopener">https://zn.baidu.com/cse/engine/list</a><br>4.验证网站，证明您是该域名的拥有者，推荐文件验证，很简单。<br>5.新建搜素框，选择自己想要的样式，最后会提供一段代码给你，复制，加到自己博客代码里去就行了，我加的地方：themes\jacman\layout_partial\header.ejs,如下(删除原来的搜索框)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% &#125; else if(theme.baidu_search.enable)&#123; %&gt;</span><br><span class="line">						&lt;script type=&quot;text/javascript&quot;&gt;(function()&#123;document.write(unescape(&apos;%3Cdiv id=&quot;bdcs&quot;%3E%3C/div%3E&apos;));var bdcs = document.createElement(&apos;script&apos;);bdcs.type = &apos;text/javascript&apos;;bdcs.async = true;bdcs.src = &apos;http://znsv.baidu.com/customer_search/api/js?sid=14512095850844642904&apos; + &apos;&amp;plate_url=&apos; + encodeURIComponent(window.location.href) + &apos;&amp;t=&apos; + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName(&apos;script&apos;)[0];s.parentNode.insertBefore(bdcs, s);&#125;)();&lt;/script&gt;</span><br><span class="line">					&lt;% &#125; else if(theme.tinysou_search.enable)&#123; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>5.主题下的_config.yml文件，记得打开百度搜索的配置，设为true就行。<br>6.此时百度内站有检测机制，检测代码添加成功便ok。<br>对于后面搜素引擎收录博客碰到的坑就很多了，大致描述下，自行捣鼓，大体也都是跟着站内的教程来。<br>百度是否收录，以及什么时候收录取决于很多因素，我们不能决定，可以通过主动推送，自动推送，sitemap和收到推送四个方法来推动进展，方法见：百度资源平台&gt;链接提交，但也不保证很快可以被其收录，本人已经推送2天了，至今未果。还有一个原因可能也是和网站需要备案有关系，扯到备案，查了一大推资料继续捣鼓，之前我也是没有注册域名，就是因为打算备案，所以购买了域名，重新部署了百度的搜索、统计等，然后备案网址：<a href="http://beian.vhostgo.com/" target="_blank" rel="noopener">http://beian.vhostgo.com/</a>，捣鼓到最后搜到一封邮件，还需要去就近核验点办理备案当面核验手续，收取30元服务费。懒得跑，于是我的备案以及百度等搜索引擎收录到此为止。后续只通过配置到代码中的自动推送每天向百度发送提交，希望早日能够被百度爬虫找到，其他提交360和搜狗引擎如出一辙，自行搜索对应站长平台，处理即可。</p>
+<h4 id="8-添加百度统计"><a href="#8-添加百度统计" class="headerlink" title="8.添加百度统计"></a>8.添加百度统计</h4><p>步骤很简单，但是很有趣，可以实时通过后台看到你的博客的访问量，访问者的入口页面，以及你的受访网页，以及访问者的ip地域等信息，生成报告图表信息给你。<br>1.百度统计注册账号登录：<a href="https://tongji.baidu.com/web/welcome/login" target="_blank" rel="noopener">https://tongji.baidu.com/web/welcome/login</a><br>2.新建网址<br>3.获取到代码，添加到你的博客代码中，具体位置：themes\jacman\layout_partial\analytics.ejs,添加地方如下（当然添加你自己站点获取到的代码）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.baidu_tongji.enable)&#123; %&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var _hmt = _hmt || [];</span><br><span class="line">(function() &#123;</span><br><span class="line">  var hm = document.createElement(&quot;script&quot;);</span><br><span class="line">  hm.src = &quot;https://hm.baidu.com/hm.js?7a4f7d80ffc1f18cb51b3d3e1c6bd36a&quot;;</span><br><span class="line">  var s = document.getElementsByTagName(&quot;script&quot;)[0]; </span><br><span class="line">  s.parentNode.insertBefore(hm, s);</span><br><span class="line">&#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>4.主题下的_config.yml文件，记得打开百度统计的配置，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">baidu_tongji:</span><br><span class="line">  enable: true</span><br><span class="line">  sitecode: 你自己的 ## e.g. e6d1f421bbc9962127a50488f9ed37d1 your baidu tongji site code</span><br></pre></td></tr></table></figure></p>
+<p>注:sitecode见百度统计站点下网址链接最后siteId=***<br>5.平台可以检测代码是否添加正确，ok后过一会后台便有数据产生了，你也可以关注百度统计的公众号，手机端查看网站被访问情况。</p>
+<h4 id="9-添加评论插件"><a href="#9-添加评论插件" class="headerlink" title="9.添加评论插件"></a>9.添加评论插件</h4><p>想着给博客添加一个评论，多说和有言好像都要关了，畅言比较火，但是需要备案，最后用了韩国棒子的来必力，简单清爽，来必力官网： <a href="https://livere.com" target="_blank" rel="noopener">https://livere.com</a><br>1.注册并登录账号<br>2.点击安装，City免费版，填写博客网站地址<br>3.会生成安装代码，粘贴到博客代码里，具体文件位置：themes\jacman\layout_partial\post\comment.ejs,在最后依葫芦画瓢，添加一个来必力的判断，然后里面贴上安装代码，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.livere_uid)&#123; %&gt;</span><br><span class="line">&lt;div id=&quot;lv-container&quot; data-id=&quot;city&quot; data-uid=&quot;***你自己生成的代码粘贴&quot;&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">   (function(d, s) &#123;</span><br><span class="line">       var j, e = d.getElementsByTagName(s)[0];</span><br><span class="line"></span><br><span class="line">       if (typeof LivereTower === &apos;function&apos;) &#123; return; &#125;</span><br><span class="line"></span><br><span class="line">       j = d.createElement(s);</span><br><span class="line">       j.src = &apos;https://cdn-city.livere.com/js/embed.dist.js&apos;;</span><br><span class="line">       j.async = true;</span><br><span class="line"></span><br><span class="line">       e.parentNode.insertBefore(j, e);</span><br><span class="line">   &#125;)(document, &apos;script&apos;);</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;noscript&gt; 为正常使用来必力评论功能请激活JavaScript&lt;/noscript&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>4.主题下的_config.yml文件，记得打开来必力评论配置，添加如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">livere_uid: ***你自己生成的代码粘贴</span><br></pre></td></tr></table></figure></p>
+<p>hexo g,hexo d访问可以看到有评论了，同时来必力网站提供评论管理，可以更好的分析评论数据。</p>
+  
+	</div>
+	
+	<!-- css -->
+	<style type="text/css">
+	    .center {
+	        text-align: center;
+	    }
+	    .hidden {
+	        display: none;
+	    }
+		.donate_bar a.btn_donate{
+			display: inline-block;
+			width: 82px;
+			height: 82px;
+			background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+			_background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+			<!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+			     因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+				 为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+				 嵌入其它博客时不一定要它们。-->
+			-webkit-transition: background 0s;
+			-moz-transition: background 0s;
+			-o-transition: background 0s;
+			-ms-transition: background 0s;
+			transition: background 0s;
+			<!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束-->
+		}
+
+		.donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+		.donate_bar .donate_txt {
+			display: block;
+			color: #9d9d9d;
+			font: 14px/2 "Microsoft Yahei";
+		}
+		.bold{ font-weight: bold; }
+	</style>
+	<!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+	<!-- btn_donate & tips -->
+	<div id="donate_board" class="donate_bar center">
+	    <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差~
+		</span>
+			
+		
+	</div>
+	<!-- /btn_donate & tips -->
+
+	<!-- donate guide -->
+    
+	<div id="donate_guide" class="donate_bar center hidden">
+        <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+	    
+	    <div width="100%" align="center"><div name="dashmain" id="dash-main-id-87895f" class="dash-main-3 87895f-0.99"></div></div>
+		<script type="text/javascript" charset="utf-8" src="http://www.dashangcloud.com/static/ds.js"></script>
+		
+
+		<a href="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+			<img src="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
+		</a>
+        
+        &nbsp;&nbsp;
+
+		<a href="https://wx3.sinaimg.cn/mw690/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+			<img src="https://wx3.sinaimg.cn/mw690/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="支付宝打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差~
+		</span>
+
+	</div>
+	<!-- /donate guide -->
+
+	<!-- donate script -->
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function() {
+			$('#donate_board').addClass('hidden');
+	    $('#donate_guide').removeClass('hidden');
+		}
+
+		function donate_on_web(){
+			$('#donate').submit();
+        }
+
+		var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+		}
+	</script>
+	<!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/博客搭建-blog/">博客搭建 | blog</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/blog/">blog</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://macintosh-c.github.io/2018/08/17/hexo搭建博客之-总结/" data-title="hexo搭建博客之---总结篇 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/08/22/mysql5-7版本下载与安装/" title="mysql之---下载与安装（windows，mysql5.7免安装版）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  mysql之---下载与安装（windows，mysql5.7免安装版）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2018/08/14/hexo-github搭建博客-二/"  title="hexo搭建博客之---托管coding">
+ <strong>下一篇：</strong><br/> 
+ <span>hexo搭建博客之---托管coding
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zODk4Mi8xNTUwOQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo搭建博客流程汇总-简述"><span class="toc-number">1.</span> <span class="toc-text">hexo搭建博客流程汇总(简述)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、环境搭建"><span class="toc-number">1.1.</span> <span class="toc-text">一、环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-安装Node-js"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.安装Node.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-安装Git客户端"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.安装Git客户端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-注册Github帐号"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.注册Github帐号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、简单配置"><span class="toc-number">1.2.</span> <span class="toc-text">二、简单配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-部署本地hexo文件到github建好的仓库"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.部署本地hexo文件到github建好的仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-安装hexo-deployer-git模块"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.安装hexo-deployer-git模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、发表及访问"><span class="toc-number">1.3.</span> <span class="toc-text">三、发表及访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、主题安装及优化，更新"><span class="toc-number">1.4.</span> <span class="toc-text">四、主题安装及优化，更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-安装jacman主题"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.安装jacman主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-启用"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.启用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-后续更新"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.后续更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-优化处理"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.优化处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、其他功能配置"><span class="toc-number">1.5.</span> <span class="toc-text">五、其他功能配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-配置RSS订阅"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.配置RSS订阅</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-不蒜子-网页，网站极简计数器-即总pv计数和总uv计数"><span class="toc-number">1.5.2.</span> <span class="toc-text">2.不蒜子-网页，网站极简计数器:即总pv计数和总uv计数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-托管coding"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.托管coding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-多地更新博客：原始文件托管"><span class="toc-number">1.5.4.</span> <span class="toc-text">4.多地更新博客：原始文件托管</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-打赏功能"><span class="toc-number">1.5.5.</span> <span class="toc-text">5.打赏功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-注册域名并绑定"><span class="toc-number">1.5.6.</span> <span class="toc-text">6.注册域名并绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-添加百度站内搜索，以及提交百度，360，搜狗搜索引擎"><span class="toc-number">1.5.7.</span> <span class="toc-text">7.添加百度站内搜索，以及提交百度，360，搜狗搜索引擎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-添加百度统计"><span class="toc-number">1.5.8.</span> <span class="toc-text">8.添加百度统计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-添加评论插件"><span class="toc-number">1.5.9.</span> <span class="toc-text">9.添加评论插件</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="Macintosh-c" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Spring框架/" title="Spring框架">Spring框架<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java基础-java-basice/" title="java基础 | java basice">java基础 | java basice<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mybatis框架/" title="mybatis框架">mybatis框架<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/博客搭建-blog/" title="博客搭建 | blog">博客搭建 | blog<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/成长之路-Biography/" title="成长之路 | Biography">成长之路 | Biography<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库-Database/" title="数据库 | Database">数据库 | Database<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/java基础/" title="java基础">java基础<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/blog/" title="blog">blog<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/database/" title="database">database<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mybatis/" title="mybatis">mybatis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/blog/" style="font-size: 16.67px;">blog</a> <a href="/tags/database/" style="font-size: 16.67px;">database</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://toutiao.io/" target="_blank" title="开发者头条">开发者头条</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/peace1213" target="_blank" title="csdn">csdn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 静下心来，好好做你该做的事！ <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Macintosh-c" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="Macintosh-c">Macintosh-c</a>
+		
+		</br>
+				<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+		    &nbsp;&nbsp;Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span>
+		</span>
+		<span id="busuanzi_container_site_uv">
+		  &nbsp;&nbsp;You are Visiter No.<span id="busuanzi_value_site_uv"></span>
+		</span>
+		</p>
+
+</div>
+
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7a4f7d80ffc1f18cb51b3d3e1c6bd36a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63":"https://jspassport.ssl.qhimg.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+  </body>
+</html>
