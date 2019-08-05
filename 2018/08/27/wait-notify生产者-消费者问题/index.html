@@ -76,7 +76,7 @@
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
   
-	<article itemprop="articleBody"> 
+	<article itemprop="articleBody">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
@@ -102,8 +102,9 @@
 		
 		<h2 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">import java.util.Vector;</span><br><span class="line">import java.util.logging.Level;</span><br><span class="line">import java.util.logging.Logger;</span><br><span class="line"></span><br><span class="line">public class Producer implements Runnable&#123;</span><br><span class="line">	private final Vector sharedQueue;</span><br><span class="line">	private final int SIZE;</span><br><span class="line">	public Producer(Vector sharedQueue,int size)&#123;</span><br><span class="line">		this.sharedQueue=sharedQueue;</span><br><span class="line">		this.SIZE=size;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		for(int i=1;i&lt;=20;i++)&#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				produce(i);</span><br><span class="line">			&#125; catch (InterruptedException ex) &#123;</span><br><span class="line">				Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private void produce(int i) throws InterruptedException&#123;</span><br><span class="line">		synchronized (sharedQueue) &#123;</span><br><span class="line">			while(sharedQueue.size()==SIZE)&#123;			</span><br><span class="line">				System.out.println(&quot;Queue is full &quot;+Thread.currentThread().getName()</span><br><span class="line">						+&quot;is waiting,size:&quot;+sharedQueue.size());</span><br><span class="line">				sharedQueue.wait();</span><br><span class="line">		&#125;</span><br><span class="line">			sharedQueue.add(i);</span><br><span class="line">			System.out.println(&quot;生产者生产了第&quot;+i+&quot;个商品&quot;);</span><br><span class="line">			sharedQueue.notifyAll();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">import java.util.Vector;</span><br><span class="line">import java.util.logging.Level;</span><br><span class="line">import java.util.logging.Logger;</span><br><span class="line"></span><br><span class="line">public class Consumer implements Runnable&#123;</span><br><span class="line">	private final Vector sharedQueue;</span><br><span class="line">	private final int SIZE;</span><br><span class="line">	public Consumer(Vector sharedQueue,int size)&#123;</span><br><span class="line">		this.sharedQueue=sharedQueue;</span><br><span class="line">		this.SIZE=size;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		while(true)&#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				consume();</span><br><span class="line">			&#125; catch (InterruptedException ex) &#123;</span><br><span class="line">				Logger.getLogger(Consumer.class.getName()).log(Level.SEVERE, null, ex);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">	private void consume() throws InterruptedException&#123;</span><br><span class="line">		synchronized (sharedQueue) &#123;</span><br><span class="line">			while(sharedQueue.isEmpty())&#123;</span><br><span class="line">				System.out.println(&quot;Queue is empty&quot;+Thread.currentThread().getName()</span><br><span class="line">						+&quot;is waiting,size:&quot;+sharedQueue.size());</span><br><span class="line">				sharedQueue.wait();</span><br><span class="line">		&#125;			</span><br><span class="line">			int cu=(Integer)sharedQueue.remove(0);</span><br><span class="line">			System.out.println(&quot;消费者消费了第&quot;+cu+&quot;个商品&quot;);</span><br><span class="line">			sharedQueue.notifyAll();</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">import java.util.Vector;</span><br><span class="line"></span><br><span class="line">public class ProducerConsumerSolution &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Vector sharedQueue=new Vector();</span><br><span class="line">		int size=4;</span><br><span class="line">		Thread prodThread=new Thread(new Producer(sharedQueue,size),&quot;Producer&quot;);</span><br><span class="line">		Thread consThread=new Thread(new Consumer(sharedQueue,size),&quot;Consumer&quot;);</span><br><span class="line">		prodThread.start();</span><br><span class="line">		consThread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">import java.util.Vector;</span><br><span class="line"></span><br><span class="line">public class ProducerConsumerSolution &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Vector sharedQueue=new Vector();</span><br><span class="line">		int size=4;</span><br><span class="line">		Thread prodThread=new Thread(new Producer(sharedQueue,size),&quot;Producer&quot;);</span><br><span class="line">		Thread consThread=new Thread(new Consumer(sharedQueue,size),&quot;Consumer&quot;);</span><br><span class="line">		prodThread.start();</span><br><span class="line">		consThread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 	</div>
+
 	
 	<!-- css -->
 	<style type="text/css">
@@ -152,15 +153,15 @@
 	    <br>
 		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
 		<span class="donate_txt">
-			打赏我的人，运气都不会太差~
+			打赏我的人，运气都不会太差哦~
 		</span>
-			
-		
+
+
 	</div>
 	<!-- /btn_donate & tips -->
 
 	<!-- donate guide -->
-    
+
 	<div id="donate_guide" class="donate_bar center hidden">
         <br>
 	    ------------------------------------------------------------------------------------------------------------------------------
@@ -173,7 +174,7 @@
 		<a href="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
 			<img src="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
 		</a>
-        
+
         &nbsp;&nbsp;
 
 		<a href="https://wx3.sinaimg.cn/mw690/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
@@ -181,7 +182,7 @@
 		</a>
 
 		<span class="donate_txt">
-			打赏我的人，运气都不会太差~
+			打赏我的人，运气都不会太差哦~
 		</span>
 
 	</div>
@@ -238,7 +239,7 @@
 
 </footer>
 
-   	       
+
 	</article>
 	
 <nav class="article-nav clearfix">
@@ -284,7 +285,8 @@
 <noscript> Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
 </div>
 
-</div>  
+</div>
+
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
@@ -366,11 +368,11 @@
 			
 		
 			
-				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
 			
 		
 		</ul>

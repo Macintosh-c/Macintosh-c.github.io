@@ -76,7 +76,7 @@
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
   
-	<article itemprop="articleBody"> 
+	<article itemprop="articleBody">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
@@ -144,8 +144,9 @@
 <h4 id="9-添加评论插件"><a href="#9-添加评论插件" class="headerlink" title="9.添加评论插件"></a>9.添加评论插件</h4><p>想着给博客添加一个评论，多说和有言好像都要关了，畅言比较火，但是需要备案，最后用了韩国棒子的来必力，简单清爽，来必力官网： <a href="https://livere.com" target="_blank" rel="noopener">https://livere.com</a><br>1.注册并登录账号<br>2.点击安装，City免费版，填写博客网站地址<br>3.会生成安装代码，粘贴到博客代码里，具体文件位置：themes\jacman\layout_partial\post\comment.ejs,在最后依葫芦画瓢，添加一个来必力的判断，然后里面贴上安装代码，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.livere_uid)&#123; %&gt;</span><br><span class="line">&lt;div id=&quot;lv-container&quot; data-id=&quot;city&quot; data-uid=&quot;***你自己生成的代码粘贴&quot;&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">   (function(d, s) &#123;</span><br><span class="line">       var j, e = d.getElementsByTagName(s)[0];</span><br><span class="line"></span><br><span class="line">       if (typeof LivereTower === &apos;function&apos;) &#123; return; &#125;</span><br><span class="line"></span><br><span class="line">       j = d.createElement(s);</span><br><span class="line">       j.src = &apos;https://cdn-city.livere.com/js/embed.dist.js&apos;;</span><br><span class="line">       j.async = true;</span><br><span class="line"></span><br><span class="line">       e.parentNode.insertBefore(j, e);</span><br><span class="line">   &#125;)(document, &apos;script&apos;);</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;noscript&gt; 为正常使用来必力评论功能请激活JavaScript&lt;/noscript&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
 <p>4.主题下的_config.yml文件，记得打开来必力评论配置，添加如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">livere_uid: ***你自己生成的代码粘贴</span><br></pre></td></tr></table></figure></p>
 <p>hexo g,hexo d访问可以看到有评论了，同时来必力网站提供评论管理，可以更好的分析评论数据。</p>
-  
+
 	</div>
+
 	
 	<!-- css -->
 	<style type="text/css">
@@ -194,15 +195,15 @@
 	    <br>
 		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
 		<span class="donate_txt">
-			打赏我的人，运气都不会太差~
+			打赏我的人，运气都不会太差哦~
 		</span>
-			
-		
+
+
 	</div>
 	<!-- /btn_donate & tips -->
 
 	<!-- donate guide -->
-    
+
 	<div id="donate_guide" class="donate_bar center hidden">
         <br>
 	    ------------------------------------------------------------------------------------------------------------------------------
@@ -215,7 +216,7 @@
 		<a href="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
 			<img src="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
 		</a>
-        
+
         &nbsp;&nbsp;
 
 		<a href="https://wx3.sinaimg.cn/mw690/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
@@ -223,7 +224,7 @@
 		</a>
 
 		<span class="donate_txt">
-			打赏我的人，运气都不会太差~
+			打赏我的人，运气都不会太差哦~
 		</span>
 
 	</div>
@@ -280,7 +281,7 @@
 
 </footer>
 
-   	       
+
 	</article>
 	
 <nav class="article-nav clearfix">
@@ -326,7 +327,8 @@
 <noscript> Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
 </div>
 
-</div>  
+</div>
+
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
@@ -408,11 +410,11 @@
 			
 		
 			
-				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
 			
 		
 		</ul>

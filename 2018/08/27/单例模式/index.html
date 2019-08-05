@@ -76,7 +76,7 @@
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
   
-	<article itemprop="articleBody"> 
+	<article itemprop="articleBody">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
@@ -105,8 +105,9 @@
 <p>对于以上代码注释部分，如果此时有两个线程，线程A执行到1处，读取了instance为null，然后cpu就被线程B抢去了，此时，线程A还没有对instance进行实例化。因此，线程B读取instance时仍然为null，于是，它对instance进行实例化了。然后，cpu就被线程A抢去了。此时，线程A由于已经读取了instance的值并且认为它为null，所以，再次对instance进行实例化。所以，线程A和线程B返回的不是同一个实例。<br>解决线程安全需要在getInstance方法上加上synchronized修饰。</p>
 <h2 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">public class MyThread extends Thread&#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run()&#123;</span><br><span class="line">		System.out.println(Single2.getInstance().hashCode());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">public class Run &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		MyThread t1=new MyThread();</span><br><span class="line">		MyThread t2=new MyThread();</span><br><span class="line">		MyThread t3=new MyThread();</span><br><span class="line">		MyThread t4=new MyThread();</span><br><span class="line">		t1.start();</span><br><span class="line">		t2.start();</span><br><span class="line">		t3.start();</span><br><span class="line">		t4.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  
+
 	</div>
+
 	
 	<!-- css -->
 	<style type="text/css">
@@ -155,15 +156,15 @@
 	    <br>
 		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
 		<span class="donate_txt">
-			打赏我的人，运气都不会太差~
+			打赏我的人，运气都不会太差哦~
 		</span>
-			
-		
+
+
 	</div>
 	<!-- /btn_donate & tips -->
 
 	<!-- donate guide -->
-    
+
 	<div id="donate_guide" class="donate_bar center hidden">
         <br>
 	    ------------------------------------------------------------------------------------------------------------------------------
@@ -176,7 +177,7 @@
 		<a href="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
 			<img src="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
 		</a>
-        
+
         &nbsp;&nbsp;
 
 		<a href="https://wx3.sinaimg.cn/mw690/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
@@ -184,7 +185,7 @@
 		</a>
 
 		<span class="donate_txt">
-			打赏我的人，运气都不会太差~
+			打赏我的人，运气都不会太差哦~
 		</span>
 
 	</div>
@@ -241,7 +242,7 @@
 
 </footer>
 
-   	       
+
 	</article>
 	
 <nav class="article-nav clearfix">
@@ -287,7 +288,8 @@
 <noscript> Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
 </div>
 
-</div>  
+</div>
+
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
@@ -369,11 +371,11 @@
 			
 		
 			
-				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
 			
 		
 		</ul>

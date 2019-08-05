@@ -79,7 +79,7 @@
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
   
-	<article itemprop="articleBody"> 
+	<article itemprop="articleBody">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
@@ -115,8 +115,9 @@
 <h2 id="主从复制配置"><a href="#主从复制配置" class="headerlink" title="主从复制配置"></a>主从复制配置</h2><p>1.主：SHOW MASTER STATUS<br><img src="https://i.imgur.com/9QS5UqT.png" alt=""><br>2.从：CHANGE MASTER TO<br> master_host=’127.0.0.1’,<br> master_user=’root’,<br> master_password=’123456’,<br> master_port=3380,<br> master_log_file=’mysql-bin.000004’,<br> master_log_pos=6147;<br>#注意：此处的最后两个参数是要和master上面查询的配置一致，也可以在主库创建用户，授予复制权限来操作，此处也要对应用户名和密码，授权用户命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant replication slave on *.* to &apos;slave01&apos;@&apos;127.0.0.1&apos; identified by &apos;123456&apos;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure></p>
 <p>3.启动slave同步：START SLAVE;<br>4.查看slave同步状态：SHOW SLAVE STATUS;注意Slave_IO_Running这一栏，若为NO,说明配置有问题，查看mysql.err.log日记发现是：master and slave have equal MySQL server UUIDs;<br>5.所以在slave里修改auto.cnf文件里的uuid，然后重启下slave数据库，查询slave状态，会发现Slave_IO_Running：yes即ok。</p>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>此时注意不是所有的master中数据库都会同步复制到slave数据库里面，而是master中的coolshop数据库，之前配置的。在master中创建该数据库，创建表，插入数据等，然后回到slave中查看databases，你会发现slave已同步有了此数据库以及数据。</p>
-  
+
 	</div>
+
 	
 	<!-- css -->
 	<style type="text/css">
@@ -165,15 +166,15 @@
 	    <br>
 		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
 		<span class="donate_txt">
-			打赏我的人，运气都不会太差~
+			打赏我的人，运气都不会太差哦~
 		</span>
-			
-		
+
+
 	</div>
 	<!-- /btn_donate & tips -->
 
 	<!-- donate guide -->
-    
+
 	<div id="donate_guide" class="donate_bar center hidden">
         <br>
 	    ------------------------------------------------------------------------------------------------------------------------------
@@ -186,7 +187,7 @@
 		<a href="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
 			<img src="https://wx1.sinaimg.cn/mw690/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
 		</a>
-        
+
         &nbsp;&nbsp;
 
 		<a href="https://wx3.sinaimg.cn/mw690/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
@@ -194,7 +195,7 @@
 		</a>
 
 		<span class="donate_txt">
-			打赏我的人，运气都不会太差~
+			打赏我的人，运气都不会太差哦~
 		</span>
 
 	</div>
@@ -251,7 +252,7 @@
 
 </footer>
 
-   	       
+
 	</article>
 	
 <nav class="article-nav clearfix">
@@ -297,7 +298,8 @@
 <noscript> Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
 </div>
 
-</div>  
+</div>
+
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
@@ -379,11 +381,11 @@
 			
 		
 			
-				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
 			
 		
 		</ul>
