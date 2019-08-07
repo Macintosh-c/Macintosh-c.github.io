@@ -5,9 +5,9 @@
   <subtitle>当你的才华撑不起你的野心时，就应该静下心来好好学习。</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://macintosh-c.github.io/"/>
+  <link href="http://macintosh-c.coding.me/"/>
   <updated>2019-08-01T09:07:49.115Z</updated>
-  <id>http://macintosh-c.github.io/</id>
+  <id>http://macintosh-c.coding.me/</id>
   
   <author>
     <name>Macintosh-c</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>java基础之fastjson（二）</title>
-    <link href="http://macintosh-c.github.io/2018/09/10/fastjson2/"/>
-    <id>http://macintosh-c.github.io/2018/09/10/fastjson2/</id>
+    <link href="http://macintosh-c.coding.me/2018/09/10/fastjson2/"/>
+    <id>http://macintosh-c.coding.me/2018/09/10/fastjson2/</id>
     <published>2018-09-10T14:10:52.000Z</published>
     <updated>2019-08-01T09:07:49.115Z</updated>
     
@@ -34,17 +34,17 @@
     
     </summary>
     
-      <category term="java基础 | java basice" scheme="http://macintosh-c.github.io/categories/java%E5%9F%BA%E7%A1%80-java-basice/"/>
+      <category term="java基础 | java basice" scheme="http://macintosh-c.coding.me/categories/java%E5%9F%BA%E7%A1%80-java-basice/"/>
     
     
-      <category term="java基础" scheme="http://macintosh-c.github.io/tags/java%E5%9F%BA%E7%A1%80/"/>
+      <category term="java基础" scheme="http://macintosh-c.coding.me/tags/java%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>java基础之fastjson（一）</title>
-    <link href="http://macintosh-c.github.io/2018/09/10/fastjson/"/>
-    <id>http://macintosh-c.github.io/2018/09/10/fastjson/</id>
+    <link href="http://macintosh-c.coding.me/2018/09/10/fastjson/"/>
+    <id>http://macintosh-c.coding.me/2018/09/10/fastjson/</id>
     <published>2018-09-10T13:51:56.000Z</published>
     <updated>2019-08-01T09:07:49.115Z</updated>
     
@@ -59,17 +59,17 @@
     
     </summary>
     
-      <category term="java基础 | java basice" scheme="http://macintosh-c.github.io/categories/java%E5%9F%BA%E7%A1%80-java-basice/"/>
+      <category term="java基础 | java basice" scheme="http://macintosh-c.coding.me/categories/java%E5%9F%BA%E7%A1%80-java-basice/"/>
     
     
-      <category term="java基础" scheme="http://macintosh-c.github.io/tags/java%E5%9F%BA%E7%A1%80/"/>
+      <category term="java基础" scheme="http://macintosh-c.coding.me/tags/java%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>Spring AOP</title>
-    <link href="http://macintosh-c.github.io/2018/09/09/spring-AOP/"/>
-    <id>http://macintosh-c.github.io/2018/09/09/spring-AOP/</id>
+    <link href="http://macintosh-c.coding.me/2018/09/09/spring-AOP/"/>
+    <id>http://macintosh-c.coding.me/2018/09/09/spring-AOP/</id>
     <published>2018-09-08T17:29:05.000Z</published>
     <updated>2019-08-01T09:07:49.116Z</updated>
     
@@ -84,17 +84,17 @@
     
     </summary>
     
-      <category term="Spring框架" scheme="http://macintosh-c.github.io/categories/Spring%E6%A1%86%E6%9E%B6/"/>
+      <category term="Spring框架" scheme="http://macintosh-c.coding.me/categories/Spring%E6%A1%86%E6%9E%B6/"/>
     
     
-      <category term="Spring" scheme="http://macintosh-c.github.io/tags/Spring/"/>
+      <category term="Spring" scheme="http://macintosh-c.coding.me/tags/Spring/"/>
     
   </entry>
   
   <entry>
     <title>Mybatis中的${}和#{}区别与用法</title>
-    <link href="http://macintosh-c.github.io/2018/08/29/mybatis%E4%B8%AD-%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E7%94%A8%E6%B3%95/"/>
-    <id>http://macintosh-c.github.io/2018/08/29/mybatis中-和-的区别与用法/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/29/mybatis%E4%B8%AD-%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E7%94%A8%E6%B3%95/"/>
+    <id>http://macintosh-c.coding.me/2018/08/29/mybatis中-和-的区别与用法/</id>
     <published>2018-08-29T13:51:11.000Z</published>
     <updated>2019-08-01T09:07:49.115Z</updated>
     
@@ -110,17 +110,17 @@
     
     </summary>
     
-      <category term="mybatis框架" scheme="http://macintosh-c.github.io/categories/mybatis%E6%A1%86%E6%9E%B6/"/>
+      <category term="mybatis框架" scheme="http://macintosh-c.coding.me/categories/mybatis%E6%A1%86%E6%9E%B6/"/>
     
     
-      <category term="mybatis" scheme="http://macintosh-c.github.io/tags/mybatis/"/>
+      <category term="mybatis" scheme="http://macintosh-c.coding.me/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>单例模式</title>
-    <link href="http://macintosh-c.github.io/2018/08/27/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://macintosh-c.github.io/2018/08/27/单例模式/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/27/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://macintosh-c.coding.me/2018/08/27/单例模式/</id>
     <published>2018-08-27T14:48:15.000Z</published>
     <updated>2019-08-01T09:07:49.116Z</updated>
     
@@ -135,17 +135,17 @@
     
     </summary>
     
-      <category term="java基础 | java basice" scheme="http://macintosh-c.github.io/categories/java%E5%9F%BA%E7%A1%80-java-basice/"/>
+      <category term="java基础 | java basice" scheme="http://macintosh-c.coding.me/categories/java%E5%9F%BA%E7%A1%80-java-basice/"/>
     
     
-      <category term="java基础" scheme="http://macintosh-c.github.io/tags/java%E5%9F%BA%E7%A1%80/"/>
+      <category term="java基础" scheme="http://macintosh-c.coding.me/tags/java%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>wait-notify生产者-消费者问题</title>
-    <link href="http://macintosh-c.github.io/2018/08/27/wait-notify%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/"/>
-    <id>http://macintosh-c.github.io/2018/08/27/wait-notify生产者-消费者问题/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/27/wait-notify%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/"/>
+    <id>http://macintosh-c.coding.me/2018/08/27/wait-notify生产者-消费者问题/</id>
     <published>2018-08-27T14:39:40.000Z</published>
     <updated>2019-08-01T09:07:49.116Z</updated>
     
@@ -160,43 +160,17 @@
     
     </summary>
     
-      <category term="java基础 | java basice" scheme="http://macintosh-c.github.io/categories/java%E5%9F%BA%E7%A1%80-java-basice/"/>
+      <category term="java基础 | java basice" scheme="http://macintosh-c.coding.me/categories/java%E5%9F%BA%E7%A1%80-java-basice/"/>
     
     
-      <category term="java基础" scheme="http://macintosh-c.github.io/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql之---下载与安装（windows，mysql5.7免安装版）</title>
-    <link href="http://macintosh-c.github.io/2018/08/22/mysql5-7%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/"/>
-    <id>http://macintosh-c.github.io/2018/08/22/mysql5-7版本下载与安装/</id>
-    <published>2018-08-22T06:34:16.000Z</published>
-    <updated>2019-08-01T09:07:49.116Z</updated>
-    
-    <content type="html"><![CDATA[<p>近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下</p><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ol><li><p>链接：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a></p></li><li><p>点击选择MySQL Community Edition (GPL)&gt;MySQL Community Server (GPL)&gt;Looking for previous GA versions?根据系统选择5.7版本的zip Archive（免安装版） 下载</p></li></ol><h2 id="安装服务"><a href="#安装服务" class="headerlink" title="安装服务"></a>安装服务</h2><h3 id="1-解压MySQL压缩包"><a href="#1-解压MySQL压缩包" class="headerlink" title="1. 解压MySQL压缩包"></a>1. 解压MySQL压缩包</h3><p>将以下载的MySQL压缩包解压到自定义目录下,我的解压目录是:”D:\mysql”<br>将解压目录下默认文件 my-default.ini 拷贝一份，改名 my.ini<br>复制下面的配置信息到 my.ini 保存,如果没有my-default.ini,可自己新建my.ini<br>内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#########################################################</span><br><span class="line">  [client]</span><br><span class="line">  port=3306</span><br><span class="line">  default-character-set=utf8</span><br><span class="line">  [mysqld]</span><br><span class="line">  port=3306</span><br><span class="line">  character_set_server=utf8</span><br><span class="line">  #安装路径</span><br><span class="line">  basedir=D:\mysql</span><br><span class="line">  #数据路径</span><br><span class="line">   datadir=D:\mysql\data</span><br><span class="line">    sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line">    [WinMySQLAdmin]</span><br><span class="line">   D:\mysql\bin\mysqld.exe</span><br><span class="line">#########################################################</span><br></pre></td></tr></table></figure></p><h3 id="2-将mysql注册为windows系统服务"><a href="#2-将mysql注册为windows系统服务" class="headerlink" title="2. 将mysql注册为windows系统服务"></a>2. 将mysql注册为windows系统服务</h3><p>1）从控制台进入到MySQL解压目录下的 bin 目录下：<br>注册之前先执行初始化命令，否则注册完后启动服务不成功，执行命令如下：<br><code>mysqld --initialize-insecure --user=mysql</code><br>2）输入服务安装命令：<br><code>mysqld install MySQL --defaults-file=&quot;D:\mysql\my.ini&quot;</code><br>安装成功后会提示服务安装成功。<br>#注：my.ini文件放在MySQL解压后的根目录下,如果之前装过此时会提示已经安装，可用<code>sc delete mysql</code>移除之前的服务，再执行上述命令</p><h3 id="3-启动MySQL服务"><a href="#3-启动MySQL服务" class="headerlink" title="3. 启动MySQL服务"></a>3. 启动MySQL服务</h3><p>方法一：<br>启动服务命令为：net start mysql<br>方法二：<br>打开管理工具 服务，找到MySQL服务。<br>通过右键选择启动或者直接点击左边的启动来启动服务。</p><h3 id="4-修改-root-账号的密码"><a href="#4-修改-root-账号的密码" class="headerlink" title="4. 修改 root 账号的密码"></a>4. 修改 root 账号的密码</h3><p>刚安装完成时root账号默认密码为空，此时可以将密码修改为指定的密码。如：123456<br>cd到mysql解压目录下执行：<code>mysql –u root</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;show databases;</span><br><span class="line">mysql&gt;use mysql;</span><br><span class="line">mysql&gt;UPDATE user SET authentication_string=&quot;123456&quot; WHERE user=&apos;root&apos;;即可</span><br><span class="line">mysql&gt;FLUSH PRIVILEGES;</span><br><span class="line">mysql&gt;QUIT</span><br></pre></td></tr></table></figure></p><p>#注：新安装的MySQL5.7，mysql数据库下已经没有password这个字段了，password字段改成了authentication_string。<br>此时尚没有结束，当重新输入<code>mysql –u root -p</code>后并没有登录进mysql，而是一直提示：Access denied for user ‘root‘@’localhost’ (using password: YES)，很苦恼，百度查询，大多方法是免密码登录，重设密码等等试了都不行，最后找到一个方法解决，记录如下：<br>1)停止mysql服务。<code>net stop mysql</code><br>2)跳过密码验证。<code>mysqld --skip-grant-tables</code><br>3)无密码登录。在步骤2的基础上，重新开一个CMD，执行：<code>mysql -u root</code><br>4)授权。<code>mysql&gt;grant all privileges on *.* to &#39;root&#39;@&#39;localhost&#39; identified by &#39;123456&#39; with grant option;</code><br>关键词解释：<br>root‘@’localhost:是用户<br>123456：是密码<br>此时发现无密码条件下，没有授权的写权限：<br>The MySQL server is running with the –skip-grant-tables option so it cannot execute this statement<br>解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global read_only=0;//（关掉新主库的只读属性）</span><br><span class="line">mysql&gt;flush privileges;</span><br><span class="line">mysql&gt;set global read_only=1;//(读写属性)</span><br><span class="line">mysql&gt;flush privileges;</span><br><span class="line">mysql&gt;grant all privileges on *.* to &apos;root&apos;@&apos;localhost&apos; identified by &apos;123456&apos; with grant option;</span><br><span class="line">mysql&gt;flush privileges;</span><br><span class="line">（注意刷新是必须项）</span><br></pre></td></tr></table></figure></p><p>到此打开mysql服务时失败，重启下电脑，启动mysql服务ok，<code>mysql -u root -p</code>输入密码，登录ok</p><h3 id="5-MySQL控制台快捷方式建立"><a href="#5-MySQL控制台快捷方式建立" class="headerlink" title="5. MySQL控制台快捷方式建立:"></a>5. MySQL控制台快捷方式建立:</h3><p>1）桌面右键-&gt;新建-&gt;快捷方式-&gt;对象位置输入：C:\Windows\System32(或SysWOW64)\cmd.exe<br>快捷方式名称自己定义，确定，快捷方式建立成功<br>2）右键单击刚才建立的快捷方式-&gt;属性-&gt;把目标一栏修改成MySQL启动参数：<br>C:\Windows\System32\cmd.exe “D:\mysql\bin” /k mysql -u root -p inventory<br>解释:CMD路径 “MySQL路径bin目录” /k mysql -u root -p 默认打开的数据库名<br>3）修改完成后点击确定保存，直接双击快捷方式即可连接到MySQL<br>#注：需要将mysql添加环境变量，方法见6</p><h3 id="6-添加环境变量"><a href="#6-添加环境变量" class="headerlink" title="6. 添加环境变量"></a>6. 添加环境变量</h3><p>操作如下：<br>1）右键单击我的电脑-&gt;属性-&gt;高级系统设置(高级)-&gt;环境变量<br>点击系统变量下的新建按钮<br>输入变量名：MYSQL_HOME<br>输入变量值：D:\mysql<br>#即为mysql的自定义解压目录。<br>2）选择系统变量中的Path<br>点击编辑按钮<br>在变量值中添加变量值：%MYSQL_HOME%\bin<br>注意是在原有变量值后面加上这个变量，用;隔开，不能删除原来的变量值<br>#配置完环境变量重启下电脑</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下&lt;/p&gt;
-&lt;h2 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;head
-      
-    
-    </summary>
-    
-      <category term="数据库 | Database" scheme="http://macintosh-c.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
-    
-    
-      <category term="mysql" scheme="http://macintosh-c.github.io/tags/mysql/"/>
+      <category term="java基础" scheme="http://macintosh-c.coding.me/tags/java%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>mysql之---主从配置（windows，mysql5.7）</title>
-    <link href="http://macintosh-c.github.io/2018/08/22/mysql-5-7-%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/"/>
-    <id>http://macintosh-c.github.io/2018/08/22/mysql-5-7-主从配置/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/22/mysql-5-7-%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://macintosh-c.coding.me/2018/08/22/mysql-5-7-主从配置/</id>
     <published>2018-08-22T06:34:16.000Z</published>
     <updated>2019-08-01T09:07:49.115Z</updated>
     
@@ -212,17 +186,43 @@
     
     </summary>
     
-      <category term="数据库 | Database" scheme="http://macintosh-c.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+      <category term="数据库 | Database" scheme="http://macintosh-c.coding.me/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
     
     
-      <category term="mysql" scheme="http://macintosh-c.github.io/tags/mysql/"/>
+      <category term="mysql" scheme="http://macintosh-c.coding.me/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql之---下载与安装（windows，mysql5.7免安装版）</title>
+    <link href="http://macintosh-c.coding.me/2018/08/22/mysql5-7%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/"/>
+    <id>http://macintosh-c.coding.me/2018/08/22/mysql5-7版本下载与安装/</id>
+    <published>2018-08-22T06:34:16.000Z</published>
+    <updated>2019-08-01T09:07:49.116Z</updated>
+    
+    <content type="html"><![CDATA[<p>近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下</p><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ol><li><p>链接：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a></p></li><li><p>点击选择MySQL Community Edition (GPL)&gt;MySQL Community Server (GPL)&gt;Looking for previous GA versions?根据系统选择5.7版本的zip Archive（免安装版） 下载</p></li></ol><h2 id="安装服务"><a href="#安装服务" class="headerlink" title="安装服务"></a>安装服务</h2><h3 id="1-解压MySQL压缩包"><a href="#1-解压MySQL压缩包" class="headerlink" title="1. 解压MySQL压缩包"></a>1. 解压MySQL压缩包</h3><p>将以下载的MySQL压缩包解压到自定义目录下,我的解压目录是:”D:\mysql”<br>将解压目录下默认文件 my-default.ini 拷贝一份，改名 my.ini<br>复制下面的配置信息到 my.ini 保存,如果没有my-default.ini,可自己新建my.ini<br>内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#########################################################</span><br><span class="line">  [client]</span><br><span class="line">  port=3306</span><br><span class="line">  default-character-set=utf8</span><br><span class="line">  [mysqld]</span><br><span class="line">  port=3306</span><br><span class="line">  character_set_server=utf8</span><br><span class="line">  #安装路径</span><br><span class="line">  basedir=D:\mysql</span><br><span class="line">  #数据路径</span><br><span class="line">   datadir=D:\mysql\data</span><br><span class="line">    sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line">    [WinMySQLAdmin]</span><br><span class="line">   D:\mysql\bin\mysqld.exe</span><br><span class="line">#########################################################</span><br></pre></td></tr></table></figure></p><h3 id="2-将mysql注册为windows系统服务"><a href="#2-将mysql注册为windows系统服务" class="headerlink" title="2. 将mysql注册为windows系统服务"></a>2. 将mysql注册为windows系统服务</h3><p>1）从控制台进入到MySQL解压目录下的 bin 目录下：<br>注册之前先执行初始化命令，否则注册完后启动服务不成功，执行命令如下：<br><code>mysqld --initialize-insecure --user=mysql</code><br>2）输入服务安装命令：<br><code>mysqld install MySQL --defaults-file=&quot;D:\mysql\my.ini&quot;</code><br>安装成功后会提示服务安装成功。<br>#注：my.ini文件放在MySQL解压后的根目录下,如果之前装过此时会提示已经安装，可用<code>sc delete mysql</code>移除之前的服务，再执行上述命令</p><h3 id="3-启动MySQL服务"><a href="#3-启动MySQL服务" class="headerlink" title="3. 启动MySQL服务"></a>3. 启动MySQL服务</h3><p>方法一：<br>启动服务命令为：net start mysql<br>方法二：<br>打开管理工具 服务，找到MySQL服务。<br>通过右键选择启动或者直接点击左边的启动来启动服务。</p><h3 id="4-修改-root-账号的密码"><a href="#4-修改-root-账号的密码" class="headerlink" title="4. 修改 root 账号的密码"></a>4. 修改 root 账号的密码</h3><p>刚安装完成时root账号默认密码为空，此时可以将密码修改为指定的密码。如：123456<br>cd到mysql解压目录下执行：<code>mysql –u root</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;show databases;</span><br><span class="line">mysql&gt;use mysql;</span><br><span class="line">mysql&gt;UPDATE user SET authentication_string=&quot;123456&quot; WHERE user=&apos;root&apos;;即可</span><br><span class="line">mysql&gt;FLUSH PRIVILEGES;</span><br><span class="line">mysql&gt;QUIT</span><br></pre></td></tr></table></figure></p><p>#注：新安装的MySQL5.7，mysql数据库下已经没有password这个字段了，password字段改成了authentication_string。<br>此时尚没有结束，当重新输入<code>mysql –u root -p</code>后并没有登录进mysql，而是一直提示：Access denied for user ‘root‘@’localhost’ (using password: YES)，很苦恼，百度查询，大多方法是免密码登录，重设密码等等试了都不行，最后找到一个方法解决，记录如下：<br>1)停止mysql服务。<code>net stop mysql</code><br>2)跳过密码验证。<code>mysqld --skip-grant-tables</code><br>3)无密码登录。在步骤2的基础上，重新开一个CMD，执行：<code>mysql -u root</code><br>4)授权。<code>mysql&gt;grant all privileges on *.* to &#39;root&#39;@&#39;localhost&#39; identified by &#39;123456&#39; with grant option;</code><br>关键词解释：<br>root‘@’localhost:是用户<br>123456：是密码<br>此时发现无密码条件下，没有授权的写权限：<br>The MySQL server is running with the –skip-grant-tables option so it cannot execute this statement<br>解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global read_only=0;//（关掉新主库的只读属性）</span><br><span class="line">mysql&gt;flush privileges;</span><br><span class="line">mysql&gt;set global read_only=1;//(读写属性)</span><br><span class="line">mysql&gt;flush privileges;</span><br><span class="line">mysql&gt;grant all privileges on *.* to &apos;root&apos;@&apos;localhost&apos; identified by &apos;123456&apos; with grant option;</span><br><span class="line">mysql&gt;flush privileges;</span><br><span class="line">（注意刷新是必须项）</span><br></pre></td></tr></table></figure></p><p>到此打开mysql服务时失败，重启下电脑，启动mysql服务ok，<code>mysql -u root -p</code>输入密码，登录ok</p><h3 id="5-MySQL控制台快捷方式建立"><a href="#5-MySQL控制台快捷方式建立" class="headerlink" title="5. MySQL控制台快捷方式建立:"></a>5. MySQL控制台快捷方式建立:</h3><p>1）桌面右键-&gt;新建-&gt;快捷方式-&gt;对象位置输入：C:\Windows\System32(或SysWOW64)\cmd.exe<br>快捷方式名称自己定义，确定，快捷方式建立成功<br>2）右键单击刚才建立的快捷方式-&gt;属性-&gt;把目标一栏修改成MySQL启动参数：<br>C:\Windows\System32\cmd.exe “D:\mysql\bin” /k mysql -u root -p inventory<br>解释:CMD路径 “MySQL路径bin目录” /k mysql -u root -p 默认打开的数据库名<br>3）修改完成后点击确定保存，直接双击快捷方式即可连接到MySQL<br>#注：需要将mysql添加环境变量，方法见6</p><h3 id="6-添加环境变量"><a href="#6-添加环境变量" class="headerlink" title="6. 添加环境变量"></a>6. 添加环境变量</h3><p>操作如下：<br>1）右键单击我的电脑-&gt;属性-&gt;高级系统设置(高级)-&gt;环境变量<br>点击系统变量下的新建按钮<br>输入变量名：MYSQL_HOME<br>输入变量值：D:\mysql<br>#即为mysql的自定义解压目录。<br>2）选择系统变量中的Path<br>点击编辑按钮<br>在变量值中添加变量值：%MYSQL_HOME%\bin<br>注意是在原有变量值后面加上这个变量，用;隔开，不能删除原来的变量值<br>#配置完环境变量重启下电脑</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下&lt;/p&gt;
+&lt;h2 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;head
+      
+    
+    </summary>
+    
+      <category term="数据库 | Database" scheme="http://macintosh-c.coding.me/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+    
+    
+      <category term="mysql" scheme="http://macintosh-c.coding.me/tags/mysql/"/>
     
   </entry>
   
   <entry>
     <title>hexo搭建博客之---总结篇</title>
-    <link href="http://macintosh-c.github.io/2018/08/17/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B-%E6%80%BB%E7%BB%93/"/>
-    <id>http://macintosh-c.github.io/2018/08/17/hexo搭建博客之-总结/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/17/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B-%E6%80%BB%E7%BB%93/"/>
+    <id>http://macintosh-c.coding.me/2018/08/17/hexo搭建博客之-总结/</id>
     <published>2018-08-17T06:59:00.000Z</published>
     <updated>2019-08-01T09:07:49.115Z</updated>
     
@@ -237,21 +237,21 @@
     
     </summary>
     
-      <category term="博客搭建 | blog" scheme="http://macintosh-c.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-blog/"/>
+      <category term="博客搭建 | blog" scheme="http://macintosh-c.coding.me/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-blog/"/>
     
     
-      <category term="blog" scheme="http://macintosh-c.github.io/tags/blog/"/>
+      <category term="blog" scheme="http://macintosh-c.coding.me/tags/blog/"/>
     
   </entry>
   
   <entry>
     <title>hexo搭建博客之---托管coding</title>
-    <link href="http://macintosh-c.github.io/2018/08/14/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%BA%8C/"/>
-    <id>http://macintosh-c.github.io/2018/08/14/hexo-github搭建博客-二/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/14/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%BA%8C/"/>
+    <id>http://macintosh-c.coding.me/2018/08/14/hexo-github搭建博客-二/</id>
     <published>2018-08-14T13:50:41.000Z</published>
     <updated>2019-08-01T09:07:49.115Z</updated>
     
-    <content type="html"><![CDATA[<p>之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。</p><h2 id="注册coding，创建项目"><a href="#注册coding，创建项目" class="headerlink" title="注册coding，创建项目"></a>注册coding，创建项目</h2><p><a href="https://coding.net/" target="_blank" rel="noopener">注册账户</a>后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。<br><img src="https://i.imgur.com/pMSTifq.png" alt=""></p><h2 id="config-yml配置"><a href="#config-yml配置" class="headerlink" title="_config.yml配置"></a>_config.yml配置</h2><p>想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下：<br><img src="https://i.imgur.com/23Lqqyw.png" alt=""></p><p>这里又遇到一个坑，上图中最左边的红框一定要注意tab对齐，否则hexo g会一直报错。</p><p>我这边虽然采用的是https的方式，但是链接中添加了用户名和密码，也就是我红色划去的部分，这样提交时不需要输入用户名和密码。你也可以采用SSH密钥。</p><h2 id="同步本地hexo到coding上"><a href="#同步本地hexo到coding上" class="headerlink" title="同步本地hexo到coding上"></a>同步本地hexo到coding上</h2><p>首先还需要将本地公钥添加到coding的SSH公钥中，和之前的github类似，自行摸索，截图如下：<br><img src="https://i.imgur.com/RYc69hK.png" alt=""></p><p>添加后git bash验证一下：<br><code>ssh -T git@git.coding.net</code><br>如果得到下面提示就表示公钥添加成功了：<br><code>Hello Macintosh-c, You&#39;ve connected to Coding.net via SSH. This is a deploy key.</code><br>最后使用部署命令就能把博客同步到coding上面：<br><code>hexo d</code><br><img src="https://i.imgur.com/YzPJn2F.png" alt=""></p><h2 id="pages服务方式部署"><a href="#pages服务方式部署" class="headerlink" title="pages服务方式部署"></a>pages服务方式部署</h2><p>在source/需要创建一个空白文件，至于原因，是因为 coding.net需要这个文件来作为以静态文件部署的标志。就是说看到这个Staticfile就知道按照静态文件来发布。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd source/</span><br><span class="line">touch Staticfile  #名字必须是Staticfile</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/hTErmam.png" alt=""></p><p>一键静态部署后如图，网站访问地址ok，并且hexo d更新到coding后默认会自动部署。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>到此，托管coding成功，并且再修改博客会同步更新到<a href="https://macintosh-c.github.io/">github</a>和<a href="http://macintosh-c.coding.me/" target="_blank" rel="noopener">coding</a>，由于coding访问快，所以将hexo的原始文件也移植到了coding同仓库的hexo分支上，便于<a href="http://macintosh-c.coding.me/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/" target="_blank" rel="noopener">异地处理</a>的时候clone代码,步骤与github时都差不多。</p>]]></content>
+    <content type="html"><![CDATA[<p>之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。</p><h2 id="注册coding，创建项目"><a href="#注册coding，创建项目" class="headerlink" title="注册coding，创建项目"></a>注册coding，创建项目</h2><p><a href="https://coding.net/" target="_blank" rel="noopener">注册账户</a>后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。<br><img src="https://i.imgur.com/pMSTifq.png" alt=""></p><h2 id="config-yml配置"><a href="#config-yml配置" class="headerlink" title="_config.yml配置"></a>_config.yml配置</h2><p>想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下：<br><img src="https://i.imgur.com/23Lqqyw.png" alt=""></p><p>这里又遇到一个坑，上图中最左边的红框一定要注意tab对齐，否则hexo g会一直报错。</p><p>我这边虽然采用的是https的方式，但是链接中添加了用户名和密码，也就是我红色划去的部分，这样提交时不需要输入用户名和密码。你也可以采用SSH密钥。</p><h2 id="同步本地hexo到coding上"><a href="#同步本地hexo到coding上" class="headerlink" title="同步本地hexo到coding上"></a>同步本地hexo到coding上</h2><p>首先还需要将本地公钥添加到coding的SSH公钥中，和之前的github类似，自行摸索，截图如下：<br><img src="https://i.imgur.com/RYc69hK.png" alt=""></p><p>添加后git bash验证一下：<br><code>ssh -T git@git.coding.net</code><br>如果得到下面提示就表示公钥添加成功了：<br><code>Hello Macintosh-c, You&#39;ve connected to Coding.net via SSH. This is a deploy key.</code><br>最后使用部署命令就能把博客同步到coding上面：<br><code>hexo d</code><br><img src="https://i.imgur.com/YzPJn2F.png" alt=""></p><h2 id="pages服务方式部署"><a href="#pages服务方式部署" class="headerlink" title="pages服务方式部署"></a>pages服务方式部署</h2><p>在source/需要创建一个空白文件，至于原因，是因为 coding.net需要这个文件来作为以静态文件部署的标志。就是说看到这个Staticfile就知道按照静态文件来发布。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd source/</span><br><span class="line">touch Staticfile  #名字必须是Staticfile</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/hTErmam.png" alt=""></p><p>一键静态部署后如图，网站访问地址ok，并且hexo d更新到coding后默认会自动部署。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>到此，托管coding成功，并且再修改博客会同步更新到<a href="https://macintosh-c.github.io/" target="_blank" rel="noopener">github</a>和<a href="http://macintosh-c.coding.me/">coding</a>，由于coding访问快，所以将hexo的原始文件也移植到了coding同仓库的hexo分支上，便于<a href="http://macintosh-c.coding.me/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/">异地处理</a>的时候clone代码,步骤与github时都差不多。</p>]]></content>
     
     <summary type="html">
     
@@ -263,21 +263,21 @@
     
     </summary>
     
-      <category term="博客搭建 | blog" scheme="http://macintosh-c.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-blog/"/>
+      <category term="博客搭建 | blog" scheme="http://macintosh-c.coding.me/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-blog/"/>
     
     
-      <category term="blog" scheme="http://macintosh-c.github.io/tags/blog/"/>
+      <category term="blog" scheme="http://macintosh-c.coding.me/tags/blog/"/>
     
   </entry>
   
   <entry>
     <title>hexo搭建博客之---github管理原始文件，异地更新博客</title>
-    <link href="http://macintosh-c.github.io/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/"/>
-    <id>http://macintosh-c.github.io/2018/08/13/hexo-github搭建博客-一/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/"/>
+    <id>http://macintosh-c.coding.me/2018/08/13/hexo-github搭建博客-一/</id>
     <published>2018-08-13T15:46:59.000Z</published>
     <updated>2019-08-01T09:07:49.115Z</updated>
     
-    <content type="html"><![CDATA[<p>对于之前的搭建过程不在详述，<a href="https://macintosh-c.github.io/2018/08/12/%E5%86%99%E5%9C%A8%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%88%9B%E6%97%B6/">写在独立博客开创时</a>里说过，这里主要还是记录一些后续搭建过程中碰到的问题。由于经常会在公司和家两地去更新博文，于是碰到了此篇文章提到的问题，下面是解决过程，个人觉得主要还是对于git的使用理解。</p><h2 id="github搭建hexo博客原理"><a href="#github搭建hexo博客原理" class="headerlink" title="github搭建hexo博客原理"></a>github搭建hexo博客原理</h2><p>hexo博客的部署环境目录:<br><img src="https://i.imgur.com/RbL2AQv.png" alt=""><br>hexo博客的目录结构解析：<br><img src="https://i.imgur.com/S8cN7do.png" alt=""><br>上传到github上的文件：<br><img src="https://i.imgur.com/5eQfcks.png" alt=""></p><ol><li>hexo帮助把博客发送到github，同时把md文件转换成网页文件。</li><li>hexo目录下的文件和github上的文件是不同的，public文件夹的文件通过hexo d 上传到github去了，其他的文件则留在本地目录下。</li></ol><h2 id="本地github上处理"><a href="#本地github上处理" class="headerlink" title="本地github上处理"></a>本地github上处理</h2><ol><li><p>对username.github.io仓库新建hexo分支，并克隆<br>在Github的username.github.io仓库上新建一个xxx分支，并切换到该分支，并在该仓库-&gt;Settings-&gt;Branches-&gt;Default branch中将默认分支设为xxx，save保存；然后将该仓库克隆到本地，进入该username.github.io文件目录。<br>完成上面步骤后，在当前目录使用Git Bash执行git branch命令查看当前所在分支，应为新建的分支xxx。</p></li><li><p>将本地博客的部署文件拷贝进username.github.io文件目录<br>先将本地博客的部署文件（Hexo目录下的全部文件，除去图中划红线的不要拷贝）全部拷贝进username.github.io文件目录中去。拷贝之前也可以先删除原来切xxx分支时同步过来的master文件目录（那些文件没有作用）<br><img src="https://i.imgur.com/j5Gsi36.png" alt=""><br>接下来，进入username.github.io文件目录下，将该目录下的全部文件提交到xxx分支，提交之前需注意：<br>将themes目录以内中的主题的.git目录删除（如果有），因为一个git仓库中不能包含另一个git仓库，提交主题文件夹会失败。<br>可能有人会问，删除了themes目录中的.git不就不能git pull更新主题了吗，很简单，需要更新主题时在另一个地方git clone下来该主题的最新版本，然后将内容拷到当前主题目录即可</p></li><li><p>提交hexo分支<br>执行git add .，git commit -m ‘back up hexo files’（引号内容可改），git push即可将博客的hexo部署环境提交到GitHub个人仓库的xxx分支。<br>master分支和xxx分支各自保存着一个版本，master分支用于保存博客静态资源，提供博客页面供人访问；xxx分支用于备份博客部署文件，供自己维护更新，两者在一个GitHub仓库内互不冲突，完美！<br>至此，你的博客已经可以在其他电脑上进行同步的维护和更新了</p></li></ol><h2 id="异地更新博客"><a href="#异地更新博客" class="headerlink" title="异地更新博客"></a>异地更新博客</h2><p>将新电脑的生成的ssh key添加到GitHub账户上<br>在新电脑上克隆username.github.io仓库的xxx分支到本地，此时本地git仓库处于xxx分支<br>切换到username.github.io目录，执行npm install(由于仓库有一个.gitignore文件，里面默认是忽略掉 node_modules文件夹的，也就是说仓库的hexo分支并没有存储该目录[也不需要]，所以需要install下)</p><p>到这里了就可以开始在自己的电脑上写博客了！</p><p>编辑、撰写文章或其他博客更新改动<br>依次执行git add .、git commit -m ‘back up hexo files’（引号内容可改）、git push指令，保证xxx分支版本最新<br>执行hexo d -g指令（在此之前，有时可能需要执行hexo clean），完成后就会发现，最新改动已经更新到master分支了，两个分支互不干扰！</p><h2 id="回到本地"><a href="#回到本地" class="headerlink" title="回到本地"></a>回到本地</h2><p><strong> 注意： 每次换电脑进行博客更新时，不管上次在其他电脑有没有更新，最好先git pull</strong></p><p>按照之前的方法写自己博客，<br>然后将目录切换下username.github.io下，此时需要安装一下npm install，<br>最后执行hexo g、hexo s、hexo d等命令即可提交成功</p>]]></content>
+    <content type="html"><![CDATA[<p>对于之前的搭建过程不在详述，<a href="https://macintosh-c.github.io/2018/08/12/%E5%86%99%E5%9C%A8%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%88%9B%E6%97%B6/" target="_blank" rel="noopener">写在独立博客开创时</a>里说过，这里主要还是记录一些后续搭建过程中碰到的问题。由于经常会在公司和家两地去更新博文，于是碰到了此篇文章提到的问题，下面是解决过程，个人觉得主要还是对于git的使用理解。</p><h2 id="github搭建hexo博客原理"><a href="#github搭建hexo博客原理" class="headerlink" title="github搭建hexo博客原理"></a>github搭建hexo博客原理</h2><p>hexo博客的部署环境目录:<br><img src="https://i.imgur.com/RbL2AQv.png" alt=""><br>hexo博客的目录结构解析：<br><img src="https://i.imgur.com/S8cN7do.png" alt=""><br>上传到github上的文件：<br><img src="https://i.imgur.com/5eQfcks.png" alt=""></p><ol><li>hexo帮助把博客发送到github，同时把md文件转换成网页文件。</li><li>hexo目录下的文件和github上的文件是不同的，public文件夹的文件通过hexo d 上传到github去了，其他的文件则留在本地目录下。</li></ol><h2 id="本地github上处理"><a href="#本地github上处理" class="headerlink" title="本地github上处理"></a>本地github上处理</h2><ol><li><p>对username.github.io仓库新建hexo分支，并克隆<br>在Github的username.github.io仓库上新建一个xxx分支，并切换到该分支，并在该仓库-&gt;Settings-&gt;Branches-&gt;Default branch中将默认分支设为xxx，save保存；然后将该仓库克隆到本地，进入该username.github.io文件目录。<br>完成上面步骤后，在当前目录使用Git Bash执行git branch命令查看当前所在分支，应为新建的分支xxx。</p></li><li><p>将本地博客的部署文件拷贝进username.github.io文件目录<br>先将本地博客的部署文件（Hexo目录下的全部文件，除去图中划红线的不要拷贝）全部拷贝进username.github.io文件目录中去。拷贝之前也可以先删除原来切xxx分支时同步过来的master文件目录（那些文件没有作用）<br><img src="https://i.imgur.com/j5Gsi36.png" alt=""><br>接下来，进入username.github.io文件目录下，将该目录下的全部文件提交到xxx分支，提交之前需注意：<br>将themes目录以内中的主题的.git目录删除（如果有），因为一个git仓库中不能包含另一个git仓库，提交主题文件夹会失败。<br>可能有人会问，删除了themes目录中的.git不就不能git pull更新主题了吗，很简单，需要更新主题时在另一个地方git clone下来该主题的最新版本，然后将内容拷到当前主题目录即可</p></li><li><p>提交hexo分支<br>执行git add .，git commit -m ‘back up hexo files’（引号内容可改），git push即可将博客的hexo部署环境提交到GitHub个人仓库的xxx分支。<br>master分支和xxx分支各自保存着一个版本，master分支用于保存博客静态资源，提供博客页面供人访问；xxx分支用于备份博客部署文件，供自己维护更新，两者在一个GitHub仓库内互不冲突，完美！<br>至此，你的博客已经可以在其他电脑上进行同步的维护和更新了</p></li></ol><h2 id="异地更新博客"><a href="#异地更新博客" class="headerlink" title="异地更新博客"></a>异地更新博客</h2><p>将新电脑的生成的ssh key添加到GitHub账户上<br>在新电脑上克隆username.github.io仓库的xxx分支到本地，此时本地git仓库处于xxx分支<br>切换到username.github.io目录，执行npm install(由于仓库有一个.gitignore文件，里面默认是忽略掉 node_modules文件夹的，也就是说仓库的hexo分支并没有存储该目录[也不需要]，所以需要install下)</p><p>到这里了就可以开始在自己的电脑上写博客了！</p><p>编辑、撰写文章或其他博客更新改动<br>依次执行git add .、git commit -m ‘back up hexo files’（引号内容可改）、git push指令，保证xxx分支版本最新<br>执行hexo d -g指令（在此之前，有时可能需要执行hexo clean），完成后就会发现，最新改动已经更新到master分支了，两个分支互不干扰！</p><h2 id="回到本地"><a href="#回到本地" class="headerlink" title="回到本地"></a>回到本地</h2><p><strong> 注意： 每次换电脑进行博客更新时，不管上次在其他电脑有没有更新，最好先git pull</strong></p><p>按照之前的方法写自己博客，<br>然后将目录切换下username.github.io下，此时需要安装一下npm install，<br>最后执行hexo g、hexo s、hexo d等命令即可提交成功</p>]]></content>
     
     <summary type="html">
     
@@ -288,17 +288,17 @@
     
     </summary>
     
-      <category term="博客搭建 | blog" scheme="http://macintosh-c.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-blog/"/>
+      <category term="博客搭建 | blog" scheme="http://macintosh-c.coding.me/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-blog/"/>
     
     
-      <category term="blog" scheme="http://macintosh-c.github.io/tags/blog/"/>
+      <category term="blog" scheme="http://macintosh-c.coding.me/tags/blog/"/>
     
   </entry>
   
   <entry>
     <title>数据库基础:查询</title>
-    <link href="http://macintosh-c.github.io/2018/08/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80-%E4%B8%89/"/>
-    <id>http://macintosh-c.github.io/2018/08/13/数据库基础-三/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80-%E4%B8%89/"/>
+    <id>http://macintosh-c.coding.me/2018/08/13/数据库基础-三/</id>
     <published>2018-08-13T04:49:36.000Z</published>
     <updated>2019-08-01T09:07:49.116Z</updated>
     
@@ -314,17 +314,17 @@
     
     </summary>
     
-      <category term="数据库 | Database" scheme="http://macintosh-c.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+      <category term="数据库 | Database" scheme="http://macintosh-c.coding.me/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
     
     
-      <category term="database" scheme="http://macintosh-c.github.io/tags/database/"/>
+      <category term="database" scheme="http://macintosh-c.coding.me/tags/database/"/>
     
   </entry>
   
   <entry>
     <title>数据库基础:经典练习案例</title>
-    <link href="http://macintosh-c.github.io/2018/08/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80-%E4%BA%8C/"/>
-    <id>http://macintosh-c.github.io/2018/08/13/数据库基础-二/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80-%E4%BA%8C/"/>
+    <id>http://macintosh-c.coding.me/2018/08/13/数据库基础-二/</id>
     <published>2018-08-13T03:29:52.000Z</published>
     <updated>2019-08-01T09:07:49.117Z</updated>
     
@@ -339,17 +339,17 @@
     
     </summary>
     
-      <category term="数据库 | Database" scheme="http://macintosh-c.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+      <category term="数据库 | Database" scheme="http://macintosh-c.coding.me/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
     
     
-      <category term="database" scheme="http://macintosh-c.github.io/tags/database/"/>
+      <category term="database" scheme="http://macintosh-c.coding.me/tags/database/"/>
     
   </entry>
   
   <entry>
     <title>数据库基础:DDL/DML/DCL/TCL基本概念</title>
-    <link href="http://macintosh-c.github.io/2018/08/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80-%E4%B8%80/"/>
-    <id>http://macintosh-c.github.io/2018/08/13/数据库基础-一/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80-%E4%B8%80/"/>
+    <id>http://macintosh-c.coding.me/2018/08/13/数据库基础-一/</id>
     <published>2018-08-13T03:24:45.000Z</published>
     <updated>2019-08-01T09:07:49.116Z</updated>
     
@@ -365,21 +365,21 @@
     
     </summary>
     
-      <category term="数据库 | Database" scheme="http://macintosh-c.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
+      <category term="数据库 | Database" scheme="http://macintosh-c.coding.me/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-Database/"/>
     
     
-      <category term="database" scheme="http://macintosh-c.github.io/tags/database/"/>
+      <category term="database" scheme="http://macintosh-c.coding.me/tags/database/"/>
     
   </entry>
   
   <entry>
     <title>写在独立博客开创时</title>
-    <link href="http://macintosh-c.github.io/2018/08/12/%E5%86%99%E5%9C%A8%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%88%9B%E6%97%B6/"/>
-    <id>http://macintosh-c.github.io/2018/08/12/写在独立博客开创时/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/12/%E5%86%99%E5%9C%A8%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%88%9B%E6%97%B6/"/>
+    <id>http://macintosh-c.coding.me/2018/08/12/写在独立博客开创时/</id>
     <published>2018-08-12T03:09:55.000Z</published>
     <updated>2019-08-01T09:07:49.116Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。</p><p>更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭这么一个博客呢，原因有下面几点：</p><ol><li>积累。希望能借助这个博客平台多积累技术，改掉平时随手乱记，无纲要，无逻辑的习惯。<br></li><li>坚持。转行IT这条路对于我来说不知道还能走多远，这条路对于我来说能有多宽，那总要有一个坚持的方法。<br></li><li>总结。总感觉越大写作的能力在直线下滑，有时候有很多感慨和想法，想写却写不出来，有这么个博客，可以锻炼这方面的能力。<br></li></ol><p>网上关于如何用Hexo+Github来搭建独立博客的分享很多，我也不打算再去用篇幅讲述搭建详细了，主要参考了<a href="http://tengj.top/" target="_blank" rel="noopener">tengj</a>和<a href="https://whatbeg.com/" target="_blank" rel="noopener">whatbeg</a>两位兄台的分享，十分感谢！</p><h2 id="博客进展"><a href="#博客进展" class="headerlink" title="博客进展"></a>博客进展</h2><p>有必要简单讲述一下这个博客搭建的进展，以及后续还需要完善的地方，来继续鞭策自己</p><p>到目前为止已完成：</p><ul><li>hexo环境搭建，github关联。</li><li>初步熟悉hexo的基本配置，更换主题jacman，修改布局，新建文章，标签，分类等。</li><li>添加简单<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">文章，网站访问量统计</a>功能。</li><li>RSS订阅功能</li><li>Markdown语法，边写边学习。</li><li>添加了文章<a href="https://whatbeg.com/2016/05/18/hexo-donate.html" target="_blank" rel="noopener">打赏</a>功能。</li><li>已同步部署到了coding上，且实现了<a href="http://macintosh-c.coding.me/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/" target="_blank" rel="noopener">多地提交</a>同步更新coding和github。</li></ul><p>下一步还需要做的有：</p><ul><li>安装统计插件</li><li>添加站内搜索</li><li>提交搜索引擎</li><li>添加评论插件</li></ul><h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p>首先希望这个博客能在自我的坚持中一直写下去，让我在将来回头看时，有留下些许东西。主要涉猎的技术文章可能关于java，android，web，微信小程序等等。能力有限，仅供自己学习总结。其次，平时生活中的感想，感悟，感慨等，成长过程的脚印，总结也会用独立的分类篇幅来记录。再则，工作生活中阅读到的一些好的书本，语录等也会收集分享。希望勤能补拙。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这次部署过程中受益于网络上各路大神们的细心总结，赠人玫瑰，手有余香。感谢！</p><p>就写到这吧，Markdown也不是很熟悉。总之，持之以恒，继续努力！</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。</p><p>更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭这么一个博客呢，原因有下面几点：</p><ol><li>积累。希望能借助这个博客平台多积累技术，改掉平时随手乱记，无纲要，无逻辑的习惯。<br></li><li>坚持。转行IT这条路对于我来说不知道还能走多远，这条路对于我来说能有多宽，那总要有一个坚持的方法。<br></li><li>总结。总感觉越大写作的能力在直线下滑，有时候有很多感慨和想法，想写却写不出来，有这么个博客，可以锻炼这方面的能力。<br></li></ol><p>网上关于如何用Hexo+Github来搭建独立博客的分享很多，我也不打算再去用篇幅讲述搭建详细了，主要参考了<a href="http://tengj.top/" target="_blank" rel="noopener">tengj</a>和<a href="https://whatbeg.com/" target="_blank" rel="noopener">whatbeg</a>两位兄台的分享，十分感谢！</p><h2 id="博客进展"><a href="#博客进展" class="headerlink" title="博客进展"></a>博客进展</h2><p>有必要简单讲述一下这个博客搭建的进展，以及后续还需要完善的地方，来继续鞭策自己</p><p>到目前为止已完成：</p><ul><li>hexo环境搭建，github关联。</li><li>初步熟悉hexo的基本配置，更换主题jacman，修改布局，新建文章，标签，分类等。</li><li>添加简单<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">文章，网站访问量统计</a>功能。</li><li>RSS订阅功能</li><li>Markdown语法，边写边学习。</li><li>添加了文章<a href="https://whatbeg.com/2016/05/18/hexo-donate.html" target="_blank" rel="noopener">打赏</a>功能。</li><li>已同步部署到了coding上，且实现了<a href="http://macintosh-c.coding.me/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/">多地提交</a>同步更新coding和github。</li></ul><p>下一步还需要做的有：</p><ul><li>安装统计插件</li><li>添加站内搜索</li><li>提交搜索引擎</li><li>添加评论插件</li></ul><h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p>首先希望这个博客能在自我的坚持中一直写下去，让我在将来回头看时，有留下些许东西。主要涉猎的技术文章可能关于java，android，web，微信小程序等等。能力有限，仅供自己学习总结。其次，平时生活中的感想，感悟，感慨等，成长过程的脚印，总结也会用独立的分类篇幅来记录。再则，工作生活中阅读到的一些好的书本，语录等也会收集分享。希望勤能补拙。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这次部署过程中受益于网络上各路大神们的细心总结，赠人玫瑰，手有余香。感谢！</p><p>就写到这吧，Markdown也不是很熟悉。总之，持之以恒，继续努力！</p>]]></content>
     
     <summary type="html">
     
@@ -390,10 +390,10 @@
     
     </summary>
     
-      <category term="成长之路 | Biography" scheme="http://macintosh-c.github.io/categories/%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF-Biography/"/>
+      <category term="成长之路 | Biography" scheme="http://macintosh-c.coding.me/categories/%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF-Biography/"/>
     
     
-      <category term="随笔" scheme="http://macintosh-c.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://macintosh-c.coding.me/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
