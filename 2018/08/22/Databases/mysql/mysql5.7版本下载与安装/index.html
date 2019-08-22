@@ -1,0 +1,724 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>mysql之---下载与安装（windows，mysql5.7免安装版） | macintosh-c&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Macintosh-c">
+    
+
+    
+    <meta name="description" content="近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下 下载 链接：https://dev.mysql.com/downloads/mysql/  点击选择MySQL Community Edition (GPL)&amp;gt;MySQL Community Serve">
+<meta name="keywords" content="mysql安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql之---下载与安装（windows，mysql5.7免安装版）">
+<meta property="og:url" content="http://macintosh-c.coding.me/2018/08/22/Databases/mysql/mysql5.7版本下载与安装/index.html">
+<meta property="og:site_name" content="macintosh-c&#39;s blog">
+<meta property="og:description" content="近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下 下载 链接：https://dev.mysql.com/downloads/mysql/  点击选择MySQL Community Edition (GPL)&amp;gt;MySQL Community Serve">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-20T06:10:31.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql之---下载与安装（windows，mysql5.7免安装版）">
+<meta name="twitter:description" content="近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下 下载 链接：https://dev.mysql.com/downloads/mysql/  点击选择MySQL Community Edition (GPL)&amp;gt;MySQL Community Serve">
+
+    
+    <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo_me.jpg" alt="macintosh-c&#39;s blog" title="macintosh-c&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="macintosh-c&#39;s blog">macintosh-c&#39;s blog</a></h1>
+				<h2 class="blog-motto">当你的才华撑不起你的野心时，就应该静下心来好好学习。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页(Home)</a></li>
+					
+						<li><a href="/archives">归档(Archives)</a></li>
+					
+						<li><a href="/tags">标签(Tags)</a></li>
+					
+						<li><a href="/categories">分类(Categories)</a></li>
+					
+					<li>
+ 					
+						<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=10231555544562790968' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/08/22/Databases/mysql/mysql5.7版本下载与安装/" title="mysql之---下载与安装（windows，mysql5.7免安装版）" itemprop="url">mysql之---下载与安装（windows，mysql5.7免安装版）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
+		
+  <p class="article-time">
+    <time datetime="2018-08-22T06:34:16.000Z" itemprop="datePublished"> 发表于 2018-08-22</time>
+		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
+  </p>
+</header>
+
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装服务"><span class="toc-number">2.</span> <span class="toc-text">安装服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-解压MySQL压缩包"><span class="toc-number">2.1.</span> <span class="toc-text">1. 解压MySQL压缩包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-将mysql注册为windows系统服务"><span class="toc-number">2.2.</span> <span class="toc-text">2. 将mysql注册为windows系统服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-启动MySQL服务"><span class="toc-number">2.3.</span> <span class="toc-text">3. 启动MySQL服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-修改-root-账号的密码"><span class="toc-number">2.4.</span> <span class="toc-text">4. 修改 root 账号的密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-MySQL控制台快捷方式建立"><span class="toc-number">2.5.</span> <span class="toc-text">5. MySQL控制台快捷方式建立:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-添加环境变量"><span class="toc-number">2.6.</span> <span class="toc-text">6. 添加环境变量</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ol>
+<li><p>链接：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a></p>
+</li>
+<li><p>点击选择MySQL Community Edition (GPL)&gt;MySQL Community Server (GPL)&gt;Looking for previous GA versions?根据系统选择5.7版本的zip Archive（免安装版） 下载</p>
+</li>
+</ol>
+<h2 id="安装服务"><a href="#安装服务" class="headerlink" title="安装服务"></a>安装服务</h2><h3 id="1-解压MySQL压缩包"><a href="#1-解压MySQL压缩包" class="headerlink" title="1. 解压MySQL压缩包"></a>1. 解压MySQL压缩包</h3><p>将以下载的MySQL压缩包解压到自定义目录下,我的解压目录是:”D:\mysql”<br>将解压目录下默认文件 my-default.ini 拷贝一份，改名 my.ini<br>复制下面的配置信息到 my.ini 保存,如果没有my-default.ini,可自己新建my.ini<br>内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#########################################################</span><br><span class="line">  [client]</span><br><span class="line">  port=3306</span><br><span class="line">  default-character-set=utf8</span><br><span class="line">  [mysqld]</span><br><span class="line">  port=3306</span><br><span class="line">  character_set_server=utf8</span><br><span class="line">  #安装路径</span><br><span class="line">  basedir=D:\mysql</span><br><span class="line">  #数据路径</span><br><span class="line">   datadir=D:\mysql\data</span><br><span class="line">    sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line">    [WinMySQLAdmin]</span><br><span class="line">   D:\mysql\bin\mysqld.exe</span><br><span class="line">#########################################################</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-将mysql注册为windows系统服务"><a href="#2-将mysql注册为windows系统服务" class="headerlink" title="2. 将mysql注册为windows系统服务"></a>2. 将mysql注册为windows系统服务</h3><p>1）从控制台进入到MySQL解压目录下的 bin 目录下：<br>注册之前先执行初始化命令，否则注册完后启动服务不成功，执行命令如下：<br><code>mysqld --initialize-insecure --user=mysql</code><br>2）输入服务安装命令：<br><code>mysqld install MySQL --defaults-file=&quot;D:\mysql\my.ini&quot;</code><br>安装成功后会提示服务安装成功。<br>#注：my.ini文件放在MySQL解压后的根目录下,如果之前装过此时会提示已经安装，可用<code>sc delete mysql</code>移除之前的服务，再执行上述命令</p>
+<h3 id="3-启动MySQL服务"><a href="#3-启动MySQL服务" class="headerlink" title="3. 启动MySQL服务"></a>3. 启动MySQL服务</h3><p>方法一：<br>启动服务命令为：net start mysql<br>方法二：<br>打开管理工具 服务，找到MySQL服务。<br>通过右键选择启动或者直接点击左边的启动来启动服务。</p>
+<h3 id="4-修改-root-账号的密码"><a href="#4-修改-root-账号的密码" class="headerlink" title="4. 修改 root 账号的密码"></a>4. 修改 root 账号的密码</h3><p>刚安装完成时root账号默认密码为空，此时可以将密码修改为指定的密码。如：123456<br>cd到mysql解压目录下执行：<code>mysql –u root</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;show databases;</span><br><span class="line">mysql&gt;use mysql;</span><br><span class="line">mysql&gt;UPDATE user SET authentication_string=&quot;123456&quot; WHERE user=&apos;root&apos;;即可</span><br><span class="line">mysql&gt;FLUSH PRIVILEGES;</span><br><span class="line">mysql&gt;QUIT</span><br></pre></td></tr></table></figure></p>
+<p>#注：新安装的MySQL5.7，mysql数据库下已经没有password这个字段了，password字段改成了authentication_string。<br>此时尚没有结束，当重新输入<code>mysql –u root -p</code>后并没有登录进mysql，而是一直提示：Access denied for user ‘root‘@’localhost’ (using password: YES)，很苦恼，百度查询，大多方法是免密码登录，重设密码等等试了都不行，最后找到一个方法解决，记录如下：<br>1)停止mysql服务。<code>net stop mysql</code><br>2)跳过密码验证。<code>mysqld --skip-grant-tables</code><br>3)无密码登录。在步骤2的基础上，重新开一个CMD，执行：<code>mysql -u root</code><br>4)授权。<code>mysql&gt;grant all privileges on *.* to &#39;root&#39;@&#39;localhost&#39; identified by &#39;123456&#39; with grant option;</code><br>关键词解释：<br>root‘@’localhost:是用户<br>123456：是密码<br>此时发现无密码条件下，没有授权的写权限：<br>The MySQL server is running with the –skip-grant-tables option so it cannot execute this statement<br>解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global read_only=0;//（关掉新主库的只读属性）</span><br><span class="line">mysql&gt;flush privileges;</span><br><span class="line">mysql&gt;set global read_only=1;//(读写属性)</span><br><span class="line">mysql&gt;flush privileges;</span><br><span class="line">mysql&gt;grant all privileges on *.* to &apos;root&apos;@&apos;localhost&apos; identified by &apos;123456&apos; with grant option;</span><br><span class="line">mysql&gt;flush privileges;</span><br><span class="line">（注意刷新是必须项）</span><br></pre></td></tr></table></figure></p>
+<p>到此打开mysql服务时失败，重启下电脑，启动mysql服务ok，<code>mysql -u root -p</code>输入密码，登录ok</p>
+<h3 id="5-MySQL控制台快捷方式建立"><a href="#5-MySQL控制台快捷方式建立" class="headerlink" title="5. MySQL控制台快捷方式建立:"></a>5. MySQL控制台快捷方式建立:</h3><p>1）桌面右键-&gt;新建-&gt;快捷方式-&gt;对象位置输入：C:\Windows\System32(或SysWOW64)\cmd.exe<br>快捷方式名称自己定义，确定，快捷方式建立成功<br>2）右键单击刚才建立的快捷方式-&gt;属性-&gt;把目标一栏修改成MySQL启动参数：<br>C:\Windows\System32\cmd.exe “D:\mysql\bin” /k mysql -u root -p inventory<br>解释:CMD路径 “MySQL路径bin目录” /k mysql -u root -p 默认打开的数据库名<br>3）修改完成后点击确定保存，直接双击快捷方式即可连接到MySQL<br>#注：需要将mysql添加环境变量，方法见6</p>
+<h3 id="6-添加环境变量"><a href="#6-添加环境变量" class="headerlink" title="6. 添加环境变量"></a>6. 添加环境变量</h3><p>操作如下：<br>1）右键单击我的电脑-&gt;属性-&gt;高级系统设置(高级)-&gt;环境变量<br>点击系统变量下的新建按钮<br>输入变量名：MYSQL_HOME<br>输入变量值：D:\mysql<br>#即为mysql的自定义解压目录。<br>2）选择系统变量中的Path<br>点击编辑按钮<br>在变量值中添加变量值：%MYSQL_HOME%\bin<br>注意是在原有变量值后面加上这个变量，用;隔开，不能删除原来的变量值<br>#配置完环境变量重启下电脑</p>
+
+	</div>
+
+	
+	<!-- css -->
+	<style type="text/css">
+	    .center {
+	        text-align: center;
+	    }
+	    .hidden {
+	        display: none;
+	    }
+		.donate_bar a.btn_donate{
+			display: inline-block;
+			width: 82px;
+			height: 82px;
+			background: url("/img/btn_reward.gif") no-repeat;
+			_background: url("/img/btn_reward.gif") no-repeat;
+
+			<!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+			     因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+				 为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+				 嵌入其它博客时不一定要它们。-->
+			-webkit-transition: background 0s;
+			-moz-transition: background 0s;
+			-o-transition: background 0s;
+			-ms-transition: background 0s;
+			transition: background 0s;
+			<!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束-->
+		}
+
+		.donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+		.donate_bar .donate_txt {
+			display: block;
+			color: #9d9d9d;
+			font: 14px/2 "Microsoft Yahei";
+		}
+		.bold{ font-weight: bold; }
+	</style>
+	<!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+	<!-- btn_donate & tips -->
+	<div id="donate_board" class="donate_bar center">
+	    <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差哦~
+		</span>
+
+
+	</div>
+	<!-- /btn_donate & tips -->
+
+	<!-- donate guide -->
+
+	<div id="donate_guide" class="donate_bar center hidden">
+        <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+	    
+
+		<a href="/img/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+			<img src="/img/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+        &nbsp;&nbsp;
+
+		<a href="/img/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+			<img src="/img/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="支付宝打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差哦~
+		</span>
+
+	</div>
+	<!-- /donate guide -->
+
+	<!-- donate script -->
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function() {
+			$('#donate_board').addClass('hidden');
+	    $('#donate_guide').removeClass('hidden');
+		}
+
+		function donate_on_web(){
+			$('#donate').submit();
+        }
+
+		var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+		}
+	</script>
+	<!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Database/">Database</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/mysql安装/">mysql安装</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://macintosh-c.coding.me/2018/08/22/Databases/mysql/mysql5.7版本下载与安装/" data-title="mysql之---下载与安装（windows，mysql5.7免安装版） | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/08/22/Databases/mysql/mysql5.7主从配置/" title="mysql之---主从配置（windows，mysql5.7）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  mysql之---主从配置（windows，mysql5.7）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2018/08/17/hexo/hexo搭建博客之-总结/"  title="hexo搭建博客之---总结篇">
+ <strong>下一篇：</strong><br/> 
+ <span>hexo搭建博客之---总结篇
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+
+	<div id="lv-container" data-id="city" data-uid="MTAyMC8zODk4Mi8xNTUwOQ==">
+	<script type="text/javascript">
+	   (function(d, s) {
+	       var j, e = d.getElementsByTagName(s)[0];
+
+	       if (typeof LivereTower === 'function') { return; }
+
+	       j = d.createElement(s);
+	       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+	       j.async = true;
+
+	       e.parentNode.insertBefore(j, e);
+	   })(document, 'script');
+	</script>
+	<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+	</div>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装服务"><span class="toc-number">2.</span> <span class="toc-text">安装服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-解压MySQL压缩包"><span class="toc-number">2.1.</span> <span class="toc-text">1. 解压MySQL压缩包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-将mysql注册为windows系统服务"><span class="toc-number">2.2.</span> <span class="toc-text">2. 将mysql注册为windows系统服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-启动MySQL服务"><span class="toc-number">2.3.</span> <span class="toc-text">3. 启动MySQL服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-修改-root-账号的密码"><span class="toc-number">2.4.</span> <span class="toc-text">4. 修改 root 账号的密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-MySQL控制台快捷方式建立"><span class="toc-number">2.5.</span> <span class="toc-text">5. MySQL控制台快捷方式建立:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-添加环境变量"><span class="toc-number">2.6.</span> <span class="toc-text">6. 添加环境变量</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="Macintosh-c" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Database/" title="Database">Database<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java基础/" title="java基础">java基础<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mybatis/" title="mybatis">mybatis<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/博客相关/" title="博客相关">博客相关<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/成长之路/" title="成长之路">成长之路<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/blog搭建/" title="blog搭建">blog搭建<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql安装/" title="mysql安装">mysql安装<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fastjson/" title="fastjson">fastjson<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/基本概念/" title="基本概念">基本概念<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-aop/" title="Spring aop">Spring aop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql案例/" title="sql案例">sql案例<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mybatis基础/" title="mybatis基础">mybatis基础<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql主从/" title="mysql主从">mysql主从<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Spring-aop/" style="font-size: 10px;">Spring aop</a> <a href="/tags/blog搭建/" style="font-size: 20px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 15px;">fastjson</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 15px;">mysql安装</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 10px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://toutiao.io/" target="_blank" title="开发者头条">开发者头条</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/peace1213" target="_blank" title="csdn">csdn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 静下心来，好好做你该做的事！ <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Macintosh-c" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019
+		
+		<a href="/about" target="_blank" title="Macintosh-c">Macintosh-c</a>
+		
+		</br>
+				<script async src="http://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+		    &nbsp;&nbsp;Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span>
+		</span>
+		<span id="busuanzi_container_site_uv">
+		  &nbsp;&nbsp;You are Visiter No.<span id="busuanzi_value_site_uv"></span>
+		</span>
+		</p>
+
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?3491d96f9fc7f28103bc4230e5fca4e0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63":"https://jspassport.ssl.qhimg.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+  </body>
+</html>

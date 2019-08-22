@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2019-08-22T01:15:06.524Z</updated>
+  <updated>2019-08-22T02:35:56.681Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -18,12 +18,12 @@
   
   <entry>
     <title>Mac下安装Mysql</title>
-    <link href="http://macintosh-c.coding.me/2019/08/20/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Mysql/"/>
-    <id>http://macintosh-c.coding.me/2019/08/20/Mac下安装Mysql/</id>
+    <link href="http://macintosh-c.coding.me/2019/08/20/Databases/mysql/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Mysql/"/>
+    <id>http://macintosh-c.coding.me/2019/08/20/Databases/mysql/Mac下安装Mysql/</id>
     <published>2019-08-20T05:51:29.000Z</published>
-    <updated>2019-08-22T01:15:06.524Z</updated>
+    <updated>2019-08-22T02:35:56.681Z</updated>
     
-    <content type="html"><![CDATA[<p>由于前段时间工作的笔记本从windows转到了mac上来，所以一方面在熟悉适应mac的同时，另一方面需要重新安装一些基础设施，像mysql，redis等。本篇记载如何在mac上安装单机mysql。</p><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>1.打开网址，<a href="https://www.mysql.com" target="_blank" rel="noopener">https://www.mysql.com</a> ，点击downloads之后跳转到<a href="https://www.mysql.com/downloads" target="_blank" rel="noopener">https://www.mysql.com/downloads</a> 选择Community选项，点击MySQL Community Server，再点击5.7版本的数据库，确认好要下载的版本和操作系统，点击Download，如下：</p><p><img src="/img/blog/1566285632459.jpg" alt="image"></p><p>2.双击下载好的dmg文件，会弹出pkg弹框，再双击pkg图标，进入安装界面，在安装界面上一路继续，最后就安装成功了。如下图：</p><p><img src="/img/blog/1566291291898.jpg" alt="image"></p><h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>1、在终端切换到根目录，编辑./.bash_profile文件</p><p>$ cd ~<br>$ vim ./.bash_profile<br>2、进入vim 编辑环境。 按下i 进入 insert 模式 ，输入</p><p>export PATH=$PATH:/usr/local/mysql/bin<br>export PATH=$PATH:/usr/local/mysql/support-files<br>3、按下esc 退出 insert 模式，输入:wq保存配置文件。</p><p>:wq<br>4、在终端界面下输入以下命令，让配置文件的修改生效，并查看环境变量是否设置成功</p><p>$ source ~/.bash_profile<br>$ echo $PATH</p><h2 id="mysql服务启停以及状态查看"><a href="#mysql服务启停以及状态查看" class="headerlink" title="mysql服务启停以及状态查看"></a>mysql服务启停以及状态查看</h2><p>停止MySQL服务<br>sudo mysql.server stop</p><p>重启MySQL服务<br>sudo mysql.server restart</p><p>查看MySQL服务状态<br>sudo mysql.server status</p><p>启动MySQL服务<br>sudo mysql.server start</p><h2 id="初始化设置"><a href="#初始化设置" class="headerlink" title="初始化设置"></a>初始化设置</h2><p>启动mysql服务后，进入指令：mysql -u root -p,输入安装成功时显示的初始密码，出现下图则成功进入：</p><p><img src="/img/blog/1566293062364.jpg" alt="image"></p><h3 id="1-修改密码"><a href="#1-修改密码" class="headerlink" title="1.修改密码"></a>1.修改密码</h3><p>首次进入mysql执行sql指令时会提示error，要更新初始root账户的密码，错误提示如下：<br>ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.</p><p>通过指令：set password = password(‘root’);修改密码为root即可。</p><p>退出mysql：exit</p><h3 id="2-修改字符集"><a href="#2-修改字符集" class="headerlink" title="2.修改字符集"></a>2.修改字符集</h3><p>通过下面指令可以查看此时默认的字符集，如图：<br>$mysql&gt;&gt;&gt;show variables like ‘%char%’;</p><p><img src="/img/blog/1566293114167.jpg" alt="image"></p><p>后续在插入中文字的情况下有可能会产生乱码问题，所以这边需要改下配置，方法如下：</p><p>在/etc的目录下新建my.cnf，内容如下：</p><p>[mysqld]<br>default-storage-engine=INNODB<br>character-set-server=utf8<br>port = 3306</p><p>[client]<br>default-character-set=utf8</p><p>建好后保存退出，重启mysql即可，再次通过指令查看如下：</p><p><img src="/img/blog/1566293132081.jpg" alt="image"></p><p>完毕！</p>]]></content>
+    <content type="html"><![CDATA[<p>由于前段时间工作的笔记本从windows转到了mac上来，所以一方面在熟悉适应mac的同时，另一方面需要重新安装一些基础设施，像mysql，redis等。本篇记载如何在mac上安装单机mysql。</p><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>1.打开网址，<a href="https://www.mysql.com" target="_blank" rel="noopener">https://www.mysql.com</a> ，点击downloads之后跳转到<a href="https://www.mysql.com/downloads" target="_blank" rel="noopener">https://www.mysql.com/downloads</a> 选择Community选项，点击MySQL Community Server，再点击5.7版本的数据库，确认好要下载的版本和操作系统，点击Download，如下：</p><p><img src="/img/Databases/mysql/1566285632459.jpg" alt="image"></p><p>2.双击下载好的dmg文件，会弹出pkg弹框，再双击pkg图标，进入安装界面，在安装界面上一路继续，最后就安装成功了。如下图：</p><p><img src="/img/Databases/mysql/1566291291898.jpg" alt="image"></p><h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>1、在终端切换到根目录，编辑./.bash_profile文件</p><p>$ cd ~<br>$ vim ./.bash_profile<br>2、进入vim 编辑环境。 按下i 进入 insert 模式 ，输入</p><p>export PATH=$PATH:/usr/local/mysql/bin<br>export PATH=$PATH:/usr/local/mysql/support-files<br>3、按下esc 退出 insert 模式，输入:wq保存配置文件。</p><p>:wq<br>4、在终端界面下输入以下命令，让配置文件的修改生效，并查看环境变量是否设置成功</p><p>$ source ~/.bash_profile<br>$ echo $PATH</p><h2 id="mysql服务启停以及状态查看"><a href="#mysql服务启停以及状态查看" class="headerlink" title="mysql服务启停以及状态查看"></a>mysql服务启停以及状态查看</h2><p>停止MySQL服务<br>sudo mysql.server stop</p><p>重启MySQL服务<br>sudo mysql.server restart</p><p>查看MySQL服务状态<br>sudo mysql.server status</p><p>启动MySQL服务<br>sudo mysql.server start</p><h2 id="初始化设置"><a href="#初始化设置" class="headerlink" title="初始化设置"></a>初始化设置</h2><p>启动mysql服务后，进入指令：mysql -u root -p,输入安装成功时显示的初始密码，出现下图则成功进入：</p><p><img src="/img/Databases/mysql/1566293062364.jpg" alt="image"></p><h3 id="1-修改密码"><a href="#1-修改密码" class="headerlink" title="1.修改密码"></a>1.修改密码</h3><p>首次进入mysql执行sql指令时会提示error，要更新初始root账户的密码，错误提示如下：<br>ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.</p><p>通过指令：set password = password(‘root’);修改密码为root即可。</p><p>退出mysql：exit</p><h3 id="2-修改字符集"><a href="#2-修改字符集" class="headerlink" title="2.修改字符集"></a>2.修改字符集</h3><p>通过下面指令可以查看此时默认的字符集，如图：<br>$mysql&gt;&gt;&gt;show variables like ‘%char%’;</p><p><img src="/img/Databases/mysql/1566293114167.jpg" alt="image"></p><p>后续在插入中文字的情况下有可能会产生乱码问题，所以这边需要改下配置，方法如下：</p><p>在/etc的目录下新建my.cnf，内容如下：</p><p>[mysqld]<br>default-storage-engine=INNODB<br>character-set-server=utf8<br>port = 3306</p><p>[client]<br>default-character-set=utf8</p><p>建好后保存退出，重启mysql即可，再次通过指令查看如下：</p><p><img src="/img/Databases/mysql/1566293132081.jpg" alt="image"></p><p>完毕！</p>]]></content>
     
     <summary type="html">
     
@@ -44,8 +44,8 @@
   
   <entry>
     <title>java基础之fastjson（二）</title>
-    <link href="http://macintosh-c.coding.me/2018/09/10/fastjson2/"/>
-    <id>http://macintosh-c.coding.me/2018/09/10/fastjson2/</id>
+    <link href="http://macintosh-c.coding.me/2018/09/10/java/basic/fastjson2/"/>
+    <id>http://macintosh-c.coding.me/2018/09/10/java/basic/fastjson2/</id>
     <published>2018-09-10T14:10:52.000Z</published>
     <updated>2019-08-20T06:16:05.506Z</updated>
     
@@ -69,8 +69,8 @@
   
   <entry>
     <title>java基础之fastjson（一）</title>
-    <link href="http://macintosh-c.coding.me/2018/09/10/fastjson/"/>
-    <id>http://macintosh-c.coding.me/2018/09/10/fastjson/</id>
+    <link href="http://macintosh-c.coding.me/2018/09/10/java/basic/fastjson/"/>
+    <id>http://macintosh-c.coding.me/2018/09/10/java/basic/fastjson/</id>
     <published>2018-09-10T13:51:56.000Z</published>
     <updated>2019-08-20T06:07:36.284Z</updated>
     
@@ -94,8 +94,8 @@
   
   <entry>
     <title>Spring AOP</title>
-    <link href="http://macintosh-c.coding.me/2018/09/09/spring-AOP/"/>
-    <id>http://macintosh-c.coding.me/2018/09/09/spring-AOP/</id>
+    <link href="http://macintosh-c.coding.me/2018/09/09/Springboot/spring-AOP/"/>
+    <id>http://macintosh-c.coding.me/2018/09/09/Springboot/spring-AOP/</id>
     <published>2018-09-08T17:29:05.000Z</published>
     <updated>2019-08-20T06:10:46.557Z</updated>
     
@@ -119,8 +119,8 @@
   
   <entry>
     <title>Mybatis中的${}和#{}区别与用法</title>
-    <link href="http://macintosh-c.coding.me/2018/08/29/mybatis%E4%B8%AD-%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E7%94%A8%E6%B3%95/"/>
-    <id>http://macintosh-c.coding.me/2018/08/29/mybatis中-和-的区别与用法/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/29/mybatis/mybatis%E4%B8%AD-%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E7%94%A8%E6%B3%95/"/>
+    <id>http://macintosh-c.coding.me/2018/08/29/mybatis/mybatis中-和-的区别与用法/</id>
     <published>2018-08-29T13:51:11.000Z</published>
     <updated>2019-08-20T06:09:45.478Z</updated>
     
@@ -145,8 +145,8 @@
   
   <entry>
     <title>单例模式</title>
-    <link href="http://macintosh-c.coding.me/2018/08/27/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://macintosh-c.coding.me/2018/08/27/单例模式/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/27/java/design/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://macintosh-c.coding.me/2018/08/27/java/design/单例模式/</id>
     <published>2018-08-27T14:48:15.000Z</published>
     <updated>2019-08-20T06:04:51.479Z</updated>
     
@@ -170,8 +170,8 @@
   
   <entry>
     <title>wait-notify生产者-消费者问题</title>
-    <link href="http://macintosh-c.coding.me/2018/08/27/wait-notify%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/"/>
-    <id>http://macintosh-c.coding.me/2018/08/27/wait-notify生产者-消费者问题/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/27/java/design/wait-notify%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/"/>
+    <id>http://macintosh-c.coding.me/2018/08/27/java/design/wait-notify生产者-消费者问题/</id>
     <published>2018-08-27T14:39:40.000Z</published>
     <updated>2019-08-20T06:15:51.542Z</updated>
     
@@ -195,8 +195,8 @@
   
   <entry>
     <title>mysql之---主从配置（windows，mysql5.7）</title>
-    <link href="http://macintosh-c.coding.me/2018/08/22/mysql5.7%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/"/>
-    <id>http://macintosh-c.coding.me/2018/08/22/mysql5.7主从配置/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/22/Databases/mysql/mysql5.7%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://macintosh-c.coding.me/2018/08/22/Databases/mysql/mysql5.7主从配置/</id>
     <published>2018-08-22T06:34:16.000Z</published>
     <updated>2019-08-20T06:10:13.256Z</updated>
     
@@ -221,8 +221,8 @@
   
   <entry>
     <title>mysql之---下载与安装（windows，mysql5.7免安装版）</title>
-    <link href="http://macintosh-c.coding.me/2018/08/22/mysql5.7%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/"/>
-    <id>http://macintosh-c.coding.me/2018/08/22/mysql5.7版本下载与安装/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/22/Databases/mysql/mysql5.7%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/"/>
+    <id>http://macintosh-c.coding.me/2018/08/22/Databases/mysql/mysql5.7版本下载与安装/</id>
     <published>2018-08-22T06:34:16.000Z</published>
     <updated>2019-08-20T06:10:31.003Z</updated>
     
@@ -247,8 +247,8 @@
   
   <entry>
     <title>hexo搭建博客之---总结篇</title>
-    <link href="http://macintosh-c.coding.me/2018/08/17/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B-%E6%80%BB%E7%BB%93/"/>
-    <id>http://macintosh-c.coding.me/2018/08/17/hexo搭建博客之-总结/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/17/hexo/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B-%E6%80%BB%E7%BB%93/"/>
+    <id>http://macintosh-c.coding.me/2018/08/17/hexo/hexo搭建博客之-总结/</id>
     <published>2018-08-17T06:59:00.000Z</published>
     <updated>2019-08-20T06:09:00.679Z</updated>
     
@@ -272,8 +272,8 @@
   
   <entry>
     <title>hexo搭建博客之---托管coding</title>
-    <link href="http://macintosh-c.coding.me/2018/08/14/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B---%E6%89%98%E7%AE%A1coding/"/>
-    <id>http://macintosh-c.coding.me/2018/08/14/hexo搭建博客之---托管coding/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/14/hexo/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B---%E6%89%98%E7%AE%A1coding/"/>
+    <id>http://macintosh-c.coding.me/2018/08/14/hexo/hexo搭建博客之---托管coding/</id>
     <published>2018-08-14T13:50:41.000Z</published>
     <updated>2019-08-20T06:08:41.656Z</updated>
     
@@ -298,8 +298,8 @@
   
   <entry>
     <title>hexo搭建博客之---github管理原始文件，异地更新博客</title>
-    <link href="http://macintosh-c.coding.me/2018/08/13/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B---github%E7%AE%A1%E7%90%86%E5%8E%9F%E5%A7%8B%E6%96%87%E4%BB%B6%EF%BC%8C%E5%BC%82%E5%9C%B0%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://macintosh-c.coding.me/2018/08/13/hexo搭建博客之---github管理原始文件，异地更新博客/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/13/hexo/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B---github%E7%AE%A1%E7%90%86%E5%8E%9F%E5%A7%8B%E6%96%87%E4%BB%B6%EF%BC%8C%E5%BC%82%E5%9C%B0%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://macintosh-c.coding.me/2018/08/13/hexo/hexo搭建博客之---github管理原始文件，异地更新博客/</id>
     <published>2018-08-13T15:46:59.000Z</published>
     <updated>2019-08-20T06:08:41.556Z</updated>
     
@@ -323,8 +323,8 @@
   
   <entry>
     <title>数据库基础:查询</title>
-    <link href="http://macintosh-c.coding.me/2018/08/13/mysql%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/"/>
-    <id>http://macintosh-c.coding.me/2018/08/13/mysql基础查询语句/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/13/Databases/mysql/mysql%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/"/>
+    <id>http://macintosh-c.coding.me/2018/08/13/Databases/mysql/mysql基础查询语句/</id>
     <published>2018-08-13T04:49:36.000Z</published>
     <updated>2019-08-20T06:06:04.230Z</updated>
     
@@ -349,8 +349,8 @@
   
   <entry>
     <title>数据库基础:经典练习案例</title>
-    <link href="http://macintosh-c.coding.me/2018/08/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A0%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B/"/>
-    <id>http://macintosh-c.coding.me/2018/08/13/数据库练习经典案例/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/13/Databases/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A0%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B/"/>
+    <id>http://macintosh-c.coding.me/2018/08/13/Databases/mysql/数据库练习经典案例/</id>
     <published>2018-08-13T03:29:52.000Z</published>
     <updated>2019-08-20T06:05:23.234Z</updated>
     
@@ -374,8 +374,8 @@
   
   <entry>
     <title>数据库基础:DDL/DML/DCL/TCL基本概念</title>
-    <link href="http://macintosh-c.coding.me/2018/08/13/DDL:DML:DCL:TCL%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
-    <id>http://macintosh-c.coding.me/2018/08/13/DDL:DML:DCL:TCL基本概念/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/13/Databases/mysql/DDL:DML:DCL:TCL%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+    <id>http://macintosh-c.coding.me/2018/08/13/Databases/mysql/DDL:DML:DCL:TCL基本概念/</id>
     <published>2018-08-13T03:24:45.000Z</published>
     <updated>2019-08-20T06:06:32.256Z</updated>
     
@@ -400,8 +400,8 @@
   
   <entry>
     <title>写在独立博客开创时</title>
-    <link href="http://macintosh-c.coding.me/2018/08/12/%E5%86%99%E5%9C%A8%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%88%9B%E6%97%B6/"/>
-    <id>http://macintosh-c.coding.me/2018/08/12/写在独立博客开创时/</id>
+    <link href="http://macintosh-c.coding.me/2018/08/12/hexo/%E5%86%99%E5%9C%A8%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%88%9B%E6%97%B6/"/>
+    <id>http://macintosh-c.coding.me/2018/08/12/hexo/写在独立博客开创时/</id>
     <published>2018-08-12T03:09:55.000Z</published>
     <updated>2019-08-20T07:40:07.209Z</updated>
     
