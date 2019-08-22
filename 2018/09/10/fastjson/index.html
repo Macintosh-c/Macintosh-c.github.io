@@ -12,14 +12,14 @@
 
     
     <meta name="description" content="maven项目pom配置：&amp;lt;dependency&amp;gt;     &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt;     &amp;lt;artifactId&amp;gt;fastjson&amp;lt;/artifactId&amp;gt;     &amp;lt;version&amp;gt;1.2.32&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 使用Demo，在J">
-<meta name="keywords" content="java基础">
+<meta name="keywords" content="fastjson">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java基础之fastjson（一）">
 <meta property="og:url" content="http://macintosh-c.coding.me/2018/09/10/fastjson/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
 <meta property="og:description" content="maven项目pom配置：&amp;lt;dependency&amp;gt;     &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt;     &amp;lt;artifactId&amp;gt;fastjson&amp;lt;/artifactId&amp;gt;     &amp;lt;version&amp;gt;1.2.32&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 使用Demo，在J">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-01T09:07:49.115Z">
+<meta property="og:updated_time" content="2019-08-20T06:07:36.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java基础之fastjson（一）">
 <meta name="twitter:description" content="maven项目pom配置：&amp;lt;dependency&amp;gt;     &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt;     &amp;lt;artifactId&amp;gt;fastjson&amp;lt;/artifactId&amp;gt;     &amp;lt;version&amp;gt;1.2.32&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 使用Demo，在J">
@@ -110,221 +110,7 @@
 </code></pre><h3 id="使用Demo，在Java环境下验证"><a href="#使用Demo，在Java环境下验证" class="headerlink" title="使用Demo，在Java环境下验证"></a>使用Demo，在Java环境下验证</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class User&#123;  </span><br><span class="line">    private int id;  </span><br><span class="line">    private String name;  </span><br><span class="line">    public int getId() &#123;  </span><br><span class="line">        return id;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void setId(int id) &#123;  </span><br><span class="line">        this.id = id;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public String getName() &#123;  </span><br><span class="line">        return name;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void setName(String name) &#123;  </span><br><span class="line">        this.name = name;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;  </span><br><span class="line">import java.util.List;  </span><br><span class="line">  </span><br><span class="line">class Group&#123;  </span><br><span class="line">    private int id;  </span><br><span class="line">    private String name;  </span><br><span class="line">    private List&lt;User&gt; list = new ArrayList&lt;User&gt;();  </span><br><span class="line">    public int getId() &#123;  </span><br><span class="line">        return id;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void setId(int id) &#123;  </span><br><span class="line">        this.id = id;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public String getName() &#123;  </span><br><span class="line">        return name;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void setName(String name) &#123;  </span><br><span class="line">        this.name = name;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public List&lt;User&gt; getList() &#123;  </span><br><span class="line">        return list;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void setList(List&lt;User&gt; list) &#123;  </span><br><span class="line">        this.list = list;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Weibo &#123;  </span><br><span class="line">    private String id;  </span><br><span class="line">    private String city;  </span><br><span class="line"> </span><br><span class="line">    public Weibo(String id, String city) &#123;  </span><br><span class="line">        this.id = id;  </span><br><span class="line">        this.city = city;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public Weibo() &#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public String getId() &#123;  </span><br><span class="line">        return id;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public void setId(String id) &#123;  </span><br><span class="line">        this.id = id;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public String getCity() &#123;  </span><br><span class="line">        return city;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    public void setCity(String city) &#123;  </span><br><span class="line">        this.city = city;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
-//下面是FastJson的简介：常用的方法！
-//  Fastjson API入口类是com.alibaba.fastjson.JSON，常用的序列化操作都可以在JSON类上的静态方法直接完成。
-//    public static final Object parse(String text); // 把JSON文本parse为JSONObject或者JSONArray 
-//    public static final JSONObject parseObject(String text)； // 把JSON文本parse成JSONObject    
-//    public static final &lt;T&gt; T parseObject(String text, Class&lt;T&gt; clazz); // 把JSON文本parse为JavaBean 
-//    public static final JSONArray parseArray(String text); // 把JSON文本parse成JSONArray 
-//    public static final &lt;T&gt; List&lt;T&gt; parseArray(String text, Class&lt;T&gt; clazz); //把JSON文本parse成JavaBean集合 
-//    public static final String toJSONString(Object object); // 将JavaBean序列化为JSON文本 
-//    public static final String toJSONString(Object object, boolean prettyFormat); // 将JavaBean序列化为带格式的JSON文本 
-//    public static final Object toJSON(Object javaObject); 将JavaBean转换为JSONObject或者JSONArray（和上面方法的区别是返回值是不一样的）
-
-/**
- * 这是关于FastJson的一个使用Demo，在Java环境下验证的；
- * 使用的时候可以参照这个例子进行回忆！
- * 备注：下面写的Json格式的数据&quot;前面的\，意思是告诉编译器忽略掉它后面的&quot;。
- * 后面定义有三个类：User、Group、Weibo
- * @author liuzhao
- */
-public class JsonDemo {
-
-    public static void main(String[] args) {
-
-        json2JsonObjectM1();//将Json文本数据信息转换为JsonObject对象，然后利用键值对的方式获取信息
-        json2BeanM2();//将Json文本数据转换为JavaBean数据！
-        json2JSONArrayM3();//将json数据转化为JSONArray: 
-        json2JavaBeanM4();//将JSON文本转换为JavaBean的集合；转换为单纯的1个Object：parseObject(String text, Class&lt;T&gt; clazz); 
-        bean2JsonM5();//将JavaBean转换为Json格式的数据/Json文本 用户数据的传递：例如上传服务器
-        bean2JSONObjectM6();//将JavaBean转换为JSON对象
-        complexExampleM7();//一个相对复杂的例子：
-        complex2JsonM8();//一个复杂的Object到Json的Demo
-        complexMap2JsonM9();//将Map数据转换为JsonString的Demo；这个对RedBoy服务端不就直接破了嘛！
-    }
-
-    /**
-     * 将Json文本数据信息转换为JsonObject对象，然后利用键值对的方式获取信息
-     */
-    private static void json2JsonObjectM1() {
-        //一个JsonObject文本数据
-        String s = &quot;{\&quot;name\&quot;:\&quot;liuzhao\&quot;}&quot;;
-        //将JsonObject数据转换为Json
-        JSONObject object = JSON.parseObject(s);
-        //利用键值对的方式获取到值
-        System.out.println(object.get(&quot;name&quot;));
-        /**
-         * 打印：
-         * liuzhao
-         */
-    }
-
-    /**
-     * 将Json文本数据转换为JavaBean数据！
-     * 需要注意的是：这时候的Json文本信息中的键的名称必须和JavaBean中的字段名称一样！键中没有的在这个JavaBean中就显示为null！
-     */
-    private static void json2BeanM2() {
-        String s = &quot;{\&quot;id\&quot;:\&quot;0375\&quot;,\&quot;city\&quot;:\&quot;平顶山\&quot;}&quot;;
-        //一个简单方便 的方法将Json文本信息转换为JsonObject对象的同时转换为JavaBean对象！
-        Weibo weibo = JSON.parseObject(s, Weibo.class);//Weibo类在下边定义
-        System.out.println(weibo.getId());
-        System.out.println(weibo.getCity());
-        //打印的结果        0375
-        //                平顶山
-    }
-
-
-    /**
-     * 将Map类型的数据转换为JsonString
-     */
-    private static void complexMap2JsonM9() {
-        Group group = new Group();
-        group.setId(1);
-        group.setName(&quot;group&quot;);
-
-        User user1 = new User();
-        user1.setId(2);
-        user1.setName(&quot;user1&quot;);
-
-        User user2 = new User();
-        user2.setId(3);
-        user2.setName(&quot;user2&quot;);
-        group.getList().add(user1);
-        group.getList().add(user2);
-
-        Map&lt;Integer, Object&gt; map = new HashMap&lt;Integer,Object&gt;();
-        map.put(1, &quot;No.1&quot;);
-        map.put(2, &quot;No.2&quot;);
-        map.put(3, group.getList());
-
-        String jsonString = JSON.toJSONString(map);
-        System.out.println(jsonString);
-        /**
-         *  输出：{1:&quot;No.1&quot;,2:&quot;No.2&quot;,3:[{&quot;id&quot;:2,&quot;name&quot;:&quot;user1&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;user2&quot;}]}
-         */
-    }
-
-    /**
-     * 由一个复杂的Object到Json的Demo
-     */
-    private static void complex2JsonM8() {
-        Group group = new Group();
-        group.setId(1);
-        group.setName(&quot;group&quot;);
-
-        User user1 = new User();
-        user1.setId(2);
-        user1.setName(&quot;user1&quot;);
-
-        User user2 = new User();
-        user2.setId(3);
-        user2.setName(&quot;user2&quot;);
-        group.getList().add(user1);
-        group.getList().add(user2);
-        String jsonString = JSON.toJSONString(group);
-        System.out.println(jsonString);
-        /**
-         *  输出：{&quot;id&quot;:1,&quot;list&quot;:[{&quot;id&quot;:2,&quot;name&quot;:&quot;user1&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;user2&quot;}],&quot;name&quot;:&quot;group&quot;}
-         */
-    }
-
-    /**
-     * 一个相对复杂的例子：
-     * JSON文本数据：
-     *         首先是JSONObject，转换为JSONArray；
-     *         然后将JSONArray转换为JavaBean
-     */
-    private static void complexExampleM7() {
-        String s = &quot;{js:[{id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#001京市\&quot;},{id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;}&quot;
-                + &quot;,{id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;},{id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;},&quot;
-                + &quot;{id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;#006北#005京市\&quot;},&quot;
-                + &quot;{id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;},&quot;
-                + &quot;{id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;},{id:\&quot;120000\&quot;,\&quot;city\&quot;:\&quot;天#009津市\&quot;}]}&quot;;
-
-        JSONObject object = JSON.parseObject(s);
-        Object jsonArray = object.get(&quot;js&quot;);
-        System.out.println(jsonArray);
-        List&lt;Weibo&gt; list = JSON.parseArray(jsonArray+&quot;&quot;, Weibo.class);
-        for (Weibo weibo : list) {
-            System.out.println(weibo.getCity());
-        }
-    }
-
-    /**
-     * 将JavaBean转换为JSON对象
-     */
-    private static void bean2JSONObjectM6() {
-        Weibo weibo = new Weibo(&quot;0373&quot;, &quot;洛阳&quot;);
-        JSONObject json = (JSONObject) JSON.toJSON(weibo);
-        System.out.println(json.get(&quot;id&quot;));
-        /**
-         * 打印：
-         * 0373
-         */
-    }
-
-    /**
-     * 将JSON文本转换为JavaBean的集合；
-     * 内部实现肯定是：首先转换为JSONArray，然后再转换为List集合
-     */
-    private static void json2JavaBeanM4() {
-        String s = &quot;[{\&quot;id\&quot;:\&quot;0375\&quot;,\&quot;city\&quot;:\&quot;平顶山\&quot;},{\&quot;id\&quot;:\&quot;0377\&quot;,\&quot;city\&quot;:\&quot;南阳\&quot;}]&quot;;
-        List&lt;Weibo&gt; list = JSON.parseArray(s, Weibo.class);
-        for (Weibo weibo : list) {
-            System.out.println(weibo.getCity());
-        }
-        /**
-         * 打印：
-         * 平顶山
-         * 南阳
-         */
-    }
-
-    /**
-     * 将json数据转化为JSONArray:
-     * 注意：获取到JSONArray之后（我们这里只是获取到JSONArray而不是JavaBean的List集合）
-     * 获取JSONArray中的数据转换为String类型需要在外边加&quot;&quot;;
-     */
-    private static void json2JSONArrayM3() {
-        String s = &quot;[{\&quot;id\&quot;:\&quot;0375\&quot;,\&quot;city\&quot;:\&quot;平顶山\&quot;},{\&quot;id\&quot;:\&quot;0377\&quot;,\&quot;city\&quot;:\&quot;南阳\&quot;}]&quot;;
-        //将JSON文本转换为JSONArray
-        JSONArray array = JSON.parseArray(s);
-        //这行必须写：必须加上+&quot;&quot;;不然会报出类型强转异常！
-        String str = array.get(1)+&quot;&quot;;
-        System.out.println(array.get(0));
-        JSONObject object = JSON.parseObject(str);
-        System.out.println(object.get(&quot;id&quot;));
-        /**
-         * {&quot;city&quot;:&quot;平顶山&quot;,&quot;id&quot;:&quot;0375&quot;}
-            0377
-         */
-    }
-
-
-    /**
-     * 将JavaBean转换为Json格式的数据/Json文本
-     * 用户数据的传递：例如上传服务器
-     */
-    private static void bean2JsonM5() {
-        Weibo weibo = new Weibo(&quot;123456&quot;, &quot;上海&quot;);
-        String string = JSON.toJSONString(weibo);
-        System.out.println(string);
-        /**
-         * 打印：
-         * {&quot;city&quot;:&quot;上海&quot;,&quot;id&quot;:&quot;123456&quot;}
-         */
-    }
-
-}
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br></pre></td><td class="code"><pre><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.Map;</span><br><span class="line"> </span><br><span class="line">import com.alibaba.fastjson.JSON;</span><br><span class="line">import com.alibaba.fastjson.JSONArray;</span><br><span class="line">import com.alibaba.fastjson.JSONObject;</span><br><span class="line"> </span><br><span class="line">//下面是FastJson的简介：常用的方法！</span><br><span class="line">//  Fastjson API入口类是com.alibaba.fastjson.JSON，常用的序列化操作都可以在JSON类上的静态方法直接完成。</span><br><span class="line">//	public static final Object parse(String text); // 把JSON文本parse为JSONObject或者JSONArray </span><br><span class="line">//	public static final JSONObject parseObject(String text)； // 把JSON文本parse成JSONObject    </span><br><span class="line">//	public static final &lt;T&gt; T parseObject(String text, Class&lt;T&gt; clazz); // 把JSON文本parse为JavaBean </span><br><span class="line">//	public static final JSONArray parseArray(String text); // 把JSON文本parse成JSONArray </span><br><span class="line">//	public static final &lt;T&gt; List&lt;T&gt; parseArray(String text, Class&lt;T&gt; clazz); //把JSON文本parse成JavaBean集合 </span><br><span class="line">//	public static final String toJSONString(Object object); // 将JavaBean序列化为JSON文本 </span><br><span class="line">//	public static final String toJSONString(Object object, boolean prettyFormat); // 将JavaBean序列化为带格式的JSON文本 </span><br><span class="line">//	public static final Object toJSON(Object javaObject); 将JavaBean转换为JSONObject或者JSONArray（和上面方法的区别是返回值是不一样的）</span><br><span class="line"> </span><br><span class="line">/**</span><br><span class="line"> * 这是关于FastJson的一个使用Demo，在Java环境下验证的；</span><br><span class="line"> * 使用的时候可以参照这个例子进行回忆！</span><br><span class="line"> * 备注：下面写的Json格式的数据&quot;前面的\，意思是告诉编译器忽略掉它后面的&quot;。</span><br><span class="line"> * 后面定义有三个类：User、Group、Weibo</span><br><span class="line"> * @author liuzhao</span><br><span class="line"> */</span><br><span class="line">public class JsonDemo &#123;</span><br><span class="line"> </span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		json2JsonObjectM1();//将Json文本数据信息转换为JsonObject对象，然后利用键值对的方式获取信息</span><br><span class="line">		json2BeanM2();//将Json文本数据转换为JavaBean数据！</span><br><span class="line">		json2JSONArrayM3();//将json数据转化为JSONArray: </span><br><span class="line">		json2JavaBeanM4();//将JSON文本转换为JavaBean的集合；转换为单纯的1个Object：parseObject(String text, Class&lt;T&gt; clazz); </span><br><span class="line">		bean2JsonM5();//将JavaBean转换为Json格式的数据/Json文本 用户数据的传递：例如上传服务器</span><br><span class="line">		bean2JSONObjectM6();//将JavaBean转换为JSON对象</span><br><span class="line">		complexExampleM7();//一个相对复杂的例子：</span><br><span class="line">		complex2JsonM8();//一个复杂的Object到Json的Demo</span><br><span class="line">		complexMap2JsonM9();//将Map数据转换为JsonString的Demo；这个对RedBoy服务端不就直接破了嘛！</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	/**</span><br><span class="line">	 * 将Json文本数据信息转换为JsonObject对象，然后利用键值对的方式获取信息</span><br><span class="line">	 */</span><br><span class="line">	private static void json2JsonObjectM1() &#123;</span><br><span class="line">		//一个JsonObject文本数据</span><br><span class="line">		String s = &quot;&#123;\&quot;name\&quot;:\&quot;liuzhao\&quot;&#125;&quot;;</span><br><span class="line">		//将JsonObject数据转换为Json</span><br><span class="line">		JSONObject object = JSON.parseObject(s);</span><br><span class="line">		//利用键值对的方式获取到值</span><br><span class="line">		System.out.println(object.get(&quot;name&quot;));</span><br><span class="line">		/**</span><br><span class="line">		 * 打印：</span><br><span class="line">		 * liuzhao</span><br><span class="line">		 */</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 将Json文本数据转换为JavaBean数据！</span><br><span class="line">	 * 需要注意的是：这时候的Json文本信息中的键的名称必须和JavaBean中的字段名称一样！键中没有的在这个JavaBean中就显示为null！</span><br><span class="line">	 */</span><br><span class="line">	private static void json2BeanM2() &#123;</span><br><span class="line">		String s = &quot;&#123;\&quot;id\&quot;:\&quot;0375\&quot;,\&quot;city\&quot;:\&quot;平顶山\&quot;&#125;&quot;;</span><br><span class="line">		//一个简单方便 的方法将Json文本信息转换为JsonObject对象的同时转换为JavaBean对象！</span><br><span class="line">		Weibo weibo = JSON.parseObject(s, Weibo.class);//Weibo类在下边定义</span><br><span class="line">		System.out.println(weibo.getId());</span><br><span class="line">		System.out.println(weibo.getCity());</span><br><span class="line">		//打印的结果		0375</span><br><span class="line">		//				平顶山</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">	/**</span><br><span class="line">	 * 将Map类型的数据转换为JsonString</span><br><span class="line">	 */</span><br><span class="line">	private static void complexMap2JsonM9() &#123;</span><br><span class="line">		Group group = new Group();</span><br><span class="line">		group.setId(1);</span><br><span class="line">		group.setName(&quot;group&quot;);</span><br><span class="line">		</span><br><span class="line">		User user1 = new User();</span><br><span class="line">		user1.setId(2);</span><br><span class="line">		user1.setName(&quot;user1&quot;);</span><br><span class="line"> </span><br><span class="line">		User user2 = new User();</span><br><span class="line">		user2.setId(3);</span><br><span class="line">		user2.setName(&quot;user2&quot;);</span><br><span class="line">		group.getList().add(user1);</span><br><span class="line">		group.getList().add(user2);</span><br><span class="line">		</span><br><span class="line">		Map&lt;Integer, Object&gt; map = new HashMap&lt;Integer,Object&gt;();</span><br><span class="line">		map.put(1, &quot;No.1&quot;);</span><br><span class="line">		map.put(2, &quot;No.2&quot;);</span><br><span class="line">		map.put(3, group.getList());</span><br><span class="line">		</span><br><span class="line">		String jsonString = JSON.toJSONString(map);</span><br><span class="line">		System.out.println(jsonString);</span><br><span class="line">		/**</span><br><span class="line">		 *  输出：&#123;1:&quot;No.1&quot;,2:&quot;No.2&quot;,3:[&#123;&quot;id&quot;:2,&quot;name&quot;:&quot;user1&quot;&#125;,&#123;&quot;id&quot;:3,&quot;name&quot;:&quot;user2&quot;&#125;]&#125;</span><br><span class="line">		 */</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	/**</span><br><span class="line">	 * 由一个复杂的Object到Json的Demo</span><br><span class="line">	 */</span><br><span class="line">	private static void complex2JsonM8() &#123;</span><br><span class="line">		Group group = new Group();</span><br><span class="line">		group.setId(1);</span><br><span class="line">		group.setName(&quot;group&quot;);</span><br><span class="line">		</span><br><span class="line">		User user1 = new User();</span><br><span class="line">		user1.setId(2);</span><br><span class="line">		user1.setName(&quot;user1&quot;);</span><br><span class="line"> </span><br><span class="line">		User user2 = new User();</span><br><span class="line">		user2.setId(3);</span><br><span class="line">		user2.setName(&quot;user2&quot;);</span><br><span class="line">		group.getList().add(user1);</span><br><span class="line">		group.getList().add(user2);</span><br><span class="line">		String jsonString = JSON.toJSONString(group);</span><br><span class="line">		System.out.println(jsonString);</span><br><span class="line">		/**</span><br><span class="line">		 *  输出：&#123;&quot;id&quot;:1,&quot;list&quot;:[&#123;&quot;id&quot;:2,&quot;name&quot;:&quot;user1&quot;&#125;,&#123;&quot;id&quot;:3,&quot;name&quot;:&quot;user2&quot;&#125;],&quot;name&quot;:&quot;group&quot;&#125;</span><br><span class="line">		 */</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	/**</span><br><span class="line">	 * 一个相对复杂的例子：</span><br><span class="line">	 * JSON文本数据：</span><br><span class="line">	 * 		首先是JSONObject，转换为JSONArray；</span><br><span class="line">	 * 		然后将JSONArray转换为JavaBean</span><br><span class="line">	 */</span><br><span class="line">	private static void complexExampleM7() &#123;</span><br><span class="line">		String s = &quot;&#123;js:[&#123;id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#001京市\&quot;&#125;,&#123;id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;&#125;&quot;</span><br><span class="line">				+ &quot;,&#123;id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;&#125;,&#123;id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;&#125;,&quot;</span><br><span class="line">				+ &quot;&#123;id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;#006北#005京市\&quot;&#125;,&quot;</span><br><span class="line">				+ &quot;&#123;id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;&#125;,&quot;</span><br><span class="line">				+ &quot;&#123;id:\&quot;110000\&quot;,\&quot;city\&quot;:\&quot;北#002京市\&quot;&#125;,&#123;id:\&quot;120000\&quot;,\&quot;city\&quot;:\&quot;天#009津市\&quot;&#125;]&#125;&quot;;</span><br><span class="line">		</span><br><span class="line">		JSONObject object = JSON.parseObject(s);</span><br><span class="line">		Object jsonArray = object.get(&quot;js&quot;);</span><br><span class="line">		System.out.println(jsonArray);</span><br><span class="line">		List&lt;Weibo&gt; list = JSON.parseArray(jsonArray+&quot;&quot;, Weibo.class);</span><br><span class="line">		for (Weibo weibo : list) &#123;</span><br><span class="line">			System.out.println(weibo.getCity());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	/**</span><br><span class="line">	 * 将JavaBean转换为JSON对象</span><br><span class="line">	 */</span><br><span class="line">	private static void bean2JSONObjectM6() &#123;</span><br><span class="line">		Weibo weibo = new Weibo(&quot;0373&quot;, &quot;洛阳&quot;);</span><br><span class="line">		JSONObject json = (JSONObject) JSON.toJSON(weibo);</span><br><span class="line">		System.out.println(json.get(&quot;id&quot;));</span><br><span class="line">		/**</span><br><span class="line">		 * 打印：</span><br><span class="line">		 * 0373</span><br><span class="line">		 */</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	/**</span><br><span class="line">	 * 将JSON文本转换为JavaBean的集合；</span><br><span class="line">	 * 内部实现肯定是：首先转换为JSONArray，然后再转换为List集合</span><br><span class="line">	 */</span><br><span class="line">	private static void json2JavaBeanM4() &#123;</span><br><span class="line">		String s = &quot;[&#123;\&quot;id\&quot;:\&quot;0375\&quot;,\&quot;city\&quot;:\&quot;平顶山\&quot;&#125;,&#123;\&quot;id\&quot;:\&quot;0377\&quot;,\&quot;city\&quot;:\&quot;南阳\&quot;&#125;]&quot;;</span><br><span class="line">		List&lt;Weibo&gt; list = JSON.parseArray(s, Weibo.class);</span><br><span class="line">		for (Weibo weibo : list) &#123;</span><br><span class="line">			System.out.println(weibo.getCity());</span><br><span class="line">		&#125;</span><br><span class="line">		/**</span><br><span class="line">		 * 打印：</span><br><span class="line">		 * 平顶山</span><br><span class="line">		 * 南阳</span><br><span class="line">		 */</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	/**</span><br><span class="line">	 * 将json数据转化为JSONArray:</span><br><span class="line">	 * 注意：获取到JSONArray之后（我们这里只是获取到JSONArray而不是JavaBean的List集合）</span><br><span class="line">	 * 获取JSONArray中的数据转换为String类型需要在外边加&quot;&quot;;</span><br><span class="line">	 */</span><br><span class="line">	private static void json2JSONArrayM3() &#123;</span><br><span class="line">		String s = &quot;[&#123;\&quot;id\&quot;:\&quot;0375\&quot;,\&quot;city\&quot;:\&quot;平顶山\&quot;&#125;,&#123;\&quot;id\&quot;:\&quot;0377\&quot;,\&quot;city\&quot;:\&quot;南阳\&quot;&#125;]&quot;;</span><br><span class="line">		//将JSON文本转换为JSONArray</span><br><span class="line">		JSONArray array = JSON.parseArray(s);</span><br><span class="line">		//这行必须写：必须加上+&quot;&quot;;不然会报出类型强转异常！</span><br><span class="line">		String str = array.get(1)+&quot;&quot;;</span><br><span class="line">		System.out.println(array.get(0));</span><br><span class="line">		JSONObject object = JSON.parseObject(str);</span><br><span class="line">		System.out.println(object.get(&quot;id&quot;));</span><br><span class="line">		/**</span><br><span class="line">		 * &#123;&quot;city&quot;:&quot;平顶山&quot;,&quot;id&quot;:&quot;0375&quot;&#125;</span><br><span class="line">			0377</span><br><span class="line">		 */</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">	/**</span><br><span class="line">	 * 将JavaBean转换为Json格式的数据/Json文本</span><br><span class="line">	 * 用户数据的传递：例如上传服务器</span><br><span class="line">	 */</span><br><span class="line">	private static void bean2JsonM5() &#123;</span><br><span class="line">		Weibo weibo = new Weibo(&quot;123456&quot;, &quot;上海&quot;);</span><br><span class="line">		String string = JSON.toJSONString(weibo);</span><br><span class="line">		System.out.println(string);</span><br><span class="line">		/**</span><br><span class="line">		 * 打印：</span><br><span class="line">		 * &#123;&quot;city&quot;:&quot;上海&quot;,&quot;id&quot;:&quot;123456&quot;&#125;</span><br><span class="line">		 */</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 	</div>
 
 	
@@ -435,13 +221,13 @@ public class JsonDemo {
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/java基础-java-basice/">java基础 | java basice</a>
+  <a class="article-category-link" href="/categories/java基础/">java基础</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/java基础/">java基础</a>
+  <span></span> <a href="/tags/fastjson/">fastjson</a>
   </div>
 
 </div>
@@ -534,27 +320,27 @@ public class JsonDemo {
 		<ul>
 		
 		  
-			<li><a href="/categories/Spring框架/" title="Spring框架">Spring框架<sup>1</sup></a></li>
+			<li><a href="/categories/Database/" title="Database">Database<sup>6</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/java基础-java-basice/" title="java基础 | java basice">java基础 | java basice<sup>4</sup></a></li>
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/mybatis框架/" title="mybatis框架">mybatis框架<sup>1</sup></a></li>
+			<li><a href="/categories/java基础/" title="java基础">java基础<sup>4</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/博客搭建-blog/" title="博客搭建 | blog">博客搭建 | blog<sup>3</sup></a></li>
+			<li><a href="/categories/mybatis/" title="mybatis">mybatis<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/成长之路-Biography/" title="成长之路 | Biography">成长之路 | Biography<sup>1</sup></a></li>
+			<li><a href="/categories/博客相关/" title="博客相关">博客相关<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/数据库-Database/" title="数据库 | Database">数据库 | Database<sup>5</sup></a></li>
+			<li><a href="/categories/成长之路/" title="成长之路">成长之路<sup>1</sup></a></li>
 		  
 		
 		</ul>
@@ -567,31 +353,47 @@ public class JsonDemo {
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java基础/" title="java基础">java基础<sup>4</sup></a></li>
+				<li><a href="/tags/blog搭建/" title="blog搭建">blog搭建<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/blog/" title="blog">blog<sup>3</sup></a></li>
+				<li><a href="/tags/fastjson/" title="fastjson">fastjson<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/database/" title="database">database<sup>3</sup></a></li>
+				<li><a href="/tags/mysql安装/" title="mysql安装">mysql安装<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>2</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/mybatis/" title="mybatis">mybatis<sup>1</sup></a></li>
+				<li><a href="/tags/mysql主从/" title="mysql主从">mysql主从<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+				<li><a href="/tags/基本概念/" title="基本概念">基本概念<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-aop/" title="Spring aop">Spring aop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mybatis基础/" title="mybatis基础">mybatis基础<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql案例/" title="sql案例">sql案例<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -601,7 +403,7 @@ public class JsonDemo {
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -609,7 +411,7 @@ public class JsonDemo {
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/blog/" style="font-size: 16.67px;">blog</a> <a href="/tags/database/" style="font-size: 16.67px;">database</a> <a href="/tags/java基础/" style="font-size: 20px;">java基础</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+       <a href="/tags/Spring-aop/" style="font-size: 10px;">Spring aop</a> <a href="/tags/blog搭建/" style="font-size: 20px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 15px;">fastjson</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 15px;">mysql安装</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 10px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
