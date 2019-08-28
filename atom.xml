@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2019-08-22T02:35:56.681Z</updated>
+  <updated>2019-08-28T07:32:40.466Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac下安装python3</title>
+    <link href="http://macintosh-c.coding.me/2019/08/28/python/Mac%E4%B8%8BPython3%E7%9A%84%E5%AE%89%E8%A3%85/"/>
+    <id>http://macintosh-c.coding.me/2019/08/28/python/Mac下Python3的安装/</id>
+    <published>2019-08-28T07:19:52.000Z</published>
+    <updated>2019-08-28T07:32:40.466Z</updated>
+    
+    <content type="html"><![CDATA[<p>mac系统自带python，不过以当前mac系统的最新版本为例，自带的python版本都是2.<em>版本，虽然不影响老版本项目的运行，但是python最新的3.</em>版本的一些语法与2.*版本并不相同，所以本篇为在现有mac下安装python3</p><h2 id="默认的python2"><a href="#默认的python2" class="headerlink" title="默认的python2"></a>默认的python2</h2><p> Mac系统自带python路径为／System／Library／Frameworks／Python.framework/Version<br> 也可通过命令：python查看</p><h2 id="安装python3"><a href="#安装python3" class="headerlink" title="安装python3"></a>安装python3</h2><p>使用神器homebrew，还不熟悉此神器的小伙伴请自行百度<br>1.安装前先搜索一下是否已经存在python3的包：brew search python3</p><p>2.已经存在，我们可以直接安装了：brew install python3<br>成功安装会提示python3的安装路径，这时使用python命令查看版本还是python2，使用：python3命令才会看到新安装的python版本。</p><h2 id="配置python3为默认版本"><a href="#配置python3为默认版本" class="headerlink" title="配置python3为默认版本"></a>配置python3为默认版本</h2><p>1.修改~/.bash_profile文件，添加：<br>alias python=”/usr/local/bin/python3.7”</p><p>2.使用命令，使其生效：source ~/.bash_profile</p><p>这时再直接使用python命令查看，便看到为python3的版本了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;mac系统自带python，不过以当前mac系统的最新版本为例，自带的python版本都是2.&lt;em&gt;版本，虽然不影响老版本项目的运行，但是python最新的3.&lt;/em&gt;版本的一些语法与2.*版本并不相同，所以本篇为在现有mac下安装python3&lt;/p&gt;
+&lt;h2 id=
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://macintosh-c.coding.me/categories/python/"/>
+    
+    
+      <category term="python安装" scheme="http://macintosh-c.coding.me/tags/python%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac下安装Mysql</title>
