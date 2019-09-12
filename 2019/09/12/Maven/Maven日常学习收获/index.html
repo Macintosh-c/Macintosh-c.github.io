@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>wait-notify生产者-消费者问题 | macintosh-c&#39;s blog</title>
+    <title>Maven日常收获总结 | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="生产者1234567891011121314151617181920212223242526272829303132333435363738package test;import java.util.Vector;import java.util.logging.Level;import java.util.logging.Logger;public class Producer implemen">
-<meta name="keywords" content="设计模式">
+    <meta name="description" content="Maven常用总结1.scope的解释这里只记录test的意思，后续遇到其他runntime（运行时范围），provided（已提供范围），system（系统范围）情况时再精细学习，记录。 首先默认就是compile，什么都不配置也就是意味着compile。compile表示被依赖项目需要参与当前项目的编译，当然后续的测试，运行周期也参与其中，是一个比较强的依赖。打包的时候通常需要包含进去。 te">
+<meta name="keywords" content="Maven">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wait-notify生产者-消费者问题">
-<meta property="og:url" content="http://macintosh-c.coding.me/2018/08/27/java/design/wait-notify生产者-消费者问题/index.html">
+<meta property="og:title" content="Maven日常收获总结">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/12/Maven/Maven日常学习收获/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="生产者1234567891011121314151617181920212223242526272829303132333435363738package test;import java.util.Vector;import java.util.logging.Level;import java.util.logging.Logger;public class Producer implemen">
+<meta property="og:description" content="Maven常用总结1.scope的解释这里只记录test的意思，后续遇到其他runntime（运行时范围），provided（已提供范围），system（系统范围）情况时再精细学习，记录。 首先默认就是compile，什么都不配置也就是意味着compile。compile表示被依赖项目需要参与当前项目的编译，当然后续的测试，运行周期也参与其中，是一个比较强的依赖。打包的时候通常需要包含进去。 te">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-20T06:15:51.542Z">
+<meta property="og:updated_time" content="2019-09-12T03:10:09.084Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wait-notify生产者-消费者问题">
-<meta name="twitter:description" content="生产者1234567891011121314151617181920212223242526272829303132333435363738package test;import java.util.Vector;import java.util.logging.Level;import java.util.logging.Logger;public class Producer implemen">
+<meta name="twitter:title" content="Maven日常收获总结">
+<meta name="twitter:description" content="Maven常用总结1.scope的解释这里只记录test的意思，后续遇到其他runntime（运行时范围），provided（已提供范围），system（系统范围）情况时再精细学习，记录。 首先默认就是compile，什么都不配置也就是意味着compile。compile表示被依赖项目需要参与当前项目的编译，当然后续的测试，运行周期也参与其中，是一个比较强的依赖。打包的时候通常需要包含进去。 te">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/08/27/java/design/wait-notify生产者-消费者问题/" title="wait-notify生产者-消费者问题" itemprop="url">wait-notify生产者-消费者问题</a>
+      <a href="/2019/09/12/Maven/Maven日常学习收获/" title="Maven日常收获总结" itemprop="url">Maven日常收获总结</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2018-08-27T14:39:40.000Z" itemprop="datePublished"> 发表于 2018-08-27</time>
+    <time datetime="2019-09-12T02:55:56.000Z" itemprop="datePublished"> 发表于 2019-09-12</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,13 +98,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者"><span class="toc-number">1.</span> <span class="toc-text">生产者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消费者"><span class="toc-number">2.</span> <span class="toc-text">消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-number">3.</span> <span class="toc-text">测试</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven常用总结"><span class="toc-number">1.</span> <span class="toc-text">Maven常用总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-scope的解释"><span class="toc-number">1.1.</span> <span class="toc-text">1.scope的解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-DepencyManagement"><span class="toc-number">1.2.</span> <span class="toc-text">2.DepencyManagement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-使用import-scope解决maven继承（单）问题"><span class="toc-number">1.3.</span> <span class="toc-text">3.使用import scope解决maven继承（单）问题</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">import java.util.Vector;</span><br><span class="line">import java.util.logging.Level;</span><br><span class="line">import java.util.logging.Logger;</span><br><span class="line"></span><br><span class="line">public class Producer implements Runnable&#123;</span><br><span class="line">	private final Vector sharedQueue;</span><br><span class="line">	private final int SIZE;</span><br><span class="line">	public Producer(Vector sharedQueue,int size)&#123;</span><br><span class="line">		this.sharedQueue=sharedQueue;</span><br><span class="line">		this.SIZE=size;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		for(int i=1;i&lt;=20;i++)&#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				produce(i);</span><br><span class="line">			&#125; catch (InterruptedException ex) &#123;</span><br><span class="line">				Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private void produce(int i) throws InterruptedException&#123;</span><br><span class="line">		synchronized (sharedQueue) &#123;</span><br><span class="line">			while(sharedQueue.size()==SIZE)&#123;			</span><br><span class="line">				System.out.println(&quot;Queue is full &quot;+Thread.currentThread().getName()</span><br><span class="line">						+&quot;is waiting,size:&quot;+sharedQueue.size());</span><br><span class="line">				sharedQueue.wait();</span><br><span class="line">		&#125;</span><br><span class="line">			sharedQueue.add(i);</span><br><span class="line">			System.out.println(&quot;生产者生产了第&quot;+i+&quot;个商品&quot;);</span><br><span class="line">			sharedQueue.notifyAll();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">import java.util.Vector;</span><br><span class="line">import java.util.logging.Level;</span><br><span class="line">import java.util.logging.Logger;</span><br><span class="line"></span><br><span class="line">public class Consumer implements Runnable&#123;</span><br><span class="line">	private final Vector sharedQueue;</span><br><span class="line">	private final int SIZE;</span><br><span class="line">	public Consumer(Vector sharedQueue,int size)&#123;</span><br><span class="line">		this.sharedQueue=sharedQueue;</span><br><span class="line">		this.SIZE=size;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		while(true)&#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				consume();</span><br><span class="line">			&#125; catch (InterruptedException ex) &#123;</span><br><span class="line">				Logger.getLogger(Consumer.class.getName()).log(Level.SEVERE, null, ex);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">	private void consume() throws InterruptedException&#123;</span><br><span class="line">		synchronized (sharedQueue) &#123;</span><br><span class="line">			while(sharedQueue.isEmpty())&#123;</span><br><span class="line">				System.out.println(&quot;Queue is empty&quot;+Thread.currentThread().getName()</span><br><span class="line">						+&quot;is waiting,size:&quot;+sharedQueue.size());</span><br><span class="line">				sharedQueue.wait();</span><br><span class="line">		&#125;			</span><br><span class="line">			int cu=(Integer)sharedQueue.remove(0);</span><br><span class="line">			System.out.println(&quot;消费者消费了第&quot;+cu+&quot;个商品&quot;);</span><br><span class="line">			sharedQueue.notifyAll();</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">import java.util.Vector;</span><br><span class="line"></span><br><span class="line">public class ProducerConsumerSolution &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Vector sharedQueue=new Vector();</span><br><span class="line">		int size=4;</span><br><span class="line">		Thread prodThread=new Thread(new Producer(sharedQueue,size),&quot;Producer&quot;);</span><br><span class="line">		Thread consThread=new Thread(new Consumer(sharedQueue,size),&quot;Consumer&quot;);</span><br><span class="line">		prodThread.start();</span><br><span class="line">		consThread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		<h3 id="Maven常用总结"><a href="#Maven常用总结" class="headerlink" title="Maven常用总结"></a>Maven常用总结</h3><h4 id="1-scope的解释"><a href="#1-scope的解释" class="headerlink" title="1.scope的解释"></a>1.scope的解释</h4><p>这里只记录<scope>test</scope>的意思，后续遇到其他runntime（运行时范围），provided（已提供范围），system（系统范围）情况时再精细学习，记录。</p>
+<p>首先默认就是compile，什么都不配置也就是意味着compile。compile表示被依赖项目需要参与当前项目的编译，当然后续的测试，运行周期也参与其中，是一个比较强的依赖。打包的时候通常需要包含进去。</p>
+<p>test（测试范围）<br>scope为test表示依赖项目仅仅参与测试相关的工作，包括测试代码的编译，执行。比较典型的如junit。</p>
+<h4 id="2-DepencyManagement"><a href="#2-DepencyManagement" class="headerlink" title="2.DepencyManagement"></a>2.DepencyManagement</h4><p>DepencyManagement：<br>dependencyManagement让子项目中引用一个依赖而不用显示的列出版本号。Maven会沿着父子层次向上走，直到找到一个拥有dependencyManagement元素的项目，然后它就会使用在这个dependencyManagement元素中指定的版本号。 这样做的好处：统一管理项目的版本号，确保应用的各个项目的依赖和版本一致。</p>
+<p>Dependency：<br>所有生命在dependencies里的依赖都会自动引入，并默认被所有的子项目继承。</p>
+<p>两者区别：</p>
+<ol>
+<li><p>dependencies即使在子项目中不写该依赖项，那么子项目仍然会从父项目中继承该依赖项（全部继承）</p>
+</li>
+<li><p>dependencyManagement里只是声明依赖，并不实现引入，因此子项目需要显示的声明需要用的依赖。如果不在子项目中声明依赖，是不会从父项目中继承下来的；只有在子项目中写了该依赖项，并且没有指定具体版本，才会从父项目中继承该项，并且version和scope都读取自父pom;另外如果子项目中指定了版本号，那么会使用子项目中指定的jar版本。</p>
+</li>
+</ol>
+<h4 id="3-使用import-scope解决maven继承（单）问题"><a href="#3-使用import-scope解决maven继承（单）问题" class="headerlink" title="3.使用import scope解决maven继承（单）问题"></a>3.使用import scope解决maven继承（单）问题</h4><p>我们知道Maven的继承和Java的继承一样，是无法实现多重继承的，如果10个、20个甚至更多模块继承自同一个模块，那么按照我们之前的做法，这个父模块的dependencyManagement会包含大量的依赖。如果你想把这些依赖分类以更清晰的管理，那就不可能了，import scope依赖能解决这个问题。你可以把dependencyManagement放到单独的专门用来管理依赖的pom中，然后在需要使用依赖的模块中通过import scope依赖，就可以引入dependencyManagement。<br>demo：<br>用于依赖管理的pom：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">	&lt;groupId&gt;com.test.sample&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;base-parent1&lt;/artifactId&gt;</span><br><span class="line">	&lt;packaging&gt;pom&lt;/packaging&gt;</span><br><span class="line">	&lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">	&lt;dependencyManagement&gt;</span><br><span class="line">		&lt;dependencies&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactid&gt;junit&lt;/artifactId&gt;</span><br><span class="line">				&lt;version&gt;4.8.2&lt;/version&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">			&lt;dependency&gt;</span><br><span class="line">				&lt;groupId&gt;log4j&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactid&gt;log4j&lt;/artifactId&gt;</span><br><span class="line">				&lt;version&gt;1.2.16&lt;/version&gt;</span><br><span class="line">			&lt;/dependency&gt;</span><br><span class="line">		&lt;/dependencies&gt;</span><br><span class="line">	&lt;/dependencyManagement&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure></p>
+<p>通过非继承的方式来引入这段依赖管理配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">	&lt;dependencies&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;com.test.sample&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactid&gt;base-parent1&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">			&lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">			&lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">	&lt;/dependencies&gt;</span><br><span class="line">&lt;/dependencyManagement&gt;</span><br><span class="line"> </span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactid&gt;junit&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;log4j&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactid&gt;log4j&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>注意：import scope只能用在dependencyManagement里面</p>
+<p>这样，父模块的pom就会非常干净，由专门的packaging为pom来管理依赖，也契合的面向对象设计中的单一职责原则。此外，将dependency分类，每一类建立单独的pom文件，以更细化的方式管理依赖。这种做法与面向对象设计中使用组合而非继承也有点相似的味道。</p>
+
 	</div>
 
 	
@@ -215,13 +229,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/java基础/">java基础</a>
+  <a class="article-category-link" href="/categories/Maven/">Maven</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/设计模式/">设计模式</a>
+  <span></span> <a href="/tags/Maven/">Maven</a>
   </div>
 
 </div>
@@ -230,7 +244,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2018/08/27/java/design/wait-notify生产者-消费者问题/" data-title="wait-notify生产者-消费者问题 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/09/12/Maven/Maven日常学习收获/" data-title="Maven日常收获总结 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -242,19 +256,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/08/27/java/design/单例模式/" title="单例模式">
-  <strong>上一篇：</strong><br/>
-  <span>
-  单例模式</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/08/22/Databases/mysql/mysql5.7主从配置/"  title="mysql之---主从配置（windows，mysql5.7）">
+<a href="/2019/09/05/Linux/Linux常用基础指令/"  title="Linux常用基础指令">
  <strong>下一篇：</strong><br/> 
- <span>mysql之---主从配置（windows，mysql5.7）
+ <span>Linux常用基础指令
 </span>
 </a>
 </div>
@@ -291,7 +297,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者"><span class="toc-number">1.</span> <span class="toc-text">生产者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消费者"><span class="toc-number">2.</span> <span class="toc-text">消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-number">3.</span> <span class="toc-text">测试</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven常用总结"><span class="toc-number">1.</span> <span class="toc-text">Maven常用总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-scope的解释"><span class="toc-number">1.1.</span> <span class="toc-text">1.scope的解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-DepencyManagement"><span class="toc-number">1.2.</span> <span class="toc-text">2.DepencyManagement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-使用import-scope解决maven继承（单）问题"><span class="toc-number">1.3.</span> <span class="toc-text">3.使用import scope解决maven继承（单）问题</span></a></li></ol></li></ol>
  
   </div>
 

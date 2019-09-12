@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
 <meta property="og:description" content="Linux常用基础指令 查找文件find * -name filename.txt根据名称查找当前目录下的filename.txt文件  查看一个程序是否运行ps -ef | grep tomcat查看所有有关tomcat的进程  终止线程kill -9 19979终止线程号位19979的线程  查看文件，包含隐藏文件ls -al  当前工作目录pwd  复制文件包括其子文件到自定目录cp -r">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-05T06:23:36.940Z">
+<meta property="og:updated_time" content="2019-09-11T06:48:55.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用基础指令">
 <meta name="twitter:description" content="Linux常用基础指令 查找文件find * -name filename.txt根据名称查找当前目录下的filename.txt文件  查看一个程序是否运行ps -ef | grep tomcat查看所有有关tomcat的进程  终止线程kill -9 19979终止线程号位19979的线程  查看文件，包含隐藏文件ls -al  当前工作目录pwd  复制文件包括其子文件到自定目录cp -r">
@@ -155,6 +155,14 @@
 <li><p>查看磁盘空间情况<br>df -h<br>sudo du -h –max-depth=1</p>
 </li>
 <li><p>查看服务器的联通性<br>ping 地址<br>telnet 10.87.18.9 443</p>
+</li>
+<li><p>显示已经挂载的分区列表 </p>
+<p>df -h</p>
+</li>
+<li><p>显示某路径下的文件占用空间情况</p>
+<p>cd /var/log</p>
+<p>du -sh *</p>
+<p>删除占用空间大的</p>
 </li>
 </ol>
 
@@ -295,6 +303,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2019/09/12/Maven/Maven日常学习收获/" title="Maven日常收获总结">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Maven日常收获总结</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2019/08/28/python/Mac下Python3的安装/"  title="Mac下安装python3">
@@ -367,6 +383,10 @@
 		  
 		
 		  
+			<li><a href="/categories/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/Spring/" title="Spring">Spring<sup>1</sup></a></li>
 		  
 		
@@ -416,6 +436,10 @@
 			
 		
 			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/mybatis基础/" title="mybatis基础">mybatis基础<sup>1</sup></a></li>
 			
 		
@@ -424,15 +448,7 @@
 			
 		
 			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Spring-aop/" title="Spring aop">Spring aop<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/基本概念/" title="基本概念">基本概念<sup>1</sup></a></li>
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
 			
 		
 			
@@ -440,15 +456,23 @@
 			
 		
 			
-				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>1</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/Spring-aop/" title="Spring aop">Spring aop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/mysql主从/" title="mysql主从">mysql主从<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/基本概念/" title="基本概念">基本概念<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -458,7 +482,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -466,7 +490,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/Linux基础/" style="font-size: 10px;">Linux基础</a> <a href="/tags/Spring-aop/" style="font-size: 10px;">Spring aop</a> <a href="/tags/blog搭建/" style="font-size: 20px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 15px;">fastjson</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 15px;">mysql安装</a> <a href="/tags/python安装/" style="font-size: 10px;">python安装</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 10px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+       <a href="/tags/Linux基础/" style="font-size: 10px;">Linux基础</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Spring-aop/" style="font-size: 10px;">Spring aop</a> <a href="/tags/blog搭建/" style="font-size: 20px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 15px;">fastjson</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 15px;">mysql安装</a> <a href="/tags/python安装/" style="font-size: 10px;">python安装</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 10px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 

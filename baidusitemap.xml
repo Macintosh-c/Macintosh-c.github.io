@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://macintosh-c.coding.me/2019/09/12/Maven/Maven%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0%E6%94%B6%E8%8E%B7/</loc>
+    <lastmod>2019-09-12</lastmod>
+  </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/09/05/Linux/Linux%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</loc>
-    <lastmod>2019-09-05</lastmod>
+    <lastmod>2019-09-11</lastmod>
   </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/08/28/python/Mac%E4%B8%8BPython3%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2019-08-28</lastmod>
