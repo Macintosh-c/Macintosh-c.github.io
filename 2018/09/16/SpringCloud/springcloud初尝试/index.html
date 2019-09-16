@@ -4,31 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>hexo搭建博客之---托管coding | macintosh-c&#39;s blog</title>
+    <title>Spring cloud | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。 注册coding，创建项目注册账户后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。 _config.yml配置想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下">
-<meta name="keywords" content="blog搭建">
+    <meta name="description" content="Spring Cloud 初尝试近期把springcloud整体体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 服务">
+<meta name="keywords" content="Spring cloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo搭建博客之---托管coding">
-<meta property="og:url" content="http://macintosh-c.coding.me/2018/08/14/hexo/hexo搭建博客之---托管coding/index.html">
+<meta property="og:title" content="Spring cloud">
+<meta property="og:url" content="http://macintosh-c.coding.me/2018/09/16/SpringCloud/springcloud初尝试/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。 注册coding，创建项目注册账户后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。 _config.yml配置想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下">
+<meta property="og:description" content="Spring Cloud 初尝试近期把springcloud整体体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 服务">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.imgur.com/pMSTifq.png">
-<meta property="og:image" content="https://i.imgur.com/23Lqqyw.png">
-<meta property="og:image" content="https://i.imgur.com/RYc69hK.png">
-<meta property="og:image" content="https://i.imgur.com/YzPJn2F.png">
-<meta property="og:image" content="https://i.imgur.com/hTErmam.png">
-<meta property="og:updated_time" content="2019-08-20T06:08:41.656Z">
+<meta property="og:updated_time" content="2019-09-16T09:50:08.795Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo搭建博客之---托管coding">
-<meta name="twitter:description" content="之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。 注册coding，创建项目注册账户后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。 _config.yml配置想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下">
-<meta name="twitter:image" content="https://i.imgur.com/pMSTifq.png">
+<meta name="twitter:title" content="Spring cloud">
+<meta name="twitter:description" content="Spring Cloud 初尝试近期把springcloud整体体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 服务">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -87,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/08/14/hexo/hexo搭建博客之---托管coding/" title="hexo搭建博客之---托管coding" itemprop="url">hexo搭建博客之---托管coding</a>
+      <a href="/2018/09/16/SpringCloud/springcloud初尝试/" title="Spring cloud" itemprop="url">Spring cloud</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2018-08-14T13:50:41.000Z" itemprop="datePublished"> 发表于 2018-08-14</time>
+    <time datetime="2018-09-15T20:37:05.000Z" itemprop="datePublished"> 发表于 2018-09-16</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -104,21 +98,39 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注册coding，创建项目"><span class="toc-number">1.</span> <span class="toc-text">注册coding，创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#config-yml配置"><span class="toc-number">2.</span> <span class="toc-text">_config.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步本地hexo到coding上"><span class="toc-number">3.</span> <span class="toc-text">同步本地hexo到coding上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pages服务方式部署"><span class="toc-number">4.</span> <span class="toc-text">pages服务方式部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">5.</span> <span class="toc-text">结语</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud-初尝试"><span class="toc-number">1.</span> <span class="toc-text">Spring Cloud 初尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#服务的注册与发现：Eureka以及高可用Eureka"><span class="toc-number">1.0.1.</span> <span class="toc-text">服务的注册与发现：Eureka以及高可用Eureka</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务消费，负载均衡：rest-ribbon或者Feign"><span class="toc-number">1.0.2.</span> <span class="toc-text">服务消费，负载均衡：rest+ribbon或者Feign</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><span class="toc-number">1.0.3.</span> <span class="toc-text">断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由网关：zuul和Spring-Cloud-Gateway"><span class="toc-number">1.0.4.</span> <span class="toc-text">路由网关：zuul和Spring Cloud Gateway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分布式配置中心：Spring-Cloud-Config以及其高可用"><span class="toc-number">1.0.5.</span> <span class="toc-text">分布式配置中心：Spring Cloud Config以及其高可用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#消息总线：Spring-Cloud-Bus"><span class="toc-number">1.0.6.</span> <span class="toc-text">消息总线：Spring Cloud Bus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务链路追踪：Spring-Cloud-Sleuth"><span class="toc-number">1.0.7.</span> <span class="toc-text">服务链路追踪：Spring Cloud Sleuth</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
-		<p>之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。</p>
-<h2 id="注册coding，创建项目"><a href="#注册coding，创建项目" class="headerlink" title="注册coding，创建项目"></a>注册coding，创建项目</h2><p><a href="https://coding.net/" target="_blank" rel="noopener">注册账户</a>后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。<br><img src="https://i.imgur.com/pMSTifq.png" alt=""></p>
-<h2 id="config-yml配置"><a href="#config-yml配置" class="headerlink" title="_config.yml配置"></a>_config.yml配置</h2><p>想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下：<br><img src="https://i.imgur.com/23Lqqyw.png" alt=""></p>
-<p>这里又遇到一个坑，上图中最左边的红框一定要注意tab对齐，否则hexo g会一直报错。</p>
-<p>我这边虽然采用的是https的方式，但是链接中添加了用户名和密码，也就是我红色划去的部分，这样提交时不需要输入用户名和密码。你也可以采用SSH密钥。</p>
-<h2 id="同步本地hexo到coding上"><a href="#同步本地hexo到coding上" class="headerlink" title="同步本地hexo到coding上"></a>同步本地hexo到coding上</h2><p>首先还需要将本地公钥添加到coding的SSH公钥中，和之前的github类似，自行摸索，截图如下：<br><img src="https://i.imgur.com/RYc69hK.png" alt=""></p>
-<p>添加后git bash验证一下：<br><code>ssh -T git@git.coding.net</code><br>如果得到下面提示就表示公钥添加成功了：<br><code>Hello Macintosh-c, You&#39;ve connected to Coding.net via SSH. This is a deploy key.</code><br>最后使用部署命令就能把博客同步到coding上面：<br><code>hexo d</code><br><img src="https://i.imgur.com/YzPJn2F.png" alt=""></p>
-<h2 id="pages服务方式部署"><a href="#pages服务方式部署" class="headerlink" title="pages服务方式部署"></a>pages服务方式部署</h2><p>在source/需要创建一个空白文件，至于原因，是因为 coding.net需要这个文件来作为以静态文件部署的标志。就是说看到这个Staticfile就知道按照静态文件来发布。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd source/</span><br><span class="line">touch Staticfile  #名字必须是Staticfile</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/hTErmam.png" alt=""></p>
-<p>一键静态部署后如图，网站访问地址ok，并且hexo d更新到coding后默认会自动部署。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>到此，托管coding成功，并且再修改博客会同步更新到<a href="https://macintosh-c.github.io/" target="_blank" rel="noopener">github</a>和<a href="http://macintosh-c.coding.me/">coding</a>，由于coding访问快，所以将hexo的原始文件也移植到了coding同仓库的hexo分支上，便于<a href="http://macintosh-c.coding.me/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/">异地处理</a>的时候clone代码,步骤与github时都差不多。</p>
+		<h2 id="Spring-Cloud-初尝试"><a href="#Spring-Cloud-初尝试" class="headerlink" title="Spring Cloud 初尝试"></a>Spring Cloud 初尝试</h2><p>近期把springcloud整体体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。<br>学习的资源来自：<a href="https://blog.csdn.net/forezp/article/details/70148833" target="_blank" rel="noopener">史上最简单的 SpringCloud 教程</a>，感谢分享<br>本人学习的代码仓库：<a href="https://github.com/Macintosh-c/springcloudstudy" target="_blank" rel="noopener">springcloudstudy</a></p>
+<p>版本：<br>Spring Cloud Finchley; Spring Boot 2.0.3</p>
+<h4 id="服务的注册与发现：Eureka以及高可用Eureka"><a href="#服务的注册与发现：Eureka以及高可用Eureka" class="headerlink" title="服务的注册与发现：Eureka以及高可用Eureka"></a>服务的注册与发现：Eureka以及高可用Eureka</h4><p>单机的eureka service创建没有什么难的，利用maven引入spring-cloud-starter-netflix-eureka-server依赖，做好相关的配置，启动项目即可。<br>客户端注册引入spring-cloud-starter-netflix-eureka-client依赖，做好eureka的service地址配置。<br>这里注意两个配置：<br>eureka.client.register-with-eureka: 由于该应用为注册中心，所以设置 为 false, 代表不向注册中心注册自己。<br>eureka.client.fetchRegistry: 由于注册中心的职责就是维护服务实例，它并不需要去检索服务， 所以也设置为 false。<br>高可用的情况下，设为默认true。</p>
+<p>高可用的eureka在配置方面相对复杂一点，尤其是对于eureka.instance.hostname，prefer-ip-address的理解，这里推荐链接<a href="https://blog.csdn.net/wangfei0904306/article/details/79056083" target="_blank" rel="noopener">构建高可用Eureka注册中心</a></p>
+<p>内容如下：</p>
+<ol>
+<li>许多高可用的Eureka配置里都要设置hosts文件，它是必须的吗？<br>不是必须的，配置hosts文件的目的是使各个Eureka的eureka.instance.hostname不同。<br>Eureka互相注册要求各个Eureka实例的eureka.instance.hostname不同，如果相同，则会被Eureka标记为unavailable-replicas。我们最终把eureka.instance.hostname取了${spring.cloud.client.ipAddress}的值，这个值取的是当前启动Eureka的机器的IP，这样虽然配置一样但却自动区分了每台机器的Eureka，这时我们再取prefer-ip-address: true，就可以确保机器优先使用IP而不是到hosts解析域名。</li>
+</ol>
+<p>2.prefer-ip-address是做什么用的？<br>直观来说，如果点击下面注册中心的可用实例列表中的地址，访问结果会分以下几个情况：<br>1）hostname和prefer-ip-address都没有配置，则访问 主机名:服务名:端口号，<br>         如：<a href="http://desktop-1fkok7b:8761/info" target="_blank" rel="noopener">http://desktop-1fkok7b:8761/info</a><br>2）配置了hostname而没有配置prefer-ip-address，则访问 hostname:服务名:端口号，<br>         如：<a href="http://myhostname:8761/info" target="_blank" rel="noopener">http://myhostname:8761/info</a><br>3) 一旦配置了prefer-ip-address，则访问 ipAddress:服务名:端口号，<br>         如：<a href="http://172.20.10.3:8761/info" target="_blank" rel="noopener">http://172.20.10.3:8761/info</a><br>在最终方案里我们已经把hostname设置为当前机器IP（${spring.cloud.client.ipAddress}），可以想见prefer-ip-address并不是必须的，但是合理使用它可以避免因为访问主机名而请求不到服务的情况，当然或许还节约了地址解析的损耗（虽然比较小）</p>
+<ol start="3">
+<li><p>为什么把hostname设置为当前机器IP？<br>（这一段的前提是微服务规模在几十个以内）当然也可以设置为域名，但是你要配置hosts（如果配置到所有Docker镜像中显然庞大不够灵活），或者搭建内网DNS服务器（为高可用增加了一层负担），而随着统一配置中心的到来，或许直接使用IP倒是一个相当不错的选择。另外，如果你配置了hostname，那么其它服务注册到你的时候，其它服务的defaultZone要填写defaultZone: <a href="http://yourhostname:8761/eureka/" target="_blank" rel="noopener">http://yourhostname:8761/eureka/</a> 以确保没有问题，但如果你的hostname配置的就是IP，那其它服务的defaultZone里直接填写IP就可以，如defaultZone:<a href="http://172.20.10.3:8761/eureka/" target="_blank" rel="noopener">http://172.20.10.3:8761/eureka/</a> 。</p>
+</li>
+<li><p>上面说的都是在不同机器上启动Eureka，能在同一台机器上启动多个Eureka吗？<br>当然可以，但是一定要保证各个Eureka的hostname不同，一种办法是常用的配置hosts文件，还有一种，是使用当前机器IP、127.0.0.1和localhost分别作为三个Eureka的hostname，事实证明也是可以的，在文末的Github的项目的no_hosts分支里有相应的实现。但是如果你使用127.0.0.1或localhost，注意一定要设置prefer-ip-address: false 。</p>
+</li>
+<li><p>我在同一台机器上配置hosts，启动三个Eureka实例并设置prefer-ip-address: true，为什么显示unavailable-replicas?<br>一种原因是，你设置了prefer-ip-address: true，其它服务注册你时应该使用defaultZone:<a href="http://yourIP:8761/eureka/，图中使用的仍然是hostname名，导致错误发生。" target="_blank" rel="noopener">http://yourIP:8761/eureka/，图中使用的仍然是hostname名，导致错误发生。</a><br>另一种原因是，三个Eureka都设置了prefer-ip-address: true，导致最后解析出来的hostname都是相同的IP，使副本不可用。这也是4中为什么要设置prefer-ip-address: false的原因。</p>
+</li>
+</ol>
+<h4 id="服务消费，负载均衡：rest-ribbon或者Feign"><a href="#服务消费，负载均衡：rest-ribbon或者Feign" class="headerlink" title="服务消费，负载均衡：rest+ribbon或者Feign"></a>服务消费，负载均衡：rest+ribbon或者Feign</h4><p>springcloud用的是一种客户端负责均衡的模式，即调用方做了负载均衡的配置，ribbon具有负载均衡的能力。<br>rest+ribbon:引入spring-cloud-starter-netflix-ribbon，通过在restTemplate的Bean上加上@LoadBalanced即可实现负载均衡的效果。<br>Feign:引入spring-cloud-starter-openfeign依赖，声明式的伪Http客户端，它使得写Http客户端变得更简单，同时具备ribbon负载均衡。</p>
+<h4 id="断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><a href="#断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine" class="headerlink" title="断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine"></a>断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</h4><h4 id="路由网关：zuul和Spring-Cloud-Gateway"><a href="#路由网关：zuul和Spring-Cloud-Gateway" class="headerlink" title="路由网关：zuul和Spring Cloud Gateway"></a>路由网关：zuul和Spring Cloud Gateway</h4><h4 id="分布式配置中心：Spring-Cloud-Config以及其高可用"><a href="#分布式配置中心：Spring-Cloud-Config以及其高可用" class="headerlink" title="分布式配置中心：Spring Cloud Config以及其高可用"></a>分布式配置中心：Spring Cloud Config以及其高可用</h4><p>引入spring-cloud-config-server依赖</p>
+<p>其大体的实现理解是这样的，通过springboot为其指定外部配置文件的加载位置来取代jar包之内的配置内容实现，将需要的配置文件存于特定的git上便于管理，config service启动读取该仓库指定分支，指定项目，指定环境的配置信息供其他的微服务加载配置。结合Spring Cloud Bus可以实现动态的更新微服务配置信息，而不需要重启服务。</p>
+<h4 id="消息总线：Spring-Cloud-Bus"><a href="#消息总线：Spring-Cloud-Bus" class="headerlink" title="消息总线：Spring Cloud Bus"></a>消息总线：Spring Cloud Bus</h4><p>Spring Cloud Bus 将分布式的节点用轻量的消息代理连接起来。它可以用于广播配置文件的更改或者服务之间的通讯，也可以用于监控。引入：spring-cloud-starter-bus-amqp</p>
+<p>目前实践的主要作用是实现通知微服务架构的配置文件的更改，其他什么场景下还可以使用该功能，还缺少认知。</p>
+<p>总之其大概作用理解是，通过消息中间件rabbitmq，实现在多服务的情况下，发送一同请求通知，实现所有服务相应的变更。发送通知需要配合spring-boot-starter-actuator依赖。</p>
+<p>优化：Spring Cloud Bus可以指定刷新范围，既然/bus/refresh接口提供了针对服务和实例进行配置更新的参数， 那么我们的架构也可以相应做出一些调整。 在之前的架构中， 服务的配置更新需要 通过向具体服务中的某个实例发送请求， 再触发对整个服务集群的配置更新。 虽然能实现功能， 但是这样的结果是， 我们指定的应用实例会不同千集群中的其他应用实例， 这样会 增加集群内部的复杂度， 不利于将来的运维工作。 比如， 需要对服务实例进行迁移，那么我们不得不修改Web Hook中的配置等。 所以要尽可能地让服务集群中的各个节点是对等的。</p>
+<p>我们主要做了以下这些改动:<br>1)在ConfigServer中也引入SpringCloudBus, 将配置服务端也加入到消息总线中来。<br>2)/bus/refresh请求不再发送到具体服务实例上， 而是发送给Config Server, 并 通过destination参数来指定需要更新配置的服务或实例。<br>通过上面的改动，我们的服务实例不需要再承担触发配置更新的职责。 同时，对于Git 的触发等配置都只需要针对ConfigServer即可， 从而简化了集群上的一些维护工作。</p>
+<h4 id="服务链路追踪：Spring-Cloud-Sleuth"><a href="#服务链路追踪：Spring-Cloud-Sleuth" class="headerlink" title="服务链路追踪：Spring Cloud Sleuth"></a>服务链路追踪：Spring Cloud Sleuth</h4><p>引入spring-cloud-starter-zipkin，server-zipkin通过直接起官方jar包即可，可通过浏览器打开9411默认端口查看zipkin界面。其作用类似于我们在开发过程中打印日记时，要加上请求唯一的traceId，便于后续request的跟踪于查询。</p>
+<p>问题：<br>使用spring-cloud-starter-zipkin + 独立部署的zipkin 进行链路追踪，但是如果项目同时使用 rabbitmq和spring-cloud-starter-bus-amqp 会导致 zipkin收集不到信息<br>原因：<br>spring-cloud-starter-bus-amqp 中包含了 spring-rabbit的全部组件。<br>在引入 spring-cloud-starter-zipkin 后，默认与zipkin通信使用的是 http的方式。<br>同时引入 spring-rabbit后，与zipkin通信会变成使用rabbitmq。<br>解决方法：<br>配置文件中加入或修改以下属性。就可以继续使用http的方式向zipkin通信。spring.zipkin.sender.type: web</p>
+<p>Sampler.ALWAYS_SAMPLE<br>Sampler：采样器，根据traceId来判断是否一条trace需要被采样，即上报到zipkin<br>Sampler.ALWAYS_SAMPLE 永远需要被采样 Sampler.NEVER_SAMPLE 永远不采样</p>
+<p>spring.sleuth.sampler.probability=1.0表示以 100% 的概率将链路的数据上传给 Zipkin Server ， 在默认情况下 ， 该值为0.1</p>
 
 	</div>
 
@@ -230,13 +242,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/博客相关/">博客相关</a>
+  <a class="article-category-link" href="/categories/Spring-cloud/">Spring cloud</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/blog搭建/">blog搭建</a>
+  <span></span> <a href="/tags/Spring-cloud/">Spring cloud</a>
   </div>
 
 </div>
@@ -245,7 +257,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2018/08/14/hexo/hexo搭建博客之---托管coding/" data-title="hexo搭建博客之---托管coding | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2018/09/16/SpringCloud/springcloud初尝试/" data-title="Spring cloud | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -258,18 +270,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2018/08/17/hexo/hexo搭建博客之-总结/" title="hexo搭建博客之---总结篇">
+ <a href="/2019/08/20/Databases/mysql/Mac下安装Mysql/" title="Mac下安装Mysql">
   <strong>上一篇：</strong><br/>
   <span>
-  hexo搭建博客之---总结篇</span>
+  Mac下安装Mysql</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2018/08/13/hexo/hexo搭建博客之---github管理原始文件，异地更新博客/"  title="hexo搭建博客之---github管理原始文件，异地更新博客">
+<a href="/2018/09/10/java/basic/fastjson2/"  title="java基础之fastjson（二）">
  <strong>下一篇：</strong><br/> 
- <span>hexo搭建博客之---github管理原始文件，异地更新博客
+ <span>java基础之fastjson（二）
 </span>
 </a>
 </div>
@@ -306,7 +318,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注册coding，创建项目"><span class="toc-number">1.</span> <span class="toc-text">注册coding，创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#config-yml配置"><span class="toc-number">2.</span> <span class="toc-text">_config.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步本地hexo到coding上"><span class="toc-number">3.</span> <span class="toc-text">同步本地hexo到coding上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pages服务方式部署"><span class="toc-number">4.</span> <span class="toc-text">pages服务方式部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">5.</span> <span class="toc-text">结语</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud-初尝试"><span class="toc-number">1.</span> <span class="toc-text">Spring Cloud 初尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#服务的注册与发现：Eureka以及高可用Eureka"><span class="toc-number">1.0.1.</span> <span class="toc-text">服务的注册与发现：Eureka以及高可用Eureka</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务消费，负载均衡：rest-ribbon或者Feign"><span class="toc-number">1.0.2.</span> <span class="toc-text">服务消费，负载均衡：rest+ribbon或者Feign</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><span class="toc-number">1.0.3.</span> <span class="toc-text">断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由网关：zuul和Spring-Cloud-Gateway"><span class="toc-number">1.0.4.</span> <span class="toc-text">路由网关：zuul和Spring Cloud Gateway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分布式配置中心：Spring-Cloud-Config以及其高可用"><span class="toc-number">1.0.5.</span> <span class="toc-text">分布式配置中心：Spring Cloud Config以及其高可用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#消息总线：Spring-Cloud-Bus"><span class="toc-number">1.0.6.</span> <span class="toc-text">消息总线：Spring Cloud Bus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务链路追踪：Spring-Cloud-Sleuth"><span class="toc-number">1.0.7.</span> <span class="toc-text">服务链路追踪：Spring Cloud Sleuth</span></a></li></ol></li></ol></li></ol>
  
   </div>
 

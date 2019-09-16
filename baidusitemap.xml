@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://macintosh-c.coding.me/2018/09/16/SpringCloud/springcloud%E5%88%9D%E5%B0%9D%E8%AF%95/</loc>
+    <lastmod>2019-09-16</lastmod>
+  </url>  <url>
+    <loc>http://macintosh-c.coding.me/2019/09/12/RabbitMQ/Mac%E4%B8%8B%E5%AE%89%E8%A3%85rabbitmq/</loc>
+    <lastmod>2019-09-12</lastmod>
+  </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/09/12/Maven/Maven%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0%E6%94%B6%E8%8E%B7/</loc>
     <lastmod>2019-09-12</lastmod>
   </url>  <url>
