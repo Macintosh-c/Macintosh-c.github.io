@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://macintosh-c.coding.me/2019/09/16/SpringCloud/springcloud%E5%B0%9D%E8%AF%95/</loc>
+    <loc>http://macintosh-c.coding.me/2019/09/18/Databases/memcached/Mac%E4%B8%8B%E5%AE%89%E8%A3%85memcached/</loc>
+    <lastmod>2019-09-18</lastmod>
+  </url>  <url>
+    <loc>http://macintosh-c.coding.me/2019/09/16/spring/SpringCloud/springcloud%E5%B0%9D%E8%AF%95/</loc>
     <lastmod>2019-09-18</lastmod>
   </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/09/18/Databases/postgre/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Postgre/</loc>
     <lastmod>2019-09-18</lastmod>
   </url>  <url>
-    <loc>http://macintosh-c.coding.me/2019/09/12/RabbitMQ/Mac%E4%B8%8B%E5%AE%89%E8%A3%85rabbitmq/</loc>
+    <loc>http://macintosh-c.coding.me/2019/09/12/mq/RabbitMQ/Mac%E4%B8%8B%E5%AE%89%E8%A3%85rabbitmq/</loc>
     <lastmod>2019-09-12</lastmod>
   </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/09/12/Maven/Maven%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0%E6%94%B6%E8%8E%B7/</loc>
@@ -31,7 +34,7 @@
     <loc>http://macintosh-c.coding.me/2018/08/27/java/design/wait-notify%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2019-08-20</lastmod>
   </url>  <url>
-    <loc>http://macintosh-c.coding.me/2018/09/09/Springboot/spring-AOP/</loc>
+    <loc>http://macintosh-c.coding.me/2018/09/09/spring/Springboot/spring-AOP/</loc>
     <lastmod>2019-08-20</lastmod>
   </url>  <url>
     <loc>http://macintosh-c.coding.me/2018/08/22/Databases/mysql/mysql5.7%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/</loc>

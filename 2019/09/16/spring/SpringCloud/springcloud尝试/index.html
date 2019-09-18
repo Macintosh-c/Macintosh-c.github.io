@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>写在独立博客开创时 | macintosh-c&#39;s blog</title>
+    <title>Spring cloud | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="写在前面这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。 更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭">
-<meta name="keywords" content="随笔">
+    <meta name="description" content="Spring Cloud近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 1.服务的">
+<meta name="keywords" content="Spring cloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写在独立博客开创时">
-<meta property="og:url" content="http://macintosh-c.coding.me/2018/08/12/hexo/写在独立博客开创时/index.html">
+<meta property="og:title" content="Spring cloud">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/16/spring/SpringCloud/springcloud尝试/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="写在前面这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。 更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭">
+<meta property="og:description" content="Spring Cloud近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 1.服务的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-20T07:40:07.209Z">
+<meta property="og:updated_time" content="2019-09-18T04:40:59.477Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写在独立博客开创时">
-<meta name="twitter:description" content="写在前面这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。 更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭">
+<meta name="twitter:title" content="Spring cloud">
+<meta name="twitter:description" content="Spring Cloud近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 1.服务的">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/08/12/hexo/写在独立博客开创时/" title="写在独立博客开创时" itemprop="url">写在独立博客开创时</a>
+      <a href="/2019/09/16/spring/SpringCloud/springcloud尝试/" title="Spring cloud" itemprop="url">Spring cloud</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2018-08-12T03:09:55.000Z" itemprop="datePublished"> 发表于 2018-08-12</time>
+    <time datetime="2019-09-15T20:37:05.000Z" itemprop="datePublished"> 发表于 2019-09-16</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,39 +98,31 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客进展"><span class="toc-number">2.</span> <span class="toc-text">博客进展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#愿景"><span class="toc-number">3.</span> <span class="toc-text">愿景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud"><span class="toc-number">1.</span> <span class="toc-text">Spring Cloud</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-服务的注册与发现：Eureka以及高可用Eureka"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.服务的注册与发现：Eureka以及高可用Eureka</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-服务消费，负载均衡：rest-ribbon或者Feign"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.服务消费，负载均衡：rest+ribbon或者Feign</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-路由网关：zuul和Spring-Cloud-Gateway"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.路由网关：zuul和Spring Cloud Gateway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-分布式配置中心：Spring-Cloud-Config以及其高可用"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.分布式配置中心：Spring Cloud Config以及其高可用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-消息总线：Spring-Cloud-Bus"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.消息总线：Spring Cloud Bus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-服务链路追踪：Spring-Cloud-Sleuth"><span class="toc-number">1.0.7.</span> <span class="toc-text">7.服务链路追踪：Spring Cloud Sleuth</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。</p>
-<p>更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭这么一个博客呢，原因有下面几点：</p>
-<ol>
-<li>积累。希望能借助这个博客平台多积累技术，改掉平时随手乱记，无纲要，无逻辑的习惯。<br></li>
-<li>坚持。转行IT这条路对于我来说不知道还能走多远，这条路对于我来说能有多宽，那总要有一个坚持的方法。<br></li>
-<li>总结。总感觉越大写作的能力在直线下滑，有时候有很多感慨和想法，想写却写不出来，有这么个博客，可以锻炼这方面的能力。<br></li>
-</ol>
-<p>网上关于如何用Hexo+Github来搭建独立博客的分享很多，我也不打算再去用篇幅讲述搭建详细了，主要参考了<a href="http://tengj.top/" target="_blank" rel="noopener">tengj</a>和<a href="https://whatbeg.com/" target="_blank" rel="noopener">whatbeg</a>两位兄台的分享，十分感谢！</p>
-<h2 id="博客进展"><a href="#博客进展" class="headerlink" title="博客进展"></a>博客进展</h2><p>有必要简单讲述一下这个博客搭建的进展，以及后续还需要完善的地方，来继续鞭策自己</p>
-<p>到目前为止已完成：</p>
-<ul>
-<li>hexo环境搭建，github关联。</li>
-<li>初步熟悉hexo的基本配置，更换主题jacman，修改布局，新建文章，标签，分类等。</li>
-<li>添加简单<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">文章，网站访问量统计</a>功能。</li>
-<li>RSS订阅功能</li>
-<li>Markdown语法，边写边学习。</li>
-<li>添加了文章<a href="https://whatbeg.com/2016/05/18/hexo-donate.html" target="_blank" rel="noopener">打赏</a>功能。</li>
-<li>已同步部署到了coding上，且实现了<a href="http://macintosh-c.coding.me/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/">多地提交</a>同步更新coding和github。</li>
-</ul>
-<p>下一步还需要做的有：</p>
-<ul>
-<li>安装统计插件</li>
-<li>添加站内搜索</li>
-<li>提交搜索引擎</li>
-<li>添加评论插件</li>
-</ul>
-<h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p>首先希望这个博客能在自我的坚持中一直写下去，让我在将来回头看时，有留下些许东西。主要涉猎的技术文章可能关于java基础，web开发，微信小程序，devops，大数据等等。能力有限，仅供自己学习总结。其次，平时生活中的感想，感悟，感慨等，成长过程的脚印，总结也会用独立的分类篇幅来记录。再则，工作生活中阅读到的一些好的书本，语录等也会收集分享。希望勤能补拙。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这次部署过程中受益于网络上各路大神们的细心总结，赠人玫瑰，手有余香。感谢！</p>
-<p>就写到这吧，Markdown也不是很熟悉。总之，持之以恒，继续努力！</p>
+		<h2 id="Spring-Cloud"><a href="#Spring-Cloud" class="headerlink" title="Spring Cloud"></a>Spring Cloud</h2><p>近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。<br>学习的资源来自：<a href="https://blog.csdn.net/forezp/article/details/70148833" target="_blank" rel="noopener">史上最简单的 SpringCloud 教程</a>，感谢分享<br>本人学习的代码仓库：<a href="https://github.com/Macintosh-c/springcloudstudy" target="_blank" rel="noopener">springcloudstudy</a></p>
+<p>版本：<br>Spring Cloud Finchley; Spring Boot 2.0.3</p>
+<h4 id="1-服务的注册与发现：Eureka以及高可用Eureka"><a href="#1-服务的注册与发现：Eureka以及高可用Eureka" class="headerlink" title="1.服务的注册与发现：Eureka以及高可用Eureka"></a>1.服务的注册与发现：Eureka以及高可用Eureka</h4><p>单机的eureka service创建没有什么难的，利用maven引入spring-cloud-starter-netflix-eureka-server依赖，做好相关的配置，启动项目即可。<br>客户端注册引入spring-cloud-starter-netflix-eureka-client依赖，做好eureka的service地址配置。<br>这里注意两个配置：<br>eureka.client.register-with-eureka: 由于该应用为注册中心，所以设置 为 false, 代表不向注册中心注册自己。<br>eureka.client.fetchRegistry: 由于注册中心的职责就是维护服务实例，它并不需要去检索服务， 所以也设置为 false。<br>高可用的情况下，设为默认true。</p>
+<p>高可用的eureka在配置方面相对复杂一点，尤其是对于eureka.instance.hostname，prefer-ip-address的理解，这里推荐链接<a href="https://blog.csdn.net/wangfei0904306/article/details/79056083" target="_blank" rel="noopener">构建高可用Eureka注册中心</a></p>
+<p>内容如下：<br>1)许多高可用的Eureka配置里都要设置hosts文件，它是必须的吗？<br>不是必须的，配置hosts文件的目的是使各个Eureka的eureka.instance.hostname不同。<br>Eureka互相注册要求各个Eureka实例的eureka.instance.hostname不同，如果相同，则会被Eureka标记为unavailable-replicas。我们最终把eureka.instance.hostname取了${spring.cloud.client.ipAddress}的值，这个值取的是当前启动Eureka的机器的IP，这样虽然配置一样但却自动区分了每台机器的Eureka，这时我们再取prefer-ip-address: true，就可以确保机器优先使用IP而不是到hosts解析域名。</p>
+<p>2)prefer-ip-address是做什么用的？<br>直观来说，如果点击下面注册中心的可用实例列表中的地址，访问结果会分以下几个情况：<br>hostname和prefer-ip-address都没有配置，则访问 主机名:服务名:端口号，如：<a href="http://desktop-1fkok7b:8761/info" target="_blank" rel="noopener">http://desktop-1fkok7b:8761/info</a><br>配置了hostname而没有配置prefer-ip-address，则访问 hostname:服务名:端口号，如：<a href="http://myhostname:8761/info" target="_blank" rel="noopener">http://myhostname:8761/info</a><br>一旦配置了prefer-ip-address，则访问 ipAddress:服务名:端口号，如：<a href="http://172.20.10.3:8761/info" target="_blank" rel="noopener">http://172.20.10.3:8761/info</a><br>在最终方案里我们已经把hostname设置为当前机器IP（${spring.cloud.client.ipAddress}），可以想见prefer-ip-address并不是必须的，但是合理使用它可以避免因为访问主机名而请求不到服务的情况，当然或许还节约了地址解析的损耗（虽然比较小）</p>
+<p>3)为什么把hostname设置为当前机器IP？<br>(这一段的前提是微服务规模在几十个以内)当然也可以设置为域名，但是你要配置hosts(如果配置到所有Docker镜像中显然庞大不够灵活),或者搭建内网DNS服务器（为高可用增加了一层负担），而随着统一配置中心的到来，或许直接使用IP倒是一个相当不错的选择。另外，如果你配置了hostname，那么其它服务注册到你的时候，其它服务的defaultZone要填写defaultZone: <a href="http://yourhostname:8761/eureka/" target="_blank" rel="noopener">http://yourhostname:8761/eureka/</a> 以确保没有问题，但如果你的hostname配置的就是IP，那其它服务的defaultZone里直接填写IP就可以，如defaultZone:<a href="http://172.20.10.3:8761/eureka/" target="_blank" rel="noopener">http://172.20.10.3:8761/eureka/</a> 。</p>
+<p>4)上面说的都是在不同机器上启动Eureka，能在同一台机器上启动多个Eureka吗？<br>当然可以，但是一定要保证各个Eureka的hostname不同，一种办法是常用的配置hosts文件，还有一种，是使用当前机器IP、127.0.0.1和localhost分别作为三个Eureka的hostname，事实证明也是可以的，在文末的Github的项目的no_hosts分支里有相应的实现。但是如果你使用127.0.0.1或localhost，注意一定要设置prefer-ip-address: false 。</p>
+<p>5)我在同一台机器上配置hosts，启动三个Eureka实例并设置prefer-ip-address: true，为什么显示unavailable-replicas?<br>一种原因是，你设置了prefer-ip-address: true，其它服务注册你时应该使用defaultZone:<a href="http://yourIP:8761/eureka/，图中使用的仍然是hostname名，导致错误发生。" target="_blank" rel="noopener">http://yourIP:8761/eureka/，图中使用的仍然是hostname名，导致错误发生。</a><br>另一种原因是，三个Eureka都设置了prefer-ip-address: true，导致最后解析出来的hostname都是相同的IP，使副本不可用。这也是4中为什么要设置prefer-ip-address: false的原因。</p>
+<h4 id="2-服务消费，负载均衡：rest-ribbon或者Feign"><a href="#2-服务消费，负载均衡：rest-ribbon或者Feign" class="headerlink" title="2.服务消费，负载均衡：rest+ribbon或者Feign"></a>2.服务消费，负载均衡：rest+ribbon或者Feign</h4><p>springcloud用的是一种客户端负责均衡的模式，即调用方做了负载均衡的配置，ribbon具有负载均衡的能力。<br>rest+ribbon:引入spring-cloud-starter-netflix-ribbon，通过在restTemplate的Bean上加上@LoadBalanced即可实现负载均衡的效果。<br>Feign:引入spring-cloud-starter-openfeign依赖，声明式的伪Http客户端，它使得写Http客户端变得更简单，同时具备ribbon负载均衡。</p>
+<h4 id="3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><a href="#3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine" class="headerlink" title="3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine"></a>3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</h4><h4 id="4-路由网关：zuul和Spring-Cloud-Gateway"><a href="#4-路由网关：zuul和Spring-Cloud-Gateway" class="headerlink" title="4.路由网关：zuul和Spring Cloud Gateway"></a>4.路由网关：zuul和Spring Cloud Gateway</h4><h4 id="5-分布式配置中心：Spring-Cloud-Config以及其高可用"><a href="#5-分布式配置中心：Spring-Cloud-Config以及其高可用" class="headerlink" title="5.分布式配置中心：Spring Cloud Config以及其高可用"></a>5.分布式配置中心：Spring Cloud Config以及其高可用</h4><p>引入spring-cloud-config-server依赖</p>
+<p>其大体的实现理解是这样的，通过springboot为其指定外部配置文件的加载位置来取代jar包之内的配置内容实现，将需要的配置文件存于特定的git上便于管理，config service启动读取该仓库指定分支，指定项目，指定环境的配置信息供其他的微服务加载配置。结合Spring Cloud Bus可以实现动态的更新微服务配置信息，而不需要重启服务。</p>
+<h4 id="6-消息总线：Spring-Cloud-Bus"><a href="#6-消息总线：Spring-Cloud-Bus" class="headerlink" title="6.消息总线：Spring Cloud Bus"></a>6.消息总线：Spring Cloud Bus</h4><p>Spring Cloud Bus 将分布式的节点用轻量的消息代理连接起来。它可以用于广播配置文件的更改或者服务之间的通讯，也可以用于监控。引入：spring-cloud-starter-bus-amqp</p>
+<p>目前实践的主要作用是实现通知微服务架构的配置文件的更改，其他什么场景下还可以使用该功能，还缺少认知。</p>
+<p>总之其大概作用理解是，通过消息中间件rabbitmq，实现在多服务的情况下，发送一同请求通知，实现所有服务相应的变更。发送通知需要配合spring-boot-starter-actuator依赖。</p>
+<p>优化：Spring Cloud Bus可以指定刷新范围，既然/bus/refresh接口提供了针对服务和实例进行配置更新的参数， 那么我们的架构也可以相应做出一些调整。 在之前的架构中， 服务的配置更新需要 通过向具体服务中的某个实例发送请求， 再触发对整个服务集群的配置更新。 虽然能实现功能， 但是这样的结果是， 我们指定的应用实例会不同千集群中的其他应用实例， 这样会 增加集群内部的复杂度， 不利于将来的运维工作。 比如， 需要对服务实例进行迁移，那么我们不得不修改Web Hook中的配置等。 所以要尽可能地让服务集群中的各个节点是对等的。</p>
+<p>我们主要做了以下这些改动:<br>1)在ConfigServer中也引入SpringCloudBus, 将配置服务端也加入到消息总线中来。<br>2)/bus/refresh请求不再发送到具体服务实例上， 而是发送给Config Server, 并 通过destination参数来指定需要更新配置的服务或实例。<br>通过上面的改动，我们的服务实例不需要再承担触发配置更新的职责。 同时，对于Git 的触发等配置都只需要针对ConfigServer即可， 从而简化了集群上的一些维护工作。</p>
+<h4 id="7-服务链路追踪：Spring-Cloud-Sleuth"><a href="#7-服务链路追踪：Spring-Cloud-Sleuth" class="headerlink" title="7.服务链路追踪：Spring Cloud Sleuth"></a>7.服务链路追踪：Spring Cloud Sleuth</h4><p>引入spring-cloud-starter-zipkin，server-zipkin通过直接起官方jar包即可，可通过浏览器打开9411默认端口查看zipkin界面。其作用类似于我们在开发过程中打印日记时，要加上请求唯一的traceId，便于后续request的跟踪于查询。</p>
+<p>问题：<br>使用spring-cloud-starter-zipkin + 独立部署的zipkin 进行链路追踪，但是如果项目同时使用 rabbitmq和spring-cloud-starter-bus-amqp 会导致 zipkin收集不到信息<br>原因：<br>spring-cloud-starter-bus-amqp 中包含了 spring-rabbit的全部组件。<br>在引入 spring-cloud-starter-zipkin 后，默认与zipkin通信使用的是 http的方式。<br>同时引入 spring-rabbit后，与zipkin通信会变成使用rabbitmq。<br>解决方法：<br>配置文件中加入或修改以下属性。就可以继续使用http的方式向zipkin通信。spring.zipkin.sender.type: web</p>
+<p>Sampler.ALWAYS_SAMPLE<br>Sampler：采样器，根据traceId来判断是否一条trace需要被采样，即上报到zipkin<br>Sampler.ALWAYS_SAMPLE 永远需要被采样 Sampler.NEVER_SAMPLE 永远不采样</p>
+<p>spring.sleuth.sampler.probability=1.0表示以 100% 的概率将链路的数据上传给 Zipkin Server ， 在默认情况下 ， 该值为0.1</p>
 
 	</div>
 
@@ -242,13 +234,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/成长之路/">成长之路</a>
+  <a class="article-category-link" href="/categories/Spring-cloud/">Spring cloud</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/随笔/">随笔</a>
+  <span></span> <a href="/tags/Spring-cloud/">Spring cloud</a>
   </div>
 
 </div>
@@ -257,7 +249,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2018/08/12/hexo/写在独立博客开创时/" data-title="写在独立博客开创时 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/09/16/spring/SpringCloud/springcloud尝试/" data-title="Spring cloud | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -270,13 +262,21 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2018/08/13/Databases/mysql/DDL:DML:DCL:TCL基本概念/" title="数据库基础:DDL/DML/DCL/TCL基本概念">
+ <a href="/2019/09/18/Databases/postgre/Mac下安装Postgre/" title="Mac下安装Postgre">
   <strong>上一篇：</strong><br/>
   <span>
-  数据库基础:DDL/DML/DCL/TCL基本概念</span>
+  Mac下安装Postgre</span>
 </a>
 </div>
 
+
+<div class="next">
+<a href="/2019/09/12/mq/RabbitMQ/Mac下安装rabbitmq/"  title="Mac下安装rabbitmq">
+ <strong>下一篇：</strong><br/> 
+ <span>Mac下安装rabbitmq
+</span>
+</a>
+</div>
 
 </nav>
 
@@ -310,7 +310,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客进展"><span class="toc-number">2.</span> <span class="toc-text">博客进展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#愿景"><span class="toc-number">3.</span> <span class="toc-text">愿景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud"><span class="toc-number">1.</span> <span class="toc-text">Spring Cloud</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-服务的注册与发现：Eureka以及高可用Eureka"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.服务的注册与发现：Eureka以及高可用Eureka</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-服务消费，负载均衡：rest-ribbon或者Feign"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.服务消费，负载均衡：rest+ribbon或者Feign</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-路由网关：zuul和Spring-Cloud-Gateway"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.路由网关：zuul和Spring Cloud Gateway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-分布式配置中心：Spring-Cloud-Config以及其高可用"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.分布式配置中心：Spring Cloud Config以及其高可用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-消息总线：Spring-Cloud-Bus"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.消息总线：Spring Cloud Bus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-服务链路追踪：Spring-Cloud-Sleuth"><span class="toc-number">1.0.7.</span> <span class="toc-text">7.服务链路追踪：Spring Cloud Sleuth</span></a></li></ol></li></ol></li></ol>
  
   </div>
 

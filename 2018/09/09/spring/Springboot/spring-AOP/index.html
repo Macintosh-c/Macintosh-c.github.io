@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>写在独立博客开创时 | macintosh-c&#39;s blog</title>
+    <title>Spring AOP | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="写在前面这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。 更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭">
-<meta name="keywords" content="随笔">
+    <meta name="description" content="Spring AOP 介绍AOP 为Aspect Oriented Programming的缩写，被成为面向切面编程。AOP主要用于处理共通逻辑，例如日记记录，性能统计，安全控制，事务处理，异常处理等等。AOP可以将这些共通逻辑从普通业务逻辑代码中分离出来，这样在日后修改这些逻辑的时候就不会影响普通业务逻辑的代码。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间耦合度降低，提">
+<meta name="keywords" content="Spring aop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写在独立博客开创时">
-<meta property="og:url" content="http://macintosh-c.coding.me/2018/08/12/hexo/写在独立博客开创时/index.html">
+<meta property="og:title" content="Spring AOP">
+<meta property="og:url" content="http://macintosh-c.coding.me/2018/09/09/spring/Springboot/spring-AOP/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="写在前面这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。 更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭">
+<meta property="og:description" content="Spring AOP 介绍AOP 为Aspect Oriented Programming的缩写，被成为面向切面编程。AOP主要用于处理共通逻辑，例如日记记录，性能统计，安全控制，事务处理，异常处理等等。AOP可以将这些共通逻辑从普通业务逻辑代码中分离出来，这样在日后修改这些逻辑的时候就不会影响普通业务逻辑的代码。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间耦合度降低，提">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-20T07:40:07.209Z">
+<meta property="og:updated_time" content="2019-08-20T06:10:46.557Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写在独立博客开创时">
-<meta name="twitter:description" content="写在前面这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。 更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭">
+<meta name="twitter:title" content="Spring AOP">
+<meta name="twitter:description" content="Spring AOP 介绍AOP 为Aspect Oriented Programming的缩写，被成为面向切面编程。AOP主要用于处理共通逻辑，例如日记记录，性能统计，安全控制，事务处理，异常处理等等。AOP可以将这些共通逻辑从普通业务逻辑代码中分离出来，这样在日后修改这些逻辑的时候就不会影响普通业务逻辑的代码。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间耦合度降低，提">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/08/12/hexo/写在独立博客开创时/" title="写在独立博客开创时" itemprop="url">写在独立博客开创时</a>
+      <a href="/2018/09/09/spring/Springboot/spring-AOP/" title="Spring AOP" itemprop="url">Spring AOP</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2018-08-12T03:09:55.000Z" itemprop="datePublished"> 发表于 2018-08-12</time>
+    <time datetime="2018-09-08T17:29:05.000Z" itemprop="datePublished"> 发表于 2018-09-09</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,39 +98,44 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客进展"><span class="toc-number">2.</span> <span class="toc-text">博客进展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#愿景"><span class="toc-number">3.</span> <span class="toc-text">愿景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-AOP-介绍"><span class="toc-number">1.</span> <span class="toc-text">Spring AOP 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方面"><span class="toc-number">2.</span> <span class="toc-text">方面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">3.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切入点"><span class="toc-number">4.</span> <span class="toc-text">切入点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通知"><span class="toc-number">5.</span> <span class="toc-text">通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP实现原理"><span class="toc-number">6.</span> <span class="toc-text">AOP实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注解实现AOP"><span class="toc-number">7.</span> <span class="toc-text">注解实现AOP</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这几天花了些时间捣鼓出了自己的独立博客，到目前为止终于也算建立完成，去搭建这个博客的初衷很多，对于像我这个年纪才来捣鼓这些估计算晚的了，在搭建的过程中参考了网上许多大牛的博客，有还在大学时就着手搞这些的，是真的羡慕他们在年轻的时候就能找到自己的方向，便从那开始有所积累，亡羊补牢，希望我还为时不晚。</p>
-<p>更多的个人看法以及情感还是后续写到其他分类文章里面，这篇还是多谈谈关于这个博客的事，为什么搭这么一个博客呢，原因有下面几点：</p>
+		<h2 id="Spring-AOP-介绍"><a href="#Spring-AOP-介绍" class="headerlink" title="Spring AOP 介绍"></a>Spring AOP 介绍</h2><p>AOP 为Aspect Oriented Programming的缩写，被成为面向切面编程。<br>AOP主要用于处理共通逻辑，例如日记记录，性能统计，安全控制，事务处理，异常处理等等。AOP可以将这些共通逻辑从普通业务逻辑代码中分离出来，这样在日后修改这些逻辑的时候就不会影响普通业务逻辑的代码。<br>利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
+<h2 id="方面"><a href="#方面" class="headerlink" title="方面"></a>方面</h2><p>方面是指封装共通处理的组件，该组件被作用到其他目标组件方法上。</p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>目标是指被一个或多个方面所作用的对象。</p>
+<h2 id="切入点"><a href="#切入点" class="headerlink" title="切入点"></a>切入点</h2><p>切入点是用于指定哪些组件和方法使用方面功能，在Spring中利用一个表达式指定切入目标。<br>Spring提高了以下常用的切入点表达式：</p>
+<ul>
+<li>方法限定表达式<br>execution（修饰符？返回类型 方法名（参数）throws 异常类型？）</li>
+<li>类型限定表达式<br>within（包名.类型）</li>
+<li>Bean名称限定表达式<br>bean（”Bean的id或name属性值”）</li>
+</ul>
+<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>通知是用于指定方面组件和目标组件作用的时机。例如方面功能在目标方法之前或之后执行等时机。<br>Spring框架提供以下几种类型的通知：</p>
+<ul>
+<li>前置通知：先执行方面功能再执行目标功能</li>
+<li>后置通知：先执行目标功能再执行方面功能（目标无异常才执行方面）</li>
+<li>最终通知：先执行目标功能在执行方面功能（目标有无异常都执行方面）</li>
+<li>异常通知：先执行目标，抛出后执行方面</li>
+<li>环绕通知：先执行方面前置通知，然后执行目标(ProceedingJoinPoint.proceed())，最后再执行方面后置部分</li>
+</ul>
+<h2 id="AOP实现原理"><a href="#AOP实现原理" class="headerlink" title="AOP实现原理"></a>AOP实现原理</h2><p>Spring AOP实现主要是基于动态代理技术。当Spring采用AOP配置后，Spring容器返回的目标对象，实际上是Spring利用动态代理技术生成的一个代理类型，代理类重写了原目标组件方法的功能，在代理类中调用方面对象功能和目标对象功能。两种动态代理实现：</p>
+<ul>
+<li>利用cglib工具包</li>
+<li>利用JDK Proxy API</li>
+</ul>
+<h2 id="注解实现AOP"><a href="#注解实现AOP" class="headerlink" title="注解实现AOP"></a>注解实现AOP</h2><p>开发步骤：</p>
 <ol>
-<li>积累。希望能借助这个博客平台多积累技术，改掉平时随手乱记，无纲要，无逻辑的习惯。<br></li>
-<li>坚持。转行IT这条路对于我来说不知道还能走多远，这条路对于我来说能有多宽，那总要有一个坚持的方法。<br></li>
-<li>总结。总感觉越大写作的能力在直线下滑，有时候有很多感慨和想法，想写却写不出来，有这么个博客，可以锻炼这方面的能力。<br></li>
+<li>创建方面组件<br>—创建一个类，充当方面组件，实现统用业务逻辑。</li>
+<li>声明方面组件<br>—在applicationContext.xml中开启AOP注解扫描：<a href="aop:aspectj-autoproxy/" target="_blank" rel="noopener">aop:aspectj-autoproxy/</a><br>—使用@Component注解标识这个类，将其声明为组件。<br>—使用@Aspect注解标识这个类，将其声明为方面组件。</li>
+<li>使用方面组件<br>—在组件的方法上，使用注解将方面组件作用到目标组件的方法上，并设置通知类型以确认方面组件调用的时机。</li>
 </ol>
-<p>网上关于如何用Hexo+Github来搭建独立博客的分享很多，我也不打算再去用篇幅讲述搭建详细了，主要参考了<a href="http://tengj.top/" target="_blank" rel="noopener">tengj</a>和<a href="https://whatbeg.com/" target="_blank" rel="noopener">whatbeg</a>两位兄台的分享，十分感谢！</p>
-<h2 id="博客进展"><a href="#博客进展" class="headerlink" title="博客进展"></a>博客进展</h2><p>有必要简单讲述一下这个博客搭建的进展，以及后续还需要完善的地方，来继续鞭策自己</p>
-<p>到目前为止已完成：</p>
 <ul>
-<li>hexo环境搭建，github关联。</li>
-<li>初步熟悉hexo的基本配置，更换主题jacman，修改布局，新建文章，标签，分类等。</li>
-<li>添加简单<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">文章，网站访问量统计</a>功能。</li>
-<li>RSS订阅功能</li>
-<li>Markdown语法，边写边学习。</li>
-<li>添加了文章<a href="https://whatbeg.com/2016/05/18/hexo-donate.html" target="_blank" rel="noopener">打赏</a>功能。</li>
-<li>已同步部署到了coding上，且实现了<a href="http://macintosh-c.coding.me/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/">多地提交</a>同步更新coding和github。</li>
+<li>前置通知，方面组件方法上增加注解：<br>@Before(“within(controller..*)”)<br>public void log(){}</li>
+<li>后置通知、最终通知使用方法与前置一致，只需将注解改为@AfterReturning、@After即可。</li>
+<li>环绕通知<br>@Around(“within(controller..*)”)<br>public Object log(ProceedingJoinPoint p)throws Throwable{<br>//此处代码在目标组件前执行<br>Object obj=p.proceed();//执行目标组件方法<br>//此处代码在目标组件后执行<br>return obj;<br>}</li>
+<li>异常通知：<br>@AfterThrowing(pointcut=”within(controller..*)”,throwing=”e”)<br>public void log(Exception e){}</li>
 </ul>
-<p>下一步还需要做的有：</p>
-<ul>
-<li>安装统计插件</li>
-<li>添加站内搜索</li>
-<li>提交搜索引擎</li>
-<li>添加评论插件</li>
-</ul>
-<h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p>首先希望这个博客能在自我的坚持中一直写下去，让我在将来回头看时，有留下些许东西。主要涉猎的技术文章可能关于java基础，web开发，微信小程序，devops，大数据等等。能力有限，仅供自己学习总结。其次，平时生活中的感想，感悟，感慨等，成长过程的脚印，总结也会用独立的分类篇幅来记录。再则，工作生活中阅读到的一些好的书本，语录等也会收集分享。希望勤能补拙。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这次部署过程中受益于网络上各路大神们的细心总结，赠人玫瑰，手有余香。感谢！</p>
-<p>就写到这吧，Markdown也不是很熟悉。总之，持之以恒，继续努力！</p>
 
 	</div>
 
@@ -242,13 +247,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/成长之路/">成长之路</a>
+  <a class="article-category-link" href="/categories/Spring/">Spring</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/随笔/">随笔</a>
+  <span></span> <a href="/tags/Spring-aop/">Spring aop</a>
   </div>
 
 </div>
@@ -257,7 +262,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2018/08/12/hexo/写在独立博客开创时/" data-title="写在独立博客开创时 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2018/09/09/spring/Springboot/spring-AOP/" data-title="Spring AOP | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -270,13 +275,21 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2018/08/13/Databases/mysql/DDL:DML:DCL:TCL基本概念/" title="数据库基础:DDL/DML/DCL/TCL基本概念">
+ <a href="/2018/09/10/java/basic/fastjson/" title="java基础之fastjson（一）">
   <strong>上一篇：</strong><br/>
   <span>
-  数据库基础:DDL/DML/DCL/TCL基本概念</span>
+  java基础之fastjson（一）</span>
 </a>
 </div>
 
+
+<div class="next">
+<a href="/2018/08/29/mybatis/mybatis中-和-的区别与用法/"  title="Mybatis中的${}和#{}区别与用法">
+ <strong>下一篇：</strong><br/> 
+ <span>Mybatis中的${}和#{}区别与用法
+</span>
+</a>
+</div>
 
 </nav>
 
@@ -310,7 +323,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客进展"><span class="toc-number">2.</span> <span class="toc-text">博客进展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#愿景"><span class="toc-number">3.</span> <span class="toc-text">愿景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-AOP-介绍"><span class="toc-number">1.</span> <span class="toc-text">Spring AOP 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方面"><span class="toc-number">2.</span> <span class="toc-text">方面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">3.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切入点"><span class="toc-number">4.</span> <span class="toc-text">切入点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通知"><span class="toc-number">5.</span> <span class="toc-text">通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP实现原理"><span class="toc-number">6.</span> <span class="toc-text">AOP实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注解实现AOP"><span class="toc-number">7.</span> <span class="toc-text">注解实现AOP</span></a></li></ol>
  
   </div>
 

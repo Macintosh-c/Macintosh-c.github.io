@@ -75,6 +75,26 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2018/09/09/spring/Springboot/spring-AOP/" title="Spring AOP" itemprop="url">
+  
+    <h1 itemprop="name">Spring AOP</h1>
+    
+     
+           <p itemprop="description" >Spring AOP 介绍AOP 为Aspect Oriented Programming的缩写，被成为面向切面编程。AOP主要用于处理共通逻辑，例如日记记录，性能统计，安全控制，事务处理，异常处理等等。AOP可以将这些共通逻辑从普通业务逻辑代码中分离出来，这样在日后修改这些逻辑</p>
+        
+    
+    <time datetime="2018-09-08T17:29:05.000Z" itemprop="datePublished">2018-09-09</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2018/08/29/mybatis/mybatis中-和-的区别与用法/" title="Mybatis中的${}和#{}区别与用法" itemprop="url">
   
     <h1 itemprop="name">Mybatis中的${}和#{}区别与用法</h1>
@@ -137,14 +157,13 @@ Mybatis 的Mapper.xml语句中parameterType向SQL语句传参有两种方式：#
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2018/08/22/Databases/mysql/mysql5.7版本下载与安装/" title="mysql之---下载与安装（windows，mysql5.7免安装版）" itemprop="url">
+    <a href="/2018/08/22/Databases/mysql/mysql5.7主从配置/" title="mysql之---主从配置（windows，mysql5.7）" itemprop="url">
   
-    <h1 itemprop="name">mysql之---下载与安装（windows，mysql5.7免安装版）</h1>
+    <h1 itemprop="name">mysql之---主从配置（windows，mysql5.7）</h1>
     
      
-           <p itemprop="description" >近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下
-下载
-链接：https://dev.mysql.com/downloads/mysql/</p>
+           <p itemprop="description" >利用MySQL主从配置，实现读写分离，减轻数据库压力。条件有限，本篇使用binlog的方式，只在一台windows上实验ok。方法记录如下：
+mysql主(称master)从(称slave)复制的原理：1.master将数据改变记录到二进制日志(binary log)中,也即是配</p>
         
     
     <time datetime="2018-08-22T06:34:16.000Z" itemprop="datePublished">2018-08-22</time>
@@ -159,13 +178,14 @@ Mybatis 的Mapper.xml语句中parameterType向SQL语句传参有两种方式：#
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2018/08/22/Databases/mysql/mysql5.7主从配置/" title="mysql之---主从配置（windows，mysql5.7）" itemprop="url">
+    <a href="/2018/08/22/Databases/mysql/mysql5.7版本下载与安装/" title="mysql之---下载与安装（windows，mysql5.7免安装版）" itemprop="url">
   
-    <h1 itemprop="name">mysql之---主从配置（windows，mysql5.7）</h1>
+    <h1 itemprop="name">mysql之---下载与安装（windows，mysql5.7免安装版）</h1>
     
      
-           <p itemprop="description" >利用MySQL主从配置，实现读写分离，减轻数据库压力。条件有限，本篇使用binlog的方式，只在一台windows上实验ok。方法记录如下：
-mysql主(称master)从(称slave)复制的原理：1.master将数据改变记录到二进制日志(binary log)中,也即是配</p>
+           <p itemprop="description" >近期在导入数据库表的过程中报错，由于某些字段像默认时间设置的问题，导致导入过程报错，查询后得知是mysql版本太低，需要升级的原因，于是折腾下载5.7版本mysql，查询相关教程博客总结如下
+下载
+链接：https://dev.mysql.com/downloads/mysql/</p>
         
     
     <time datetime="2018-08-22T06:34:16.000Z" itemprop="datePublished">2018-08-22</time>
@@ -262,27 +282,6 @@ github搭建hexo博客原理hexo博客的部署环境目录</p>
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2018/08/13/Databases/mysql/数据库练习经典案例/" title="数据库基础:经典练习案例" itemprop="url">
-  
-    <h1 itemprop="name">数据库基础:经典练习案例</h1>
-    
-     
-           <p itemprop="description" >数据库练习经典案例（mysql）表架构Student(S,Sname,Sage,Ssex) 学生表Course(C,Cname,T) 课程表 SC(S,C,score) 成绩表 Teacher(T,Tname) 教师表
-建表语句123456CREATE TABLE student</p>
-        
-    
-    <time datetime="2018-08-13T03:29:52.000Z" itemprop="datePublished">2018-08-13</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -310,7 +309,7 @@ github搭建hexo博客原理hexo博客的部署环境目录</p>
 		<ul>
 		
 		  
-			<li><a href="/categories/Database/" title="Database">Database<sup>7</sup></a></li>
+			<li><a href="/categories/Database/" title="Database">Database<sup>8</sup></a></li>
 		  
 		
 		  
@@ -367,10 +366,6 @@ github搭建hexo博客原理hexo博客的部署环境目录</p>
 			
 		
 			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/mysql安装/" title="mysql安装">mysql安装<sup>2</sup></a></li>
 			
 		
@@ -379,39 +374,7 @@ github搭建hexo博客原理hexo博客的部署环境目录</p>
 			
 		
 			
-				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mybatis基础/" title="mybatis基础">mybatis基础<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python安装/" title="python安装">python安装<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/rabbitmq安装/" title="rabbitmq安装">rabbitmq安装<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mysql主从/" title="mysql主从">mysql主从<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sql案例/" title="sql案例">sql案例<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
 			
 		
 			
@@ -419,7 +382,47 @@ github搭建hexo博客原理hexo博客的部署环境目录</p>
 			
 		
 			
+				<li><a href="/tags/mybatis基础/" title="mybatis基础">mybatis基础<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Memcached安装/" title="Memcached安装">Memcached安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql主从/" title="mysql主从">mysql主从<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Postgre安装/" title="Postgre安装">Postgre安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql案例/" title="sql案例">sql案例<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/rabbitmq安装/" title="rabbitmq安装">rabbitmq安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python安装/" title="python安装">python安装<sup>1</sup></a></li>
 			
 		
 			
@@ -437,7 +440,7 @@ github搭建hexo博客原理hexo博客的部署环境目录</p>
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -445,7 +448,7 @@ github搭建hexo博客原理hexo博客的部署环境目录</p>
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/Linux基础/" style="font-size: 10px;">Linux基础</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Postgre安装/" style="font-size: 10px;">Postgre安装</a> <a href="/tags/Spring-aop/" style="font-size: 10px;">Spring aop</a> <a href="/tags/Spring-cloud/" style="font-size: 10px;">Spring cloud</a> <a href="/tags/blog搭建/" style="font-size: 20px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 15px;">fastjson</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 15px;">mysql安装</a> <a href="/tags/python安装/" style="font-size: 10px;">python安装</a> <a href="/tags/rabbitmq安装/" style="font-size: 10px;">rabbitmq安装</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 10px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+       <a href="/tags/Linux基础/" style="font-size: 10px;">Linux基础</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Memcached安装/" style="font-size: 10px;">Memcached安装</a> <a href="/tags/Postgre安装/" style="font-size: 10px;">Postgre安装</a> <a href="/tags/Spring-aop/" style="font-size: 10px;">Spring aop</a> <a href="/tags/Spring-cloud/" style="font-size: 10px;">Spring cloud</a> <a href="/tags/blog搭建/" style="font-size: 20px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 15px;">fastjson</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 15px;">mysql安装</a> <a href="/tags/python安装/" style="font-size: 10px;">python安装</a> <a href="/tags/rabbitmq安装/" style="font-size: 10px;">rabbitmq安装</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 10px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
