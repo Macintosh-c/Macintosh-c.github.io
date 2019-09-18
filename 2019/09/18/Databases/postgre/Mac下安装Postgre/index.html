@@ -4,31 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>hexo搭建博客之---托管coding | macintosh-c&#39;s blog</title>
+    <title>Mac下安装Postgre | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。 注册coding，创建项目注册账户后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。 _config.yml配置想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下">
-<meta name="keywords" content="blog搭建">
+    <meta name="description" content="项目上用到PostgreSQL，所以在本地搭建环境，记录过程如下，方便查找 下载安装使用homebrew，方便快捷：brew install postgresql 安装完成后，透过安装日记提示可以看到启动方式To have launchd start postgresql now and restart at login:  brew services start postgresqlOr, if">
+<meta name="keywords" content="Postgre安装">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo搭建博客之---托管coding">
-<meta property="og:url" content="http://macintosh-c.coding.me/2018/08/14/hexo/hexo搭建博客之---托管coding/index.html">
+<meta property="og:title" content="Mac下安装Postgre">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/18/Databases/postgre/Mac下安装Postgre/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。 注册coding，创建项目注册账户后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。 _config.yml配置想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下">
+<meta property="og:description" content="项目上用到PostgreSQL，所以在本地搭建环境，记录过程如下，方便查找 下载安装使用homebrew，方便快捷：brew install postgresql 安装完成后，透过安装日记提示可以看到启动方式To have launchd start postgresql now and restart at login:  brew services start postgresqlOr, if">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.imgur.com/pMSTifq.png">
-<meta property="og:image" content="https://i.imgur.com/23Lqqyw.png">
-<meta property="og:image" content="https://i.imgur.com/RYc69hK.png">
-<meta property="og:image" content="https://i.imgur.com/YzPJn2F.png">
-<meta property="og:image" content="https://i.imgur.com/hTErmam.png">
-<meta property="og:updated_time" content="2019-08-20T06:08:41.656Z">
+<meta property="og:updated_time" content="2019-09-18T04:30:01.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo搭建博客之---托管coding">
-<meta name="twitter:description" content="之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。 注册coding，创建项目注册账户后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。 _config.yml配置想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下">
-<meta name="twitter:image" content="https://i.imgur.com/pMSTifq.png">
+<meta name="twitter:title" content="Mac下安装Postgre">
+<meta name="twitter:description" content="项目上用到PostgreSQL，所以在本地搭建环境，记录过程如下，方便查找 下载安装使用homebrew，方便快捷：brew install postgresql 安装完成后，透过安装日记提示可以看到启动方式To have launchd start postgresql now and restart at login:  brew services start postgresqlOr, if">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -87,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/08/14/hexo/hexo搭建博客之---托管coding/" title="hexo搭建博客之---托管coding" itemprop="url">hexo搭建博客之---托管coding</a>
+      <a href="/2019/09/18/Databases/postgre/Mac下安装Postgre/" title="Mac下安装Postgre" itemprop="url">Mac下安装Postgre</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2018-08-14T13:50:41.000Z" itemprop="datePublished"> 发表于 2018-08-14</time>
+    <time datetime="2019-09-18T04:20:29.000Z" itemprop="datePublished"> 发表于 2019-09-18</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -104,21 +98,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注册coding，创建项目"><span class="toc-number">1.</span> <span class="toc-text">注册coding，创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#config-yml配置"><span class="toc-number">2.</span> <span class="toc-text">_config.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步本地hexo到coding上"><span class="toc-number">3.</span> <span class="toc-text">同步本地hexo到coding上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pages服务方式部署"><span class="toc-number">4.</span> <span class="toc-text">pages服务方式部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">5.</span> <span class="toc-text">结语</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载安装"><span class="toc-number">1.</span> <span class="toc-text">下载安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建数据库和账户"><span class="toc-number">2.</span> <span class="toc-text">创建数据库和账户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#登录控制台指令"><span class="toc-number">3.</span> <span class="toc-text">登录控制台指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用控制台命令"><span class="toc-number">4.</span> <span class="toc-text">常用控制台命令</span></a></li></ol>
 		
 		</div>
 		
-		<p>之前hexo托管在github，但是访问起来确实挺慢，于是还是决定再部署到coding，并实现同时更新到github和coding。</p>
-<h2 id="注册coding，创建项目"><a href="#注册coding，创建项目" class="headerlink" title="注册coding，创建项目"></a>注册coding，创建项目</h2><p><a href="https://coding.net/" target="_blank" rel="noopener">注册账户</a>后,创建一个仓库，这里遇到一个坑，项目名与用户名保持一致，否则建好的仓库部署到page服务后访问，样式会丢失。<br><img src="https://i.imgur.com/pMSTifq.png" alt=""></p>
-<h2 id="config-yml配置"><a href="#config-yml配置" class="headerlink" title="_config.yml配置"></a>_config.yml配置</h2><p>想要同时部署到2个平台，就要修改博客根目录下面的_config.yml文件中的deploy如下：<br><img src="https://i.imgur.com/23Lqqyw.png" alt=""></p>
-<p>这里又遇到一个坑，上图中最左边的红框一定要注意tab对齐，否则hexo g会一直报错。</p>
-<p>我这边虽然采用的是https的方式，但是链接中添加了用户名和密码，也就是我红色划去的部分，这样提交时不需要输入用户名和密码。你也可以采用SSH密钥。</p>
-<h2 id="同步本地hexo到coding上"><a href="#同步本地hexo到coding上" class="headerlink" title="同步本地hexo到coding上"></a>同步本地hexo到coding上</h2><p>首先还需要将本地公钥添加到coding的SSH公钥中，和之前的github类似，自行摸索，截图如下：<br><img src="https://i.imgur.com/RYc69hK.png" alt=""></p>
-<p>添加后git bash验证一下：<br><code>ssh -T git@git.coding.net</code><br>如果得到下面提示就表示公钥添加成功了：<br><code>Hello Macintosh-c, You&#39;ve connected to Coding.net via SSH. This is a deploy key.</code><br>最后使用部署命令就能把博客同步到coding上面：<br><code>hexo d</code><br><img src="https://i.imgur.com/YzPJn2F.png" alt=""></p>
-<h2 id="pages服务方式部署"><a href="#pages服务方式部署" class="headerlink" title="pages服务方式部署"></a>pages服务方式部署</h2><p>在source/需要创建一个空白文件，至于原因，是因为 coding.net需要这个文件来作为以静态文件部署的标志。就是说看到这个Staticfile就知道按照静态文件来发布。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd source/</span><br><span class="line">touch Staticfile  #名字必须是Staticfile</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/hTErmam.png" alt=""></p>
-<p>一键静态部署后如图，网站访问地址ok，并且hexo d更新到coding后默认会自动部署。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>到此，托管coding成功，并且再修改博客会同步更新到<a href="https://macintosh-c.github.io/" target="_blank" rel="noopener">github</a>和<a href="http://macintosh-c.coding.me/">coding</a>，由于coding访问快，所以将hexo的原始文件也移植到了coding同仓库的hexo分支上，便于<a href="http://macintosh-c.coding.me/2018/08/13/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E4%B8%80/">异地处理</a>的时候clone代码,步骤与github时都差不多。</p>
+		<p>项目上用到PostgreSQL，所以在本地搭建环境，记录过程如下，方便查找</p>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>使用homebrew，方便快捷：<br>brew install postgresql</p>
+<p>安装完成后，透过安装日记提示可以看到启动方式<br>To have launchd start postgresql now and restart at login:<br>  brew services start postgresql<br>Or, if you don’t want/need a background service you can just run:<br>  pg_ctl -D /usr/local/var/postgres start</p>
+<p>提示了后台和非后台启动的两种方式</p>
+<h2 id="创建数据库和账户"><a href="#创建数据库和账户" class="headerlink" title="创建数据库和账户"></a>创建数据库和账户</h2><p>mac安装postgresql后不会创建用户名数据库，执行命令：createdb</p>
+<p>然后登录PostgreSQL控制台：psql</p>
+<p>使用\l命令列出所有的数据库，看到已存在用户同名数据库、postgres数据库，但是postgres数据库的所有者是当前用户，没有postgres用户。按:q退出查看<br>之后需要做以下几件事：</p>
+<p>创建postgres用户：CREATE USER postgres WITH PASSWORD ‘password’;<br>删除默认生成的postgres数据库：DROP DATABASE postgres;<br>创建属于postgres用户的postgres数据库：CREATE DATABASE postgres OWNER postgres;<br>将数据库所有权限赋予postgres用户：GRANT ALL PRIVILEGES ON DATABASE postgres to postgres;<br>给postgres用户添加创建数据库的属性：ALTER ROLE postgres CREATEDB;<br>这样就可以使用postgres作为数据库的登录用户了，并可以使用该用户管理数据库</p>
+<h2 id="登录控制台指令"><a href="#登录控制台指令" class="headerlink" title="登录控制台指令"></a>登录控制台指令</h2><p>psql -U [user] -d [database] -h [host] -p [post]<br>-U指定用户，-d指定数据库，-h指定服务器，-p指定端口<br>上方直接使用psql登录控制台，实际上使用的是缺省数据</p>
+<p>user：当前mac用户<br>database：用户同名数据库<br>主机：localhost<br>端口号：5432，postgresql的默认端口是5432</p>
+<p>完整的登录命令，比如使用postgres用户登录：<br>psql -U postgres -d postgres</p>
+<h2 id="常用控制台命令"><a href="#常用控制台命令" class="headerlink" title="常用控制台命令"></a>常用控制台命令</h2><p>\password：设置当前登录用户的密码<br>\h：查看SQL命令的解释，比如\h select。<br>\?：查看psql命令列表。<br>\l：列出所有数据库。<br>\c [database_name]：连接其他数据库。<br>\d：列出当前数据库的所有表格。<br>\d [table_name]：列出某一张表格的结构。<br>\du：列出所有用户。<br>\e：打开文本编辑器。<br>\conninfo：列出当前数据库和连接的信息。<br>\password [user]: 修改用户密码<br>\q：退出</p>
 
 	</div>
 
@@ -230,13 +225,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/博客相关/">博客相关</a>
+  <a class="article-category-link" href="/categories/Database/">Database</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/blog搭建/">blog搭建</a>
+  <span></span> <a href="/tags/Postgre安装/">Postgre安装</a>
   </div>
 
 </div>
@@ -245,7 +240,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2018/08/14/hexo/hexo搭建博客之---托管coding/" data-title="hexo搭建博客之---托管coding | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/09/18/Databases/postgre/Mac下安装Postgre/" data-title="Mac下安装Postgre | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -257,19 +252,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/08/17/hexo/hexo搭建博客之-总结/" title="hexo搭建博客之---总结篇">
-  <strong>上一篇：</strong><br/>
-  <span>
-  hexo搭建博客之---总结篇</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/08/13/hexo/hexo搭建博客之---github管理原始文件，异地更新博客/"  title="hexo搭建博客之---github管理原始文件，异地更新博客">
+<a href="/2019/09/16/SpringCloud/springcloud初尝试/"  title="Spring cloud">
  <strong>下一篇：</strong><br/> 
- <span>hexo搭建博客之---github管理原始文件，异地更新博客
+ <span>Spring cloud
 </span>
 </a>
 </div>
@@ -306,7 +293,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注册coding，创建项目"><span class="toc-number">1.</span> <span class="toc-text">注册coding，创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#config-yml配置"><span class="toc-number">2.</span> <span class="toc-text">_config.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步本地hexo到coding上"><span class="toc-number">3.</span> <span class="toc-text">同步本地hexo到coding上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pages服务方式部署"><span class="toc-number">4.</span> <span class="toc-text">pages服务方式部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">5.</span> <span class="toc-text">结语</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载安装"><span class="toc-number">1.</span> <span class="toc-text">下载安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建数据库和账户"><span class="toc-number">2.</span> <span class="toc-text">创建数据库和账户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#登录控制台指令"><span class="toc-number">3.</span> <span class="toc-text">登录控制台指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用控制台命令"><span class="toc-number">4.</span> <span class="toc-text">常用控制台命令</span></a></li></ol>
  
   </div>
 
