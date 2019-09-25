@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2019-09-25T07:18:00.922Z</updated>
+  <updated>2019-09-25T09:50:06.422Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7安装jdk</title>
+    <link href="http://macintosh-c.coding.me/2019/09/25/java/basic/centos7%E5%AE%89%E8%A3%85jdk/"/>
+    <id>http://macintosh-c.coding.me/2019/09/25/java/basic/centos7安装jdk/</id>
+    <published>2019-09-25T09:39:56.000Z</published>
+    <updated>2019-09-25T09:50:06.422Z</updated>
+    
+    <content type="html"><![CDATA[<p>Centos7自带OpenJDK的环境，强烈不建议使用，卸载重新安装oracle jdk 1.8</p><h3 id="1-进入root帐号-，删除系统自带的openjdk"><a href="#1-进入root帐号-，删除系统自带的openjdk" class="headerlink" title="1. 进入root帐号 ，删除系统自带的openjdk"></a>1. 进入root帐号 ，删除系统自带的openjdk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su</span><br><span class="line">yum -y remove java*</span><br></pre></td></tr></table></figure><h3 id="2-下载最新的jdk"><a href="#2-下载最新的jdk" class="headerlink" title="2.下载最新的jdk"></a>2.下载最新的jdk</h3><p>地址可以从oracle的网站(<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html）对应版本的rpm地址保存替换：" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html）对应版本的rpm地址保存替换：</a><br><code>wget --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.rpm</code></p><h3 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h3><p>yum localinstall jdk-8u201-linux-x64.rpm</p><h3 id="4-找java的安装路径"><a href="#4-找java的安装路径" class="headerlink" title="4. 找java的安装路径"></a>4. 找java的安装路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">which java</span><br><span class="line">ls -lrt /usr/bin/java</span><br><span class="line">ls -lrt /etc/alternatives/java</span><br></pre></td></tr></table></figure><p>注：echo $JAVA_HOME 方法是在已经配置了/etc/profile 文件的前提下查询的，如果该文件$JAVA_HOME配置错误，输出结果也是错误的。which java查询到的是java的执行路径，不是安装路径！</p><h3 id="5-vi编辑-etc-profile，配置环境变量"><a href="#5-vi编辑-etc-profile，配置环境变量" class="headerlink" title="5.vi编辑/etc/profile，配置环境变量"></a>5.vi编辑/etc/profile，配置环境变量</h3><p>1)sudo vim /etc/profile<br>2)按下 i 进入编辑，此时在窗体最底部会出现 – 插入 –<br>3)使用键盘输入编辑文字,文件末尾需要添加的配置如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_201-amd64</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH</span><br><span class="line">export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p><p>4)输入完毕后，完成输入，退出输入，按 ESC ,这个时候会发现底部的 – 插入 –没有了<br>5) 保存编辑的文件，并且退出vim编辑 输入 :wq 命令，按回车键<br>6)使用vim命令打开/etc/profile文件查看文件内容<br>7)没有进行修改，不需要保存直接退出 ，输入 :q 命令<br>8)source /etc/profile 使之立即生效<br>可分别用以下命令查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo $JAVA_HOME</span><br><span class="line">echo $PATH</span><br><span class="line">echo $CLASSPATH</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Centos7自带OpenJDK的环境，强烈不建议使用，卸载重新安装oracle jdk 1.8&lt;/p&gt;
+&lt;h3 id=&quot;1-进入root帐号-，删除系统自带的openjdk&quot;&gt;&lt;a href=&quot;#1-进入root帐号-，删除系统自带的openjdk&quot; class=&quot;hea
+      
+    
+    </summary>
+    
+      <category term="java基础" scheme="http://macintosh-c.coding.me/categories/java%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="jdk安装" scheme="http://macintosh-c.coding.me/tags/jdk%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别</title>
@@ -144,32 +170,6 @@
   </entry>
   
   <entry>
-    <title>Mac下安装docker</title>
-    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85/"/>
-    <id>http://macintosh-c.coding.me/2019/09/24/Docker/Mac下docker安装/</id>
-    <published>2019-09-24T05:45:56.000Z</published>
-    <updated>2019-09-25T08:47:00.340Z</updated>
-    
-    <content type="html"><![CDATA[<p>本地Mac下安装docker</p><h3 id="Mac下安装指令"><a href="#Mac下安装指令" class="headerlink" title="Mac下安装指令"></a>Mac下安装指令</h3><p>只需要一条指令：<code>brew cask install docker</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">itlocals-MacBook-Pro:~ barry.cao$ brew cask install docker</span><br><span class="line">Updating Homebrew...</span><br><span class="line">^C==&gt; Satisfying dependencies</span><br><span class="line">==&gt; Downloading https://download.docker.com/mac/stable/31259/Docker.dmg</span><br><span class="line">######################################################################## 100.0%</span><br><span class="line">==&gt; Verifying SHA-256 checksum for Cask &apos;docker&apos;.</span><br><span class="line">==&gt; Installing Cask docker</span><br><span class="line">==&gt; Moving App &apos;Docker.app&apos; to &apos;/Applications/Docker.app&apos;.</span><br><span class="line">docker was successfully installed!</span><br></pre></td></tr></table></figure></p><p>即安装成功。</p><h3 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h3><p>下载完毕后，你会发现电脑的程序里多了一个docker.app<br>此时若未点击启动过，终端输入：docker –version会显示如下：<br>-bash: docker: command not found<br>点击程序docker，启动并登陆后，再到终端执行如下指令，才起效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br><span class="line">docker images</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure></p><p>如此时退出Docker Desktop,则执行docker images命令结果如下：<br>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?<br>守护线程被干掉了，😹</p><h3 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h3><p>国内网络问题，后续拉取 Docker 镜像十分缓慢，可以需要配置加速器来解决 使用的是网易的镜像地址：<a href="http://hub-mirror.c.163.com。" target="_blank" rel="noopener">http://hub-mirror.c.163.com。</a><br>在任务栏点击 Docker for mac 应用图标 -&gt; Perferences… -&gt; Daemon -&gt; Registry mirrors。在列表中填写加速器地址即可。修改完成之后，点击 Apply &amp; Restart 按钮，Docker 就会重启并应用配置的镜像地址了。<br>我们可以通过 docker info 来查看是否配置成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br><span class="line">...</span><br><span class="line">Registry Mirrors:</span><br><span class="line">http://hub-mirror.c.163.com</span><br><span class="line">Live Restore Enabled: false</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;本地Mac下安装docker&lt;/p&gt;
-&lt;h3 id=&quot;Mac下安装指令&quot;&gt;&lt;a href=&quot;#Mac下安装指令&quot; class=&quot;headerlink&quot; title=&quot;Mac下安装指令&quot;&gt;&lt;/a&gt;Mac下安装指令&lt;/h3&gt;&lt;p&gt;只需要一条指令：&lt;code&gt;brew cask 
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
     <title>centos安装docker</title>
     <link href="http://macintosh-c.coding.me/2019/09/24/Docker/docker%E5%AE%89%E8%A3%85/"/>
     <id>http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/</id>
@@ -184,6 +184,32 @@
       
         &lt;p&gt;最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。&lt;/p&gt;
 &lt;h3 id=&quot;Docker-简介&quot;&gt;&lt;a href=&quot;#Docker-简介&quot; class=&quot;headerlink&quot; title=
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下安装docker</title>
+    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85/"/>
+    <id>http://macintosh-c.coding.me/2019/09/24/Docker/Mac下docker安装/</id>
+    <published>2019-09-24T05:45:56.000Z</published>
+    <updated>2019-09-25T08:47:00.340Z</updated>
+    
+    <content type="html"><![CDATA[<p>本地Mac下安装docker</p><h3 id="Mac下安装指令"><a href="#Mac下安装指令" class="headerlink" title="Mac下安装指令"></a>Mac下安装指令</h3><p>只需要一条指令：<code>brew cask install docker</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">itlocals-MacBook-Pro:~ barry.cao$ brew cask install docker</span><br><span class="line">Updating Homebrew...</span><br><span class="line">^C==&gt; Satisfying dependencies</span><br><span class="line">==&gt; Downloading https://download.docker.com/mac/stable/31259/Docker.dmg</span><br><span class="line">######################################################################## 100.0%</span><br><span class="line">==&gt; Verifying SHA-256 checksum for Cask &apos;docker&apos;.</span><br><span class="line">==&gt; Installing Cask docker</span><br><span class="line">==&gt; Moving App &apos;Docker.app&apos; to &apos;/Applications/Docker.app&apos;.</span><br><span class="line">docker was successfully installed!</span><br></pre></td></tr></table></figure></p><p>即安装成功。</p><h3 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h3><p>下载完毕后，你会发现电脑的程序里多了一个docker.app<br>此时若未点击启动过，终端输入：docker –version会显示如下：<br>-bash: docker: command not found<br>点击程序docker，启动并登陆后，再到终端执行如下指令，才起效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br><span class="line">docker images</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure></p><p>如此时退出Docker Desktop,则执行docker images命令结果如下：<br>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?<br>守护线程被干掉了，😹</p><h3 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h3><p>国内网络问题，后续拉取 Docker 镜像十分缓慢，可以需要配置加速器来解决 使用的是网易的镜像地址：<a href="http://hub-mirror.c.163.com。" target="_blank" rel="noopener">http://hub-mirror.c.163.com。</a><br>在任务栏点击 Docker for mac 应用图标 -&gt; Perferences… -&gt; Daemon -&gt; Registry mirrors。在列表中填写加速器地址即可。修改完成之后，点击 Apply &amp; Restart 按钮，Docker 就会重启并应用配置的镜像地址了。<br>我们可以通过 docker info 来查看是否配置成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br><span class="line">...</span><br><span class="line">Registry Mirrors:</span><br><span class="line">http://hub-mirror.c.163.com</span><br><span class="line">Live Restore Enabled: false</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;本地Mac下安装docker&lt;/p&gt;
+&lt;h3 id=&quot;Mac下安装指令&quot;&gt;&lt;a href=&quot;#Mac下安装指令&quot; class=&quot;headerlink&quot; title=&quot;Mac下安装指令&quot;&gt;&lt;/a&gt;Mac下安装指令&lt;/h3&gt;&lt;p&gt;只需要一条指令：&lt;code&gt;brew cask 
       
     
     </summary>
@@ -499,31 +525,6 @@
     
     
       <category term="mybatis基础" scheme="http://macintosh-c.coding.me/tags/mybatis%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>单例模式</title>
-    <link href="http://macintosh-c.coding.me/2018/08/27/java/design/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://macintosh-c.coding.me/2018/08/27/java/design/单例模式/</id>
-    <published>2018-08-27T14:48:15.000Z</published>
-    <updated>2019-08-20T06:04:51.479Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="饿汉式-线程安全"><a href="#饿汉式-线程安全" class="headerlink" title="饿汉式(线程安全)"></a>饿汉式(线程安全)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">public class Single &#123;</span><br><span class="line">//恶汉式</span><br><span class="line">private static Single single=new Single();</span><br><span class="line">private Single()&#123;&#125;</span><br><span class="line">public static Single getInstance()&#123;</span><br><span class="line">return single;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="懒汉式-非线程安全"><a href="#懒汉式-非线程安全" class="headerlink" title="懒汉式(非线程安全)"></a>懒汉式(非线程安全)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">public class Single2 &#123;</span><br><span class="line">private static Single2 instance;</span><br><span class="line">private Single2()&#123;&#125;</span><br><span class="line">public static Single2 getInstance()&#123;</span><br><span class="line">if(instance==null)&#123;//1：读取instance的值</span><br><span class="line">instance=new Single2();//2: 实例化instance</span><br><span class="line">&#125;</span><br><span class="line">return instance;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>对于以上代码注释部分，如果此时有两个线程，线程A执行到1处，读取了instance为null，然后cpu就被线程B抢去了，此时，线程A还没有对instance进行实例化。因此，线程B读取instance时仍然为null，于是，它对instance进行实例化了。然后，cpu就被线程A抢去了。此时，线程A由于已经读取了instance的值并且认为它为null，所以，再次对instance进行实例化。所以，线程A和线程B返回的不是同一个实例。<br>解决线程安全需要在getInstance方法上加上synchronized修饰。</p><h2 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">public class MyThread extends Thread&#123;</span><br><span class="line">@Override</span><br><span class="line">public void run()&#123;</span><br><span class="line">System.out.println(Single2.getInstance().hashCode());</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line"></span><br><span class="line">public class Run &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">MyThread t1=new MyThread();</span><br><span class="line">MyThread t2=new MyThread();</span><br><span class="line">MyThread t3=new MyThread();</span><br><span class="line">MyThread t4=new MyThread();</span><br><span class="line">t1.start();</span><br><span class="line">t2.start();</span><br><span class="line">t3.start();</span><br><span class="line">t4.start();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;饿汉式-线程安全&quot;&gt;&lt;a href=&quot;#饿汉式-线程安全&quot; class=&quot;headerlink&quot; title=&quot;饿汉式(线程安全)&quot;&gt;&lt;/a&gt;饿汉式(线程安全)&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
-      
-    
-    </summary>
-    
-      <category term="java基础" scheme="http://macintosh-c.coding.me/categories/java%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="设计模式" scheme="http://macintosh-c.coding.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
