@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://macintosh-c.coding.me/2019/09/25/Docker/Dockerfile/</loc>
+    <lastmod>2019-09-25</lastmod>
+  </url>  <url>
+    <loc>http://macintosh-c.coding.me/2019/09/25/Ansible/ansible%E8%AF%A6%E8%A7%A3%E4%BA%8C/</loc>
+    <lastmod>2019-09-25</lastmod>
+  </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/09/25/Ansible/ansible%E8%AF%A6%E8%A7%A3%E4%B8%80/</loc>
     <lastmod>2019-09-25</lastmod>
   </url>  <url>

@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://macintosh-c.coding.me/2019/09/25/Docker/Dockerfile/</loc>
+    
+    <lastmod>2019-09-25T05:55:29.268Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2019/09/25/Ansible/ansible%E8%AF%A6%E8%A7%A3%E4%BA%8C/</loc>
+    
+    <lastmod>2019-09-25T05:25:23.650Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://macintosh-c.coding.me/2019/09/25/Ansible/ansible%E8%AF%A6%E8%A7%A3%E4%B8%80/</loc>
     
-    <lastmod>2019-09-25T04:37:45.994Z</lastmod>
+    <lastmod>2019-09-25T04:41:27.006Z</lastmod>
     
   </url>
   
@@ -191,6 +205,13 @@
   </url>
   
   <url>
+    <loc>http://macintosh-c.coding.me/baidu_verify_AiG62rR9en.html</loc>
+    
+    <lastmod>2019-08-01T09:07:49.117Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://macintosh-c.coding.me/baidu_verify_bT5h2zR7xk.html</loc>
     
     <lastmod>2019-08-01T09:07:49.117Z</lastmod>
@@ -206,13 +227,6 @@
   
   <url>
     <loc>http://macintosh-c.coding.me/search/index.html</loc>
-    
-    <lastmod>2019-08-01T09:07:49.117Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://macintosh-c.coding.me/baidu_verify_AiG62rR9en.html</loc>
     
     <lastmod>2019-08-01T09:07:49.117Z</lastmod>
     

@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Spring AOP | macintosh-c&#39;s blog</title>
+    <title>Dockerfile详解 | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="Spring AOP 介绍AOP 为Aspect Oriented Programming的缩写，被成为面向切面编程。AOP主要用于处理共通逻辑，例如日记记录，性能统计，安全控制，事务处理，异常处理等等。AOP可以将这些共通逻辑从普通业务逻辑代码中分离出来，这样在日后修改这些逻辑的时候就不会影响普通业务逻辑的代码。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间耦合度降低，提">
-<meta name="keywords" content="Spring aop">
+    <meta name="description" content="前面整理过docker的安装以及简单命令，这遍">
+<meta name="keywords" content="Dockerfile">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring AOP">
-<meta property="og:url" content="http://macintosh-c.coding.me/2018/09/09/Springboot/spring-AOP/index.html">
+<meta property="og:title" content="Dockerfile详解">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/25/Docker/Dockerfile/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="Spring AOP 介绍AOP 为Aspect Oriented Programming的缩写，被成为面向切面编程。AOP主要用于处理共通逻辑，例如日记记录，性能统计，安全控制，事务处理，异常处理等等。AOP可以将这些共通逻辑从普通业务逻辑代码中分离出来，这样在日后修改这些逻辑的时候就不会影响普通业务逻辑的代码。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间耦合度降低，提">
+<meta property="og:description" content="前面整理过docker的安装以及简单命令，这遍">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-20T06:10:46.557Z">
+<meta property="og:updated_time" content="2019-09-25T05:55:29.268Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring AOP">
-<meta name="twitter:description" content="Spring AOP 介绍AOP 为Aspect Oriented Programming的缩写，被成为面向切面编程。AOP主要用于处理共通逻辑，例如日记记录，性能统计，安全控制，事务处理，异常处理等等。AOP可以将这些共通逻辑从普通业务逻辑代码中分离出来，这样在日后修改这些逻辑的时候就不会影响普通业务逻辑的代码。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间耦合度降低，提">
+<meta name="twitter:title" content="Dockerfile详解">
+<meta name="twitter:description" content="前面整理过docker的安装以及简单命令，这遍">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/09/09/Springboot/spring-AOP/" title="Spring AOP" itemprop="url">Spring AOP</a>
+      <a href="/2019/09/25/Docker/Dockerfile/" title="Dockerfile详解" itemprop="url">Dockerfile详解</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2018-09-08T17:29:05.000Z" itemprop="datePublished"> 发表于 2018-09-09</time>
+    <time datetime="2019-09-25T05:54:56.000Z" itemprop="datePublished"> 发表于 2019-09-25</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,44 +98,11 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-AOP-介绍"><span class="toc-number">1.</span> <span class="toc-text">Spring AOP 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方面"><span class="toc-number">2.</span> <span class="toc-text">方面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">3.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切入点"><span class="toc-number">4.</span> <span class="toc-text">切入点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通知"><span class="toc-number">5.</span> <span class="toc-text">通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP实现原理"><span class="toc-number">6.</span> <span class="toc-text">AOP实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注解实现AOP"><span class="toc-number">7.</span> <span class="toc-text">注解实现AOP</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h2 id="Spring-AOP-介绍"><a href="#Spring-AOP-介绍" class="headerlink" title="Spring AOP 介绍"></a>Spring AOP 介绍</h2><p>AOP 为Aspect Oriented Programming的缩写，被成为面向切面编程。<br>AOP主要用于处理共通逻辑，例如日记记录，性能统计，安全控制，事务处理，异常处理等等。AOP可以将这些共通逻辑从普通业务逻辑代码中分离出来，这样在日后修改这些逻辑的时候就不会影响普通业务逻辑的代码。<br>利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
-<h2 id="方面"><a href="#方面" class="headerlink" title="方面"></a>方面</h2><p>方面是指封装共通处理的组件，该组件被作用到其他目标组件方法上。</p>
-<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>目标是指被一个或多个方面所作用的对象。</p>
-<h2 id="切入点"><a href="#切入点" class="headerlink" title="切入点"></a>切入点</h2><p>切入点是用于指定哪些组件和方法使用方面功能，在Spring中利用一个表达式指定切入目标。<br>Spring提高了以下常用的切入点表达式：</p>
-<ul>
-<li>方法限定表达式<br>execution（修饰符？返回类型 方法名（参数）throws 异常类型？）</li>
-<li>类型限定表达式<br>within（包名.类型）</li>
-<li>Bean名称限定表达式<br>bean（”Bean的id或name属性值”）</li>
-</ul>
-<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>通知是用于指定方面组件和目标组件作用的时机。例如方面功能在目标方法之前或之后执行等时机。<br>Spring框架提供以下几种类型的通知：</p>
-<ul>
-<li>前置通知：先执行方面功能再执行目标功能</li>
-<li>后置通知：先执行目标功能再执行方面功能（目标无异常才执行方面）</li>
-<li>最终通知：先执行目标功能在执行方面功能（目标有无异常都执行方面）</li>
-<li>异常通知：先执行目标，抛出后执行方面</li>
-<li>环绕通知：先执行方面前置通知，然后执行目标(ProceedingJoinPoint.proceed())，最后再执行方面后置部分</li>
-</ul>
-<h2 id="AOP实现原理"><a href="#AOP实现原理" class="headerlink" title="AOP实现原理"></a>AOP实现原理</h2><p>Spring AOP实现主要是基于动态代理技术。当Spring采用AOP配置后，Spring容器返回的目标对象，实际上是Spring利用动态代理技术生成的一个代理类型，代理类重写了原目标组件方法的功能，在代理类中调用方面对象功能和目标对象功能。两种动态代理实现：</p>
-<ul>
-<li>利用cglib工具包</li>
-<li>利用JDK Proxy API</li>
-</ul>
-<h2 id="注解实现AOP"><a href="#注解实现AOP" class="headerlink" title="注解实现AOP"></a>注解实现AOP</h2><p>开发步骤：</p>
-<ol>
-<li>创建方面组件<br>—创建一个类，充当方面组件，实现统用业务逻辑。</li>
-<li>声明方面组件<br>—在applicationContext.xml中开启AOP注解扫描：<a href="aop:aspectj-autoproxy/" target="_blank" rel="noopener">aop:aspectj-autoproxy/</a><br>—使用@Component注解标识这个类，将其声明为组件。<br>—使用@Aspect注解标识这个类，将其声明为方面组件。</li>
-<li>使用方面组件<br>—在组件的方法上，使用注解将方面组件作用到目标组件的方法上，并设置通知类型以确认方面组件调用的时机。</li>
-</ol>
-<ul>
-<li>前置通知，方面组件方法上增加注解：<br>@Before(“within(controller..*)”)<br>public void log(){}</li>
-<li>后置通知、最终通知使用方法与前置一致，只需将注解改为@AfterReturning、@After即可。</li>
-<li>环绕通知<br>@Around(“within(controller..*)”)<br>public Object log(ProceedingJoinPoint p)throws Throwable{<br>//此处代码在目标组件前执行<br>Object obj=p.proceed();//执行目标组件方法<br>//此处代码在目标组件后执行<br>return obj;<br>}</li>
-<li>异常通知：<br>@AfterThrowing(pointcut=”within(controller..*)”,throwing=”e”)<br>public void log(Exception e){}</li>
-</ul>
+		<p>前面整理过docker的安装以及简单命令，这遍</p>
 
 	</div>
 
@@ -247,13 +214,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  <a class="article-category-link" href="/categories/Docker/">Docker</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Spring-aop/">Spring aop</a>
+  <span></span> <a href="/tags/Dockerfile/">Dockerfile</a>
   </div>
 
 </div>
@@ -262,7 +229,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2018/09/09/Springboot/spring-AOP/" data-title="Spring AOP | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/09/25/Docker/Dockerfile/" data-title="Dockerfile详解 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -274,19 +241,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/09/10/java/basic/fastjson/" title="java基础之fastjson（一）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  java基础之fastjson（一）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/08/29/mybatis/mybatis中-和-的区别与用法/"  title="Mybatis中的${}和#{}区别与用法">
+<a href="/2019/09/25/Ansible/ansible详解二/"  title="Ansible playbook">
  <strong>下一篇：</strong><br/> 
- <span>Mybatis中的${}和#{}区别与用法
+ <span>Ansible playbook
 </span>
 </a>
 </div>
@@ -323,7 +282,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-AOP-介绍"><span class="toc-number">1.</span> <span class="toc-text">Spring AOP 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方面"><span class="toc-number">2.</span> <span class="toc-text">方面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">3.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切入点"><span class="toc-number">4.</span> <span class="toc-text">切入点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通知"><span class="toc-number">5.</span> <span class="toc-text">通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP实现原理"><span class="toc-number">6.</span> <span class="toc-text">AOP实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注解实现AOP"><span class="toc-number">7.</span> <span class="toc-text">注解实现AOP</span></a></li></ol>
+ 
  
   </div>
 
@@ -346,7 +305,15 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Database/" title="Database">Database<sup>7</sup></a></li>
+			<li><a href="/categories/Ansible/" title="Ansible">Ansible<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Database/" title="Database">Database<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Docker/" title="Docker">Docker<sup>2</sup></a></li>
 		  
 		
 		  
@@ -403,7 +370,7 @@
 			
 		
 			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+				<li><a href="/tags/ansible详解/" title="ansible详解">ansible详解<sup>2</sup></a></li>
 			
 		
 			
@@ -415,15 +382,11 @@
 			
 		
 			
-				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>1</sup></a></li>
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mybatis基础/" title="mybatis基础">mybatis基础<sup>1</sup></a></li>
+				<li><a href="/tags/基本概念/" title="基本概念">基本概念<sup>1</sup></a></li>
 			
 		
 			
@@ -431,11 +394,23 @@
 			
 		
 			
-				<li><a href="/tags/rabbitmq安装/" title="rabbitmq安装">rabbitmq安装<sup>1</sup></a></li>
+				<li><a href="/tags/mybatis基础/" title="mybatis基础">mybatis基础<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Memcached安装/" title="Memcached安装">Memcached安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Dockerfile/" title="Dockerfile">Dockerfile<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/docker安装/" title="docker安装">docker安装<sup>1</sup></a></li>
 			
 		
 			
@@ -451,19 +426,23 @@
 			
 		
 			
-				<li><a href="/tags/基本概念/" title="基本概念">基本概念<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Postgre安装/" title="Postgre安装">Postgre安装<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Spring-aop/" title="Spring aop">Spring aop<sup>1</sup></a></li>
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Spring-cloud/" title="Spring cloud">Spring cloud<sup>1</sup></a></li>
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/rabbitmq安装/" title="rabbitmq安装">rabbitmq安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-aop/" title="Spring aop">Spring aop<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -473,7 +452,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
   </div>
 
 
@@ -481,7 +460,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/Linux基础/" style="font-size: 10px;">Linux基础</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Postgre安装/" style="font-size: 10px;">Postgre安装</a> <a href="/tags/Spring-aop/" style="font-size: 10px;">Spring aop</a> <a href="/tags/Spring-cloud/" style="font-size: 10px;">Spring cloud</a> <a href="/tags/blog搭建/" style="font-size: 20px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 15px;">fastjson</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 15px;">mysql安装</a> <a href="/tags/python安装/" style="font-size: 10px;">python安装</a> <a href="/tags/rabbitmq安装/" style="font-size: 10px;">rabbitmq安装</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 10px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+       <a href="/tags/Dockerfile/" style="font-size: 10px;">Dockerfile</a> <a href="/tags/Linux基础/" style="font-size: 10px;">Linux基础</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Memcached安装/" style="font-size: 10px;">Memcached安装</a> <a href="/tags/Postgre安装/" style="font-size: 10px;">Postgre安装</a> <a href="/tags/Spring-aop/" style="font-size: 10px;">Spring aop</a> <a href="/tags/Spring-cloud/" style="font-size: 10px;">Spring cloud</a> <a href="/tags/ansible详解/" style="font-size: 15px;">ansible详解</a> <a href="/tags/blog搭建/" style="font-size: 20px;">blog搭建</a> <a href="/tags/docker安装/" style="font-size: 10px;">docker安装</a> <a href="/tags/fastjson/" style="font-size: 15px;">fastjson</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 15px;">mysql安装</a> <a href="/tags/python安装/" style="font-size: 10px;">python安装</a> <a href="/tags/rabbitmq安装/" style="font-size: 10px;">rabbitmq安装</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 10px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
