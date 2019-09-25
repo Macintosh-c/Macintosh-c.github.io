@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Spring cloud | macintosh-c&#39;s blog</title>
+    <title>centos安装docker | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="Spring Cloud近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 1.服务的">
-<meta name="keywords" content="Spring cloud">
+    <meta name="description" content="最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。 Docker 简介docker 是一种容器技术，作用是用来快速部署服务。 为什么说 docker 是快速部署 我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根">
+<meta name="keywords" content="docker安装">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring cloud">
-<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/16/spring/SpringCloud/springcloud尝试/index.html">
+<meta property="og:title" content="centos安装docker">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="Spring Cloud近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 1.服务的">
+<meta property="og:description" content="最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。 Docker 简介docker 是一种容器技术，作用是用来快速部署服务。 为什么说 docker 是快速部署 我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-18T04:40:59.477Z">
+<meta property="og:updated_time" content="2019-09-24T06:18:16.500Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring cloud">
-<meta name="twitter:description" content="Spring Cloud近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 1.服务的">
+<meta name="twitter:title" content="centos安装docker">
+<meta name="twitter:description" content="最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。 Docker 简介docker 是一种容器技术，作用是用来快速部署服务。 为什么说 docker 是快速部署 我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/09/16/spring/SpringCloud/springcloud尝试/" title="Spring cloud" itemprop="url">Spring cloud</a>
+      <a href="/2019/09/24/Docker/docker安装/" title="centos安装docker" itemprop="url">centos安装docker</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2019-09-15T20:37:05.000Z" itemprop="datePublished"> 发表于 2019-09-16</time>
+    <time datetime="2019-09-24T05:45:56.000Z" itemprop="datePublished"> 发表于 2019-09-24</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,31 +98,42 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud"><span class="toc-number">1.</span> <span class="toc-text">Spring Cloud</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-服务的注册与发现：Eureka以及高可用Eureka"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.服务的注册与发现：Eureka以及高可用Eureka</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-服务消费，负载均衡：rest-ribbon或者Feign"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.服务消费，负载均衡：rest+ribbon或者Feign</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-路由网关：zuul和Spring-Cloud-Gateway"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.路由网关：zuul和Spring Cloud Gateway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-分布式配置中心：Spring-Cloud-Config以及其高可用"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.分布式配置中心：Spring Cloud Config以及其高可用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-消息总线：Spring-Cloud-Bus"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.消息总线：Spring Cloud Bus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-服务链路追踪：Spring-Cloud-Sleuth"><span class="toc-number">1.0.7.</span> <span class="toc-text">7.服务链路追踪：Spring Cloud Sleuth</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-简介"><span class="toc-number">1.</span> <span class="toc-text">Docker 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker安装"><span class="toc-number">2.</span> <span class="toc-text">Docker安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用Docker命令"><span class="toc-number">3.</span> <span class="toc-text">常用Docker命令</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="Spring-Cloud"><a href="#Spring-Cloud" class="headerlink" title="Spring Cloud"></a>Spring Cloud</h2><p>近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。<br>学习的资源来自：<a href="https://blog.csdn.net/forezp/article/details/70148833" target="_blank" rel="noopener">史上最简单的 SpringCloud 教程</a>，感谢分享<br>本人学习的代码仓库：<a href="https://github.com/Macintosh-c/springcloudstudy" target="_blank" rel="noopener">springcloudstudy</a></p>
-<p>版本：<br>Spring Cloud Finchley; Spring Boot 2.0.3</p>
-<h4 id="1-服务的注册与发现：Eureka以及高可用Eureka"><a href="#1-服务的注册与发现：Eureka以及高可用Eureka" class="headerlink" title="1.服务的注册与发现：Eureka以及高可用Eureka"></a>1.服务的注册与发现：Eureka以及高可用Eureka</h4><p>单机的eureka service创建没有什么难的，利用maven引入spring-cloud-starter-netflix-eureka-server依赖，做好相关的配置，启动项目即可。<br>客户端注册引入spring-cloud-starter-netflix-eureka-client依赖，做好eureka的service地址配置。<br>这里注意两个配置：<br>eureka.client.register-with-eureka: 由于该应用为注册中心，所以设置 为 false, 代表不向注册中心注册自己。<br>eureka.client.fetchRegistry: 由于注册中心的职责就是维护服务实例，它并不需要去检索服务， 所以也设置为 false。<br>高可用的情况下，设为默认true。</p>
-<p>高可用的eureka在配置方面相对复杂一点，尤其是对于eureka.instance.hostname，prefer-ip-address的理解，这里推荐链接<a href="https://blog.csdn.net/wangfei0904306/article/details/79056083" target="_blank" rel="noopener">构建高可用Eureka注册中心</a></p>
-<p>内容如下：<br>1)许多高可用的Eureka配置里都要设置hosts文件，它是必须的吗？<br>不是必须的，配置hosts文件的目的是使各个Eureka的eureka.instance.hostname不同。<br>Eureka互相注册要求各个Eureka实例的eureka.instance.hostname不同，如果相同，则会被Eureka标记为unavailable-replicas。我们最终把eureka.instance.hostname取了${spring.cloud.client.ipAddress}的值，这个值取的是当前启动Eureka的机器的IP，这样虽然配置一样但却自动区分了每台机器的Eureka，这时我们再取prefer-ip-address: true，就可以确保机器优先使用IP而不是到hosts解析域名。</p>
-<p>2)prefer-ip-address是做什么用的？<br>直观来说，如果点击下面注册中心的可用实例列表中的地址，访问结果会分以下几个情况：<br>hostname和prefer-ip-address都没有配置，则访问 主机名:服务名:端口号，如：<a href="http://desktop-1fkok7b:8761/info" target="_blank" rel="noopener">http://desktop-1fkok7b:8761/info</a><br>配置了hostname而没有配置prefer-ip-address，则访问 hostname:服务名:端口号，如：<a href="http://myhostname:8761/info" target="_blank" rel="noopener">http://myhostname:8761/info</a><br>一旦配置了prefer-ip-address，则访问 ipAddress:服务名:端口号，如：<a href="http://172.20.10.3:8761/info" target="_blank" rel="noopener">http://172.20.10.3:8761/info</a><br>在最终方案里我们已经把hostname设置为当前机器IP（${spring.cloud.client.ipAddress}），可以想见prefer-ip-address并不是必须的，但是合理使用它可以避免因为访问主机名而请求不到服务的情况，当然或许还节约了地址解析的损耗（虽然比较小）</p>
-<p>3)为什么把hostname设置为当前机器IP？<br>(这一段的前提是微服务规模在几十个以内)当然也可以设置为域名，但是你要配置hosts(如果配置到所有Docker镜像中显然庞大不够灵活),或者搭建内网DNS服务器（为高可用增加了一层负担），而随着统一配置中心的到来，或许直接使用IP倒是一个相当不错的选择。另外，如果你配置了hostname，那么其它服务注册到你的时候，其它服务的defaultZone要填写defaultZone: <a href="http://yourhostname:8761/eureka/" target="_blank" rel="noopener">http://yourhostname:8761/eureka/</a> 以确保没有问题，但如果你的hostname配置的就是IP，那其它服务的defaultZone里直接填写IP就可以，如defaultZone:<a href="http://172.20.10.3:8761/eureka/" target="_blank" rel="noopener">http://172.20.10.3:8761/eureka/</a> 。</p>
-<p>4)上面说的都是在不同机器上启动Eureka，能在同一台机器上启动多个Eureka吗？<br>当然可以，但是一定要保证各个Eureka的hostname不同，一种办法是常用的配置hosts文件，还有一种，是使用当前机器IP、127.0.0.1和localhost分别作为三个Eureka的hostname，事实证明也是可以的，在文末的Github的项目的no_hosts分支里有相应的实现。但是如果你使用127.0.0.1或localhost，注意一定要设置prefer-ip-address: false 。</p>
-<p>5)我在同一台机器上配置hosts，启动三个Eureka实例并设置prefer-ip-address: true，为什么显示unavailable-replicas?<br>一种原因是，你设置了prefer-ip-address: true，其它服务注册你时应该使用defaultZone:<a href="http://yourIP:8761/eureka/，图中使用的仍然是hostname名，导致错误发生。" target="_blank" rel="noopener">http://yourIP:8761/eureka/，图中使用的仍然是hostname名，导致错误发生。</a><br>另一种原因是，三个Eureka都设置了prefer-ip-address: true，导致最后解析出来的hostname都是相同的IP，使副本不可用。这也是4中为什么要设置prefer-ip-address: false的原因。</p>
-<h4 id="2-服务消费，负载均衡：rest-ribbon或者Feign"><a href="#2-服务消费，负载均衡：rest-ribbon或者Feign" class="headerlink" title="2.服务消费，负载均衡：rest+ribbon或者Feign"></a>2.服务消费，负载均衡：rest+ribbon或者Feign</h4><p>springcloud用的是一种客户端负责均衡的模式，即调用方做了负载均衡的配置，ribbon具有负载均衡的能力。<br>rest+ribbon:引入spring-cloud-starter-netflix-ribbon，通过在restTemplate的Bean上加上@LoadBalanced即可实现负载均衡的效果。<br>Feign:引入spring-cloud-starter-openfeign依赖，声明式的伪Http客户端，它使得写Http客户端变得更简单，同时具备ribbon负载均衡。</p>
-<h4 id="3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><a href="#3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine" class="headerlink" title="3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine"></a>3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</h4><h4 id="4-路由网关：zuul和Spring-Cloud-Gateway"><a href="#4-路由网关：zuul和Spring-Cloud-Gateway" class="headerlink" title="4.路由网关：zuul和Spring Cloud Gateway"></a>4.路由网关：zuul和Spring Cloud Gateway</h4><h4 id="5-分布式配置中心：Spring-Cloud-Config以及其高可用"><a href="#5-分布式配置中心：Spring-Cloud-Config以及其高可用" class="headerlink" title="5.分布式配置中心：Spring Cloud Config以及其高可用"></a>5.分布式配置中心：Spring Cloud Config以及其高可用</h4><p>引入spring-cloud-config-server依赖</p>
-<p>其大体的实现理解是这样的，通过springboot为其指定外部配置文件的加载位置来取代jar包之内的配置内容实现，将需要的配置文件存于特定的git上便于管理，config service启动读取该仓库指定分支，指定项目，指定环境的配置信息供其他的微服务加载配置。结合Spring Cloud Bus可以实现动态的更新微服务配置信息，而不需要重启服务。</p>
-<h4 id="6-消息总线：Spring-Cloud-Bus"><a href="#6-消息总线：Spring-Cloud-Bus" class="headerlink" title="6.消息总线：Spring Cloud Bus"></a>6.消息总线：Spring Cloud Bus</h4><p>Spring Cloud Bus 将分布式的节点用轻量的消息代理连接起来。它可以用于广播配置文件的更改或者服务之间的通讯，也可以用于监控。引入：spring-cloud-starter-bus-amqp</p>
-<p>目前实践的主要作用是实现通知微服务架构的配置文件的更改，其他什么场景下还可以使用该功能，还缺少认知。</p>
-<p>总之其大概作用理解是，通过消息中间件rabbitmq，实现在多服务的情况下，发送一同请求通知，实现所有服务相应的变更。发送通知需要配合spring-boot-starter-actuator依赖。</p>
-<p>优化：Spring Cloud Bus可以指定刷新范围，既然/bus/refresh接口提供了针对服务和实例进行配置更新的参数， 那么我们的架构也可以相应做出一些调整。 在之前的架构中， 服务的配置更新需要 通过向具体服务中的某个实例发送请求， 再触发对整个服务集群的配置更新。 虽然能实现功能， 但是这样的结果是， 我们指定的应用实例会不同千集群中的其他应用实例， 这样会 增加集群内部的复杂度， 不利于将来的运维工作。 比如， 需要对服务实例进行迁移，那么我们不得不修改Web Hook中的配置等。 所以要尽可能地让服务集群中的各个节点是对等的。</p>
-<p>我们主要做了以下这些改动:<br>1)在ConfigServer中也引入SpringCloudBus, 将配置服务端也加入到消息总线中来。<br>2)/bus/refresh请求不再发送到具体服务实例上， 而是发送给Config Server, 并 通过destination参数来指定需要更新配置的服务或实例。<br>通过上面的改动，我们的服务实例不需要再承担触发配置更新的职责。 同时，对于Git 的触发等配置都只需要针对ConfigServer即可， 从而简化了集群上的一些维护工作。</p>
-<h4 id="7-服务链路追踪：Spring-Cloud-Sleuth"><a href="#7-服务链路追踪：Spring-Cloud-Sleuth" class="headerlink" title="7.服务链路追踪：Spring Cloud Sleuth"></a>7.服务链路追踪：Spring Cloud Sleuth</h4><p>引入spring-cloud-starter-zipkin，server-zipkin通过直接起官方jar包即可，可通过浏览器打开9411默认端口查看zipkin界面。其作用类似于我们在开发过程中打印日记时，要加上请求唯一的traceId，便于后续request的跟踪于查询。</p>
-<p>问题：<br>使用spring-cloud-starter-zipkin + 独立部署的zipkin 进行链路追踪，但是如果项目同时使用 rabbitmq和spring-cloud-starter-bus-amqp 会导致 zipkin收集不到信息<br>原因：<br>spring-cloud-starter-bus-amqp 中包含了 spring-rabbit的全部组件。<br>在引入 spring-cloud-starter-zipkin 后，默认与zipkin通信使用的是 http的方式。<br>同时引入 spring-rabbit后，与zipkin通信会变成使用rabbitmq。<br>解决方法：<br>配置文件中加入或修改以下属性。就可以继续使用http的方式向zipkin通信。spring.zipkin.sender.type: web</p>
-<p>Sampler.ALWAYS_SAMPLE<br>Sampler：采样器，根据traceId来判断是否一条trace需要被采样，即上报到zipkin<br>Sampler.ALWAYS_SAMPLE 永远需要被采样 Sampler.NEVER_SAMPLE 永远不采样</p>
-<p>spring.sleuth.sampler.probability=1.0表示以 100% 的概率将链路的数据上传给 Zipkin Server ， 在默认情况下 ， 该值为0.1</p>
+		<p>最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。</p>
+<h3 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h3><p>docker 是一种容器技术，作用是用来快速部署服务。</p>
+<p><strong>为什么说 docker 是快速部署</strong></p>
+<p>我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！<br>比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根就没有 python 环境。<br>好了，这个时候你怎么解决呢。 对，只要去新机器上你就要部署 python。<br>嗯~ 好吧， 部署 python 就 python，但是你的项目里面还要用到 MySQL，好的没问题， 你又要去用 pip 去安装 python 的 mysql 模块。 哦对了， 我记我们的项目里面还有 redis， 两种非对称加密，还有三方队列， 哦， 还有阿里云的接口，对对对对对对哦。 乱七八糟的东西真的好多，搞完了几个小时没有了，遇到网络卡了，那就更没有谱了。</p>
+<p><strong>好了， 我们进化到，快速1.0 时代</strong></p>
+<p>我们把要安装的东西全都放进离线安装包里面，再写个 bash 脚本<br>对，这种事情真的有过。 部署全靠一个 bash 脚本，毕竟不用手动了么。 可是就是苦了写脚本的人，我就写过一个脚本写了好久。</p>
+<p><strong>于是， 我们又进化了， 快速2.0时代</strong></p>
+<p>我们把整个系统做成了镜像，存在了光盘里面，每当要架设的时候赶快用镜像做出一个新的系统！<br>可能经历过的自然会懂，还特么要做镜像啊，离机房远咋办啊！！我们做游戏，开服快，更新更快！我们版本更新过快怎么办啊！！我们还要刻刻刻么？ 我们的 tornado 又更新了，我去，我们客户端的 protobuf 也更新了，可是我们有100台服务器啊，为了这一点小小的东西更新么？西八！</p>
+<p><strong>于是，我们再次加入光荣的进化， 快速3.0时代</strong></p>
+<p>我们把服务装进了 docker 中<br>我们把做好的镜像，一个命令 pull 了下来，嗯，蛮快又一个命令 docker start XXXXXX 服务起来了。哦，你说多服务？好吧那就写个docker-compose.file吧。 嗯哼？ 你说集群部署 来来来， 有Kubernetes、Mesos，Fleet和Swarm 任君挑选，不好用不要钱。</p>
+<p>docker 是部署的最佳辅助，即使你烂成渣渣，docker 也可以扶你上王者。<br>那Docker由什么组成呢， 包括三个基本概念:</p>
+<ul>
+<li>仓库(Repository)</li>
+<li>镜像(Image)</li>
+<li>容器(Container)</li>
+</ul>
+<p>1，其中Registry是Docker用于存放镜像文件的仓库，Docker 仓库的概念跟Git 类似.<br>2，所谓镜像就是构建容器的源代码，是一个只读的模板，由一层一层的文件系统组成的，类似于虚拟机的镜像.<br>3，那么容器就是由Docker镜像创建的运行实例，类似于虚拟机，容器之间是相互隔离的，包含特定的应用及其所需的依赖文件.</p>
+<h3 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h3><p>如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum install docker-ce</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure></p>
+<p>1安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的。<br>2设置yum源。<br>3安装Docker，命令：yum install docker-ce-版本号，版本号可以通过yum list docker-ce –showduplicates | sort -r查看，我这边不带版本号用的是默认最新。<br>4启动Docker。<br>5加入开机启动。<br>6验证安装是否成功(有client和service两部分表示docker安装启动都成功了)。</p>
+<h3 id="常用Docker命令"><a href="#常用Docker命令" class="headerlink" title="常用Docker命令"></a>常用Docker命令</h3><ol>
+<li>docker ps 查看当前正在运行的容器</li>
+<li>docker ps -a 查看所有容器的状态</li>
+<li>docker start/stop id/name 启动/停止某个容器</li>
+<li>docker attach id 进入某个容器(使用exit退出后容器也跟着停止运行)</li>
+<li>docker exec -ti id /bin/bash启动一个伪终端以交互式的方式进入某个容器（使用exit退出后容器不停止运行）</li>
+<li>docker images 查看本地镜像</li>
+<li>docker rm id/name 删除某个容器</li>
+<li>docker rmi id/name 删除某个镜像</li>
+<li>docker run –name test -ti ubuntu /bin/bash  复制ubuntu容器并且重命名为test且运行，然后以伪终端交互式方式进入容器，运行bash</li>
+<li>docker build -t soar/centos:7.1 .  通过当前目录下的Dockerfile创建一个名为soar/centos:7.1的镜像</li>
+<li>docker run -d -p 2222:22 –name test soar/centos:7.1  以镜像soar/centos:7.1创建名为test的容器，并以后台模式运行，并做端口映射到宿主机2222端口，P参数重启容器宿主机端口会发生改变</li>
+</ol>
 
 	</div>
 
@@ -234,13 +245,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Spring-cloud/">Spring cloud</a>
+  <a class="article-category-link" href="/categories/Docker/">Docker</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Spring-cloud/">Spring cloud</a>
+  <span></span> <a href="/tags/docker安装/">docker安装</a>
   </div>
 
 </div>
@@ -249,7 +260,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2019/09/16/spring/SpringCloud/springcloud尝试/" data-title="Spring cloud | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/" data-title="centos安装docker | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -262,18 +273,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2019/09/18/Databases/postgre/Mac下安装Postgre/" title="Mac下安装Postgre">
+ <a href="/2019/09/25/Ansible/ansible详解一/" title="ansible详解(一)">
   <strong>上一篇：</strong><br/>
   <span>
-  Mac下安装Postgre</span>
+  ansible详解(一)</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2019/09/12/mq/RabbitMQ/Mac下安装rabbitmq/"  title="Mac下安装rabbitmq">
+<a href="/2019/09/18/Databases/memcached/Mac下安装memcached/"  title="Mac下安装Memcached">
  <strong>下一篇：</strong><br/> 
- <span>Mac下安装rabbitmq
+ <span>Mac下安装Memcached
 </span>
 </a>
 </div>
@@ -310,7 +321,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud"><span class="toc-number">1.</span> <span class="toc-text">Spring Cloud</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-服务的注册与发现：Eureka以及高可用Eureka"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.服务的注册与发现：Eureka以及高可用Eureka</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-服务消费，负载均衡：rest-ribbon或者Feign"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.服务消费，负载均衡：rest+ribbon或者Feign</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-路由网关：zuul和Spring-Cloud-Gateway"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.路由网关：zuul和Spring Cloud Gateway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-分布式配置中心：Spring-Cloud-Config以及其高可用"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.分布式配置中心：Spring Cloud Config以及其高可用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-消息总线：Spring-Cloud-Bus"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.消息总线：Spring Cloud Bus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-服务链路追踪：Spring-Cloud-Sleuth"><span class="toc-number">1.0.7.</span> <span class="toc-text">7.服务链路追踪：Spring Cloud Sleuth</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-简介"><span class="toc-number">1.</span> <span class="toc-text">Docker 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker安装"><span class="toc-number">2.</span> <span class="toc-text">Docker安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用Docker命令"><span class="toc-number">3.</span> <span class="toc-text">常用Docker命令</span></a></li></ol>
  
   </div>
 
