@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>centos安装docker | macintosh-c&#39;s blog</title>
+    <title>Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别 | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。 Docker 简介docker 是一种容器技术，作用是用来快速部署服务。 为什么说 docker 是快速部署 我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根">
+    <meta name="description" content="最近在学习Docker容器，了解到一些相关的技术，像是Kubernetes，Docker-compose，Docker Swarm，分不清这些东西之间的区别，特意去研究了一下，分享一下，适合刚入门学习容器的同学了解。 DcokerDocker 这个东西所扮演的角色，容易理解，它是一个容器引擎，也就是说实际上我们的容器最终是由Docker创建，运行在Docker中，其他相关的容器技术都是以Docke">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centos安装docker">
-<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/index.html">
+<meta property="og:title" content="Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/25/Docker/docker理解篇/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。 Docker 简介docker 是一种容器技术，作用是用来快速部署服务。 为什么说 docker 是快速部署 我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根">
+<meta property="og:description" content="最近在学习Docker容器，了解到一些相关的技术，像是Kubernetes，Docker-compose，Docker Swarm，分不清这些东西之间的区别，特意去研究了一下，分享一下，适合刚入门学习容器的同学了解。 DcokerDocker 这个东西所扮演的角色，容易理解，它是一个容器引擎，也就是说实际上我们的容器最终是由Docker创建，运行在Docker中，其他相关的容器技术都是以Docke">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-25T07:09:34.756Z">
+<meta property="og:updated_time" content="2019-09-25T07:18:00.922Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centos安装docker">
-<meta name="twitter:description" content="最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。 Docker 简介docker 是一种容器技术，作用是用来快速部署服务。 为什么说 docker 是快速部署 我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根">
+<meta name="twitter:title" content="Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别">
+<meta name="twitter:description" content="最近在学习Docker容器，了解到一些相关的技术，像是Kubernetes，Docker-compose，Docker Swarm，分不清这些东西之间的区别，特意去研究了一下，分享一下，适合刚入门学习容器的同学了解。 DcokerDocker 这个东西所扮演的角色，容易理解，它是一个容器引擎，也就是说实际上我们的容器最终是由Docker创建，运行在Docker中，其他相关的容器技术都是以Docke">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/09/24/Docker/docker安装/" title="centos安装docker" itemprop="url">centos安装docker</a>
+      <a href="/2019/09/25/Docker/docker理解篇/" title="Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别" itemprop="url">Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2019-09-24T05:45:56.000Z" itemprop="datePublished"> 发表于 2019-09-24</time>
+    <time datetime="2019-09-25T07:04:56.000Z" itemprop="datePublished"> 发表于 2019-09-25</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,42 +98,19 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-简介"><span class="toc-number">1.</span> <span class="toc-text">Docker 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker安装"><span class="toc-number">2.</span> <span class="toc-text">Docker安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用Docker命令"><span class="toc-number">3.</span> <span class="toc-text">常用Docker命令</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dcoker"><span class="toc-number">1.</span> <span class="toc-text">Dcoker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Compose"><span class="toc-number">2.</span> <span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Swarm"><span class="toc-number">3.</span> <span class="toc-text">Docker Swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes"><span class="toc-number">4.</span> <span class="toc-text">Kubernetes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
-		<p>最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。</p>
-<h3 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h3><p>docker 是一种容器技术，作用是用来快速部署服务。</p>
-<p><strong>为什么说 docker 是快速部署</strong></p>
-<p>我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！<br>比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根就没有 python 环境。<br>好了，这个时候你怎么解决呢。 对，只要去新机器上你就要部署 python。<br>嗯~ 好吧， 部署 python 就 python，但是你的项目里面还要用到 MySQL，好的没问题， 你又要去用 pip 去安装 python 的 mysql 模块。 哦对了， 我记我们的项目里面还有 redis， 两种非对称加密，还有三方队列， 哦， 还有阿里云的接口，对对对对对对哦。 乱七八糟的东西真的好多，搞完了几个小时没有了，遇到网络卡了，那就更没有谱了。</p>
-<p><strong>好了， 我们进化到，快速1.0 时代</strong></p>
-<p>我们把要安装的东西全都放进离线安装包里面，再写个 bash 脚本<br>对，这种事情真的有过。 部署全靠一个 bash 脚本，毕竟不用手动了么。 可是就是苦了写脚本的人，我就写过一个脚本写了好久。</p>
-<p><strong>于是， 我们又进化了， 快速2.0时代</strong></p>
-<p>我们把整个系统做成了镜像，存在了光盘里面，每当要架设的时候赶快用镜像做出一个新的系统！<br>可能经历过的自然会懂，还特么要做镜像啊，离机房远咋办啊！！我们做游戏，开服快，更新更快！我们版本更新过快怎么办啊！！我们还要刻刻刻么？ 我们的 tornado 又更新了，我去，我们客户端的 protobuf 也更新了，可是我们有100台服务器啊，为了这一点小小的东西更新么？西八！</p>
-<p><strong>于是，我们再次加入光荣的进化， 快速3.0时代</strong></p>
-<p>我们把服务装进了 docker 中<br>我们把做好的镜像，一个命令 pull 了下来，嗯，蛮快又一个命令 docker start XXXXXX 服务起来了。哦，你说多服务？好吧那就写个docker-compose.file吧。 嗯哼？ 你说集群部署 来来来， 有Kubernetes、Mesos，Fleet和Swarm 任君挑选，不好用不要钱。</p>
-<p>docker 是部署的最佳辅助，即使你烂成渣渣，docker 也可以扶你上王者。<br>那Docker由什么组成呢， 包括三个基本概念:</p>
-<ul>
-<li>仓库(Repository)</li>
-<li>镜像(Image)</li>
-<li>容器(Container)</li>
-</ul>
-<p>1，其中Registry是Docker用于存放镜像文件的仓库，Docker 仓库的概念跟Git 类似.<br>2，所谓镜像就是构建容器的源代码，是一个只读的模板，由一层一层的文件系统组成的，类似于虚拟机的镜像.<br>3，那么容器就是由Docker镜像创建的运行实例，类似于虚拟机，容器之间是相互隔离的，包含特定的应用及其所需的依赖文件.</p>
-<h3 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h3><p>如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum install docker-ce</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure></p>
-<p>1安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的。<br>2设置yum源。<br>3安装Docker，命令：yum install docker-ce-版本号，版本号可以通过yum list docker-ce –showduplicates | sort -r查看，我这边不带版本号用的是默认最新。<br>4启动Docker。<br>5加入开机启动。<br>6验证安装是否成功(有client和service两部分表示docker安装启动都成功了)。</p>
-<h3 id="常用Docker命令"><a href="#常用Docker命令" class="headerlink" title="常用Docker命令"></a>常用Docker命令</h3><ol>
-<li>docker ps 查看当前正在运行的容器</li>
-<li>docker ps -a 查看所有容器的状态</li>
-<li>docker start/stop id/name 启动/停止某个容器</li>
-<li>docker attach id 进入某个容器(使用exit退出后容器也跟着停止运行)</li>
-<li>docker exec -ti id /bin/bash启动一个伪终端以交互式的方式进入某个容器（使用exit退出后容器不停止运行）</li>
-<li>docker images 查看本地镜像</li>
-<li>docker rm id/name 删除某个容器</li>
-<li>docker rmi id/name 删除某个镜像</li>
-<li>docker run –name test -ti ubuntu /bin/bash  复制ubuntu容器并且重命名为test且运行，然后以伪终端交互式方式进入容器，运行bash</li>
-<li>docker build -t soar/centos:7.1 .  通过当前目录下的Dockerfile创建一个名为soar/centos:7.1的镜像</li>
-<li>docker run -d -p 2222:22 –name test soar/centos:7.1  以镜像soar/centos:7.1创建名为test的容器，并以后台模式运行，并做端口映射到宿主机2222端口，P参数重启容器宿主机端口会发生改变</li>
-</ol>
+		<p>最近在学习Docker容器，了解到一些相关的技术，像是Kubernetes，Docker-compose，Docker Swarm，分不清这些东西之间的区别，特意去研究了一下，分享一下，适合刚入门学习容器的同学了解。</p>
+<h2 id="Dcoker"><a href="#Dcoker" class="headerlink" title="Dcoker"></a>Dcoker</h2><p>Docker 这个东西所扮演的角色，容易理解，它是一个容器引擎，也就是说实际上我们的容器最终是由Docker创建，运行在Docker中，其他相关的容器技术都是以Docker为基础，它是我们使用其他容器技术的核心。</p>
+<h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h2><p>Docker-Compose 是用来管理你的容器的，有点像一个容器的管家，想象一下当你的Docker中有成百上千的容器需要启动，如果一个一个的启动那得多费时间。有了Docker-Compose你只需要编写一个文件，在这个文件里面声明好要启动的容器，配置一些参数，执行一下这个文件，Docker就会按照你声明的配置去把所有的容器启动起来，但是Docker-Compose只能管理当前主机上的Docker，也就是说不能去启动其他主机上的Docker容器</p>
+<h2 id="Docker-Swarm"><a href="#Docker-Swarm" class="headerlink" title="Docker Swarm"></a>Docker Swarm</h2><p>Docker Swarm 是一款用来管理多主机上的Docker容器的工具，可以负责帮你启动容器，监控容器状态，如果容器的状态不正常它会帮你重新帮你启动一个新的容器，来提供服务，同时也提供服务之间的负载均衡，而这些东西Docker-Compose 是做不到的</p>
+<h2 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h2><p>Kubernetes它本身的角色定位是和Docker Swarm 是一样的，也就是说他们负责的工作在容器领域来说是相同的部分，当然也有自己一些不一样的特点。这个就像是Eclipse和IDEA一样，也是一个跨主机的容器管理平台。它是谷歌公司根据自身的多年的运维经验研发的一款容器管理平台。而Docker Swarm则是由Docker 公司研发的。</p>
+<p>既然这两个东西是一样的，那就面临选择的问题，应该学习哪一个技术呢?实际上这两年Kubernetes已经成为了很多大公司的默认使用的容器管理技术，而Docker Swarm已经在这场与Kubernetes竞争中已经逐渐失势，如今容器管理领域已经开始已经逐渐被Kubernetes一统天下了。所以建议大家学习的时候，应该多考虑一下这门技术在行业里面是不是有很多人在使用。</p>
+<p>需要注意的是，虽然Docker Swarm在与Kubernetes的竞争中败下阵来，但是这个跟Docker这个容器引擎没有太大关系，它还是整个容器领域技术的基石，Kubernetes离开他什么也不是。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Docker是容器技术的核心、基础，Docker Compose是一个基于Docker的单主机容器编排工具，功能并不像Docker Swarm和Kubernetes是基于Dcoker的跨主机的容器管理平台那么丰富。</p>
+<p>转载自：<a href="https://blog.csdn.net/notsaltedfish/article/details/80959913" target="_blank" rel="noopener">Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别</a></p>
 
 	</div>
 
@@ -260,7 +237,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/" data-title="centos安装docker | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/09/25/Docker/docker理解篇/" data-title="Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -272,19 +249,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2019/09/25/Ansible/ansible详解一/" title="Ansible详解">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Ansible详解</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/09/18/Databases/memcached/Mac下安装memcached/"  title="Mac下安装Memcached">
+<a href="/2019/09/25/Docker/DockerCompose/"  title="Docker Compose">
  <strong>下一篇：</strong><br/> 
- <span>Mac下安装Memcached
+ <span>Docker Compose
 </span>
 </a>
 </div>
@@ -321,7 +290,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-简介"><span class="toc-number">1.</span> <span class="toc-text">Docker 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker安装"><span class="toc-number">2.</span> <span class="toc-text">Docker安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用Docker命令"><span class="toc-number">3.</span> <span class="toc-text">常用Docker命令</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dcoker"><span class="toc-number">1.</span> <span class="toc-text">Dcoker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Compose"><span class="toc-number">2.</span> <span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Swarm"><span class="toc-number">3.</span> <span class="toc-text">Docker Swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes"><span class="toc-number">4.</span> <span class="toc-text">Kubernetes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 
