@@ -4,25 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>java基础之fastjson（二） | macintosh-c&#39;s blog</title>
+    <title>Mac下VirtualBox安装 | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="@JSONField 注解说明导入@JSONField 注解：import com.alibaba.fastjson.annotation.JSONField; 常见用法：1. 指定字段的名称12@JSONField(name=&amp;quot;role_name&amp;quot;)  private String roleName; 2. 使用format制定日期格式12345public class A">
-<meta name="keywords" content="fastjson">
+    <meta name="description" content="Mac下VirtualBox的安装过程很简单，整理如下，有些坑需要注意 1.下载及安装1). VirtualBox官方下载地址：https://www.virtualbox.org/wiki/Downloads点击“OS X hosts”下载对应的mac版本。下载完了直接点击安装就行。此处有个坑，virtualbox在安装的时候需要安装内核扩展（Kernel extenstion），而macOS">
+<meta name="keywords" content="VirtualBox安装">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java基础之fastjson（二）">
-<meta property="og:url" content="http://macintosh-c.coding.me/2018/09/10/java/basic/fastjson2/index.html">
+<meta property="og:title" content="Mac下VirtualBox安装">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/26/VirtualBox/Mac下安装VirtualBox/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="@JSONField 注解说明导入@JSONField 注解：import com.alibaba.fastjson.annotation.JSONField; 常见用法：1. 指定字段的名称12@JSONField(name=&amp;quot;role_name&amp;quot;)  private String roleName; 2. 使用format制定日期格式12345public class A">
+<meta property="og:description" content="Mac下VirtualBox的安装过程很简单，整理如下，有些坑需要注意 1.下载及安装1). VirtualBox官方下载地址：https://www.virtualbox.org/wiki/Downloads点击“OS X hosts”下载对应的mac版本。下载完了直接点击安装就行。此处有个坑，virtualbox在安装的时候需要安装内核扩展（Kernel extenstion），而macOS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-20T06:16:05.506Z">
+<meta property="og:image" content="http://macintosh-c.coding.me/img/VirtualBox/virtualbox.png">
+<meta property="og:image" content="http://macintosh-c.coding.me/img/VirtualBox/virtualbox2.jpg">
+<meta property="og:image" content="http://macintosh-c.coding.me/img/VirtualBox/virtualbox1.jpg">
+<meta property="og:updated_time" content="2019-09-26T15:02:45.613Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java基础之fastjson（二）">
-<meta name="twitter:description" content="@JSONField 注解说明导入@JSONField 注解：import com.alibaba.fastjson.annotation.JSONField; 常见用法：1. 指定字段的名称12@JSONField(name=&amp;quot;role_name&amp;quot;)  private String roleName; 2. 使用format制定日期格式12345public class A">
+<meta name="twitter:title" content="Mac下VirtualBox安装">
+<meta name="twitter:description" content="Mac下VirtualBox的安装过程很简单，整理如下，有些坑需要注意 1.下载及安装1). VirtualBox官方下载地址：https://www.virtualbox.org/wiki/Downloads点击“OS X hosts”下载对应的mac版本。下载完了直接点击安装就行。此处有个坑，virtualbox在安装的时候需要安装内核扩展（Kernel extenstion），而macOS">
+<meta name="twitter:image" content="http://macintosh-c.coding.me/img/VirtualBox/virtualbox.png">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/09/10/java/basic/fastjson2/" title="java基础之fastjson（二）" itemprop="url">java基础之fastjson（二）</a>
+      <a href="/2019/09/26/VirtualBox/Mac下安装VirtualBox/" title="Mac下VirtualBox安装" itemprop="url">Mac下VirtualBox安装</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2018-09-10T14:10:52.000Z" itemprop="datePublished"> 发表于 2018-09-10</time>
+    <time datetime="2019-09-26T03:08:56.000Z" itemprop="datePublished"> 发表于 2019-09-26</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,16 +102,25 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JSONField-注解说明"><span class="toc-number">1.</span> <span class="toc-text">@JSONField 注解说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#导入-JSONField-注解："><span class="toc-number">1.0.1.</span> <span class="toc-text">导入@JSONField 注解：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见用法："><span class="toc-number">1.0.2.</span> <span class="toc-text">常见用法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-指定字段的名称"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">1. 指定字段的名称</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-使用format制定日期格式"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">2. 使用format制定日期格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-指定字段的顺序"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">3. 指定字段的顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-使用serialize-deserialize指定字段不序列化"><span class="toc-number">1.0.2.4.</span> <span class="toc-text">4. 使用serialize/deserialize指定字段不序列化</span></a></li></ol></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载及安装"><span class="toc-number">1.</span> <span class="toc-text">1.下载及安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建centos7虚拟机"><span class="toc-number">2.</span> <span class="toc-text">2.创建centos7虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-centos7系统安装"><span class="toc-number">3.</span> <span class="toc-text">3.centos7系统安装</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="JSONField-注解说明"><a href="#JSONField-注解说明" class="headerlink" title="@JSONField 注解说明"></a>@JSONField 注解说明</h1><h3 id="导入-JSONField-注解："><a href="#导入-JSONField-注解：" class="headerlink" title="导入@JSONField 注解："></a>导入@JSONField 注解：</h3><p><code>import com.alibaba.fastjson.annotation.JSONField;</code></p>
-<h3 id="常见用法："><a href="#常见用法：" class="headerlink" title="常见用法："></a>常见用法：</h3><h4 id="1-指定字段的名称"><a href="#1-指定字段的名称" class="headerlink" title="1. 指定字段的名称"></a>1. 指定字段的名称</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@JSONField(name=&quot;role_name&quot;)  </span><br><span class="line">private String roleName;</span><br></pre></td></tr></table></figure>
-<h4 id="2-使用format制定日期格式"><a href="#2-使用format制定日期格式" class="headerlink" title="2. 使用format制定日期格式"></a>2. 使用format制定日期格式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class A &#123;  </span><br><span class="line">     // 配置date序列化和反序列使用yyyyMMdd日期格式  </span><br><span class="line">     @JSONField(format=&quot;yyyyMMdd&quot;)  </span><br><span class="line">     public Date date;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="3-指定字段的顺序"><a href="#3-指定字段的顺序" class="headerlink" title="3. 指定字段的顺序"></a>3. 指定字段的顺序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">import com.alibaba.fastjson.JSON;</span><br><span class="line">import com.alibaba.fastjson.annotation.JSONField;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by gary on 16/6/21.</span><br><span class="line"> */</span><br><span class="line">public class FieldSequence &#123;</span><br><span class="line"></span><br><span class="line">    @JSONField(ordinal=1,name = &quot;name_1&quot;)</span><br><span class="line">    private String name;</span><br><span class="line">    @JSONField(ordinal=2)</span><br><span class="line">    private int age;</span><br><span class="line">    @JSONField(ordinal=3)</span><br><span class="line">    private String gender;</span><br><span class="line"></span><br><span class="line">    public FieldSequence(String name,int age,String gender)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">        this.gender = gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getGender() &#123;</span><br><span class="line">        return gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setGender(String gender) &#123;</span><br><span class="line">        this.gender = gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line"></span><br><span class="line">        FieldSequence fieldSequence = new FieldSequence(&quot;lily&quot;,20,&quot;woman&quot;);</span><br><span class="line">        System.out.println(JSON.toJSONString(fieldSequence));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>属性中不使用@JSONField注解输出如下:<br><code>{&quot;age&quot;:20,&quot;gender&quot;:&quot;woman&quot;,&quot;name&quot;:&quot;lily&quot;}  //按属性字母顺序排序</code><br>使用注解后，上面程序输出如下:<br><code>{&quot;name_1&quot;:&quot;lily&quot;,&quot;age&quot;:20,&quot;gender&quot;:&quot;woman&quot;}</code></p>
-<h4 id="4-使用serialize-deserialize指定字段不序列化"><a href="#4-使用serialize-deserialize指定字段不序列化" class="headerlink" title="4. 使用serialize/deserialize指定字段不序列化"></a>4. 使用serialize/deserialize指定字段不序列化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class A &#123;</span><br><span class="line">      @JSONField(serialize=false)</span><br><span class="line">      public Date date;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+		<p>Mac下VirtualBox的安装过程很简单，整理如下，有些坑需要注意</p>
+<h3 id="1-下载及安装"><a href="#1-下载及安装" class="headerlink" title="1.下载及安装"></a>1.下载及安装</h3><p>1). VirtualBox官方下载地址：<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">https://www.virtualbox.org/wiki/Downloads</a><br>点击“OS X hosts”下载对应的mac版本。<br>下载完了直接点击安装就行。此处有个坑，virtualbox在安装的时候需要安装内核扩展（Kernel extenstion），而macOS 10.13 High Sierra的新安全特性会阻止外部内核扩展的安装，所以安装总是会被系统拦截，安装最后一步总是提示失败。<br>解决办法：<br>进入Preferences &gt; Security &amp; Privacy &gt; General: 然后手动允许<br>或者<br>在终端手动禁用此安全特性sudo spctl –master-disable</p>
+<p>2). 创建centos7虚拟机需要其镜像文件，官方下载地址：<a href="http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso，约4G多大小" target="_blank" rel="noopener">http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso，约4G多大小</a> 也可以选择其他相应的版本。</p>
+<p>3). 启动桌面VirtualBox程序，如果语言不对，可以到偏好设置中修改为简体中文。</p>
+<h3 id="2-创建centos7虚拟机"><a href="#2-创建centos7虚拟机" class="headerlink" title="2.创建centos7虚拟机"></a>2.创建centos7虚拟机</h3><p>在启动的VirtualBox界面上点击新建，接下来的配置是我在本地创建centos7的配置，可参考或修改，视个人宿主电脑配置或者需要而定，个别会详解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">名称：自己起</span><br><span class="line">文件夹：默认或者修改</span><br><span class="line">类型：Linux</span><br><span class="line">版本：Red Hat(64-bit)</span><br><span class="line">内存大小：1024</span><br><span class="line">虚拟硬盘：现在创建虚拟硬盘</span><br><span class="line">硬盘文件类型：VDI</span><br><span class="line">存储在物理硬盘上：动态分配</span><br><span class="line">文件位置和大小：位置默认，大小默认8G</span><br></pre></td></tr></table></figure></p>
+<p>点击创建ok<br>除此之外还需要做一些额外的配置，重中之中时网络的配置，我们最终要达到的效果是：<br>1.所有的虚拟机可以互ping通。<br>2.宿主机与所有的虚拟机可以互ping通。<br>3.所有的虚拟机可以利用宿主机的网络ping通外网地址。比如百度。<br>4.宿主机切换网络，不影响到虚拟机的ip变更，且各方之间互ping不受影响。</p>
+<p><strong>这里补充一点知识，关于VirtualBox的四种网络连接方式：解决宿主机与虚拟机互ping不通</strong><br><img src="/img/VirtualBox/virtualbox.png" alt="VirtualBox的四种网络连接方式"><br>将网络-连接方式改为桥接网卡讲道理是可以满足前3条，但是当宿主切换网络后，虚拟机与宿主机ping不通，重启虚拟机后的ip也会变动，这样让后续使用虚拟机带来很多不便，所以采用NAT+Host-Only方式。具体配置如下：<br>1.在 virtualbox 偏好设置里设置添加 NAT网络<br><img src="/img/VirtualBox/virtualbox2.jpg" alt="NAT网络"><br>2.在virtualbox工具栏找到网络，添加Host-Only<br><img src="/img/VirtualBox/virtualbox1.jpg" alt="only-host"></p>
+<p>紧接着右击新建的虚拟机，设置-网络<br>1）网卡1-启用网络连接，连接方式：NAT网络<br>2）网卡2-启用网络连接，连接方式：仅主机（Host-Only）网络</p>
+<p>除此之外还有一点其他配置如下<br>3)系统-启动顺序，把光驱移到最上。<br>4)显示-显卡控制器，选择VBoxVGA。</p>
+<p>最后点击启动，弹框中选择刚刚下载的4G多的镜像文件，启动，如果启动的窗口太小，可以通过状态栏视图-自动缩放模式，也可以通过设备下的安装增强功能开启无缝模式和其他一些功能。</p>
+<h3 id="3-centos7系统安装"><a href="#3-centos7系统安装" class="headerlink" title="3.centos7系统安装"></a>3.centos7系统安装</h3><p>接下来就是启动后的虚拟机中centos系统的安装<br>1）选择Install Centos 7<br>2）language选择中文-简体中文<br>3）日记和时间，键盘，语言支持全部默认<br>4）软件选择GNOME桌面，附加全部选上，当然也可以选择其他类型<br>5）安装位置：自动配置分区<br>6）网络和主机名：由于之前我们设置了两个网络连接方式，这里会有两个以太网(enpOs3和enpOs8),分别右上角打开，前者为NAT网络，使虚拟机可以访问wifi网络，后者可以固定ip，使主机以及虚拟机之间互通ok。enpOs8显示的ip地址即为此虚拟机的固定ip，后续可以通过在centos中执行ifconfig命令查看。</p>
+<p>点击开始安装后用户设置，分别设置<br>7）root密码和新建一个账户，同时设置为管理员，等待安装。安装完毕后提示重启，重启后<br>8）接收许可证，<br>9）再次设置下网络和主机名后，<br>完成配置，即可正常进入系统，有交互桌面，可以通过终端互ping验证一下。<br>到这里还有最后一步设置，<br>10）cd到/etc/sysconfig/network-scripts可以看到ifcfg-enpOs3和ifcfg-enpOs8两个文件，确认里面的ONBOOT参数是否设为yes，没有的话改下，保存后，重启网络：命令service network restart。这样的话即使重启虚拟机，ip也会一直固定存在。</p>
+<p><strong>关于上述操作过程中虚拟机与宿主机间的鼠标切换问题，可以通过安装增强功能使其可以自由切换，也可通过左command键来切换。</strong></p>
+<p>到此虚拟机创建完毕，可以多建几个，供后续学习集群等使用。</p>
+
 	</div>
 
 	
@@ -218,13 +231,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/java基础/">java基础</a>
+  <a class="article-category-link" href="/categories/VirtualBox/">VirtualBox</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/fastjson/">fastjson</a>
+  <span></span> <a href="/tags/VirtualBox安装/">VirtualBox安装</a>
   </div>
 
 </div>
@@ -233,7 +246,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2018/09/10/java/basic/fastjson2/" data-title="java基础之fastjson（二） | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/09/26/VirtualBox/Mac下安装VirtualBox/" data-title="Mac下VirtualBox安装 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -245,19 +258,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2019/08/20/Databases/mysql/Mac下安装Mysql/" title="Mac下安装Mysql">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Mac下安装Mysql</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/09/10/java/basic/fastjson/"  title="java基础之fastjson（一）">
+<a href="/2019/09/25/java/basic/centos7安装jdk/"  title="centos7安装jdk">
  <strong>下一篇：</strong><br/> 
- <span>java基础之fastjson（一）
+ <span>centos7安装jdk
 </span>
 </a>
 </div>
@@ -294,7 +299,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JSONField-注解说明"><span class="toc-number">1.</span> <span class="toc-text">@JSONField 注解说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#导入-JSONField-注解："><span class="toc-number">1.0.1.</span> <span class="toc-text">导入@JSONField 注解：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见用法："><span class="toc-number">1.0.2.</span> <span class="toc-text">常见用法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-指定字段的名称"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">1. 指定字段的名称</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-使用format制定日期格式"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">2. 使用format制定日期格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-指定字段的顺序"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">3. 指定字段的顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-使用serialize-deserialize指定字段不序列化"><span class="toc-number">1.0.2.4.</span> <span class="toc-text">4. 使用serialize/deserialize指定字段不序列化</span></a></li></ol></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载及安装"><span class="toc-number">1.</span> <span class="toc-text">1.下载及安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建centos7虚拟机"><span class="toc-number">2.</span> <span class="toc-text">2.创建centos7虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-centos7系统安装"><span class="toc-number">3.</span> <span class="toc-text">3.centos7系统安装</span></a></li></ol>
  
   </div>
 
