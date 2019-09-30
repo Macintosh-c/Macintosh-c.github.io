@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2019-09-30T09:17:14.018Z</updated>
+  <updated>2019-09-30T09:21:14.774Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://macintosh-c.coding.me/2019/09/30/test/Sonar/docker%E5%AE%89%E8%A3%85sonar/"/>
     <id>http://macintosh-c.coding.me/2019/09/30/test/Sonar/docker安装sonar/</id>
     <published>2019-09-30T08:45:56.000Z</published>
-    <updated>2019-09-30T09:17:14.018Z</updated>
+    <updated>2019-09-30T09:21:14.774Z</updated>
     
-    <content type="html"><![CDATA[<p>今天用docker在服务器上部署了个sonar，并push代码进行检测，各种指数相当低，先不谈代码优化，记录下在部署过程中碰到的个坑</p><h3 id="1-安装docker，docker-compose"><a href="#1-安装docker，docker-compose" class="headerlink" title="1.安装docker，docker-compose"></a>1.安装docker，docker-compose</h3><p><a href="http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/">安装docker</a><br><a href="http://macintosh-c.coding.me/2019/09/25/Docker/DockerCompose/">安装docker-compose</a></p><h3 id="2-部署sonar"><a href="#2-部署sonar" class="headerlink" title="2.部署sonar"></a>2.部署sonar</h3><p>docker部署sonar很简单，一句命令就行了，如下：<br><code>docker run -d --name sonarqube -p 9000:9000 sonarqube</code><br>之后便可以访问指定服务器的9000端口访问sonar，默认账户密码：admin/admin</p><p>此时会发现用的是内嵌的数据库，不能自动升级以及不支持很多扩展功能，只建议测试用，于是使用链接数据库的方式重新部署，这里采用postgre。</p><p>docker stop，docker rm，一顿乱操作删除了之前创建的sonar，再调研一番如何链接postgre数据库，看上去也很简单，一种是docker启动的时候配置关于database参数。第二个也是大多数blog写的使用docker-compose同时部署了sonar和postgre两个docker容器，之间关联，一个docker-compose.yaml文件搞定。<br>讲真，第二种我试了，访问sonar貌似并没有链接数据库，可能脚本方面还存在什么问题，由于目前已经有了postgre服务，所以第二种没有去深究，想采用第一种方式，只增加部署一个sonar，试了，踩了个大坑如下：</p><h3 id="3-部署sonar关联postgre数据库"><a href="#3-部署sonar关联postgre数据库" class="headerlink" title="3.部署sonar关联postgre数据库"></a>3.部署sonar关联postgre数据库</h3><p>部署命令：<br><code>docker run --name sonarqube -e SONARQUBE_JDBC_URL=jdbc:postgresql://*****:5432/sonar -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=123456  -p 9000:9000 -d sonarqube</code>（其中sonar服务的地址，账户，密码根据自己实际的参数）<br>容器启动后总是莫名stop掉，通过docker logs查看日记发现有这么一句报错：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: [1] bootstrap checks failed</span><br><span class="line">max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</span><br></pre></td></tr></table></figure><p>一脸懵，貌似跟Elasticsearch启动有啥关系，试了网上的很多种方法都不管用，翻译下面那句报错为：elasticsearch用户拥有的内存权限太小，至少需要262144，继续百度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">解决：</span><br><span class="line">切换到root用户</span><br><span class="line">执行命令：</span><br><span class="line">sysctl -w vm.max_map_count=262144</span><br><span class="line">查看结果：</span><br><span class="line">sysctl -a|grep vm.max_map_count</span><br><span class="line">显示：</span><br><span class="line">vm.max_map_count = 262144</span><br><span class="line"></span><br><span class="line">上述方法修改之后，如果重启虚拟机将失效，所以：</span><br><span class="line">解决办法：</span><br><span class="line">在   /etc/sysctl.conf文件最后添加一行</span><br><span class="line">vm.max_map_count=262144</span><br><span class="line">即可永久修改</span><br></pre></td></tr></table></figure></p><p>再次启动，ok，打开sonar，界面最下面关于内嵌数据库的提醒没了，查看postgre，发现有数据，即生效。</p>]]></content>
+    <content type="html"><![CDATA[<p>今天用docker在服务器上部署了个sonar，并push代码进行检测，各种指数相当低，先不谈代码优化，记录下在部署过程中碰到的个坑</p><h3 id="1-安装docker，docker-compose"><a href="#1-安装docker，docker-compose" class="headerlink" title="1.安装docker，docker-compose"></a>1.安装docker，docker-compose</h3><p><a href="http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/">安装docker</a><br><a href="http://macintosh-c.coding.me/2019/09/25/Docker/DockerCompose/">安装docker-compose</a></p><h3 id="2-部署sonar"><a href="#2-部署sonar" class="headerlink" title="2.部署sonar"></a>2.部署sonar</h3><p>docker部署sonar很简单，一句命令就行了，如下：<br><code>docker run -d --name sonarqube -p 9000:9000 sonarqube</code><br>之后便可以访问指定服务器的9000端口访问sonar，默认账户密码：admin/admin</p><p>此时会发现用的是内嵌的数据库，不能自动升级以及不支持很多扩展功能，只建议测试用，于是使用链接数据库的方式重新部署，这里采用postgre。</p><p>docker stop，docker rm，一顿乱操作删除了之前创建的sonar，再调研一番如何链接postgre数据库，看上去也很简单，一种是docker启动的时候配置关于database参数。第二个也是大多数blog写的使用docker-compose同时部署了sonar和postgre两个docker容器，之间关联，一个docker-compose.yaml文件搞定。<br>讲真，第二种我试了，访问sonar貌似并没有链接数据库，可能脚本方面还存在什么问题，由于目前已经有了postgre服务，所以第二种没有去深究，想采用第一种方式，只增加部署一个sonar，试了，踩了个大坑如下：</p><h3 id="3-部署sonar关联postgre数据库"><a href="#3-部署sonar关联postgre数据库" class="headerlink" title="3.部署sonar关联postgre数据库"></a>3.部署sonar关联postgre数据库</h3><p>部署命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run --name sonarqube -e SONARQUBE_JDBC_URL=jdbc:postgresql://*****:5432/sonar -e</span><br><span class="line"> POSTGRES_USER=sonar -e POSTGRES_PASSWORD=123456  -p 9000:9000 -d sonarqube</span><br></pre></td></tr></table></figure></p><p>（其中sonar服务的地址，账户，密码根据自己实际的参数）<br>容器启动后总是莫名stop掉，通过docker logs查看日记发现有这么一句报错：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: [1] bootstrap checks failed</span><br><span class="line">max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</span><br></pre></td></tr></table></figure><p>一脸懵，貌似跟Elasticsearch启动有啥关系，试了网上的很多种方法都不管用，翻译下面那句报错为：elasticsearch用户拥有的内存权限太小，至少需要262144，继续百度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">解决：</span><br><span class="line">切换到root用户</span><br><span class="line">执行命令：</span><br><span class="line">sysctl -w vm.max_map_count=262144</span><br><span class="line">查看结果：</span><br><span class="line">sysctl -a|grep vm.max_map_count</span><br><span class="line">显示：</span><br><span class="line">vm.max_map_count = 262144</span><br><span class="line"></span><br><span class="line">上述方法修改之后，如果重启虚拟机将失效，所以：</span><br><span class="line">解决办法：</span><br><span class="line">在   /etc/sysctl.conf文件最后添加一行</span><br><span class="line">vm.max_map_count=262144</span><br><span class="line">即可永久修改</span><br></pre></td></tr></table></figure></p><p>再次启动，ok，打开sonar，界面最下面关于内嵌数据库的提醒没了，查看postgre，发现有数据，即生效。</p>]]></content>
     
     <summary type="html">
     
@@ -247,32 +247,6 @@
   </entry>
   
   <entry>
-    <title>centos安装docker</title>
-    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/docker%E5%AE%89%E8%A3%85/"/>
-    <id>http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/</id>
-    <published>2019-09-24T05:45:56.000Z</published>
-    <updated>2019-09-25T07:09:34.756Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。</p><h3 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h3><p>docker 是一种容器技术，作用是用来快速部署服务。</p><p><strong>为什么说 docker 是快速部署</strong></p><p>我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！<br>比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根就没有 python 环境。<br>好了，这个时候你怎么解决呢。 对，只要去新机器上你就要部署 python。<br>嗯~ 好吧， 部署 python 就 python，但是你的项目里面还要用到 MySQL，好的没问题， 你又要去用 pip 去安装 python 的 mysql 模块。 哦对了， 我记我们的项目里面还有 redis， 两种非对称加密，还有三方队列， 哦， 还有阿里云的接口，对对对对对对哦。 乱七八糟的东西真的好多，搞完了几个小时没有了，遇到网络卡了，那就更没有谱了。</p><p><strong>好了， 我们进化到，快速1.0 时代</strong></p><p>我们把要安装的东西全都放进离线安装包里面，再写个 bash 脚本<br>对，这种事情真的有过。 部署全靠一个 bash 脚本，毕竟不用手动了么。 可是就是苦了写脚本的人，我就写过一个脚本写了好久。</p><p><strong>于是， 我们又进化了， 快速2.0时代</strong></p><p>我们把整个系统做成了镜像，存在了光盘里面，每当要架设的时候赶快用镜像做出一个新的系统！<br>可能经历过的自然会懂，还特么要做镜像啊，离机房远咋办啊！！我们做游戏，开服快，更新更快！我们版本更新过快怎么办啊！！我们还要刻刻刻么？ 我们的 tornado 又更新了，我去，我们客户端的 protobuf 也更新了，可是我们有100台服务器啊，为了这一点小小的东西更新么？西八！</p><p><strong>于是，我们再次加入光荣的进化， 快速3.0时代</strong></p><p>我们把服务装进了 docker 中<br>我们把做好的镜像，一个命令 pull 了下来，嗯，蛮快又一个命令 docker start XXXXXX 服务起来了。哦，你说多服务？好吧那就写个docker-compose.file吧。 嗯哼？ 你说集群部署 来来来， 有Kubernetes、Mesos，Fleet和Swarm 任君挑选，不好用不要钱。</p><p>docker 是部署的最佳辅助，即使你烂成渣渣，docker 也可以扶你上王者。<br>那Docker由什么组成呢， 包括三个基本概念:</p><ul><li>仓库(Repository)</li><li>镜像(Image)</li><li>容器(Container)</li></ul><p>1，其中Registry是Docker用于存放镜像文件的仓库，Docker 仓库的概念跟Git 类似.<br>2，所谓镜像就是构建容器的源代码，是一个只读的模板，由一层一层的文件系统组成的，类似于虚拟机的镜像.<br>3，那么容器就是由Docker镜像创建的运行实例，类似于虚拟机，容器之间是相互隔离的，包含特定的应用及其所需的依赖文件.</p><h3 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h3><p>如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum install docker-ce</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure></p><p>1安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的。<br>2设置yum源。<br>3安装Docker，命令：yum install docker-ce-版本号，版本号可以通过yum list docker-ce –showduplicates | sort -r查看，我这边不带版本号用的是默认最新。<br>4启动Docker。<br>5加入开机启动。<br>6验证安装是否成功(有client和service两部分表示docker安装启动都成功了)。</p><h3 id="常用Docker命令"><a href="#常用Docker命令" class="headerlink" title="常用Docker命令"></a>常用Docker命令</h3><ol><li>docker ps 查看当前正在运行的容器</li><li>docker ps -a 查看所有容器的状态</li><li>docker start/stop id/name 启动/停止某个容器</li><li>docker attach id 进入某个容器(使用exit退出后容器也跟着停止运行)</li><li>docker exec -ti id /bin/bash启动一个伪终端以交互式的方式进入某个容器（使用exit退出后容器不停止运行）</li><li>docker images 查看本地镜像</li><li>docker rm id/name 删除某个容器</li><li>docker rmi id/name 删除某个镜像</li><li>docker run –name test -ti ubuntu /bin/bash  复制ubuntu容器并且重命名为test且运行，然后以伪终端交互式方式进入容器，运行bash</li><li>docker build -t soar/centos:7.1 .  通过当前目录下的Dockerfile创建一个名为soar/centos:7.1的镜像</li><li>docker run -d -p 2222:22 –name test soar/centos:7.1  以镜像soar/centos:7.1创建名为test的容器，并以后台模式运行，并做端口映射到宿主机2222端口，P参数重启容器宿主机端口会发生改变</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。&lt;/p&gt;
-&lt;h3 id=&quot;Docker-简介&quot;&gt;&lt;a href=&quot;#Docker-简介&quot; class=&quot;headerlink&quot; title=
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Mac下安装docker</title>
     <link href="http://macintosh-c.coding.me/2019/09/24/Docker/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85/"/>
     <id>http://macintosh-c.coding.me/2019/09/24/Docker/Mac下docker安装/</id>
@@ -287,6 +261,32 @@
       
         &lt;p&gt;本地Mac下安装docker&lt;/p&gt;
 &lt;h3 id=&quot;Mac下安装指令&quot;&gt;&lt;a href=&quot;#Mac下安装指令&quot; class=&quot;headerlink&quot; title=&quot;Mac下安装指令&quot;&gt;&lt;/a&gt;Mac下安装指令&lt;/h3&gt;&lt;p&gt;只需要一条指令：&lt;code&gt;brew cask 
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>centos安装docker</title>
+    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/docker%E5%AE%89%E8%A3%85/"/>
+    <id>http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/</id>
+    <published>2019-09-24T05:45:56.000Z</published>
+    <updated>2019-09-25T07:09:34.756Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。</p><h3 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h3><p>docker 是一种容器技术，作用是用来快速部署服务。</p><p><strong>为什么说 docker 是快速部署</strong></p><p>我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！<br>比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根就没有 python 环境。<br>好了，这个时候你怎么解决呢。 对，只要去新机器上你就要部署 python。<br>嗯~ 好吧， 部署 python 就 python，但是你的项目里面还要用到 MySQL，好的没问题， 你又要去用 pip 去安装 python 的 mysql 模块。 哦对了， 我记我们的项目里面还有 redis， 两种非对称加密，还有三方队列， 哦， 还有阿里云的接口，对对对对对对哦。 乱七八糟的东西真的好多，搞完了几个小时没有了，遇到网络卡了，那就更没有谱了。</p><p><strong>好了， 我们进化到，快速1.0 时代</strong></p><p>我们把要安装的东西全都放进离线安装包里面，再写个 bash 脚本<br>对，这种事情真的有过。 部署全靠一个 bash 脚本，毕竟不用手动了么。 可是就是苦了写脚本的人，我就写过一个脚本写了好久。</p><p><strong>于是， 我们又进化了， 快速2.0时代</strong></p><p>我们把整个系统做成了镜像，存在了光盘里面，每当要架设的时候赶快用镜像做出一个新的系统！<br>可能经历过的自然会懂，还特么要做镜像啊，离机房远咋办啊！！我们做游戏，开服快，更新更快！我们版本更新过快怎么办啊！！我们还要刻刻刻么？ 我们的 tornado 又更新了，我去，我们客户端的 protobuf 也更新了，可是我们有100台服务器啊，为了这一点小小的东西更新么？西八！</p><p><strong>于是，我们再次加入光荣的进化， 快速3.0时代</strong></p><p>我们把服务装进了 docker 中<br>我们把做好的镜像，一个命令 pull 了下来，嗯，蛮快又一个命令 docker start XXXXXX 服务起来了。哦，你说多服务？好吧那就写个docker-compose.file吧。 嗯哼？ 你说集群部署 来来来， 有Kubernetes、Mesos，Fleet和Swarm 任君挑选，不好用不要钱。</p><p>docker 是部署的最佳辅助，即使你烂成渣渣，docker 也可以扶你上王者。<br>那Docker由什么组成呢， 包括三个基本概念:</p><ul><li>仓库(Repository)</li><li>镜像(Image)</li><li>容器(Container)</li></ul><p>1，其中Registry是Docker用于存放镜像文件的仓库，Docker 仓库的概念跟Git 类似.<br>2，所谓镜像就是构建容器的源代码，是一个只读的模板，由一层一层的文件系统组成的，类似于虚拟机的镜像.<br>3，那么容器就是由Docker镜像创建的运行实例，类似于虚拟机，容器之间是相互隔离的，包含特定的应用及其所需的依赖文件.</p><h3 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h3><p>如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum install docker-ce</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure></p><p>1安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的。<br>2设置yum源。<br>3安装Docker，命令：yum install docker-ce-版本号，版本号可以通过yum list docker-ce –showduplicates | sort -r查看，我这边不带版本号用的是默认最新。<br>4启动Docker。<br>5加入开机启动。<br>6验证安装是否成功(有client和service两部分表示docker安装启动都成功了)。</p><h3 id="常用Docker命令"><a href="#常用Docker命令" class="headerlink" title="常用Docker命令"></a>常用Docker命令</h3><ol><li>docker ps 查看当前正在运行的容器</li><li>docker ps -a 查看所有容器的状态</li><li>docker start/stop id/name 启动/停止某个容器</li><li>docker attach id 进入某个容器(使用exit退出后容器也跟着停止运行)</li><li>docker exec -ti id /bin/bash启动一个伪终端以交互式的方式进入某个容器（使用exit退出后容器不停止运行）</li><li>docker images 查看本地镜像</li><li>docker rm id/name 删除某个容器</li><li>docker rmi id/name 删除某个镜像</li><li>docker run –name test -ti ubuntu /bin/bash  复制ubuntu容器并且重命名为test且运行，然后以伪终端交互式方式进入容器，运行bash</li><li>docker build -t soar/centos:7.1 .  通过当前目录下的Dockerfile创建一个名为soar/centos:7.1的镜像</li><li>docker run -d -p 2222:22 –name test soar/centos:7.1  以镜像soar/centos:7.1创建名为test的容器，并以后台模式运行，并做端口映射到宿主机2222端口，P参数重启容器宿主机端口会发生改变</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。&lt;/p&gt;
+&lt;h3 id=&quot;Docker-简介&quot;&gt;&lt;a href=&quot;#Docker-简介&quot; class=&quot;headerlink&quot; title=
       
     
     </summary>
