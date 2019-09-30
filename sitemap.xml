@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://macintosh-c.coding.me/2019/09/30/test/Sonar/docker%E5%AE%89%E8%A3%85sonar/</loc>
+    
+    <lastmod>2019-09-30T09:17:14.018Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2019/09/27/kubernetes/k8s%E5%AE%89%E8%A3%85/</loc>
+    
+    <lastmod>2019-09-28T12:33:50.930Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2019/09/05/Linux/Linux%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</loc>
+    
+    <lastmod>2019-09-27T03:29:28.246Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://macintosh-c.coding.me/2019/09/26/VirtualBox/Mac%E4%B8%8B%E5%AE%89%E8%A3%85VirtualBox/</loc>
     
     <lastmod>2019-09-26T15:02:45.613Z</lastmod>
@@ -96,13 +117,6 @@
     <loc>http://macintosh-c.coding.me/2019/09/12/Maven/Maven%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0%E6%94%B6%E8%8E%B7/</loc>
     
     <lastmod>2019-09-12T03:10:09.084Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://macintosh-c.coding.me/2019/09/05/Linux/Linux%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</loc>
-    
-    <lastmod>2019-09-11T06:48:55.674Z</lastmod>
     
   </url>
   

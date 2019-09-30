@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别 | macintosh-c&#39;s blog</title>
+    <title>centos7下k8s安装 | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="最近在学习Docker容器，了解到一些相关的技术，像是Kubernetes，Docker-compose，Docker Swarm，分不清这些东西之间的区别，特意去研究了一下，分享一下，适合刚入门学习容器的同学了解。 DcokerDocker 这个东西所扮演的角色，容易理解，它是一个容器引擎，也就是说实际上我们的容器最终是由Docker创建，运行在Docker中，其他相关的容器技术都是以Docke">
-<meta name="keywords" content="Docker">
+    <meta name="description" content="由于条件所限，俺们只能在虚拟机上来搭建k8s,关于使用虚拟机创建服务器的过程之前已经讲过：这里，此处我们准备了4台服务器用来搭建，如下：    Service name IP OS Master/Node service     K8s-master1 192.168.56.113 Centos7 master kube-apiserver,kube-controller-manager,kube">
+<meta name="keywords" content="Kubernetes安装">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别">
-<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/25/Docker/docker理解篇/index.html">
+<meta property="og:title" content="centos7下k8s安装">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/27/kubernetes/k8s安装/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="最近在学习Docker容器，了解到一些相关的技术，像是Kubernetes，Docker-compose，Docker Swarm，分不清这些东西之间的区别，特意去研究了一下，分享一下，适合刚入门学习容器的同学了解。 DcokerDocker 这个东西所扮演的角色，容易理解，它是一个容器引擎，也就是说实际上我们的容器最终是由Docker创建，运行在Docker中，其他相关的容器技术都是以Docke">
+<meta property="og:description" content="由于条件所限，俺们只能在虚拟机上来搭建k8s,关于使用虚拟机创建服务器的过程之前已经讲过：这里，此处我们准备了4台服务器用来搭建，如下：    Service name IP OS Master/Node service     K8s-master1 192.168.56.113 Centos7 master kube-apiserver,kube-controller-manager,kube">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-25T07:18:00.922Z">
+<meta property="og:updated_time" content="2019-09-28T12:33:50.930Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别">
-<meta name="twitter:description" content="最近在学习Docker容器，了解到一些相关的技术，像是Kubernetes，Docker-compose，Docker Swarm，分不清这些东西之间的区别，特意去研究了一下，分享一下，适合刚入门学习容器的同学了解。 DcokerDocker 这个东西所扮演的角色，容易理解，它是一个容器引擎，也就是说实际上我们的容器最终是由Docker创建，运行在Docker中，其他相关的容器技术都是以Docke">
+<meta name="twitter:title" content="centos7下k8s安装">
+<meta name="twitter:description" content="由于条件所限，俺们只能在虚拟机上来搭建k8s,关于使用虚拟机创建服务器的过程之前已经讲过：这里，此处我们准备了4台服务器用来搭建，如下：    Service name IP OS Master/Node service     K8s-master1 192.168.56.113 Centos7 master kube-apiserver,kube-controller-manager,kube">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/09/25/Docker/docker理解篇/" title="Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别" itemprop="url">Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别</a>
+      <a href="/2019/09/27/kubernetes/k8s安装/" title="centos7下k8s安装" itemprop="url">centos7下k8s安装</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2019-09-25T07:04:56.000Z" itemprop="datePublished"> 发表于 2019-09-25</time>
+    <time datetime="2019-09-27T07:08:56.000Z" itemprop="datePublished"> 发表于 2019-09-27</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,19 +98,54 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dcoker"><span class="toc-number">1.</span> <span class="toc-text">Dcoker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Compose"><span class="toc-number">2.</span> <span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Swarm"><span class="toc-number">3.</span> <span class="toc-text">Docker Swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes"><span class="toc-number">4.</span> <span class="toc-text">Kubernetes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+			
 		
 		</div>
 		
-		<p>最近在学习Docker容器，了解到一些相关的技术，像是Kubernetes，Docker-compose，Docker Swarm，分不清这些东西之间的区别，特意去研究了一下，分享一下，适合刚入门学习容器的同学了解。</p>
-<h2 id="Dcoker"><a href="#Dcoker" class="headerlink" title="Dcoker"></a>Dcoker</h2><p>Docker 这个东西所扮演的角色，容易理解，它是一个容器引擎，也就是说实际上我们的容器最终是由Docker创建，运行在Docker中，其他相关的容器技术都是以Docker为基础，它是我们使用其他容器技术的核心。</p>
-<h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h2><p>Docker-Compose 是用来管理你的容器的，有点像一个容器的管家，想象一下当你的Docker中有成百上千的容器需要启动，如果一个一个的启动那得多费时间。有了Docker-Compose你只需要编写一个文件，在这个文件里面声明好要启动的容器，配置一些参数，执行一下这个文件，Docker就会按照你声明的配置去把所有的容器启动起来，但是Docker-Compose只能管理当前主机上的Docker，也就是说不能去启动其他主机上的Docker容器</p>
-<h2 id="Docker-Swarm"><a href="#Docker-Swarm" class="headerlink" title="Docker Swarm"></a>Docker Swarm</h2><p>Docker Swarm 是一款用来管理多主机上的Docker容器的工具，可以负责帮你启动容器，监控容器状态，如果容器的状态不正常它会帮你重新帮你启动一个新的容器，来提供服务，同时也提供服务之间的负载均衡，而这些东西Docker-Compose 是做不到的</p>
-<h2 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h2><p>Kubernetes它本身的角色定位是和Docker Swarm 是一样的，也就是说他们负责的工作在容器领域来说是相同的部分，当然也有自己一些不一样的特点。这个就像是Eclipse和IDEA一样，也是一个跨主机的容器管理平台。它是谷歌公司根据自身的多年的运维经验研发的一款容器管理平台。而Docker Swarm则是由Docker 公司研发的。</p>
-<p>既然这两个东西是一样的，那就面临选择的问题，应该学习哪一个技术呢?实际上这两年Kubernetes已经成为了很多大公司的默认使用的容器管理技术，而Docker Swarm已经在这场与Kubernetes竞争中已经逐渐失势，如今容器管理领域已经开始已经逐渐被Kubernetes一统天下了。所以建议大家学习的时候，应该多考虑一下这门技术在行业里面是不是有很多人在使用。</p>
-<p>需要注意的是，虽然Docker Swarm在与Kubernetes的竞争中败下阵来，但是这个跟Docker这个容器引擎没有太大关系，它还是整个容器领域技术的基石，Kubernetes离开他什么也不是。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Docker是容器技术的核心、基础，Docker Compose是一个基于Docker的单主机容器编排工具，功能并不像Docker Swarm和Kubernetes是基于Dcoker的跨主机的容器管理平台那么丰富。</p>
-<p>转载自：<a href="https://blog.csdn.net/notsaltedfish/article/details/80959913" target="_blank" rel="noopener">Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别</a></p>
+		<p>由于条件所限，俺们只能在虚拟机上来搭建k8s,关于使用虚拟机创建服务器的过程之前已经讲过：<a href="http://macintosh-c.coding.me/2019/09/26/VirtualBox/Mac下安装VirtualBox/">这里</a>，此处我们准备了4台服务器用来搭建，如下：</p>
+<table>
+<thead>
+<tr>
+<th>Service name</th>
+<th>IP</th>
+<th>OS</th>
+<th>Master/Node</th>
+<th>service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K8s-master1</td>
+<td>192.168.56.113</td>
+<td>Centos7</td>
+<td>master</td>
+<td>kube-apiserver,kube-controller-manager,kube-scheduler,etcd</td>
+</tr>
+<tr>
+<td>K8s-master2</td>
+<td>192.168.56.116</td>
+<td>Centos7</td>
+<td>master</td>
+<td>kube-apiserver,kube-controller-manager,kube-scheduler</td>
+</tr>
+<tr>
+<td>K8s-node1</td>
+<td>192.168.56.114</td>
+<td>Centos7</td>
+<td>node</td>
+<td>kubelet,kube-proxy,docker,flannel,etcd</td>
+</tr>
+<tr>
+<td>K8s-node2</td>
+<td>192.168.56.115</td>
+<td>Centos7</td>
+<td>node</td>
+<td>kubelet,kube-proxy,docker,flannel,etcd</td>
+</tr>
+</tbody>
+</table>
+<p>1.关闭防火墙，并设置开机关闭<br>systemctl stop firewalld.service<br>systemctl disable firewalld.service</p>
+<p>hostnamectl set-hostname *</p>
 
 	</div>
 
@@ -222,13 +257,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Docker/">Docker</a>
+  <a class="article-category-link" href="/categories/Kubernetes/">Kubernetes</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Docker/">Docker</a>
+  <span></span> <a href="/tags/Kubernetes安装/">Kubernetes安装</a>
   </div>
 
 </div>
@@ -237,7 +272,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2019/09/25/Docker/docker理解篇/" data-title="Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/09/27/kubernetes/k8s安装/" data-title="centos7下k8s安装 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -250,18 +285,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2019/09/25/java/basic/centos7安装jdk/" title="centos7安装jdk">
+ <a href="/2019/09/30/test/Sonar/docker安装sonar/" title="docker安装sonar">
   <strong>上一篇：</strong><br/>
   <span>
-  centos7安装jdk</span>
+  docker安装sonar</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2019/09/25/Docker/DockerCompose/"  title="Docker Compose">
+<a href="/2019/09/26/VirtualBox/Mac下安装VirtualBox/"  title="Mac下VirtualBox安装">
  <strong>下一篇：</strong><br/> 
- <span>Docker Compose
+ <span>Mac下VirtualBox安装
 </span>
 </a>
 </div>
@@ -298,7 +333,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dcoker"><span class="toc-number">1.</span> <span class="toc-text">Dcoker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Compose"><span class="toc-number">2.</span> <span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Swarm"><span class="toc-number">3.</span> <span class="toc-text">Docker Swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes"><span class="toc-number">4.</span> <span class="toc-text">Kubernetes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+ 
  
   </div>
 
