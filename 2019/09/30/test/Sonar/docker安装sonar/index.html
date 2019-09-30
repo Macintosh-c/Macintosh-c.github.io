@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
 <meta property="og:description" content="今天用docker在服务器上部署了个sonar，并push代码进行检测，各种指数相当低，先不谈代码优化，记录下在部署过程中碰到的个坑 1.安装docker，docker-compose安装docker安装docker-compose 2.部署sonardocker部署sonar很简单，一句命令就行了，如下：docker run -d --name sonarqube -p 9000:9000 so">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-30T09:21:14.774Z">
+<meta property="og:updated_time" content="2019-09-30T09:39:05.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker安装sonar">
 <meta name="twitter:description" content="今天用docker在服务器上部署了个sonar，并push代码进行检测，各种指数相当低，先不谈代码优化，记录下在部署过程中碰到的个坑 1.安装docker，docker-compose安装docker安装docker-compose 2.部署sonardocker部署sonar很简单，一句命令就行了，如下：docker run -d --name sonarqube -p 9000:9000 so">
@@ -98,20 +98,21 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装docker，docker-compose"><span class="toc-number">1.</span> <span class="toc-text">1.安装docker，docker-compose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-部署sonar"><span class="toc-number">2.</span> <span class="toc-text">2.部署sonar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-部署sonar关联postgre数据库"><span class="toc-number">3.</span> <span class="toc-text">3.部署sonar关联postgre数据库</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装docker，docker-compose"><span class="toc-number">1.</span> <span class="toc-text">1.安装docker，docker-compose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-部署sonar"><span class="toc-number">2.</span> <span class="toc-text">2.部署sonar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-部署sonar关联postgre数据库"><span class="toc-number">3.</span> <span class="toc-text">3.部署sonar关联postgre数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-汉化"><span class="toc-number">4.</span> <span class="toc-text">4.汉化</span></a></li></ol>
 		
 		</div>
 		
 		<p>今天用docker在服务器上部署了个sonar，并push代码进行检测，各种指数相当低，先不谈代码优化，记录下在部署过程中碰到的个坑</p>
 <h3 id="1-安装docker，docker-compose"><a href="#1-安装docker，docker-compose" class="headerlink" title="1.安装docker，docker-compose"></a>1.安装docker，docker-compose</h3><p><a href="http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/">安装docker</a><br><a href="http://macintosh-c.coding.me/2019/09/25/Docker/DockerCompose/">安装docker-compose</a></p>
 <h3 id="2-部署sonar"><a href="#2-部署sonar" class="headerlink" title="2.部署sonar"></a>2.部署sonar</h3><p>docker部署sonar很简单，一句命令就行了，如下：<br><code>docker run -d --name sonarqube -p 9000:9000 sonarqube</code><br>之后便可以访问指定服务器的9000端口访问sonar，默认账户密码：admin/admin</p>
-<p>此时会发现用的是内嵌的数据库，不能自动升级以及不支持很多扩展功能，只建议测试用，于是使用链接数据库的方式重新部署，这里采用postgre。</p>
+<p>此时会发现用的是内嵌的数据库，内嵌数据库无法扩展，也无法升级到新版本的SonarQube，并且不能支持将你的数据迁移至其他数据库引擎，内嵌数据库只能用于测试场景，于是使用链接数据库的方式重新部署，这里采用postgre。</p>
 <p>docker stop，docker rm，一顿乱操作删除了之前创建的sonar，再调研一番如何链接postgre数据库，看上去也很简单，一种是docker启动的时候配置关于database参数。第二个也是大多数blog写的使用docker-compose同时部署了sonar和postgre两个docker容器，之间关联，一个docker-compose.yaml文件搞定。<br>讲真，第二种我试了，访问sonar貌似并没有链接数据库，可能脚本方面还存在什么问题，由于目前已经有了postgre服务，所以第二种没有去深究，想采用第一种方式，只增加部署一个sonar，试了，踩了个大坑如下：</p>
 <h3 id="3-部署sonar关联postgre数据库"><a href="#3-部署sonar关联postgre数据库" class="headerlink" title="3.部署sonar关联postgre数据库"></a>3.部署sonar关联postgre数据库</h3><p>部署命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run --name sonarqube -e SONARQUBE_JDBC_URL=jdbc:postgresql://*****:5432/sonar -e</span><br><span class="line"> POSTGRES_USER=sonar -e POSTGRES_PASSWORD=123456  -p 9000:9000 -d sonarqube</span><br></pre></td></tr></table></figure></p>
 <p>（其中sonar服务的地址，账户，密码根据自己实际的参数）<br>容器启动后总是莫名stop掉，通过docker logs查看日记发现有这么一句报错：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: [1] bootstrap checks failed</span><br><span class="line">max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</span><br></pre></td></tr></table></figure>
 <p>一脸懵，貌似跟Elasticsearch启动有啥关系，试了网上的很多种方法都不管用，翻译下面那句报错为：elasticsearch用户拥有的内存权限太小，至少需要262144，继续百度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">解决：</span><br><span class="line">切换到root用户</span><br><span class="line">执行命令：</span><br><span class="line">sysctl -w vm.max_map_count=262144</span><br><span class="line">查看结果：</span><br><span class="line">sysctl -a|grep vm.max_map_count</span><br><span class="line">显示：</span><br><span class="line">vm.max_map_count = 262144</span><br><span class="line"></span><br><span class="line">上述方法修改之后，如果重启虚拟机将失效，所以：</span><br><span class="line">解决办法：</span><br><span class="line">在   /etc/sysctl.conf文件最后添加一行</span><br><span class="line">vm.max_map_count=262144</span><br><span class="line">即可永久修改</span><br></pre></td></tr></table></figure></p>
 <p>再次启动，ok，打开sonar，界面最下面关于内嵌数据库的提醒没了，查看postgre，发现有数据，即生效。</p>
+<h3 id="4-汉化"><a href="#4-汉化" class="headerlink" title="4.汉化"></a>4.汉化</h3><p>追加一个中文插件的安装过程，administration-&gt;marketplace-&gt;search chinese-&gt;Chinese Pack install-&gt;restart sonarService即变为中文的了。</p>
 
 	</div>
 
@@ -291,7 +292,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装docker，docker-compose"><span class="toc-number">1.</span> <span class="toc-text">1.安装docker，docker-compose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-部署sonar"><span class="toc-number">2.</span> <span class="toc-text">2.部署sonar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-部署sonar关联postgre数据库"><span class="toc-number">3.</span> <span class="toc-text">3.部署sonar关联postgre数据库</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装docker，docker-compose"><span class="toc-number">1.</span> <span class="toc-text">1.安装docker，docker-compose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-部署sonar"><span class="toc-number">2.</span> <span class="toc-text">2.部署sonar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-部署sonar关联postgre数据库"><span class="toc-number">3.</span> <span class="toc-text">3.部署sonar关联postgre数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-汉化"><span class="toc-number">4.</span> <span class="toc-text">4.汉化</span></a></li></ol>
  
   </div>
 
@@ -403,19 +404,19 @@
 			
 		
 			
-				<li><a href="/tags/fastjson/" title="fastjson">fastjson<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/mysql主从/" title="mysql主从">mysql主从<sup>1</sup></a></li>
+				<li><a href="/tags/fastjson/" title="fastjson">fastjson<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+				<li><a href="/tags/基本概念/" title="基本概念">基本概念<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kubernetes安装/" title="Kubernetes安装">Kubernetes安装<sup>1</sup></a></li>
 			
 		
 			
@@ -435,7 +436,11 @@
 			
 		
 			
-				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
+				<li><a href="/tags/Memcached安装/" title="Memcached安装">Memcached安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker-Compose/" title="Docker-Compose">Docker-Compose<sup>1</sup></a></li>
 			
 		
 			
@@ -443,7 +448,7 @@
 			
 		
 			
-				<li><a href="/tags/基本概念/" title="基本概念">基本概念<sup>1</sup></a></li>
+				<li><a href="/tags/mysql主从/" title="mysql主从">mysql主从<sup>1</sup></a></li>
 			
 		
 			
@@ -455,15 +460,11 @@
 			
 		
 			
-				<li><a href="/tags/jdk安装/" title="jdk安装">jdk安装<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Memcached安装/" title="Memcached安装">Memcached安装<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Postgre安装/" title="Postgre安装">Postgre安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>1</sup></a></li>
 			
 		
 		</ul>
