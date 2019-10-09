@@ -299,32 +299,6 @@
   </entry>
   
   <entry>
-    <title>Mac下安装docker</title>
-    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85/"/>
-    <id>http://macintosh-c.coding.me/2019/09/24/Docker/Mac下docker安装/</id>
-    <published>2019-09-24T05:45:56.000Z</published>
-    <updated>2019-09-25T08:47:00.340Z</updated>
-    
-    <content type="html"><![CDATA[<p>本地Mac下安装docker</p><h3 id="Mac下安装指令"><a href="#Mac下安装指令" class="headerlink" title="Mac下安装指令"></a>Mac下安装指令</h3><p>只需要一条指令：<code>brew cask install docker</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">itlocals-MacBook-Pro:~ barry.cao$ brew cask install docker</span><br><span class="line">Updating Homebrew...</span><br><span class="line">^C==&gt; Satisfying dependencies</span><br><span class="line">==&gt; Downloading https://download.docker.com/mac/stable/31259/Docker.dmg</span><br><span class="line">######################################################################## 100.0%</span><br><span class="line">==&gt; Verifying SHA-256 checksum for Cask &apos;docker&apos;.</span><br><span class="line">==&gt; Installing Cask docker</span><br><span class="line">==&gt; Moving App &apos;Docker.app&apos; to &apos;/Applications/Docker.app&apos;.</span><br><span class="line">docker was successfully installed!</span><br></pre></td></tr></table></figure></p><p>即安装成功。</p><h3 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h3><p>下载完毕后，你会发现电脑的程序里多了一个docker.app<br>此时若未点击启动过，终端输入：docker –version会显示如下：<br>-bash: docker: command not found<br>点击程序docker，启动并登陆后，再到终端执行如下指令，才起效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br><span class="line">docker images</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure></p><p>如此时退出Docker Desktop,则执行docker images命令结果如下：<br>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?<br>守护线程被干掉了，😹</p><h3 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h3><p>国内网络问题，后续拉取 Docker 镜像十分缓慢，可以需要配置加速器来解决 使用的是网易的镜像地址：<a href="http://hub-mirror.c.163.com。" target="_blank" rel="noopener">http://hub-mirror.c.163.com。</a><br>在任务栏点击 Docker for mac 应用图标 -&gt; Perferences… -&gt; Daemon -&gt; Registry mirrors。在列表中填写加速器地址即可。修改完成之后，点击 Apply &amp; Restart 按钮，Docker 就会重启并应用配置的镜像地址了。<br>我们可以通过 docker info 来查看是否配置成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br><span class="line">...</span><br><span class="line">Registry Mirrors:</span><br><span class="line">http://hub-mirror.c.163.com</span><br><span class="line">Live Restore Enabled: false</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;本地Mac下安装docker&lt;/p&gt;
-&lt;h3 id=&quot;Mac下安装指令&quot;&gt;&lt;a href=&quot;#Mac下安装指令&quot; class=&quot;headerlink&quot; title=&quot;Mac下安装指令&quot;&gt;&lt;/a&gt;Mac下安装指令&lt;/h3&gt;&lt;p&gt;只需要一条指令：&lt;code&gt;brew cask 
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
     <title>centos安装docker</title>
     <link href="http://macintosh-c.coding.me/2019/09/24/Docker/docker%E5%AE%89%E8%A3%85/"/>
     <id>http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/</id>
@@ -339,6 +313,32 @@
       
         &lt;p&gt;最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。&lt;/p&gt;
 &lt;h3 id=&quot;Docker-简介&quot;&gt;&lt;a href=&quot;#Docker-简介&quot; class=&quot;headerlink&quot; title=
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下安装docker</title>
+    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85/"/>
+    <id>http://macintosh-c.coding.me/2019/09/24/Docker/Mac下docker安装/</id>
+    <published>2019-09-24T05:45:56.000Z</published>
+    <updated>2019-09-25T08:47:00.340Z</updated>
+    
+    <content type="html"><![CDATA[<p>本地Mac下安装docker</p><h3 id="Mac下安装指令"><a href="#Mac下安装指令" class="headerlink" title="Mac下安装指令"></a>Mac下安装指令</h3><p>只需要一条指令：<code>brew cask install docker</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">itlocals-MacBook-Pro:~ barry.cao$ brew cask install docker</span><br><span class="line">Updating Homebrew...</span><br><span class="line">^C==&gt; Satisfying dependencies</span><br><span class="line">==&gt; Downloading https://download.docker.com/mac/stable/31259/Docker.dmg</span><br><span class="line">######################################################################## 100.0%</span><br><span class="line">==&gt; Verifying SHA-256 checksum for Cask &apos;docker&apos;.</span><br><span class="line">==&gt; Installing Cask docker</span><br><span class="line">==&gt; Moving App &apos;Docker.app&apos; to &apos;/Applications/Docker.app&apos;.</span><br><span class="line">docker was successfully installed!</span><br></pre></td></tr></table></figure></p><p>即安装成功。</p><h3 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h3><p>下载完毕后，你会发现电脑的程序里多了一个docker.app<br>此时若未点击启动过，终端输入：docker –version会显示如下：<br>-bash: docker: command not found<br>点击程序docker，启动并登陆后，再到终端执行如下指令，才起效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br><span class="line">docker images</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure></p><p>如此时退出Docker Desktop,则执行docker images命令结果如下：<br>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?<br>守护线程被干掉了，😹</p><h3 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h3><p>国内网络问题，后续拉取 Docker 镜像十分缓慢，可以需要配置加速器来解决 使用的是网易的镜像地址：<a href="http://hub-mirror.c.163.com。" target="_blank" rel="noopener">http://hub-mirror.c.163.com。</a><br>在任务栏点击 Docker for mac 应用图标 -&gt; Perferences… -&gt; Daemon -&gt; Registry mirrors。在列表中填写加速器地址即可。修改完成之后，点击 Apply &amp; Restart 按钮，Docker 就会重启并应用配置的镜像地址了。<br>我们可以通过 docker info 来查看是否配置成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br><span class="line">...</span><br><span class="line">Registry Mirrors:</span><br><span class="line">http://hub-mirror.c.163.com</span><br><span class="line">Live Restore Enabled: false</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;本地Mac下安装docker&lt;/p&gt;
+&lt;h3 id=&quot;Mac下安装指令&quot;&gt;&lt;a href=&quot;#Mac下安装指令&quot; class=&quot;headerlink&quot; title=&quot;Mac下安装指令&quot;&gt;&lt;/a&gt;Mac下安装指令&lt;/h3&gt;&lt;p&gt;只需要一条指令：&lt;code&gt;brew cask 
       
     
     </summary>
