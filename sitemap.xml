@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://macintosh-c.coding.me/2019/10/09/Jenkins/jenkins%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</loc>
+    
+    <lastmod>2019-10-09T05:57:34.107Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2019/10/09/Jenkins/docker%E5%AE%89%E8%A3%85jenkins/</loc>
+    
+    <lastmod>2019-10-09T05:01:20.803Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://macintosh-c.coding.me/2019/09/30/test/Sonar/docker%E5%AE%89%E8%A3%85sonar/</loc>
     
     <lastmod>2019-09-30T09:39:05.270Z</lastmod>
