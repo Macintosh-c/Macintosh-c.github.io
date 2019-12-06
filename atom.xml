@@ -42,6 +42,31 @@
   </entry>
   
   <entry>
+    <title>mvn dependency:tree 使用详解</title>
+    <link href="http://macintosh-c.coding.me/2019/12/06/Maven/%E8%BE%93%E5%87%BA%E5%B7%A5%E7%A8%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/"/>
+    <id>http://macintosh-c.coding.me/2019/12/06/Maven/输出工程依赖关系/</id>
+    <published>2019-12-06T02:55:56.000Z</published>
+    <updated>2019-12-06T08:05:11.955Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="mvn-dependency-tree-使用详解"><a href="#mvn-dependency-tree-使用详解" class="headerlink" title="mvn dependency:tree 使用详解"></a>mvn dependency:tree 使用详解</h3><p>在实际开发过程中，会经常碰到maven依赖冲突的问题，导致编译的时候报一些异常，这里提供一个查询包结构间的依赖关系的方法，来解决问题</p><p>指令：mvn dependency:tree -dverbose&gt;temp/tree.txt</p><p>该命令是打印详细的maven tree 并放入当前目录下的temp目录下的tree.txt (需要自己新建temp目录)，打印到txt中更加方便排查。</p><p>生成的txt文件中<br>最后写着compile的就是编译成功的<br>最后写着omitted for duplicate的就是有JAR包被重复依赖了，但是JAR包的版本是一样的<br>最后写着omitted for conflict with xx的，说明和别的JAR包版本冲突了，该行的JAR包不会被引入<br>通过在txt文件中检索上传关键字conflict可以找到冲突的jar包所在，从而去除掉。</p><p>去除方法：<exclusions>标签<br>例：  </exclusions></p><pre><code>&lt;exclusions&gt;     &lt;exclusion&gt;          &lt;groupId&gt;net.minidev&lt;/groupId&gt;          &lt;artifactId&gt;json-smart&lt;/artifactId&gt;      &lt;/exclusion&gt;&lt;/exclusions&gt;</code></pre><p>去除掉这个依赖就ok啦。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;mvn-dependency-tree-使用详解&quot;&gt;&lt;a href=&quot;#mvn-dependency-tree-使用详解&quot; class=&quot;headerlink&quot; title=&quot;mvn dependency:tree 使用详解&quot;&gt;&lt;/a&gt;mvn dependency
+      
+    
+    </summary>
+    
+      <category term="Maven" scheme="http://macintosh-c.coding.me/categories/Maven/"/>
+    
+    
+      <category term="Maven" scheme="http://macintosh-c.coding.me/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
     <title>jenkins用户权限管理</title>
     <link href="http://macintosh-c.coding.me/2019/10/09/Jenkins/jenkins%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
     <id>http://macintosh-c.coding.me/2019/10/09/Jenkins/jenkins用户管理/</id>
@@ -500,32 +525,6 @@
     
     
       <category term="Maven" scheme="http://macintosh-c.coding.me/tags/Maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux常用基础指令</title>
-    <link href="http://macintosh-c.coding.me/2019/09/05/Linux/Linux%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/"/>
-    <id>http://macintosh-c.coding.me/2019/09/05/Linux/Linux常用基础指令/</id>
-    <published>2019-09-05T05:56:56.000Z</published>
-    <updated>2019-09-27T03:29:28.246Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Linux常用基础指令"><a href="#Linux常用基础指令" class="headerlink" title="Linux常用基础指令"></a>Linux常用基础指令</h3><ol><li><p>查找文件<br>find * -name filename.txt<br>根据名称查找当前目录下的filename.txt文件</p></li><li><p>查看一个程序是否运行<br>ps -ef | grep tomcat<br>查看所有有关tomcat的进程</p></li><li><p>终止线程<br>kill -9 19979<br>终止线程号位19979的线程</p></li><li><p>查看文件，包含隐藏文件<br>ls -al</p></li><li><p>当前工作目录<br>pwd</p></li><li><p>复制文件包括其子文件到自定目录<br>cp -r  sourceFolder targetFolder</p></li><li><p>创建目录<br>mkdir newfolder</p></li><li><p>删除目录（此目录是空目录）<br>rmdir deleteEmptyFolder</p></li><li><p>删除文件包括其子文件<br>rm -rf daleteFile</p></li><li><p>移动文件<br>mv /temp/movefile /targetFolder<br>扩展重命名 mv oldNameFile newNameFile</p></li><li><p>切换用户<br>su -username</p></li><li><p>修改文件权限<br>chmod 777 file.java<br>//file.java的权限-rwxrwxrwx，r表示读、w表示写、x表示可执行</p></li><li><p>压缩文件<br>tar -czf test.tar.gz /test1/test2</p></li><li><p>列出压缩文件列表<br>tar -tzf test.tar.gz</p></li><li><p>解压文件<br>tar -zxvf test.tar.gz</p></li><li><p>查看文件头10行<br>head -n 10 example.txt</p></li><li><p>查看文件尾10行<br>tail -n 10 example.txt</p></li><li><p>查看日记文件<br>tail -f exmaple.log<br>//这个命令会自动显示新增内容，屏幕只显示10行内容的（可设置）。</p></li><li><p>启动Vi编辑器<br>vi</p></li><li><p>查看系统当前时间<br>date<br>命令会输出 周几 几月 几日 时间 和 时间显示格式 和年份<br>Thu Sep  5 14:09:04 CST 2019</p></li></ol><p>date +%Y-%m-%d<br>显示如下：2019-09-05</p><ol start="21"><li><p>解压zip文件<br>unzip -oq</p></li><li><p>解压gz文件<br>zcat java.gz &gt; java.log</p></li><li><p>查看线程个数（方便查看程序是否有误）<br>ps -Lf 端口号 | wc -l</p></li><li><p>查看磁盘空间情况<br>df -h<br>sudo du -h –max-depth=1</p></li><li><p>查看服务器的联通性<br>ping 地址<br>telnet 10.87.18.9 443</p></li><li><p>显示已经挂载的分区列表 </p><p>df -h</p></li><li><p>显示某路径下的文件占用空间情况</p><p>cd /var/log</p><p>du -sh *</p><p>删除占用空间大的</p></li><li><p>设置服务器名字-永久<br>hostnamectl set-hostname *</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;Linux常用基础指令&quot;&gt;&lt;a href=&quot;#Linux常用基础指令&quot; class=&quot;headerlink&quot; title=&quot;Linux常用基础指令&quot;&gt;&lt;/a&gt;Linux常用基础指令&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;查找文件&lt;br&gt;find * -name file
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://macintosh-c.coding.me/categories/Linux/"/>
-    
-    
-      <category term="Linux基础" scheme="http://macintosh-c.coding.me/tags/Linux%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
