@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2019-10-09T05:57:34.107Z</updated>
+  <updated>2019-12-06T07:23:16.950Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux下安装和升级Git</title>
+    <link href="http://macintosh-c.coding.me/2019/12/06/Git/Linux%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7Git/"/>
+    <id>http://macintosh-c.coding.me/2019/12/06/Git/Linux上安装和升级Git/</id>
+    <published>2019-12-06T05:56:56.000Z</published>
+    <updated>2019-12-06T07:23:16.950Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Linux-下安装和升级Git-系统版本为CentOS7"><a href="#Linux-下安装和升级Git-系统版本为CentOS7" class="headerlink" title="Linux 下安装和升级Git 系统版本为CentOS7"></a>Linux 下安装和升级Git 系统版本为CentOS7</h3><p>yum 安装<br><code>yum install git</code><br>查看git版本<br><code>git --version</code><br>但是通过 yum 安装的 git 版本为 1.8.3 版本太老，本人近期就遇到了git版本太老，导致clone代码仓库报错的问题，以下为升级操作，升级之前先要卸载之前的老版本Git<br><code>yum remove git</code></p><h4 id="1、查看-git-的版本发版界面"><a href="#1、查看-git-的版本发版界面" class="headerlink" title="1、查看 git 的版本发版界面"></a>1、查看 git 的版本发版界面</h4><p><a href="https://github.com/git/git/releases；发现最新版本为2.2.0" target="_blank" rel="noopener">https://github.com/git/git/releases；发现最新版本为2.2.0</a></p><h4 id="2、下载安装包"><a href="#2、下载安装包" class="headerlink" title="2、下载安装包"></a>2、下载安装包</h4><p>进入/usr/src目录，通过wget执行下载包的操作，我习惯在/usr/src下使用wget下载，只是个人习惯<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/src</span><br><span class="line">wget https://github.com/git/git/archive/v2.22.0.tar.gz</span><br></pre></td></tr></table></figure></p><h4 id="3、解压压缩包"><a href="#3、解压压缩包" class="headerlink" title="3、解压压缩包"></a>3、解压压缩包</h4><p><code>tar -zxvf v2.22.0.tar.gz</code></p><h4 id="4、安装依赖"><a href="#4、安装依赖" class="headerlink" title="4、安装依赖"></a>4、安装依赖</h4><p>安装编译码所需依赖，出现提示输入 Y 剩下只需等待即可<br><code>yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</code>  </p><h4 id="5、执行安装"><a href="#5、执行安装" class="headerlink" title="5、执行安装"></a>5、执行安装</h4><p>进入解压的文件夹，执行安装命令  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cd git-2.22.0</span><br><span class="line"></span><br><span class="line"># 执行编译，命令为</span><br><span class="line">make prefix=/usr/local/git all</span><br><span class="line"># 执行安装，命令为，安装到/usr/local/git</span><br><span class="line">make prefix=/usr/local/git install</span><br><span class="line"></span><br><span class="line">### 建议使用下面这组命令，上面的命令有可能会报错</span><br><span class="line"># 执行编译，命令为</span><br><span class="line">make CFLAGS=-liconv prefix=/usr/local/git all</span><br><span class="line"># 执行安装，命令为，安装到/usr/local/git</span><br><span class="line">make CFLAGS=-liconv prefix=/usr/local/git install</span><br></pre></td></tr></table></figure><p>如果执行的是 make prefix=/usr/local/git all，有可能出现以下错误</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/usr/src/git-2.22.0/utf8.c:492：对‘libiconv’未定义的引用</span><br><span class="line">libgit.a(utf8.o)：在函数‘reencode_string_len’中：</span><br><span class="line">/usr/src/git-2.22.0/utf8.c:587：对‘libiconv_open’未定义的引用</span><br><span class="line">/usr/src/git-2.22.0/utf8.c:597：对‘libiconv_close’未定义的引用</span><br><span class="line">/usr/src/git-2.22.0/utf8.c:592：对‘libiconv_open’未定义的引用</span><br><span class="line">collect2: 错误：ld 返回 1</span><br><span class="line">make: *** [git-credential-store] 错误 1</span><br></pre></td></tr></table></figure><h4 id="6、建立软连接"><a href="#6、建立软连接" class="headerlink" title="6、建立软连接"></a>6、建立软连接</h4><p>以上正确安装后，查看 Git 版本 git –version 会报 -bash: git: 未找到命令 错误，原因是我们把git安装到了 /usr/local/git 目录下，git –version默认找的是 /usr/bin/git命令，刚才我们已经卸载了，可通过软连来操作  </p><pre><code># 先删除 /usr/bin/gitrm -rf /usr/bin/git# 创建ln -s /usr/local/git/bin/git /usr/bin/git</code></pre><p>再查看git –version即可<br>同时更新一下nss yum update -y nss curl libcurl<br>至此操作成功！！！</p><p>参考网址：<br><a href="http://www.baiyongj.com/news/493.html" target="_blank" rel="noopener">http://www.baiyongj.com/news/493.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Linux-下安装和升级Git-系统版本为CentOS7&quot;&gt;&lt;a href=&quot;#Linux-下安装和升级Git-系统版本为CentOS7&quot; class=&quot;headerlink&quot; title=&quot;Linux 下安装和升级Git 系统版本为CentOS7&quot;&gt;&lt;/a&gt;Li
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://macintosh-c.coding.me/categories/Git/"/>
+    
+    
+      <category term="Git基础" scheme="http://macintosh-c.coding.me/tags/Git%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>jenkins用户权限管理</title>
@@ -99,7 +124,7 @@
     <link href="http://macintosh-c.coding.me/2019/09/27/kubernetes/k8s%E5%AE%89%E8%A3%85/"/>
     <id>http://macintosh-c.coding.me/2019/09/27/kubernetes/k8s安装/</id>
     <published>2019-09-27T07:08:56.000Z</published>
-    <updated>2019-09-28T12:33:50.930Z</updated>
+    <updated>2019-12-06T07:19:00.514Z</updated>
     
     <content type="html"><![CDATA[<p>由于条件所限，俺们只能在虚拟机上来搭建k8s,关于使用虚拟机创建服务器的过程之前已经讲过：<a href="http://macintosh-c.coding.me/2019/09/26/VirtualBox/Mac下安装VirtualBox/">这里</a>，此处我们准备了4台服务器用来搭建，如下：</p><table><thead><tr><th>Service name</th><th>IP</th><th>OS</th><th>Master/Node</th><th>service</th></tr></thead><tbody><tr><td>K8s-master1</td><td>192.168.56.113</td><td>Centos7</td><td>master</td><td>kube-apiserver,kube-controller-manager,kube-scheduler,etcd</td></tr><tr><td>K8s-master2</td><td>192.168.56.116</td><td>Centos7</td><td>master</td><td>kube-apiserver,kube-controller-manager,kube-scheduler</td></tr><tr><td>K8s-node1</td><td>192.168.56.114</td><td>Centos7</td><td>node</td><td>kubelet,kube-proxy,docker,flannel,etcd</td></tr><tr><td>K8s-node2</td><td>192.168.56.115</td><td>Centos7</td><td>node</td><td>kubelet,kube-proxy,docker,flannel,etcd</td></tr></tbody></table><p>1.关闭防火墙，并设置开机关闭<br>systemctl stop firewalld.service<br>systemctl disable firewalld.service</p><p>hostnamectl set-hostname *</p>]]></content>
     
@@ -299,32 +324,6 @@
   </entry>
   
   <entry>
-    <title>centos安装docker</title>
-    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/docker%E5%AE%89%E8%A3%85/"/>
-    <id>http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/</id>
-    <published>2019-09-24T05:45:56.000Z</published>
-    <updated>2019-09-25T07:09:34.756Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。</p><h3 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h3><p>docker 是一种容器技术，作用是用来快速部署服务。</p><p><strong>为什么说 docker 是快速部署</strong></p><p>我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！<br>比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根就没有 python 环境。<br>好了，这个时候你怎么解决呢。 对，只要去新机器上你就要部署 python。<br>嗯~ 好吧， 部署 python 就 python，但是你的项目里面还要用到 MySQL，好的没问题， 你又要去用 pip 去安装 python 的 mysql 模块。 哦对了， 我记我们的项目里面还有 redis， 两种非对称加密，还有三方队列， 哦， 还有阿里云的接口，对对对对对对哦。 乱七八糟的东西真的好多，搞完了几个小时没有了，遇到网络卡了，那就更没有谱了。</p><p><strong>好了， 我们进化到，快速1.0 时代</strong></p><p>我们把要安装的东西全都放进离线安装包里面，再写个 bash 脚本<br>对，这种事情真的有过。 部署全靠一个 bash 脚本，毕竟不用手动了么。 可是就是苦了写脚本的人，我就写过一个脚本写了好久。</p><p><strong>于是， 我们又进化了， 快速2.0时代</strong></p><p>我们把整个系统做成了镜像，存在了光盘里面，每当要架设的时候赶快用镜像做出一个新的系统！<br>可能经历过的自然会懂，还特么要做镜像啊，离机房远咋办啊！！我们做游戏，开服快，更新更快！我们版本更新过快怎么办啊！！我们还要刻刻刻么？ 我们的 tornado 又更新了，我去，我们客户端的 protobuf 也更新了，可是我们有100台服务器啊，为了这一点小小的东西更新么？西八！</p><p><strong>于是，我们再次加入光荣的进化， 快速3.0时代</strong></p><p>我们把服务装进了 docker 中<br>我们把做好的镜像，一个命令 pull 了下来，嗯，蛮快又一个命令 docker start XXXXXX 服务起来了。哦，你说多服务？好吧那就写个docker-compose.file吧。 嗯哼？ 你说集群部署 来来来， 有Kubernetes、Mesos，Fleet和Swarm 任君挑选，不好用不要钱。</p><p>docker 是部署的最佳辅助，即使你烂成渣渣，docker 也可以扶你上王者。<br>那Docker由什么组成呢， 包括三个基本概念:</p><ul><li>仓库(Repository)</li><li>镜像(Image)</li><li>容器(Container)</li></ul><p>1，其中Registry是Docker用于存放镜像文件的仓库，Docker 仓库的概念跟Git 类似.<br>2，所谓镜像就是构建容器的源代码，是一个只读的模板，由一层一层的文件系统组成的，类似于虚拟机的镜像.<br>3，那么容器就是由Docker镜像创建的运行实例，类似于虚拟机，容器之间是相互隔离的，包含特定的应用及其所需的依赖文件.</p><h3 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h3><p>如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum install docker-ce</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure></p><p>1安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的。<br>2设置yum源。<br>3安装Docker，命令：yum install docker-ce-版本号，版本号可以通过yum list docker-ce –showduplicates | sort -r查看，我这边不带版本号用的是默认最新。<br>4启动Docker。<br>5加入开机启动。<br>6验证安装是否成功(有client和service两部分表示docker安装启动都成功了)。</p><h3 id="常用Docker命令"><a href="#常用Docker命令" class="headerlink" title="常用Docker命令"></a>常用Docker命令</h3><ol><li>docker ps 查看当前正在运行的容器</li><li>docker ps -a 查看所有容器的状态</li><li>docker start/stop id/name 启动/停止某个容器</li><li>docker attach id 进入某个容器(使用exit退出后容器也跟着停止运行)</li><li>docker exec -ti id /bin/bash启动一个伪终端以交互式的方式进入某个容器（使用exit退出后容器不停止运行）</li><li>docker images 查看本地镜像</li><li>docker rm id/name 删除某个容器</li><li>docker rmi id/name 删除某个镜像</li><li>docker run –name test -ti ubuntu /bin/bash  复制ubuntu容器并且重命名为test且运行，然后以伪终端交互式方式进入容器，运行bash</li><li>docker build -t soar/centos:7.1 .  通过当前目录下的Dockerfile创建一个名为soar/centos:7.1的镜像</li><li>docker run -d -p 2222:22 –name test soar/centos:7.1  以镜像soar/centos:7.1创建名为test的容器，并以后台模式运行，并做端口映射到宿主机2222端口，P参数重启容器宿主机端口会发生改变</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。&lt;/p&gt;
-&lt;h3 id=&quot;Docker-简介&quot;&gt;&lt;a href=&quot;#Docker-简介&quot; class=&quot;headerlink&quot; title=
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Mac下安装docker</title>
     <link href="http://macintosh-c.coding.me/2019/09/24/Docker/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85/"/>
     <id>http://macintosh-c.coding.me/2019/09/24/Docker/Mac下docker安装/</id>
@@ -339,6 +338,32 @@
       
         &lt;p&gt;本地Mac下安装docker&lt;/p&gt;
 &lt;h3 id=&quot;Mac下安装指令&quot;&gt;&lt;a href=&quot;#Mac下安装指令&quot; class=&quot;headerlink&quot; title=&quot;Mac下安装指令&quot;&gt;&lt;/a&gt;Mac下安装指令&lt;/h3&gt;&lt;p&gt;只需要一条指令：&lt;code&gt;brew cask 
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>centos安装docker</title>
+    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/docker%E5%AE%89%E8%A3%85/"/>
+    <id>http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/</id>
+    <published>2019-09-24T05:45:56.000Z</published>
+    <updated>2019-09-25T07:09:34.756Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。</p><h3 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h3><p>docker 是一种容器技术，作用是用来快速部署服务。</p><p><strong>为什么说 docker 是快速部署</strong></p><p>我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！<br>比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根就没有 python 环境。<br>好了，这个时候你怎么解决呢。 对，只要去新机器上你就要部署 python。<br>嗯~ 好吧， 部署 python 就 python，但是你的项目里面还要用到 MySQL，好的没问题， 你又要去用 pip 去安装 python 的 mysql 模块。 哦对了， 我记我们的项目里面还有 redis， 两种非对称加密，还有三方队列， 哦， 还有阿里云的接口，对对对对对对哦。 乱七八糟的东西真的好多，搞完了几个小时没有了，遇到网络卡了，那就更没有谱了。</p><p><strong>好了， 我们进化到，快速1.0 时代</strong></p><p>我们把要安装的东西全都放进离线安装包里面，再写个 bash 脚本<br>对，这种事情真的有过。 部署全靠一个 bash 脚本，毕竟不用手动了么。 可是就是苦了写脚本的人，我就写过一个脚本写了好久。</p><p><strong>于是， 我们又进化了， 快速2.0时代</strong></p><p>我们把整个系统做成了镜像，存在了光盘里面，每当要架设的时候赶快用镜像做出一个新的系统！<br>可能经历过的自然会懂，还特么要做镜像啊，离机房远咋办啊！！我们做游戏，开服快，更新更快！我们版本更新过快怎么办啊！！我们还要刻刻刻么？ 我们的 tornado 又更新了，我去，我们客户端的 protobuf 也更新了，可是我们有100台服务器啊，为了这一点小小的东西更新么？西八！</p><p><strong>于是，我们再次加入光荣的进化， 快速3.0时代</strong></p><p>我们把服务装进了 docker 中<br>我们把做好的镜像，一个命令 pull 了下来，嗯，蛮快又一个命令 docker start XXXXXX 服务起来了。哦，你说多服务？好吧那就写个docker-compose.file吧。 嗯哼？ 你说集群部署 来来来， 有Kubernetes、Mesos，Fleet和Swarm 任君挑选，不好用不要钱。</p><p>docker 是部署的最佳辅助，即使你烂成渣渣，docker 也可以扶你上王者。<br>那Docker由什么组成呢， 包括三个基本概念:</p><ul><li>仓库(Repository)</li><li>镜像(Image)</li><li>容器(Container)</li></ul><p>1，其中Registry是Docker用于存放镜像文件的仓库，Docker 仓库的概念跟Git 类似.<br>2，所谓镜像就是构建容器的源代码，是一个只读的模板，由一层一层的文件系统组成的，类似于虚拟机的镜像.<br>3，那么容器就是由Docker镜像创建的运行实例，类似于虚拟机，容器之间是相互隔离的，包含特定的应用及其所需的依赖文件.</p><h3 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h3><p>如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum install docker-ce</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure></p><p>1安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的。<br>2设置yum源。<br>3安装Docker，命令：yum install docker-ce-版本号，版本号可以通过yum list docker-ce –showduplicates | sort -r查看，我这边不带版本号用的是默认最新。<br>4启动Docker。<br>5加入开机启动。<br>6验证安装是否成功(有client和service两部分表示docker安装启动都成功了)。</p><h3 id="常用Docker命令"><a href="#常用Docker命令" class="headerlink" title="常用Docker命令"></a>常用Docker命令</h3><ol><li>docker ps 查看当前正在运行的容器</li><li>docker ps -a 查看所有容器的状态</li><li>docker start/stop id/name 启动/停止某个容器</li><li>docker attach id 进入某个容器(使用exit退出后容器也跟着停止运行)</li><li>docker exec -ti id /bin/bash启动一个伪终端以交互式的方式进入某个容器（使用exit退出后容器不停止运行）</li><li>docker images 查看本地镜像</li><li>docker rm id/name 删除某个容器</li><li>docker rmi id/name 删除某个镜像</li><li>docker run –name test -ti ubuntu /bin/bash  复制ubuntu容器并且重命名为test且运行，然后以伪终端交互式方式进入容器，运行bash</li><li>docker build -t soar/centos:7.1 .  通过当前目录下的Dockerfile创建一个名为soar/centos:7.1的镜像</li><li>docker run -d -p 2222:22 –name test soar/centos:7.1  以镜像soar/centos:7.1创建名为test的容器，并以后台模式运行，并做端口映射到宿主机2222端口，P参数重启容器宿主机端口会发生改变</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。&lt;/p&gt;
+&lt;h3 id=&quot;Docker-简介&quot;&gt;&lt;a href=&quot;#Docker-简介&quot; class=&quot;headerlink&quot; title=
       
     
     </summary>
@@ -501,32 +526,6 @@
     
     
       <category term="Linux基础" scheme="http://macintosh-c.coding.me/tags/Linux%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac下安装python3</title>
-    <link href="http://macintosh-c.coding.me/2019/08/28/python/Mac%E4%B8%8BPython3%E7%9A%84%E5%AE%89%E8%A3%85/"/>
-    <id>http://macintosh-c.coding.me/2019/08/28/python/Mac下Python3的安装/</id>
-    <published>2019-08-28T07:19:52.000Z</published>
-    <updated>2019-08-28T07:32:40.466Z</updated>
-    
-    <content type="html"><![CDATA[<p>mac系统自带python，不过以当前mac系统的最新版本为例，自带的python版本都是2.<em>版本，虽然不影响老版本项目的运行，但是python最新的3.</em>版本的一些语法与2.*版本并不相同，所以本篇为在现有mac下安装python3</p><h2 id="默认的python2"><a href="#默认的python2" class="headerlink" title="默认的python2"></a>默认的python2</h2><p> Mac系统自带python路径为／System／Library／Frameworks／Python.framework/Version<br> 也可通过命令：python查看</p><h2 id="安装python3"><a href="#安装python3" class="headerlink" title="安装python3"></a>安装python3</h2><p>使用神器homebrew，还不熟悉此神器的小伙伴请自行百度<br>1.安装前先搜索一下是否已经存在python3的包：brew search python3</p><p>2.已经存在，我们可以直接安装了：brew install python3<br>成功安装会提示python3的安装路径，这时使用python命令查看版本还是python2，使用：python3命令才会看到新安装的python版本。</p><h2 id="配置python3为默认版本"><a href="#配置python3为默认版本" class="headerlink" title="配置python3为默认版本"></a>配置python3为默认版本</h2><p>1.修改~/.bash_profile文件，添加：<br>alias python=”/usr/local/bin/python3.7”</p><p>2.使用命令，使其生效：source ~/.bash_profile</p><p>这时再直接使用python命令查看，便看到为python3的版本了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;mac系统自带python，不过以当前mac系统的最新版本为例，自带的python版本都是2.&lt;em&gt;版本，虽然不影响老版本项目的运行，但是python最新的3.&lt;/em&gt;版本的一些语法与2.*版本并不相同，所以本篇为在现有mac下安装python3&lt;/p&gt;
-&lt;h2 id=
-      
-    
-    </summary>
-    
-      <category term="python" scheme="http://macintosh-c.coding.me/categories/python/"/>
-    
-    
-      <category term="python安装" scheme="http://macintosh-c.coding.me/tags/python%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
