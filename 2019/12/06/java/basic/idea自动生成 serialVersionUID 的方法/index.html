@@ -4,25 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>centos7安装jdk | macintosh-c&#39;s blog</title>
+    <title>IDEA中自动生成serialVersionUID的方法 | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="Centos7自带OpenJDK的环境，强烈不建议使用，卸载重新安装oracle jdk 1.8 1. 进入root帐号 ，删除系统自带的openjdk12suyum -y remove java* 2.下载最新的jdk地址可以从oracle的网站(https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-213">
-<meta name="keywords" content="jdk安装">
+    <meta name="description" content="当我们用 IntelliJ IDEA 编写类并实现 Serializable（序列化）接口的时候，可能会遇到这样一个问题，那就是：  无法自动生成serialVersionUID.  而serialVersionUID又是一个非常重要的字段，因为 Java 的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM 会把传来的字节流中的seria">
+<meta name="keywords" content="serialVersionUID">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centos7安装jdk">
-<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/25/java/basic/centos7安装jdk/index.html">
+<meta property="og:title" content="IDEA中自动生成serialVersionUID的方法">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/12/06/java/basic/idea自动生成 serialVersionUID 的方法/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="Centos7自带OpenJDK的环境，强烈不建议使用，卸载重新安装oracle jdk 1.8 1. 进入root帐号 ，删除系统自带的openjdk12suyum -y remove java* 2.下载最新的jdk地址可以从oracle的网站(https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-213">
+<meta property="og:description" content="当我们用 IntelliJ IDEA 编写类并实现 Serializable（序列化）接口的时候，可能会遇到这样一个问题，那就是：  无法自动生成serialVersionUID.  而serialVersionUID又是一个非常重要的字段，因为 Java 的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM 会把传来的字节流中的seria">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-25T09:50:06.422Z">
+<meta property="og:image" content="http://macintosh-c.coding.me/img/java/idea-uid-4.png">
+<meta property="og:image" content="http://macintosh-c.coding.me/img/java/idea-uid-5.jpg">
+<meta property="og:image" content="http://macintosh-c.coding.me/img/java/idea-uid-6.png">
+<meta property="og:updated_time" content="2019-12-06T09:58:01.591Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centos7安装jdk">
-<meta name="twitter:description" content="Centos7自带OpenJDK的环境，强烈不建议使用，卸载重新安装oracle jdk 1.8 1. 进入root帐号 ，删除系统自带的openjdk12suyum -y remove java* 2.下载最新的jdk地址可以从oracle的网站(https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-213">
+<meta name="twitter:title" content="IDEA中自动生成serialVersionUID的方法">
+<meta name="twitter:description" content="当我们用 IntelliJ IDEA 编写类并实现 Serializable（序列化）接口的时候，可能会遇到这样一个问题，那就是：  无法自动生成serialVersionUID.  而serialVersionUID又是一个非常重要的字段，因为 Java 的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM 会把传来的字节流中的seria">
+<meta name="twitter:image" content="http://macintosh-c.coding.me/img/java/idea-uid-4.png">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/09/25/java/basic/centos7安装jdk/" title="centos7安装jdk" itemprop="url">centos7安装jdk</a>
+      <a href="/2019/12/06/java/basic/idea自动生成 serialVersionUID 的方法/" title="IDEA中自动生成serialVersionUID的方法" itemprop="url">IDEA中自动生成serialVersionUID的方法</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2019-09-25T09:39:56.000Z" itemprop="datePublished"> 发表于 2019-09-25</time>
+    <time datetime="2019-12-06T09:39:56.000Z" itemprop="datePublished"> 发表于 2019-12-06</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,18 +102,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-进入root帐号-，删除系统自带的openjdk"><span class="toc-number">1.</span> <span class="toc-text">1. 进入root帐号 ，删除系统自带的openjdk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-下载最新的jdk"><span class="toc-number">2.</span> <span class="toc-text">2.下载最新的jdk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装"><span class="toc-number">3.</span> <span class="toc-text">3. 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-找java的安装路径"><span class="toc-number">4.</span> <span class="toc-text">4. 找java的安装路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-vi编辑-etc-profile，配置环境变量"><span class="toc-number">5.</span> <span class="toc-text">5.vi编辑/etc/profile，配置环境变量</span></a></li></ol>
+			
 		
 		</div>
 		
-		<p>Centos7自带OpenJDK的环境，强烈不建议使用，卸载重新安装oracle jdk 1.8</p>
-<h3 id="1-进入root帐号-，删除系统自带的openjdk"><a href="#1-进入root帐号-，删除系统自带的openjdk" class="headerlink" title="1. 进入root帐号 ，删除系统自带的openjdk"></a>1. 进入root帐号 ，删除系统自带的openjdk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su</span><br><span class="line">yum -y remove java*</span><br></pre></td></tr></table></figure>
-<h3 id="2-下载最新的jdk"><a href="#2-下载最新的jdk" class="headerlink" title="2.下载最新的jdk"></a>2.下载最新的jdk</h3><p>地址可以从oracle的网站(<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html）对应版本的rpm地址保存替换：" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html）对应版本的rpm地址保存替换：</a><br><code>wget --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.rpm</code></p>
-<h3 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h3><p>yum localinstall jdk-8u201-linux-x64.rpm</p>
-<h3 id="4-找java的安装路径"><a href="#4-找java的安装路径" class="headerlink" title="4. 找java的安装路径"></a>4. 找java的安装路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">which java</span><br><span class="line">ls -lrt /usr/bin/java</span><br><span class="line">ls -lrt /etc/alternatives/java</span><br></pre></td></tr></table></figure>
-<p>注：echo $JAVA_HOME 方法是在已经配置了/etc/profile 文件的前提下查询的，如果该文件$JAVA_HOME配置错误，输出结果也是错误的。which java查询到的是java的执行路径，不是安装路径！</p>
-<h3 id="5-vi编辑-etc-profile，配置环境变量"><a href="#5-vi编辑-etc-profile，配置环境变量" class="headerlink" title="5.vi编辑/etc/profile，配置环境变量"></a>5.vi编辑/etc/profile，配置环境变量</h3><p>1)sudo vim /etc/profile<br>2)按下 i 进入编辑，此时在窗体最底部会出现 – 插入 –<br>3)使用键盘输入编辑文字,文件末尾需要添加的配置如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_201-amd64</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH</span><br><span class="line">export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p>
-<p>4)输入完毕后，完成输入，退出输入，按 ESC ,这个时候会发现底部的 – 插入 –没有了<br>5) 保存编辑的文件，并且退出vim编辑 输入 :wq 命令，按回车键<br>6)使用vim命令打开/etc/profile文件查看文件内容<br>7)没有进行修改，不需要保存直接退出 ，输入 :q 命令<br>8)source /etc/profile 使之立即生效<br>可分别用以下命令查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo $JAVA_HOME</span><br><span class="line">echo $PATH</span><br><span class="line">echo $CLASSPATH</span><br></pre></td></tr></table></figure></p>
+		<p>当我们用 IntelliJ IDEA 编写类并实现 Serializable（序列化）接口的时候，可能会遇到这样一个问题，那就是：</p>
+<ul>
+<li>无法自动生成serialVersionUID.</li>
+</ul>
+<p>而serialVersionUID又是一个非常重要的字段，因为 Java 的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM 会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p>
+<p>一般来说，定义serialVersionUID的方式有两种，分别为：</p>
+<ol>
+<li>采用默认的1L，具体为private static final long serialVersionUID = 1L;</li>
+<li>根据类名、接口名、成员方法及属性等来生成一个64位的哈希字段，例如 private static final long serialVersionUID = XXXL;</li>
+</ol>
+<p>而 Java 类进行序列化也两个主要目的，分别为：</p>
+<ol>
+<li>把对象的字节序列永久地保存到硬盘上，通常存放在一个文件中；</li>
+<li>在网络上传送对象的字节序列。</li>
+</ol>
+<p>在这里，我们就一起来看看如何利用 IntelliJ IDEA 自动生成serialVersionUID:</p>
+<p>第 1 步：安装GenerateSerialVersionUID插件<br>第 2 步：设置Inspections功能<br><img src="/img/java/idea-uid-4.png" alt="idea"><br>如上图所示，进入Default Settings，在Inspections设置页面中，勾选Serializable class without ‘serialVersionUID’，并且还可以在Severity中设置提示级别，如Warning、Error等，默认为Warning，也建议选择Warning级别的提示。<br>第 3 步：生成serialVersionUID<br><img src="/img/java/idea-uid-5.jpg" alt="idea"><br>如上图所示，创建一个类并实现Serializable接口，然后按alt+Enter键，即可收到提示，然后选择SerialVersionUID：<br><img src="/img/java/idea-uid-6.png" alt="idea"><br>如上图所示，显然我们已经利用 IntelliJ IDEA 中自动生成serialVersionUID啦！</p>
 
 	</div>
 
@@ -227,7 +240,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/jdk安装/">jdk安装</a>
+  <span></span> <a href="/tags/serialVersionUID/">serialVersionUID</a>
   </div>
 
 </div>
@@ -236,7 +249,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2019/09/25/java/basic/centos7安装jdk/" data-title="centos7安装jdk | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/12/06/java/basic/idea自动生成 serialVersionUID 的方法/" data-title="IDEA中自动生成serialVersionUID的方法 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -248,19 +261,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2019/09/26/VirtualBox/Mac下安装VirtualBox/" title="Mac下VirtualBox安装">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Mac下VirtualBox安装</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/09/25/Docker/docker理解篇/"  title="Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别">
+<a href="/2019/12/06/Nginx/nginx常用命令/"  title="Nginx常用命令（启动/重启/停止/测试配置文件/重新加载配置文件）">
  <strong>下一篇：</strong><br/> 
- <span>Docker，Docker Compose，Docker Swarm，Kubernetes之间的区别
+ <span>Nginx常用命令（启动/重启/停止/测试配置文件/重新加载配置文件）
 </span>
 </a>
 </div>
@@ -297,7 +302,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-进入root帐号-，删除系统自带的openjdk"><span class="toc-number">1.</span> <span class="toc-text">1. 进入root帐号 ，删除系统自带的openjdk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-下载最新的jdk"><span class="toc-number">2.</span> <span class="toc-text">2.下载最新的jdk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装"><span class="toc-number">3.</span> <span class="toc-text">3. 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-找java的安装路径"><span class="toc-number">4.</span> <span class="toc-text">4. 找java的安装路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-vi编辑-etc-profile，配置环境变量"><span class="toc-number">5.</span> <span class="toc-text">5.vi编辑/etc/profile，配置环境变量</span></a></li></ol>
+ 
  
   </div>
 

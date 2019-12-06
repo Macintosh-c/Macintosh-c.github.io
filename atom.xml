@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2019-12-06T09:12:34.805Z</updated>
+  <updated>2019-12-06T09:58:01.591Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IDEA中自动生成serialVersionUID的方法</title>
+    <link href="http://macintosh-c.coding.me/2019/12/06/java/basic/idea%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%20serialVersionUID%20%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://macintosh-c.coding.me/2019/12/06/java/basic/idea自动生成 serialVersionUID 的方法/</id>
+    <published>2019-12-06T09:39:56.000Z</published>
+    <updated>2019-12-06T09:58:01.591Z</updated>
+    
+    <content type="html"><![CDATA[<p>当我们用 IntelliJ IDEA 编写类并实现 Serializable（序列化）接口的时候，可能会遇到这样一个问题，那就是：</p><ul><li>无法自动生成serialVersionUID.</li></ul><p>而serialVersionUID又是一个非常重要的字段，因为 Java 的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM 会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p><p>一般来说，定义serialVersionUID的方式有两种，分别为：</p><ol><li>采用默认的1L，具体为private static final long serialVersionUID = 1L;</li><li>根据类名、接口名、成员方法及属性等来生成一个64位的哈希字段，例如 private static final long serialVersionUID = XXXL;</li></ol><p>而 Java 类进行序列化也两个主要目的，分别为：</p><ol><li>把对象的字节序列永久地保存到硬盘上，通常存放在一个文件中；</li><li>在网络上传送对象的字节序列。</li></ol><p>在这里，我们就一起来看看如何利用 IntelliJ IDEA 自动生成serialVersionUID:</p><p>第 1 步：安装GenerateSerialVersionUID插件<br>第 2 步：设置Inspections功能<br><img src="/img/java/idea-uid-4.png" alt="idea"><br>如上图所示，进入Default Settings，在Inspections设置页面中，勾选Serializable class without ‘serialVersionUID’，并且还可以在Severity中设置提示级别，如Warning、Error等，默认为Warning，也建议选择Warning级别的提示。<br>第 3 步：生成serialVersionUID<br><img src="/img/java/idea-uid-5.jpg" alt="idea"><br>如上图所示，创建一个类并实现Serializable接口，然后按alt+Enter键，即可收到提示，然后选择SerialVersionUID：<br><img src="/img/java/idea-uid-6.png" alt="idea"><br>如上图所示，显然我们已经利用 IntelliJ IDEA 中自动生成serialVersionUID啦！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;当我们用 IntelliJ IDEA 编写类并实现 Serializable（序列化）接口的时候，可能会遇到这样一个问题，那就是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无法自动生成serialVersionUID.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;而serialVersionUID又是一
+      
+    
+    </summary>
+    
+      <category term="java基础" scheme="http://macintosh-c.coding.me/categories/java%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="serialVersionUID" scheme="http://macintosh-c.coding.me/tags/serialVersionUID/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx常用命令（启动/重启/停止/测试配置文件/重新加载配置文件）</title>
@@ -507,32 +536,6 @@
     
     
       <category term="Memcached安装" scheme="http://macintosh-c.coding.me/tags/Memcached%E5%AE%89%E8%A3%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac下安装Postgre</title>
-    <link href="http://macintosh-c.coding.me/2019/09/18/Databases/postgre/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Postgre/"/>
-    <id>http://macintosh-c.coding.me/2019/09/18/Databases/postgre/Mac下安装Postgre/</id>
-    <published>2019-09-18T04:20:29.000Z</published>
-    <updated>2019-09-18T04:30:01.011Z</updated>
-    
-    <content type="html"><![CDATA[<p>项目上用到PostgreSQL，所以在本地搭建环境，记录过程如下，方便查找</p><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>使用homebrew，方便快捷：<br>brew install postgresql</p><p>安装完成后，透过安装日记提示可以看到启动方式<br>To have launchd start postgresql now and restart at login:<br>  brew services start postgresql<br>Or, if you don’t want/need a background service you can just run:<br>  pg_ctl -D /usr/local/var/postgres start</p><p>提示了后台和非后台启动的两种方式</p><h2 id="创建数据库和账户"><a href="#创建数据库和账户" class="headerlink" title="创建数据库和账户"></a>创建数据库和账户</h2><p>mac安装postgresql后不会创建用户名数据库，执行命令：createdb</p><p>然后登录PostgreSQL控制台：psql</p><p>使用\l命令列出所有的数据库，看到已存在用户同名数据库、postgres数据库，但是postgres数据库的所有者是当前用户，没有postgres用户。按:q退出查看<br>之后需要做以下几件事：</p><p>创建postgres用户：CREATE USER postgres WITH PASSWORD ‘password’;<br>删除默认生成的postgres数据库：DROP DATABASE postgres;<br>创建属于postgres用户的postgres数据库：CREATE DATABASE postgres OWNER postgres;<br>将数据库所有权限赋予postgres用户：GRANT ALL PRIVILEGES ON DATABASE postgres to postgres;<br>给postgres用户添加创建数据库的属性：ALTER ROLE postgres CREATEDB;<br>这样就可以使用postgres作为数据库的登录用户了，并可以使用该用户管理数据库</p><h2 id="登录控制台指令"><a href="#登录控制台指令" class="headerlink" title="登录控制台指令"></a>登录控制台指令</h2><p>psql -U [user] -d [database] -h [host] -p [post]<br>-U指定用户，-d指定数据库，-h指定服务器，-p指定端口<br>上方直接使用psql登录控制台，实际上使用的是缺省数据</p><p>user：当前mac用户<br>database：用户同名数据库<br>主机：localhost<br>端口号：5432，postgresql的默认端口是5432</p><p>完整的登录命令，比如使用postgres用户登录：<br>psql -U postgres -d postgres</p><h2 id="常用控制台命令"><a href="#常用控制台命令" class="headerlink" title="常用控制台命令"></a>常用控制台命令</h2><p>\password：设置当前登录用户的密码<br>\h：查看SQL命令的解释，比如\h select。<br>\?：查看psql命令列表。<br>\l：列出所有数据库。<br>\c [database_name]：连接其他数据库。<br>\d：列出当前数据库的所有表格。<br>\d [table_name]：列出某一张表格的结构。<br>\du：列出所有用户。<br>\e：打开文本编辑器。<br>\conninfo：列出当前数据库和连接的信息。<br>\password [user]: 修改用户密码<br>\q：退出</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;项目上用到PostgreSQL，所以在本地搭建环境，记录过程如下，方便查找&lt;/p&gt;
-&lt;h2 id=&quot;下载安装&quot;&gt;&lt;a href=&quot;#下载安装&quot; class=&quot;headerlink&quot; title=&quot;下载安装&quot;&gt;&lt;/a&gt;下载安装&lt;/h2&gt;&lt;p&gt;使用homebrew，方便快捷：&lt;
-      
-    
-    </summary>
-    
-      <category term="Database" scheme="http://macintosh-c.coding.me/categories/Database/"/>
-    
-    
-      <category term="Postgre安装" scheme="http://macintosh-c.coding.me/tags/Postgre%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
