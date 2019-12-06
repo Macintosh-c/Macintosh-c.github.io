@@ -4,29 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Mac下VirtualBox安装 | macintosh-c&#39;s blog</title>
+    <title>Mysql清空表(truncate)与删除表中数据(delete)的区别 | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="Mac下VirtualBox的安装过程很简单，整理如下，有些坑需要注意 1.下载及安装1). VirtualBox官方下载地址：https://www.virtualbox.org/wiki/Downloads点击“OS X hosts”下载对应的mac版本。下载完了直接点击安装就行。此处有个坑，virtualbox在安装的时候需要安装内核扩展（Kernel extenstion），而macOS">
-<meta name="keywords" content="VirtualBox安装">
+    <meta name="description" content="以下是两种清空表中数据的方法：truncate table wp_comments;delete * from wp_comments; 其中truncate操作中的table可以省略，delete操作中的*可以省略。这两者都是将wp_comments表中数据清空，不过也是有区别的，如下：  truncate是整体删除（速度较快）， delete是逐条删除（速度较慢）。 truncate不写服务器">
+<meta name="keywords" content="sql语句基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac下VirtualBox安装">
-<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/26/VirtualBox/Mac下安装VirtualBox/index.html">
+<meta property="og:title" content="Mysql清空表(truncate)与删除表中数据(delete)的区别">
+<meta property="og:url" content="http://macintosh-c.coding.me/2019/12/06/Databases/mysql/mysql清空表/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="Mac下VirtualBox的安装过程很简单，整理如下，有些坑需要注意 1.下载及安装1). VirtualBox官方下载地址：https://www.virtualbox.org/wiki/Downloads点击“OS X hosts”下载对应的mac版本。下载完了直接点击安装就行。此处有个坑，virtualbox在安装的时候需要安装内核扩展（Kernel extenstion），而macOS">
+<meta property="og:description" content="以下是两种清空表中数据的方法：truncate table wp_comments;delete * from wp_comments; 其中truncate操作中的table可以省略，delete操作中的*可以省略。这两者都是将wp_comments表中数据清空，不过也是有区别的，如下：  truncate是整体删除（速度较快）， delete是逐条删除（速度较慢）。 truncate不写服务器">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://macintosh-c.coding.me/img/VirtualBox/virtualbox.png">
-<meta property="og:image" content="http://macintosh-c.coding.me/img/VirtualBox/virtualbox2.jpg">
-<meta property="og:image" content="http://macintosh-c.coding.me/img/VirtualBox/virtualbox1.jpg">
-<meta property="og:updated_time" content="2019-09-26T15:02:45.613Z">
+<meta property="og:updated_time" content="2019-12-06T08:15:02.899Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac下VirtualBox安装">
-<meta name="twitter:description" content="Mac下VirtualBox的安装过程很简单，整理如下，有些坑需要注意 1.下载及安装1). VirtualBox官方下载地址：https://www.virtualbox.org/wiki/Downloads点击“OS X hosts”下载对应的mac版本。下载完了直接点击安装就行。此处有个坑，virtualbox在安装的时候需要安装内核扩展（Kernel extenstion），而macOS">
-<meta name="twitter:image" content="http://macintosh-c.coding.me/img/VirtualBox/virtualbox.png">
+<meta name="twitter:title" content="Mysql清空表(truncate)与删除表中数据(delete)的区别">
+<meta name="twitter:description" content="以下是两种清空表中数据的方法：truncate table wp_comments;delete * from wp_comments; 其中truncate操作中的table可以省略，delete操作中的*可以省略。这两者都是将wp_comments表中数据清空，不过也是有区别的，如下：  truncate是整体删除（速度较快）， delete是逐条删除（速度较慢）。 truncate不写服务器">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -85,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/09/26/VirtualBox/Mac下安装VirtualBox/" title="Mac下VirtualBox安装" itemprop="url">Mac下VirtualBox安装</a>
+      <a href="/2019/12/06/Databases/mysql/mysql清空表/" title="Mysql清空表(truncate)与删除表中数据(delete)的区别" itemprop="url">Mysql清空表(truncate)与删除表中数据(delete)的区别</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2019-09-26T03:08:56.000Z" itemprop="datePublished"> 发表于 2019-09-26</time>
+    <time datetime="2019-12-06T04:49:36.000Z" itemprop="datePublished"> 发表于 2019-12-06</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -102,24 +98,18 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载及安装"><span class="toc-number">1.</span> <span class="toc-text">1.下载及安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建centos7虚拟机"><span class="toc-number">2.</span> <span class="toc-text">2.创建centos7虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-centos7系统安装"><span class="toc-number">3.</span> <span class="toc-text">3.centos7系统安装</span></a></li></ol>
+			
 		
 		</div>
 		
-		<p>Mac下VirtualBox的安装过程很简单，整理如下，有些坑需要注意</p>
-<h3 id="1-下载及安装"><a href="#1-下载及安装" class="headerlink" title="1.下载及安装"></a>1.下载及安装</h3><p>1). VirtualBox官方下载地址：<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">https://www.virtualbox.org/wiki/Downloads</a><br>点击“OS X hosts”下载对应的mac版本。<br>下载完了直接点击安装就行。此处有个坑，virtualbox在安装的时候需要安装内核扩展（Kernel extenstion），而macOS 10.13 High Sierra的新安全特性会阻止外部内核扩展的安装，所以安装总是会被系统拦截，安装最后一步总是提示失败。<br>解决办法：<br>进入Preferences &gt; Security &amp; Privacy &gt; General: 然后手动允许<br>或者<br>在终端手动禁用此安全特性sudo spctl –master-disable</p>
-<p>2). 创建centos7虚拟机需要其镜像文件，官方下载地址：<a href="http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso，约4G多大小" target="_blank" rel="noopener">http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso，约4G多大小</a> 也可以选择其他相应的版本。</p>
-<p>3). 启动桌面VirtualBox程序，如果语言不对，可以到偏好设置中修改为简体中文。</p>
-<h3 id="2-创建centos7虚拟机"><a href="#2-创建centos7虚拟机" class="headerlink" title="2.创建centos7虚拟机"></a>2.创建centos7虚拟机</h3><p>在启动的VirtualBox界面上点击新建，接下来的配置是我在本地创建centos7的配置，可参考或修改，视个人宿主电脑配置或者需要而定，个别会详解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">名称：自己起</span><br><span class="line">文件夹：默认或者修改</span><br><span class="line">类型：Linux</span><br><span class="line">版本：Red Hat(64-bit)</span><br><span class="line">内存大小：1024</span><br><span class="line">虚拟硬盘：现在创建虚拟硬盘</span><br><span class="line">硬盘文件类型：VDI</span><br><span class="line">存储在物理硬盘上：动态分配</span><br><span class="line">文件位置和大小：位置默认，大小默认8G</span><br></pre></td></tr></table></figure></p>
-<p>点击创建ok<br>除此之外还需要做一些额外的配置，重中之中时网络的配置，我们最终要达到的效果是：<br>1.所有的虚拟机可以互ping通。<br>2.宿主机与所有的虚拟机可以互ping通。<br>3.所有的虚拟机可以利用宿主机的网络ping通外网地址。比如百度。<br>4.宿主机切换网络，不影响到虚拟机的ip变更，且各方之间互ping不受影响。</p>
-<p><strong>这里补充一点知识，关于VirtualBox的四种网络连接方式：解决宿主机与虚拟机互ping不通</strong><br><img src="/img/VirtualBox/virtualbox.png" alt="VirtualBox的四种网络连接方式"><br>将网络-连接方式改为桥接网卡讲道理是可以满足前3条，但是当宿主切换网络后，虚拟机与宿主机ping不通，重启虚拟机后的ip也会变动，这样让后续使用虚拟机带来很多不便，所以采用NAT+Host-Only方式。具体配置如下：<br>1.在 virtualbox 偏好设置里设置添加 NAT网络<br><img src="/img/VirtualBox/virtualbox2.jpg" alt="NAT网络"><br>2.在virtualbox工具栏找到网络，添加Host-Only<br><img src="/img/VirtualBox/virtualbox1.jpg" alt="only-host"></p>
-<p>紧接着右击新建的虚拟机，设置-网络<br>1）网卡1-启用网络连接，连接方式：NAT网络<br>2）网卡2-启用网络连接，连接方式：仅主机（Host-Only）网络</p>
-<p>除此之外还有一点其他配置如下<br>3)系统-启动顺序，把光驱移到最上。<br>4)显示-显卡控制器，选择VBoxVGA。</p>
-<p>最后点击启动，弹框中选择刚刚下载的4G多的镜像文件，启动，如果启动的窗口太小，可以通过状态栏视图-自动缩放模式，也可以通过设备下的安装增强功能开启无缝模式和其他一些功能。</p>
-<h3 id="3-centos7系统安装"><a href="#3-centos7系统安装" class="headerlink" title="3.centos7系统安装"></a>3.centos7系统安装</h3><p>接下来就是启动后的虚拟机中centos系统的安装<br>1）选择Install Centos 7<br>2）language选择中文-简体中文<br>3）日记和时间，键盘，语言支持全部默认<br>4）软件选择GNOME桌面，附加全部选上，当然也可以选择其他类型<br>5）安装位置：自动配置分区<br>6）网络和主机名：由于之前我们设置了两个网络连接方式，这里会有两个以太网(enpOs3和enpOs8),分别右上角打开，前者为NAT网络，使虚拟机可以访问wifi网络，后者可以固定ip，使主机以及虚拟机之间互通ok。enpOs8显示的ip地址即为此虚拟机的固定ip，后续可以通过在centos中执行ifconfig命令查看。</p>
-<p>点击开始安装后用户设置，分别设置<br>7）root密码和新建一个账户，同时设置为管理员，等待安装。安装完毕后提示重启，重启后<br>8）接收许可证，<br>9）再次设置下网络和主机名后，<br>完成配置，即可正常进入系统，有交互桌面，可以通过终端互ping验证一下。<br>到这里还有最后一步设置，<br>10）cd到/etc/sysconfig/network-scripts可以看到ifcfg-enpOs3和ifcfg-enpOs8两个文件，确认里面的ONBOOT参数是否设为yes，没有的话改下，保存后，重启网络：命令service network restart。这样的话即使重启虚拟机，ip也会一直固定存在。</p>
-<p><strong>关于上述操作过程中虚拟机与宿主机间的鼠标切换问题，可以通过安装增强功能使其可以自由切换，也可通过左command键来切换。</strong></p>
-<p>到此虚拟机创建完毕，可以多建几个，供后续学习集群等使用。</p>
+		<p>以下是两种清空表中数据的方法：<br><code>truncate table wp_comments;</code><br><code>delete * from wp_comments;</code></p>
+<p>其中truncate操作中的table可以省略，delete操作中的*可以省略。这两者都是将wp_comments表中数据清空，不过也是有区别的，如下：</p>
+<ol>
+<li>truncate是整体删除（速度较快）， delete是逐条删除（速度较慢）。</li>
+<li>truncate不写服务器log，delete写服务器log，也就是truncate效率比delete高的原因。</li>
+<li>truncate不激活trigger(触发器)，但是会重置Identity（标识列、自增字段），相当于自增列会被置为初始值，又重新从1开始记录，而不是接着原来的ID数。而delete删除以后，Identity依旧是接着被删除的最近的那一条记录ID加1后进行记录。</li>
+<li>如果只需删除表中的部分记录，只能使用DELETE语句配合where条件。 DELETE FROM wp_comments WHERE……</li>
+</ol>
 
 	</div>
 
@@ -231,13 +221,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/VirtualBox/">VirtualBox</a>
+  <a class="article-category-link" href="/categories/Database/">Database</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/VirtualBox安装/">VirtualBox安装</a>
+  <span></span> <a href="/tags/sql语句基础/">sql语句基础</a>
   </div>
 
 </div>
@@ -246,7 +236,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2019/09/26/VirtualBox/Mac下安装VirtualBox/" data-title="Mac下VirtualBox安装 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2019/12/06/Databases/mysql/mysql清空表/" data-title="Mysql清空表(truncate)与删除表中数据(delete)的区别 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -259,18 +249,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2019/09/27/kubernetes/k8s安装/" title="centos7下k8s安装">
+ <a href="/2019/12/06/Git/Linux上安装和升级Git/" title="Linux下安装和升级Git">
   <strong>上一篇：</strong><br/>
   <span>
-  centos7下k8s安装</span>
+  Linux下安装和升级Git</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2019/09/25/java/basic/centos7安装jdk/"  title="centos7安装jdk">
+<a href="/2019/12/06/Maven/输出工程依赖关系/"  title="mvn dependency:tree 使用详解">
  <strong>下一篇：</strong><br/> 
- <span>centos7安装jdk
+ <span>mvn dependency:tree 使用详解
 </span>
 </a>
 </div>
@@ -307,7 +297,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载及安装"><span class="toc-number">1.</span> <span class="toc-text">1.下载及安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建centos7虚拟机"><span class="toc-number">2.</span> <span class="toc-text">2.创建centos7虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-centos7系统安装"><span class="toc-number">3.</span> <span class="toc-text">3.centos7系统安装</span></a></li></ol>
+ 
  
   </div>
 
