@@ -19,10 +19,12 @@
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
 <meta property="og:description" content="Spring Cloud近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 1.服务的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-18T04:40:59.477Z">
+<meta property="og:image" content="http://macintosh-c.coding.me/img/SpringCloud/springcloud.png">
+<meta property="og:updated_time" content="2019-12-11T05:48:08.173Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring cloud">
 <meta name="twitter:description" content="Spring Cloud近期把springcloud整体又体验了一把，亲手搭建demo，此处记录一些过程中遇到的细节点。简单描述，便于自己今后理解，具体搭建细节，见下面的学习资源。学习的资源来自：史上最简单的 SpringCloud 教程，感谢分享本人学习的代码仓库：springcloudstudy 版本：Spring Cloud Finchley; Spring Boot 2.0.3 1.服务的">
+<meta name="twitter:image" content="http://macintosh-c.coding.me/img/SpringCloud/springcloud.png">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -112,6 +114,7 @@
 <p>4)上面说的都是在不同机器上启动Eureka，能在同一台机器上启动多个Eureka吗？<br>当然可以，但是一定要保证各个Eureka的hostname不同，一种办法是常用的配置hosts文件，还有一种，是使用当前机器IP、127.0.0.1和localhost分别作为三个Eureka的hostname，事实证明也是可以的，在文末的Github的项目的no_hosts分支里有相应的实现。但是如果你使用127.0.0.1或localhost，注意一定要设置prefer-ip-address: false 。</p>
 <p>5)我在同一台机器上配置hosts，启动三个Eureka实例并设置prefer-ip-address: true，为什么显示unavailable-replicas?<br>一种原因是，你设置了prefer-ip-address: true，其它服务注册你时应该使用defaultZone:<a href="http://yourIP:8761/eureka/，图中使用的仍然是hostname名，导致错误发生。" target="_blank" rel="noopener">http://yourIP:8761/eureka/，图中使用的仍然是hostname名，导致错误发生。</a><br>另一种原因是，三个Eureka都设置了prefer-ip-address: true，导致最后解析出来的hostname都是相同的IP，使副本不可用。这也是4中为什么要设置prefer-ip-address: false的原因。</p>
 <h4 id="2-服务消费，负载均衡：rest-ribbon或者Feign"><a href="#2-服务消费，负载均衡：rest-ribbon或者Feign" class="headerlink" title="2.服务消费，负载均衡：rest+ribbon或者Feign"></a>2.服务消费，负载均衡：rest+ribbon或者Feign</h4><p>springcloud用的是一种客户端负责均衡的模式，即调用方做了负载均衡的配置，ribbon具有负载均衡的能力。<br>rest+ribbon:引入spring-cloud-starter-netflix-ribbon，通过在restTemplate的Bean上加上@LoadBalanced即可实现负载均衡的效果。<br>Feign:引入spring-cloud-starter-openfeign依赖，声明式的伪Http客户端，它使得写Http客户端变得更简单，同时具备ribbon负载均衡。</p>
+<p><img src="/img/SpringCloud/springcloud.png" alt="springcloud服务调用"></p>
 <h4 id="3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine"><a href="#3-断路器：Hystrix，断路器监控：Hystrix-Dashboard，断路器聚合监控：Hystrix-Turbine" class="headerlink" title="3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine"></a>3.断路器：Hystrix，断路器监控：Hystrix Dashboard，断路器聚合监控：Hystrix Turbine</h4><h4 id="4-路由网关：zuul和Spring-Cloud-Gateway"><a href="#4-路由网关：zuul和Spring-Cloud-Gateway" class="headerlink" title="4.路由网关：zuul和Spring Cloud Gateway"></a>4.路由网关：zuul和Spring Cloud Gateway</h4><h4 id="5-分布式配置中心：Spring-Cloud-Config以及其高可用"><a href="#5-分布式配置中心：Spring-Cloud-Config以及其高可用" class="headerlink" title="5.分布式配置中心：Spring Cloud Config以及其高可用"></a>5.分布式配置中心：Spring Cloud Config以及其高可用</h4><p>引入spring-cloud-config-server依赖</p>
 <p>其大体的实现理解是这样的，通过springboot为其指定外部配置文件的加载位置来取代jar包之内的配置内容实现，将需要的配置文件存于特定的git上便于管理，config service启动读取该仓库指定分支，指定项目，指定环境的配置信息供其他的微服务加载配置。结合Spring Cloud Bus可以实现动态的更新微服务配置信息，而不需要重启服务。</p>
 <h4 id="6-消息总线：Spring-Cloud-Bus"><a href="#6-消息总线：Spring-Cloud-Bus" class="headerlink" title="6.消息总线：Spring Cloud Bus"></a>6.消息总线：Spring Cloud Bus</h4><p>Spring Cloud Bus 将分布式的节点用轻量的消息代理连接起来。它可以用于广播配置文件的更改或者服务之间的通讯，也可以用于监控。引入：spring-cloud-starter-bus-amqp</p>
@@ -458,15 +461,15 @@
 			
 		
 			
-				<li><a href="/tags/Git基础/" title="Git基础">Git基础<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/jenkins/" title="jenkins">jenkins<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/jenkins用户权限管理/" title="jenkins用户权限管理">jenkins用户权限管理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git基础/" title="Git基础">Git基础<sup>1</sup></a></li>
 			
 		
 			
