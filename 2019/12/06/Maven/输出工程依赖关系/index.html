@@ -11,18 +11,18 @@
     
 
     
-    <meta name="description" content="mvn dependency:tree 使用详解在实际开发过程中，会经常碰到maven依赖冲突的问题，导致编译的时候报一些异常，这里提供一个查询包结构间的依赖关系的方法，来解决问题 指令：mvn dependency:tree -dverbose&amp;gt;temp/tree.txt 该命令是打印详细的maven tree 并放入当前目录下的temp目录下的tree.txt (需要自己新建temp目录">
+    <meta name="description" content="mvn dependency:tree 使用详解在实际开发过程中，会经常碰到maven依赖冲突的问题，导致编译的时候报一些异常，这里提供一个查询包结构间的依赖关系的方法，来解决问题 指令：mvn dependency:tree -Dverbose&amp;gt;temp/tree.txt 该命令是打印详细的maven tree 并放入当前目录下的temp目录下的tree.txt (需要自己新建temp目录">
 <meta name="keywords" content="Maven">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mvn dependency:tree 使用详解">
 <meta property="og:url" content="http://macintosh-c.coding.me/2019/12/06/Maven/输出工程依赖关系/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="mvn dependency:tree 使用详解在实际开发过程中，会经常碰到maven依赖冲突的问题，导致编译的时候报一些异常，这里提供一个查询包结构间的依赖关系的方法，来解决问题 指令：mvn dependency:tree -dverbose&amp;gt;temp/tree.txt 该命令是打印详细的maven tree 并放入当前目录下的temp目录下的tree.txt (需要自己新建temp目录">
+<meta property="og:description" content="mvn dependency:tree 使用详解在实际开发过程中，会经常碰到maven依赖冲突的问题，导致编译的时候报一些异常，这里提供一个查询包结构间的依赖关系的方法，来解决问题 指令：mvn dependency:tree -Dverbose&amp;gt;temp/tree.txt 该命令是打印详细的maven tree 并放入当前目录下的temp目录下的tree.txt (需要自己新建temp目录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T08:05:11.955Z">
+<meta property="og:updated_time" content="2019-12-12T08:41:11.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mvn dependency:tree 使用详解">
-<meta name="twitter:description" content="mvn dependency:tree 使用详解在实际开发过程中，会经常碰到maven依赖冲突的问题，导致编译的时候报一些异常，这里提供一个查询包结构间的依赖关系的方法，来解决问题 指令：mvn dependency:tree -dverbose&amp;gt;temp/tree.txt 该命令是打印详细的maven tree 并放入当前目录下的temp目录下的tree.txt (需要自己新建temp目录">
+<meta name="twitter:description" content="mvn dependency:tree 使用详解在实际开发过程中，会经常碰到maven依赖冲突的问题，导致编译的时候报一些异常，这里提供一个查询包结构间的依赖关系的方法，来解决问题 指令：mvn dependency:tree -Dverbose&amp;gt;temp/tree.txt 该命令是打印详细的maven tree 并放入当前目录下的temp目录下的tree.txt (需要自己新建temp目录">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -103,17 +103,11 @@
 		</div>
 		
 		<h3 id="mvn-dependency-tree-使用详解"><a href="#mvn-dependency-tree-使用详解" class="headerlink" title="mvn dependency:tree 使用详解"></a>mvn dependency:tree 使用详解</h3><p>在实际开发过程中，会经常碰到maven依赖冲突的问题，导致编译的时候报一些异常，这里提供一个查询包结构间的依赖关系的方法，来解决问题</p>
-<p>指令：mvn dependency:tree -dverbose&gt;temp/tree.txt</p>
+<p>指令：mvn dependency:tree -Dverbose&gt;temp/tree.txt</p>
 <p>该命令是打印详细的maven tree 并放入当前目录下的temp目录下的tree.txt (需要自己新建temp目录)，打印到txt中更加方便排查。</p>
 <p>生成的txt文件中<br>最后写着compile的就是编译成功的<br>最后写着omitted for duplicate的就是有JAR包被重复依赖了，但是JAR包的版本是一样的<br>最后写着omitted for conflict with xx的，说明和别的JAR包版本冲突了，该行的JAR包不会被引入<br>通过在txt文件中检索上传关键字conflict可以找到冲突的jar包所在，从而去除掉。</p>
-<p>去除方法：<exclusions>标签<br>例：  </exclusions></p>
-<pre><code>&lt;exclusions&gt;
-     &lt;exclusion&gt;
-          &lt;groupId&gt;net.minidev&lt;/groupId&gt;
-          &lt;artifactId&gt;json-smart&lt;/artifactId&gt;
-      &lt;/exclusion&gt;
-&lt;/exclusions&gt;
-</code></pre><p>去除掉这个依赖就ok啦。</p>
+<p>去除方法：<exclusions>标签<br>例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;exclusions&gt;</span><br><span class="line">     &lt;exclusion&gt;</span><br><span class="line">          &lt;groupId&gt;net.minidev&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;json-smart&lt;/artifactId&gt;</span><br><span class="line">      &lt;/exclusion&gt;</span><br><span class="line">&lt;/exclusions&gt;</span><br></pre></td></tr></table></figure></exclusions></p>
+<p>去除掉这个依赖就ok啦。</p>
 
 	</div>
 
@@ -441,19 +435,11 @@
 			
 		
 			
-				<li><a href="/tags/Docker-Compose/" title="Docker-Compose">Docker-Compose<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Dockerfile/" title="Dockerfile">Dockerfile<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/jenkins/" title="jenkins">jenkins<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jenkins用户权限管理/" title="jenkins用户权限管理">jenkins用户权限管理<sup>1</sup></a></li>
+				<li><a href="/tags/Docker-Compose/" title="Docker-Compose">Docker-Compose<sup>1</sup></a></li>
 			
 		
 			
@@ -461,15 +447,23 @@
 			
 		
 			
+				<li><a href="/tags/jenkins用户权限管理/" title="jenkins用户权限管理">jenkins用户权限管理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jenkins/" title="jenkins">jenkins<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/nginx/" title="nginx">nginx<sup>1</sup></a></li>
+				<li><a href="/tags/VirtualBox安装/" title="VirtualBox安装">VirtualBox安装<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/VirtualBox安装/" title="VirtualBox安装">VirtualBox安装<sup>1</sup></a></li>
+				<li><a href="/tags/nginx/" title="nginx">nginx<sup>1</sup></a></li>
 			
 		
 			
