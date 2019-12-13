@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2019-12-06T09:58:01.591Z</updated>
+  <updated>2019-12-13T08:43:54.620Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis指令整理</title>
+    <link href="http://macintosh-c.coding.me/2019/12/13/Databases/Redis/redis%E6%8C%87%E4%BB%A4/"/>
+    <id>http://macintosh-c.coding.me/2019/12/13/Databases/Redis/redis指令/</id>
+    <published>2019-12-13T04:20:29.000Z</published>
+    <updated>2019-12-13T08:43:54.620Z</updated>
+    
+    <content type="html"><![CDATA[<p>平时用到的redis指令整理：</p><ol><li>查询所以key：keys *</li><li>清空库：flushall</li><li>删除某个key: del key</li><li>查询list的长度：llen key</li><li>查询key的有效时间：ttl key</li><li>查询某个hash：HGETALL key</li><li>将key中储存的数字值增一：INCR key（如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCR 操作）</li><li>redis使用 Lua 解释器执行脚本：EVAL script numkeys key [key …] arg [arg …]<br>参数说明：</li></ol><ul><li>script： 参数是一段 Lua 5.1 脚本程序。脚本不必(也不应该)定义为一个 Lua 函数。</li><li>numkeys： 用于指定键名参数的个数。</li><li>key [key …]： 从 EVAL 的第三个参数开始算起，表示在脚本中所用到的那些 Redis 键(key)，这些键名参数可以在 Lua 中通过全局变量 KEYS 数组，用 1 为基址的形式访问( KEYS[1] ， KEYS[2] ，以此类推)。</li><li>arg [arg …]： 附加参数，在 Lua 中通过全局变量 ARGV 数组访问，访问的形式和 KEYS 变量类似( ARGV[1] 、 ARGV[2] ，诸如此类)。<br>实例：</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; eval &quot;return &#123;KEYS[1],KEYS[2],ARGV[1],ARGV[2]&#125;&quot; 2 key1 key2 first second</span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;key2&quot;</span><br><span class="line">3) &quot;first&quot;</span><br><span class="line">4) &quot;second&quot;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;平时用到的redis指令整理：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;查询所以key：keys *&lt;/li&gt;
+&lt;li&gt;清空库：flushall&lt;/li&gt;
+&lt;li&gt;删除某个key: del key&lt;/li&gt;
+&lt;li&gt;查询list的长度：llen key&lt;/li&gt;
+&lt;li&gt;查询key的有效
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://macintosh-c.coding.me/categories/Redis/"/>
+    
+    
+      <category term="redis指令" scheme="http://macintosh-c.coding.me/tags/redis%E6%8C%87%E4%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>IDEA中自动生成serialVersionUID的方法</title>
@@ -103,7 +134,7 @@
     <link href="http://macintosh-c.coding.me/2019/12/06/Databases/mysql/mysql%E6%B8%85%E7%A9%BA%E8%A1%A8/"/>
     <id>http://macintosh-c.coding.me/2019/12/06/Databases/mysql/mysql清空表/</id>
     <published>2019-12-06T04:49:36.000Z</published>
-    <updated>2019-12-06T08:15:02.899Z</updated>
+    <updated>2019-12-13T08:47:15.078Z</updated>
     
     <content type="html"><![CDATA[<p>以下是两种清空表中数据的方法：<br><code>truncate table wp_comments;</code><br><code>delete * from wp_comments;</code></p><p>其中truncate操作中的table可以省略，delete操作中的*可以省略。这两者都是将wp_comments表中数据清空，不过也是有区别的，如下：</p><ol><li>truncate是整体删除（速度较快）， delete是逐条删除（速度较慢）。</li><li>truncate不写服务器log，delete写服务器log，也就是truncate效率比delete高的原因。</li><li>truncate不激活trigger(触发器)，但是会重置Identity（标识列、自增字段），相当于自增列会被置为初始值，又重新从1开始记录，而不是接着原来的ID数。而delete删除以后，Identity依旧是接着被删除的最近的那一条记录ID加1后进行记录。</li><li>如果只需删除表中的部分记录，只能使用DELETE语句配合where条件。 DELETE FROM wp_comments WHERE……</li></ol>]]></content>
     
@@ -117,7 +148,7 @@
     
     </summary>
     
-      <category term="Database" scheme="http://macintosh-c.coding.me/categories/Database/"/>
+      <category term="Mysql" scheme="http://macintosh-c.coding.me/categories/Mysql/"/>
     
     
       <category term="sql语句基础" scheme="http://macintosh-c.coding.me/tags/sql%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/"/>
@@ -462,32 +493,6 @@
   </entry>
   
   <entry>
-    <title>centos安装docker</title>
-    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/docker%E5%AE%89%E8%A3%85/"/>
-    <id>http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/</id>
-    <published>2019-09-24T05:45:56.000Z</published>
-    <updated>2019-09-25T07:09:34.756Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。</p><h3 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h3><p>docker 是一种容器技术，作用是用来快速部署服务。</p><p><strong>为什么说 docker 是快速部署</strong></p><p>我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！<br>比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根就没有 python 环境。<br>好了，这个时候你怎么解决呢。 对，只要去新机器上你就要部署 python。<br>嗯~ 好吧， 部署 python 就 python，但是你的项目里面还要用到 MySQL，好的没问题， 你又要去用 pip 去安装 python 的 mysql 模块。 哦对了， 我记我们的项目里面还有 redis， 两种非对称加密，还有三方队列， 哦， 还有阿里云的接口，对对对对对对哦。 乱七八糟的东西真的好多，搞完了几个小时没有了，遇到网络卡了，那就更没有谱了。</p><p><strong>好了， 我们进化到，快速1.0 时代</strong></p><p>我们把要安装的东西全都放进离线安装包里面，再写个 bash 脚本<br>对，这种事情真的有过。 部署全靠一个 bash 脚本，毕竟不用手动了么。 可是就是苦了写脚本的人，我就写过一个脚本写了好久。</p><p><strong>于是， 我们又进化了， 快速2.0时代</strong></p><p>我们把整个系统做成了镜像，存在了光盘里面，每当要架设的时候赶快用镜像做出一个新的系统！<br>可能经历过的自然会懂，还特么要做镜像啊，离机房远咋办啊！！我们做游戏，开服快，更新更快！我们版本更新过快怎么办啊！！我们还要刻刻刻么？ 我们的 tornado 又更新了，我去，我们客户端的 protobuf 也更新了，可是我们有100台服务器啊，为了这一点小小的东西更新么？西八！</p><p><strong>于是，我们再次加入光荣的进化， 快速3.0时代</strong></p><p>我们把服务装进了 docker 中<br>我们把做好的镜像，一个命令 pull 了下来，嗯，蛮快又一个命令 docker start XXXXXX 服务起来了。哦，你说多服务？好吧那就写个docker-compose.file吧。 嗯哼？ 你说集群部署 来来来， 有Kubernetes、Mesos，Fleet和Swarm 任君挑选，不好用不要钱。</p><p>docker 是部署的最佳辅助，即使你烂成渣渣，docker 也可以扶你上王者。<br>那Docker由什么组成呢， 包括三个基本概念:</p><ul><li>仓库(Repository)</li><li>镜像(Image)</li><li>容器(Container)</li></ul><p>1，其中Registry是Docker用于存放镜像文件的仓库，Docker 仓库的概念跟Git 类似.<br>2，所谓镜像就是构建容器的源代码，是一个只读的模板，由一层一层的文件系统组成的，类似于虚拟机的镜像.<br>3，那么容器就是由Docker镜像创建的运行实例，类似于虚拟机，容器之间是相互隔离的，包含特定的应用及其所需的依赖文件.</p><h3 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h3><p>如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum install docker-ce</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure></p><p>1安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的。<br>2设置yum源。<br>3安装Docker，命令：yum install docker-ce-版本号，版本号可以通过yum list docker-ce –showduplicates | sort -r查看，我这边不带版本号用的是默认最新。<br>4启动Docker。<br>5加入开机启动。<br>6验证安装是否成功(有client和service两部分表示docker安装启动都成功了)。</p><h3 id="常用Docker命令"><a href="#常用Docker命令" class="headerlink" title="常用Docker命令"></a>常用Docker命令</h3><ol><li>docker ps 查看当前正在运行的容器</li><li>docker ps -a 查看所有容器的状态</li><li>docker start/stop id/name 启动/停止某个容器</li><li>docker attach id 进入某个容器(使用exit退出后容器也跟着停止运行)</li><li>docker exec -ti id /bin/bash启动一个伪终端以交互式的方式进入某个容器（使用exit退出后容器不停止运行）</li><li>docker images 查看本地镜像</li><li>docker rm id/name 删除某个容器</li><li>docker rmi id/name 删除某个镜像</li><li>docker run –name test -ti ubuntu /bin/bash  复制ubuntu容器并且重命名为test且运行，然后以伪终端交互式方式进入容器，运行bash</li><li>docker build -t soar/centos:7.1 .  通过当前目录下的Dockerfile创建一个名为soar/centos:7.1的镜像</li><li>docker run -d -p 2222:22 –name test soar/centos:7.1  以镜像soar/centos:7.1创建名为test的容器，并以后台模式运行，并做端口映射到宿主机2222端口，P参数重启容器宿主机端口会发生改变</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。&lt;/p&gt;
-&lt;h3 id=&quot;Docker-简介&quot;&gt;&lt;a href=&quot;#Docker-简介&quot; class=&quot;headerlink&quot; title=
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Mac下安装docker</title>
     <link href="http://macintosh-c.coding.me/2019/09/24/Docker/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85/"/>
     <id>http://macintosh-c.coding.me/2019/09/24/Docker/Mac下docker安装/</id>
@@ -514,28 +519,28 @@
   </entry>
   
   <entry>
-    <title>Mac下安装Memcached</title>
-    <link href="http://macintosh-c.coding.me/2019/09/18/Databases/memcached/Mac%E4%B8%8B%E5%AE%89%E8%A3%85memcached/"/>
-    <id>http://macintosh-c.coding.me/2019/09/18/Databases/memcached/Mac下安装memcached/</id>
-    <published>2019-09-18T14:20:29.000Z</published>
-    <updated>2019-09-18T14:42:14.676Z</updated>
+    <title>centos安装docker</title>
+    <link href="http://macintosh-c.coding.me/2019/09/24/Docker/docker%E5%AE%89%E8%A3%85/"/>
+    <id>http://macintosh-c.coding.me/2019/09/24/Docker/docker安装/</id>
+    <published>2019-09-24T05:45:56.000Z</published>
+    <updated>2019-09-25T07:09:34.756Z</updated>
     
-    <content type="html"><![CDATA[<p>临时用到Memcached，本地安装了个调试，安装过程记录如下，后续使用学习，再另起笔记</p><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>使用homebrew，方便快捷：（今天接收新项目，新安装了许多组件，感觉到了brew的强大，神器）<br>brew install memcached</p><p>安装完成后，透过安装日记提示可以看到启动方式<br>To have launchd start memcached now and restart at login:<br>  brew services start memcached<br>Or, if you don’t want/need a background service you can just run:<br>  /usr/local/opt/memcached/bin/memcached</p><p>提示了后台和非后台启动的两种方式</p><h2 id="启动memcached"><a href="#启动memcached" class="headerlink" title="启动memcached"></a>启动memcached</h2><p>上述的brew启动指令即可，也可使用如下：<br>输入命令：memcached -d -p 11211 -u nobody -c 1024 -m 64</p><p>启动命令说明：<br>memcached -p 11211 -m 64m -d -vv<br>memcached启动选项如下：<br>-p  使用的TCP端口，默认为11211<br>-m  最大内存大小默认为64m<br>-vv 用very verbose模式启动，调试信息和错误输出到控制台<br>-d  作为daemon在后台启动</p><h2 id="连接到memcached"><a href="#连接到memcached" class="headerlink" title="连接到memcached"></a>连接到memcached</h2><p>直接使用telnet连接到memcached端口，输入命令即可：telnet localhost 11211<br>Trying 127.0.0.1…<br>Connected to localhost.<br>Escape character is ‘^]’.</p><p>mac如果不支持telnet指令，需要安装，使用brew直接安装很快捷：brew install telnet，是不是很神器 </p><p>结束telnet，输入telnet退出命令：quit命令退出。</p><h2 id="简单测试指令"><a href="#简单测试指令" class="headerlink" title="简单测试指令"></a>简单测试指令</h2><p>保存数据，输入命令：<br>set foo 0 0 3<br>bar<br>显示STORED 表示成功。</p><p>数据读取，输入命令：get foo<br>得到输出：<br>VALUE foo 0 3<br>bar<br>END</p><p>这样基本就安装ok了，代码上做好地址调整，即可连接到本地的memcached上。更复杂的指令，学习后续具体用到再笔记。</p>]]></content>
+    <content type="html"><![CDATA[<p>最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。</p><h3 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h3><p>docker 是一种容器技术，作用是用来快速部署服务。</p><p><strong>为什么说 docker 是快速部署</strong></p><p>我们做一个项目，最不想面对的不是开发，也不是调试，而是部署！！！！<br>比如你这个机器上的环境是 python3 你用另一个机器上却是 python2 或者压根就没有 python 环境。<br>好了，这个时候你怎么解决呢。 对，只要去新机器上你就要部署 python。<br>嗯~ 好吧， 部署 python 就 python，但是你的项目里面还要用到 MySQL，好的没问题， 你又要去用 pip 去安装 python 的 mysql 模块。 哦对了， 我记我们的项目里面还有 redis， 两种非对称加密，还有三方队列， 哦， 还有阿里云的接口，对对对对对对哦。 乱七八糟的东西真的好多，搞完了几个小时没有了，遇到网络卡了，那就更没有谱了。</p><p><strong>好了， 我们进化到，快速1.0 时代</strong></p><p>我们把要安装的东西全都放进离线安装包里面，再写个 bash 脚本<br>对，这种事情真的有过。 部署全靠一个 bash 脚本，毕竟不用手动了么。 可是就是苦了写脚本的人，我就写过一个脚本写了好久。</p><p><strong>于是， 我们又进化了， 快速2.0时代</strong></p><p>我们把整个系统做成了镜像，存在了光盘里面，每当要架设的时候赶快用镜像做出一个新的系统！<br>可能经历过的自然会懂，还特么要做镜像啊，离机房远咋办啊！！我们做游戏，开服快，更新更快！我们版本更新过快怎么办啊！！我们还要刻刻刻么？ 我们的 tornado 又更新了，我去，我们客户端的 protobuf 也更新了，可是我们有100台服务器啊，为了这一点小小的东西更新么？西八！</p><p><strong>于是，我们再次加入光荣的进化， 快速3.0时代</strong></p><p>我们把服务装进了 docker 中<br>我们把做好的镜像，一个命令 pull 了下来，嗯，蛮快又一个命令 docker start XXXXXX 服务起来了。哦，你说多服务？好吧那就写个docker-compose.file吧。 嗯哼？ 你说集群部署 来来来， 有Kubernetes、Mesos，Fleet和Swarm 任君挑选，不好用不要钱。</p><p>docker 是部署的最佳辅助，即使你烂成渣渣，docker 也可以扶你上王者。<br>那Docker由什么组成呢， 包括三个基本概念:</p><ul><li>仓库(Repository)</li><li>镜像(Image)</li><li>容器(Container)</li></ul><p>1，其中Registry是Docker用于存放镜像文件的仓库，Docker 仓库的概念跟Git 类似.<br>2，所谓镜像就是构建容器的源代码，是一个只读的模板，由一层一层的文件系统组成的，类似于虚拟机的镜像.<br>3，那么容器就是由Docker镜像创建的运行实例，类似于虚拟机，容器之间是相互隔离的，包含特定的应用及其所需的依赖文件.</p><h3 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h3><p>如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum install docker-ce</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br><span class="line">docker version</span><br></pre></td></tr></table></figure></p><p>1安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的。<br>2设置yum源。<br>3安装Docker，命令：yum install docker-ce-版本号，版本号可以通过yum list docker-ce –showduplicates | sort -r查看，我这边不带版本号用的是默认最新。<br>4启动Docker。<br>5加入开机启动。<br>6验证安装是否成功(有client和service两部分表示docker安装启动都成功了)。</p><h3 id="常用Docker命令"><a href="#常用Docker命令" class="headerlink" title="常用Docker命令"></a>常用Docker命令</h3><ol><li>docker ps 查看当前正在运行的容器</li><li>docker ps -a 查看所有容器的状态</li><li>docker start/stop id/name 启动/停止某个容器</li><li>docker attach id 进入某个容器(使用exit退出后容器也跟着停止运行)</li><li>docker exec -ti id /bin/bash启动一个伪终端以交互式的方式进入某个容器（使用exit退出后容器不停止运行）</li><li>docker images 查看本地镜像</li><li>docker rm id/name 删除某个容器</li><li>docker rmi id/name 删除某个镜像</li><li>docker run –name test -ti ubuntu /bin/bash  复制ubuntu容器并且重命名为test且运行，然后以伪终端交互式方式进入容器，运行bash</li><li>docker build -t soar/centos:7.1 .  通过当前目录下的Dockerfile创建一个名为soar/centos:7.1的镜像</li><li>docker run -d -p 2222:22 –name test soar/centos:7.1  以镜像soar/centos:7.1创建名为test的容器，并以后台模式运行，并做端口映射到宿主机2222端口，P参数重启容器宿主机端口会发生改变</li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;临时用到Memcached，本地安装了个调试，安装过程记录如下，后续使用学习，再另起笔记&lt;/p&gt;
-&lt;h2 id=&quot;下载安装&quot;&gt;&lt;a href=&quot;#下载安装&quot; class=&quot;headerlink&quot; title=&quot;下载安装&quot;&gt;&lt;/a&gt;下载安装&lt;/h2&gt;&lt;p&gt;使用homebrew
+        &lt;p&gt;最近在看一些关于cicd方面的资料时，看到一些不错的博文，适当记录，加深理解。这篇是关于Docker的，顺便记录下docker的安装。&lt;/p&gt;
+&lt;h3 id=&quot;Docker-简介&quot;&gt;&lt;a href=&quot;#Docker-简介&quot; class=&quot;headerlink&quot; title=
       
     
     </summary>
     
-      <category term="Database" scheme="http://macintosh-c.coding.me/categories/Database/"/>
+      <category term="Docker" scheme="http://macintosh-c.coding.me/categories/Docker/"/>
     
     
-      <category term="Memcached安装" scheme="http://macintosh-c.coding.me/tags/Memcached%E5%AE%89%E8%A3%85/"/>
+      <category term="Docker" scheme="http://macintosh-c.coding.me/tags/Docker/"/>
     
   </entry>
   
