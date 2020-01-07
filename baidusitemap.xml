@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://macintosh-c.coding.me/2019/09/05/Linux/Linux%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</loc>
+    <lastmod>2020-01-07</lastmod>
+  </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/12/13/spring/SpringMVC/log4j%E6%97%A5%E5%BF%97%E4%B8%8D%E8%BE%93%E5%87%BA%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2019-12-13</lastmod>
   </url>  <url>
@@ -72,9 +75,6 @@
   </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/09/30/test/Sonar/docker%E5%AE%89%E8%A3%85sonar/</loc>
     <lastmod>2019-09-30</lastmod>
-  </url>  <url>
-    <loc>http://macintosh-c.coding.me/2019/09/05/Linux/Linux%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/</loc>
-    <lastmod>2019-09-27</lastmod>
   </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/09/26/VirtualBox/Mac%E4%B8%8B%E5%AE%89%E8%A3%85VirtualBox/</loc>
     <lastmod>2019-09-26</lastmod>
