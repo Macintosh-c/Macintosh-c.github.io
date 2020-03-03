@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Mac下安装rabbitmq | macintosh-c&#39;s blog</title>
+    <title>解决spring boot中rest接口404,500等错误返回统一的json格式 | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="Mac下安装rabbitmq通过brew命令方式来安装  安装homebrew：略  通过Brew指令安装RabbitMQbrew install rabbitmqRabbitMQ安装后的路径为：/usr/local/Cellar/rabbitmq/3.7.3 (版本根据安装版本确定)  启动rabbitmq进入该目录(/usr/local/Cellar/rabbitmq/3.7.3)之后，输入s">
-<meta name="keywords" content="rabbitmq安装">
+    <meta name="description" content="在开发rest接口时，我们往往会定义统一的返回格式，列如：123456&amp;#123;&amp;quot;code&amp;quot;:200,&amp;quot;message&amp;quot;:&amp;quot;123&amp;quot;,&amp;quot;success&amp;quot;:true,&amp;quot;data&amp;quot;:null&amp;#125; 但是如果调用方请求我们的api时把接口地址写错了，就会得到一个404错误，在传统的web系统中我们">
+<meta name="keywords" content="Springboot response">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac下安装rabbitmq">
-<meta property="og:url" content="http://macintosh-c.coding.me/2019/09/12/mq/RabbitMQ/Mac下安装rabbitmq/index.html">
+<meta property="og:title" content="解决spring boot中rest接口404,500等错误返回统一的json格式">
+<meta property="og:url" content="http://macintosh-c.coding.me/2020/03/03/spring/Springboot/解决spring boot中rest接口404,500等错误返回统一的json格式/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="Mac下安装rabbitmq通过brew命令方式来安装  安装homebrew：略  通过Brew指令安装RabbitMQbrew install rabbitmqRabbitMQ安装后的路径为：/usr/local/Cellar/rabbitmq/3.7.3 (版本根据安装版本确定)  启动rabbitmq进入该目录(/usr/local/Cellar/rabbitmq/3.7.3)之后，输入s">
+<meta property="og:description" content="在开发rest接口时，我们往往会定义统一的返回格式，列如：123456&amp;#123;&amp;quot;code&amp;quot;:200,&amp;quot;message&amp;quot;:&amp;quot;123&amp;quot;,&amp;quot;success&amp;quot;:true,&amp;quot;data&amp;quot;:null&amp;#125; 但是如果调用方请求我们的api时把接口地址写错了，就会得到一个404错误，在传统的web系统中我们">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-12T23:59:06.186Z">
+<meta property="og:updated_time" content="2020-03-03T06:05:58.118Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac下安装rabbitmq">
-<meta name="twitter:description" content="Mac下安装rabbitmq通过brew命令方式来安装  安装homebrew：略  通过Brew指令安装RabbitMQbrew install rabbitmqRabbitMQ安装后的路径为：/usr/local/Cellar/rabbitmq/3.7.3 (版本根据安装版本确定)  启动rabbitmq进入该目录(/usr/local/Cellar/rabbitmq/3.7.3)之后，输入s">
+<meta name="twitter:title" content="解决spring boot中rest接口404,500等错误返回统一的json格式">
+<meta name="twitter:description" content="在开发rest接口时，我们往往会定义统一的返回格式，列如：123456&amp;#123;&amp;quot;code&amp;quot;:200,&amp;quot;message&amp;quot;:&amp;quot;123&amp;quot;,&amp;quot;success&amp;quot;:true,&amp;quot;data&amp;quot;:null&amp;#125; 但是如果调用方请求我们的api时把接口地址写错了，就会得到一个404错误，在传统的web系统中我们">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/09/12/mq/RabbitMQ/Mac下安装rabbitmq/" title="Mac下安装rabbitmq" itemprop="url">Mac下安装rabbitmq</a>
+      <a href="/2020/03/03/spring/Springboot/解决spring boot中rest接口404,500等错误返回统一的json格式/" title="解决spring boot中rest接口404,500等错误返回统一的json格式" itemprop="url">解决spring boot中rest接口404,500等错误返回统一的json格式</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2019-09-12T14:14:52.000Z" itemprop="datePublished"> 发表于 2019-09-12</time>
+    <time datetime="2020-03-02T17:29:05.000Z" itemprop="datePublished"> 发表于 2020-03-03</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,21 +98,17 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mac下安装rabbitmq"><span class="toc-number">1.</span> <span class="toc-text">Mac下安装rabbitmq</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h4 id="Mac下安装rabbitmq"><a href="#Mac下安装rabbitmq" class="headerlink" title="Mac下安装rabbitmq"></a>Mac下安装rabbitmq</h4><p>通过brew命令方式来安装</p>
-<ol>
-<li><p>安装homebrew：略</p>
-</li>
-<li><p>通过Brew指令安装RabbitMQ<br>brew install rabbitmq<br>RabbitMQ安装后的路径为：/usr/local/Cellar/rabbitmq/3.7.3 (版本根据安装版本确定)</p>
-</li>
-<li><p>启动rabbitmq<br>进入该目录(/usr/local/Cellar/rabbitmq/3.7.3)之后，输入sbin/rabbitmq-server指令<br>或者：brew services start rabbitmq</p>
-</li>
-<li><p>进入rabbitmq控制终端登录页面<br>浏览器输入<a href="http://localhost:15672" target="_blank" rel="noopener">http://localhost:15672</a> 即可进入rabbitmq控制终端登录页面，默认用户名和密码为 guest/guest</p>
-</li>
-</ol>
+		<p>在开发rest接口时，我们往往会定义统一的返回格式，列如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;code&quot;:200,</span><br><span class="line">&quot;message&quot;:&quot;123&quot;,</span><br><span class="line">&quot;success&quot;:true,</span><br><span class="line">&quot;data&quot;:null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是如果调用方请求我们的api时把接口地址写错了，就会得到一个404错误，在传统的web系统中我们可自定义404错误页面，展示更友好。在spring boot中其实也是返回了一个json格式的数据，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;timestamp&quot;: 1492063521109,</span><br><span class="line">  &quot;status&quot;: 404,</span><br><span class="line">  &quot;error&quot;: &quot;Not Found&quot;,</span><br><span class="line">  &quot;message&quot;: &quot;No message available&quot;,</span><br><span class="line">  &quot;path&quot;: &quot;/rest11/auth&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>告诉我们哪个地址是没找到，其实也挺友好的，但是因为我们上面自定义的数据格式跟下面的不一致，当用户拿到这个返回的时候是无法识别的，其中最明显的是status字段。我们自定义的是boolean类型，表示是否成功,这边返回的就是http的状态码,所以我们需要在发生这种系统错误时也能返回我们自定义的那种格式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@ControllerAdvice</span><br><span class="line">@ResponseBody</span><br><span class="line">@Component</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    private final static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);</span><br><span class="line"></span><br><span class="line">    @ExceptionHandler(NoHandlerFoundException.class)</span><br><span class="line">    public Result handleNoHandlerFoundException(NoHandlerFoundException e) &#123;</span><br><span class="line">        return new Result(400,&quot;api not found&quot;,false,null);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Result是我们返回格式的实体类,这种在发生错误时这边会捕获到，然后封装好返回格式，返回给调用方。<br>最后关键的一步是在spring boot的配置文件中加上如下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#出现错误时, 直接抛出异常</span><br><span class="line">spring.mvc.throw-exception-if-no-handler-found=true</span><br><span class="line">#不要为我们工程中的资源文件建立映射</span><br><span class="line">spring.resources.add-mappings=false</span><br></pre></td></tr></table></figure></p>
+<p>然后我们调用一个不存在的接口时，返回的错误信息就是我们自定义的那种格式了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;code&quot;:400,</span><br><span class="line">&quot;message&quot;:&quot;api not found&quot;,</span><br><span class="line">&quot;success&quot;:false,</span><br><span class="line">&quot;data&quot;:null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>引发的问题<br>添加上面2个配置后，会过滤静态资源，导致某些资源找不到，比如swagger,解决方案如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class WebMvcConfiguration implements WebMvcConfigurer &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 将swagger-ui.html 添加 到 resources目录下</span><br><span class="line">     *</span><br><span class="line">     * @param registry</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void addResourceHandlers(ResourceHandlerRegistry registry) &#123;</span><br><span class="line">        registry.addResourceHandler(&quot;swagger-ui.html&quot;).addResourceLocations(&quot;classpath:/META-INF/resources/&quot;);</span><br><span class="line">        registry.addResourceHandler(&quot;/webjars/**&quot;).addResourceLocations(&quot;classpath:/META-INF/resources/webjars/&quot;);</span><br><span class="line">        registry.addResourceHandler(&quot;/web_frontend/**&quot;).addResourceLocations(&quot;classpath:/web_frontend/&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
 	</div>
 
@@ -224,13 +220,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/rabbitmq/">rabbitmq</a>
+  <a class="article-category-link" href="/categories/Springboot/">Springboot</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/rabbitmq安装/">rabbitmq安装</a>
+  <span></span> <a href="/tags/Springboot-response/">Springboot response</a>
   </div>
 
 </div>
@@ -239,7 +235,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2019/09/12/mq/RabbitMQ/Mac下安装rabbitmq/" data-title="Mac下安装rabbitmq | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2020/03/03/spring/Springboot/解决spring boot中rest接口404,500等错误返回统一的json格式/" data-title="解决spring boot中rest接口404,500等错误返回统一的json格式 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -251,19 +247,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2019/09/16/spring/SpringCloud/springcloud尝试/" title="Spring cloud">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Spring cloud</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/09/12/Maven/Maven日常学习收获/"  title="Maven日常收获总结">
+<a href="/2019/12/13/Databases/ehcache/使用Ehcache缓存同步启动时抛出异常Can't assign requested address/"  title="使用Ehcache缓存同步启动时抛出异常Can&#39;t assign requested address">
  <strong>下一篇：</strong><br/> 
- <span>Maven日常收获总结
+ <span>使用Ehcache缓存同步启动时抛出异常Can&#39;t assign requested address
 </span>
 </a>
 </div>
@@ -300,7 +288,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mac下安装rabbitmq"><span class="toc-number">1.</span> <span class="toc-text">Mac下安装rabbitmq</span></a></li></ol>
+ 
  
   </div>
 
