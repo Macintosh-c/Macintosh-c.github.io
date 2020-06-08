@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2020-04-20T07:40:53.958Z</updated>
+  <updated>2020-06-08T02:54:57.756Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac上使用docker安装sql server</title>
+    <link href="http://macintosh-c.coding.me/2020/06/08/Databases/sqlservice/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85sqlservice/"/>
+    <id>http://macintosh-c.coding.me/2020/06/08/Databases/sqlservice/Mac下docker安装sqlservice/</id>
+    <published>2020-06-08T04:20:29.000Z</published>
+    <updated>2020-06-08T02:54:57.756Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一-docker安装"><a href="#一-docker安装" class="headerlink" title="一.docker安装"></a>一.docker安装</h3><p>略</p><h3 id="二-拉取并运行容器镜像"><a href="#二-拉取并运行容器镜像" class="headerlink" title="二. 拉取并运行容器镜像"></a>二. 拉取并运行容器镜像</h3><p>1&gt; 从 Microsoft 容器注册表中拉取 SQL Server 2017 Linux 容器镜像。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mcr.microsoft.com/mssql/server:2017-latest</span><br></pre></td></tr></table></figure><p>2&gt; 使用 Docker 运行容器镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -e &quot;ACCEPT_EULA=Y&quot; -e &quot;SA_PASSWORD=&lt;YourStrong@Passw0rd&gt;&quot; \</span><br><span class="line">   -p 1433:1433 --name mssql \</span><br><span class="line">   -d mcr.microsoft.com/mssql/server:2017-latest</span><br></pre></td></tr></table></figure></p><p><strong>注意:</strong><br>默认情况下，密码长度必须至少为8个字符，并且包含以下四个集合中的三个字符：大写字母，小写字母，数字和符号。</p><p>下表提供了先前docker run示例中的参数说明：</p><table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>-e ‘ACCEPT_EULA=Y’</td><td>将ACCEPT_EULA变量设置为任何值以确认你接受最终用户许可协议。</td></tr><tr><td>-e ‘SA_PASSWORD=YourStrong!Passw0rd’</td><td>设置强密码</td></tr><tr><td>-p 1433:1433</td><td>使用容器中的TCP端口（第二个值）映射主机环境（第一个值）上的TCP端口。 在此示例中，SQL Server正在侦听容器中的TCP 1433，并且它将暴露给主机上的端口1433。</td></tr><tr><td>–name mssql</td><td>为容器指定自定义名称，而不是随机生成的名称。 如果你运行多个容器，则无法重复使用此名称。</td></tr></tbody></table><p>3&gt; 查看Docker运行状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure></p><p>4&gt; 更改SA密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \</span><br><span class="line">   -S localhost -U SA -P &quot;&lt;YourStrong@Passw0rd&gt;&quot; \</span><br><span class="line">   -Q &apos;ALTER LOGIN SA WITH PASSWORD=&quot;&lt;SWW455@sql&gt;&quot;&apos;</span><br></pre></td></tr></table></figure></p><h3 id="三-连接到sqlservice"><a href="#三-连接到sqlservice" class="headerlink" title="三.连接到sqlservice"></a>三.连接到sqlservice</h3><p>1&gt; 使用 docker exec -it 命令在运行的容器内部启动交互式 Bash Shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it mssql &quot;bash&quot;</span><br></pre></td></tr></table></figure></p><p>2&gt; 在容器内部使用 sqlcmd 进行本地连接。 默认情况下，sqlcmd 不在路径之中，因此需要指定完整路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P &quot;&lt;SWW455@sql&gt;&quot;</span><br></pre></td></tr></table></figure></p><p>3&gt; 如果成功，应会显示 sqlcmd 命令提示符：1&gt;<br>可通过以下简单命令查看：<br>1&gt; CREATE DATABASE TestDB<br>2&gt; SELECT Name from sys.Databases<br>3&gt; GO</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;一-docker安装&quot;&gt;&lt;a href=&quot;#一-docker安装&quot; class=&quot;headerlink&quot; title=&quot;一.docker安装&quot;&gt;&lt;/a&gt;一.docker安装&lt;/h3&gt;&lt;p&gt;略&lt;/p&gt;
+&lt;h3 id=&quot;二-拉取并运行容器镜像&quot;&gt;&lt;a href=&quot;#二
+      
+    
+    </summary>
+    
+      <category term="SqlService" scheme="http://macintosh-c.coding.me/categories/SqlService/"/>
+    
+    
+      <category term="SqlService安装" scheme="http://macintosh-c.coding.me/tags/SqlService%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
   
   <entry>
     <title>Markdown用代码画时序图</title>
@@ -515,32 +541,6 @@
     
     
       <category term="VirtualBox安装" scheme="http://macintosh-c.coding.me/tags/VirtualBox%E5%AE%89%E8%A3%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7安装jdk</title>
-    <link href="http://macintosh-c.coding.me/2019/09/25/java/basic/centos7%E5%AE%89%E8%A3%85jdk/"/>
-    <id>http://macintosh-c.coding.me/2019/09/25/java/basic/centos7安装jdk/</id>
-    <published>2019-09-25T09:39:56.000Z</published>
-    <updated>2019-09-25T09:50:06.422Z</updated>
-    
-    <content type="html"><![CDATA[<p>Centos7自带OpenJDK的环境，强烈不建议使用，卸载重新安装oracle jdk 1.8</p><h3 id="1-进入root帐号-，删除系统自带的openjdk"><a href="#1-进入root帐号-，删除系统自带的openjdk" class="headerlink" title="1. 进入root帐号 ，删除系统自带的openjdk"></a>1. 进入root帐号 ，删除系统自带的openjdk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su</span><br><span class="line">yum -y remove java*</span><br></pre></td></tr></table></figure><h3 id="2-下载最新的jdk"><a href="#2-下载最新的jdk" class="headerlink" title="2.下载最新的jdk"></a>2.下载最新的jdk</h3><p>地址可以从oracle的网站(<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html）对应版本的rpm地址保存替换：" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html）对应版本的rpm地址保存替换：</a><br><code>wget --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.rpm</code></p><h3 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h3><p>yum localinstall jdk-8u201-linux-x64.rpm</p><h3 id="4-找java的安装路径"><a href="#4-找java的安装路径" class="headerlink" title="4. 找java的安装路径"></a>4. 找java的安装路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">which java</span><br><span class="line">ls -lrt /usr/bin/java</span><br><span class="line">ls -lrt /etc/alternatives/java</span><br></pre></td></tr></table></figure><p>注：echo $JAVA_HOME 方法是在已经配置了/etc/profile 文件的前提下查询的，如果该文件$JAVA_HOME配置错误，输出结果也是错误的。which java查询到的是java的执行路径，不是安装路径！</p><h3 id="5-vi编辑-etc-profile，配置环境变量"><a href="#5-vi编辑-etc-profile，配置环境变量" class="headerlink" title="5.vi编辑/etc/profile，配置环境变量"></a>5.vi编辑/etc/profile，配置环境变量</h3><p>1)sudo vim /etc/profile<br>2)按下 i 进入编辑，此时在窗体最底部会出现 – 插入 –<br>3)使用键盘输入编辑文字,文件末尾需要添加的配置如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_201-amd64</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH</span><br><span class="line">export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p><p>4)输入完毕后，完成输入，退出输入，按 ESC ,这个时候会发现底部的 – 插入 –没有了<br>5) 保存编辑的文件，并且退出vim编辑 输入 :wq 命令，按回车键<br>6)使用vim命令打开/etc/profile文件查看文件内容<br>7)没有进行修改，不需要保存直接退出 ，输入 :q 命令<br>8)source /etc/profile 使之立即生效<br>可分别用以下命令查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo $JAVA_HOME</span><br><span class="line">echo $PATH</span><br><span class="line">echo $CLASSPATH</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Centos7自带OpenJDK的环境，强烈不建议使用，卸载重新安装oracle jdk 1.8&lt;/p&gt;
-&lt;h3 id=&quot;1-进入root帐号-，删除系统自带的openjdk&quot;&gt;&lt;a href=&quot;#1-进入root帐号-，删除系统自带的openjdk&quot; class=&quot;hea
-      
-    
-    </summary>
-    
-      <category term="java基础" scheme="http://macintosh-c.coding.me/categories/java%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="jdk安装" scheme="http://macintosh-c.coding.me/tags/jdk%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
