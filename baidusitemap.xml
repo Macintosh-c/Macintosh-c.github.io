@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://macintosh-c.coding.me/2020/07/06/mq/Kafka/Mac%E4%B8%8B%E5%AE%89%E8%A3%85kafka/</loc>
+    <lastmod>2020-07-06</lastmod>
+  </url>  <url>
+    <loc>http://macintosh-c.coding.me/2019/09/25/java/basic/centos7%E5%AE%89%E8%A3%85jdk/</loc>
+    <lastmod>2020-07-01</lastmod>
+  </url>  <url>
     <loc>http://macintosh-c.coding.me/2020/07/01/spring/Springboot/springboot%E6%A0%87%E7%AD%BE2/</loc>
     <lastmod>2020-06-30</lastmod>
   </url>  <url>
@@ -105,9 +111,6 @@
   </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/09/26/VirtualBox/Mac%E4%B8%8B%E5%AE%89%E8%A3%85VirtualBox/</loc>
     <lastmod>2019-09-26</lastmod>
-  </url>  <url>
-    <loc>http://macintosh-c.coding.me/2019/09/25/java/basic/centos7%E5%AE%89%E8%A3%85jdk/</loc>
-    <lastmod>2019-09-25</lastmod>
   </url>  <url>
     <loc>http://macintosh-c.coding.me/2019/09/24/Docker/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2019-09-25</lastmod>

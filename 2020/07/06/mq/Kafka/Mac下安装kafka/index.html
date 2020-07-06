@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>MarkDown添加图片的三种方式 | macintosh-c&#39;s blog</title>
+    <title>Mac下安装kafka | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="MarkDown插图最基础的格式就是：  ![Alt text](图片链接 &amp;quot;optional title&amp;quot;)  1Alt text：图片的Alt标签，用来描述图片的关键词，可以不写。最初的本意是当图片因为某种原因不能被显示时而出现的替代文字，后来又被用于SEO，可以方便搜索引擎根据Alt text里面的关键词搜索到图片。 图片链接：可以是图片的本地地址或者是网址。&amp;quot;">
-<meta name="keywords" content="Markdown">
+    <meta name="description" content="Mac下安装kafka通过brew命令方式来安装  安装homebrew：略  通过Brew指令安装kafkabrew install kafka zookeeper安装后的路径为:/usr/local/Cellar/zookeeper/3.4.13 kafka安装后的路径为：/usr/local/Cellar/kafka/2.2.1 (版本根据安装版本确定)  启动kafka ==&amp;gt; zo">
+<meta name="keywords" content="kafka安装">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MarkDown添加图片的三种方式">
-<meta property="og:url" content="http://macintosh-c.coding.me/2020/06/12/MarkDown/markdown语法2/index.html">
+<meta property="og:title" content="Mac下安装kafka">
+<meta property="og:url" content="http://macintosh-c.coding.me/2020/07/06/mq/Kafka/Mac下安装kafka/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="MarkDown插图最基础的格式就是：  ![Alt text](图片链接 &amp;quot;optional title&amp;quot;)  1Alt text：图片的Alt标签，用来描述图片的关键词，可以不写。最初的本意是当图片因为某种原因不能被显示时而出现的替代文字，后来又被用于SEO，可以方便搜索引擎根据Alt text里面的关键词搜索到图片。 图片链接：可以是图片的本地地址或者是网址。&amp;quot;">
+<meta property="og:description" content="Mac下安装kafka通过brew命令方式来安装  安装homebrew：略  通过Brew指令安装kafkabrew install kafka zookeeper安装后的路径为:/usr/local/Cellar/zookeeper/3.4.13 kafka安装后的路径为：/usr/local/Cellar/kafka/2.2.1 (版本根据安装版本确定)  启动kafka ==&amp;gt; zo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-12T15:36:16.593Z">
+<meta property="og:updated_time" content="2020-07-06T02:24:17.734Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MarkDown添加图片的三种方式">
-<meta name="twitter:description" content="MarkDown插图最基础的格式就是：  ![Alt text](图片链接 &amp;quot;optional title&amp;quot;)  1Alt text：图片的Alt标签，用来描述图片的关键词，可以不写。最初的本意是当图片因为某种原因不能被显示时而出现的替代文字，后来又被用于SEO，可以方便搜索引擎根据Alt text里面的关键词搜索到图片。 图片链接：可以是图片的本地地址或者是网址。&amp;quot;">
+<meta name="twitter:title" content="Mac下安装kafka">
+<meta name="twitter:description" content="Mac下安装kafka通过brew命令方式来安装  安装homebrew：略  通过Brew指令安装kafkabrew install kafka zookeeper安装后的路径为:/usr/local/Cellar/zookeeper/3.4.13 kafka安装后的路径为：/usr/local/Cellar/kafka/2.2.1 (版本根据安装版本确定)  启动kafka ==&amp;gt; zo">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/06/12/MarkDown/markdown语法2/" title="MarkDown添加图片的三种方式" itemprop="url">MarkDown添加图片的三种方式</a>
+      <a href="/2020/07/06/mq/Kafka/Mac下安装kafka/" title="Mac下安装kafka" itemprop="url">Mac下安装kafka</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2020-06-12T14:55:56.000Z" itemprop="datePublished"> 发表于 2020-06-12</time>
+    <time datetime="2020-07-06T14:14:52.000Z" itemprop="datePublished"> 发表于 2020-07-06</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,32 +98,31 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-插入本地图片"><span class="toc-number">1.</span> <span class="toc-text">1.插入本地图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-插入网络图片"><span class="toc-number">2.</span> <span class="toc-text">2.插入网络图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-把图片存入markdown文件"><span class="toc-number">3.</span> <span class="toc-text">3.把图片存入markdown文件</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mac下安装kafka"><span class="toc-number">1.</span> <span class="toc-text">Mac下安装kafka</span></a></li></ol>
 		
 		</div>
 		
-		<p>MarkDown插图最基础的格式就是：</p>
-<ul>
-<li><code>![Alt text](图片链接 &quot;optional title&quot;)</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alt text：图片的Alt标签，用来描述图片的关键词，可以不写。最初的本意是当图片因为某种原因不能被显示时而出现的替代文字，后来又被用于SEO，可以方便搜索引擎根据Alt text里面的关键词搜索到图片。 图片链接：可以是图片的本地地址或者是网址。&quot;optional title&quot;：鼠标悬置于图片上会出现的标题文字，可以不写。</span><br></pre></td></tr></table></figure>
-<h4 id="1-插入本地图片"><a href="#1-插入本地图片" class="headerlink" title="1.插入本地图片"></a>1.插入本地图片</h4><p>只需要在基础语法的括号中填入图片的位置路径即可，支持绝对路径和相对路径。<br>例如：</p>
-<ul>
-<li><code>![avatar](/home/picture/1.png)</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">不灵活不好分享，本地图片的路径更改或丢失都会造成markdown文件调不出图。</span><br></pre></td></tr></table></figure>
-<h4 id="2-插入网络图片"><a href="#2-插入网络图片" class="headerlink" title="2.插入网络图片"></a>2.插入网络图片</h4><p>只需要在基础语法的括号中填入图片的网络链接即可，现在已经有很多免费/收费图床和方便传图的小工具可选。<br>例如：</p>
-<ul>
-<li><code>![avatar](http://baidu.com/pic/doge.png)</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将图片存在网络服务器上，非常依赖网络。</span><br></pre></td></tr></table></figure>
-<h4 id="3-把图片存入markdown文件"><a href="#3-把图片存入markdown文件" class="headerlink" title="3.把图片存入markdown文件"></a>3.把图片存入markdown文件</h4><p>用base64转码工具把图片转成一段字符串，然后把字符串填到基础格式中链接的那个位置。</p>
-<ul>
-<li>基础用法：<br><code>![avatar](data:image/png;base64,iVBORw0......)</code><br>这个时候会发现插入的这一长串字符串会把整个文章分割开，非常影响编写文章时的体验。如果能够把大段的base64字符串放在文章末尾，然后在文章中通过一个id来调用，文章就不会被分割的这么乱了。</li>
-<li>高级用法<br>比如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![avatar][base64str]</span><br><span class="line">[base64str]:data:image/png;base64,iVBORw0......</span><br></pre></td></tr></table></figure>
+		<h4 id="Mac下安装kafka"><a href="#Mac下安装kafka" class="headerlink" title="Mac下安装kafka"></a>Mac下安装kafka</h4><p>通过brew命令方式来安装</p>
+<ol>
+<li><p>安装homebrew：略</p>
 </li>
-</ul>
-<p>最后提供一个把图片在线转为base64字串的地址：<a href="http://www.bejson.com/ui/image2base64/" target="_blank" rel="noopener">http://www.bejson.com/ui/image2base64/</a></p>
+<li><p>通过Brew指令安装kafka<br>brew install kafka</p>
+<p>zookeeper安装后的路径为:/usr/local/Cellar/zookeeper/3.4.13</p>
+<p>kafka安装后的路径为：/usr/local/Cellar/kafka/2.2.1 (版本根据安装版本确定)</p>
+</li>
+<li><p>启动kafka</p>
+<p>==&gt; <strong>zookeeper</strong></p>
+<p>To have launchd start zookeeper now and restart at login:</p>
+<p> brew services start zookeeper</p>
+<p>Or, if you don’t want/need a background service you can just run:</p>
+<p> zkServer start</p>
+<p>==&gt; <strong>kafka</strong></p>
+<p>To have launchd start kafka now and restart at login:</p>
+<p> brew services start kafka</p>
+<p>Or, if you don’t want/need a background service you can just run:</p>
+<p> zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties &amp; kafka-server-start /usr/local/etc/kafka/server.properties</p>
+</li>
+</ol>
 
 	</div>
 
@@ -235,13 +234,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Markdown/">Markdown</a>
+  <a class="article-category-link" href="/categories/kafka/">kafka</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Markdown/">Markdown</a>
+  <span></span> <a href="/tags/kafka安装/">kafka安装</a>
   </div>
 
 </div>
@@ -250,7 +249,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2020/06/12/MarkDown/markdown语法2/" data-title="MarkDown添加图片的三种方式 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2020/07/06/mq/Kafka/Mac下安装kafka/" data-title="Mac下安装kafka | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -262,19 +261,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/06/30/spring/Springboot/springboot标签1/" title="Spring Boot @SpringBootApplication与@ComponentScan">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Spring Boot @SpringBootApplication与@ComponentScan</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2020/06/12/mq/RabbitMQ/RabbitMq集群搭建/"  title="RabbitMq集群搭建">
+<a href="/2020/07/01/spring/Springboot/springboot标签2/"  title="Spring Boot常用注解">
  <strong>下一篇：</strong><br/> 
- <span>RabbitMq集群搭建
+ <span>Spring Boot常用注解
 </span>
 </a>
 </div>
@@ -311,7 +302,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-插入本地图片"><span class="toc-number">1.</span> <span class="toc-text">1.插入本地图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-插入网络图片"><span class="toc-number">2.</span> <span class="toc-text">2.插入网络图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-把图片存入markdown文件"><span class="toc-number">3.</span> <span class="toc-text">3.把图片存入markdown文件</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mac下安装kafka"><span class="toc-number">1.</span> <span class="toc-text">Mac下安装kafka</span></a></li></ol>
  
   </div>
 
