@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2020-07-06T02:24:17.734Z</updated>
+  <updated>2021-03-08T01:55:30.344Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux top命令详解</title>
+    <link href="http://macintosh-c.coding.me/2021/03/05/Linux/top%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://macintosh-c.coding.me/2021/03/05/Linux/top命令详解/</id>
+    <published>2021-03-05T05:56:56.000Z</published>
+    <updated>2021-03-08T01:55:30.344Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Linux-top命令详解"><a href="#Linux-top命令详解" class="headerlink" title="Linux top命令详解"></a>Linux top命令详解</h3><p>top命令经常用来监控<a href="http://lib.csdn.net/base/linux" target="_blank" rel="noopener">Linux</a>的系统状况，比如cpu、内存的使用</p><p><img src="/img/Linux/1.jpg" alt="image"></p><h5 id="1-1-系统运行时间和平均负载："><a href="#1-1-系统运行时间和平均负载：" class="headerlink" title="1.1 系统运行时间和平均负载："></a>1.1 系统运行时间和平均负载：</h5><p><code>top - 09:40:41 up 2 days, 15:45,  2 users,  load average: 0.25, 0.41, 0.41</code><br>top命令的顶部显示与uptime命令相似的输出<br>这些字段显示：</p><p>当前时间</p><ul><li>系统已运行的时间</li><li>当前登录用户的数量</li><li>相应最近5、10和15分钟内的平均负载。</li><li>可以使用’l’命令切换uptime的显示。</li></ul><p>09:40:41 — 当前系统时间<br>2 days, 15:45— 系统已经运行2天了15小时45分钟（在这期间没有重启过）<br>2 users — 当前有2个用户登录系统<br>load average:0.25, 0.41, 0.41— load average后面的三个数分别是5分钟、10分钟、15分钟的负载情况。<br>load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑CPU的数量，结果高于5的时候就表明系统在超负荷运转了。</p><h5 id="1-2-任务"><a href="#1-2-任务" class="headerlink" title="1.2 任务:"></a>1.2 任务:</h5><p><code>Tasks: 239 total,   1 running, 238 sleeping,   0 stopped,   0 zombie</code></p><p>Tasks — 任务（进程），系统现在共有239个进程，其中处于运行中的有1个，238个在休眠（sleep），stoped状态的有0个，zombie状态（僵尸）的有0个。</p><p>第二行显示的是任务或者进程的总结。进程可以处于不同的状态。这里显示了全部进程的数量。除此之外，还有正在运行、睡眠、停止、僵尸进程的数量（僵尸是一种进程的状态）。这些进程概括信息可以用’t’切换显示</p><h5 id="1-3-CPU-状态"><a href="#1-3-CPU-状态" class="headerlink" title="1.3 CPU 状态:"></a>1.3 CPU 状态:</h5><p><code>%Cpu(s):  7.3 us,  2.2 sy,  0.0 ni, 90.5 id,  0.0 wa,  0.0 hi,  0.1 si,  0.0 st</code></p><p>这里显示不同模式下所占cpu时间百分比，这些不同的cpu时间表示：<br>us, user： 运行(未调整优先级的) 用户进程的CPU时间<br>sy，system: 运行内核进程的CPU时间<br>ni，niced：运行已调整优先级的用户进程的CPU时间<br>wa，IO wait: 用于等待IO完成的CPU时间<br>hi：处理硬件中断的CPU时间<br>si: 处理软件中断的CPU时间<br>st：这个虚拟机被hypervisor偷去的CPU时间（译注：如果当前处于一个hypervisor下的vm，实际上hypervisor也是要消耗一部分CPU处理时间的）。<br>可以使用’t’命令切换显示。</p><p>7.3% us — 用户空间占用CPU的百分比。<br>2.2% sy — 内核空间占用CPU的百分比。<br>0.0% ni — 改变过优先级的进程占用CPU的百分比<br>90.5% id — 空闲CPU百分比<br>0.0% wa — IO等待占用CPU的百分比<br>0.0% hi — 硬中断（Hardware IRQ）占用CPU的百分比<br>0.1% si — 软中断（Software Interrupts）占用CPU的百分比<br>在这里CPU的使用比率和windows概念不同，如果你不理解用户空间和内核空间，需要充充电了。</p><h5 id="1-4-内存使用"><a href="#1-4-内存使用" class="headerlink" title="1.4 内存使用:"></a>1.4 内存使用:</h5><p><code>KiB Mem :  8009768 total,   674540 free,  6877808 used,   457420 buff/cache</code><br><code>KiB Swap:  6291452 total,  5215484 free,  1075968 used.   708664 avail Mem</code></p><p>接下来两行显示内存使用率，有点像’free’命令。第一行是物理内存使用，第二行是虚拟内存使用(交换空间)。</p><p>物理内存显示如下:全部可用内存、已使用内存、空闲内存、缓冲内存。相似地：交换部分显示的是：全部、已使用、空闲和缓冲交换空间。</p><p>内存显示可以用’m’命令切换。</p><p>8009768k total — 物理内存总量<br>6877808k used — 使用中的内存总量<br>674540k free — 空闲内存总量<br>457420k buffers — 缓存的内存量 </p><p>swap交换分区<br>6291452k total — 交换区总量<br>1075968k used — 使用的交换区总量<br>5215484k free — 空闲交换区总量<br>708664k cached — 缓冲的交换区总量</p><p>这里要说明的是不能用windows的内存概念理解这些数据，如果按windows的方式此台服务器“危矣”：8G的内存总量只剩下530M的可用内存。Linux的内存管理有其特殊性，复杂点需要一本书来说明，这里只是简单说点和我们传统概念（windows）的不同。</p><p>第四行中使用中的内存总量（used）指的是现在系统内核控制的内存数，空闲内存总量（free）是内核还未纳入其管控范围的数量。纳入内核管理的内存不见得都在使用中，还包括过去使用过的现在可以被重复利用的内存，内核并不把这些可被重新使用的内存交还到free中去，因此在linux上free内存会越来越少，但不用为此担心。</p><p>如果出于习惯去计算可用内存数，这里有个近似的计算公式：第四行的free + 第四行的buffers + 第五行的cached，按这个公式此台服务器的可用内存：</p><p>674540+457420+708664= 1797M。</p><p>对于内存监控，在top里我们要时刻监控第五行swap交换分区的used，如果这个数值在不断的变化，说明内核在不断进行内存和swap的数据交换，这是真正的内存不够用了。</p><h5 id="1-5-各进程（任务）的状态监控"><a href="#1-5-各进程（任务）的状态监控" class="headerlink" title="1.5 各进程（任务）的状态监控:"></a>1.5 各进程（任务）的状态监控:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND</span><br><span class="line">1612 couchba+  20   0 1970628 608324   1880 S  13.6  7.6 905:12.91 beam.smp                                                                                                                                      </span><br><span class="line">1932 couchba+  20   0  927008 119432   4496 S  10.9  1.5 359:43.62 indexer                                                                                                                                       </span><br><span class="line">1980 couchba+  20   0 1844964 164968   1024 S   4.3  2.1 138:56.54 memcached                                                                                                                                     </span><br><span class="line">1933 couchba+  20   0  814696 246604   1492 S   3.6  3.1 120:51.86 projector                                                                                                                                     </span><br><span class="line">1046 root      20   0 1296944  41968  10024 S   2.0  0.5 358:00.09 auditbeat</span><br></pre></td></tr></table></figure><p>PID：进程ID，进程的唯一标识符</p><p>USER：进程所有者的实际用户名。</p><p>PR：进程的调度优先级。这个字段的一些值是’rt’。这意味这这些进程运行在实时态。</p><p>NI：进程的nice值（优先级）。越小的值意味着越高的优先级。负值表示高优先级，正值表示低优先级</p><p>VIRT：进程使用的虚拟内存。进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES</p><p>RES：驻留内存大小。驻留内存是任务使用的非交换物理内存大小。进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA</p><p>SHR：SHR是进程使用的共享内存。共享内存大小，单位kb</p><p>S：这个是进程的状态。它有以下不同的值:</p><p>D - 不可中断的睡眠态。<br>R – 运行态<br>S – 睡眠态<br>T – 被跟踪或已停止<br>Z – 僵尸态<br>%CPU：自从上一次更新时到现在任务所使用的CPU时间百分比。</p><p>%MEM：进程使用的可用物理内存百分比。</p><p>TIME+：任务启动后到现在所使用的全部CPU时间，精确到百分之一秒。</p><p>COMMAND：运行进程所使用的命令。进程名称（命令名/命令行）</p><p>还有许多在默认情况下不会显示的输出，它们可以显示进程的页错误、有效组和组ID和其他更多的信息。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Linux-top命令详解&quot;&gt;&lt;a href=&quot;#Linux-top命令详解&quot; class=&quot;headerlink&quot; title=&quot;Linux top命令详解&quot;&gt;&lt;/a&gt;Linux top命令详解&lt;/h3&gt;&lt;p&gt;top命令经常用来监控&lt;a href=&quot;http:/
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://macintosh-c.coding.me/categories/Linux/"/>
+    
+    
+      <category term="Linux基础" scheme="http://macintosh-c.coding.me/tags/Linux%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac下安装kafka</title>
@@ -516,32 +541,6 @@
     
     
       <category term="Maven" scheme="http://macintosh-c.coding.me/tags/Maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jenkins用户权限管理</title>
-    <link href="http://macintosh-c.coding.me/2019/10/09/Jenkins/jenkins%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
-    <id>http://macintosh-c.coding.me/2019/10/09/Jenkins/jenkins用户管理/</id>
-    <published>2019-10-09T08:50:56.000Z</published>
-    <updated>2019-10-09T05:57:34.107Z</updated>
-    
-    <content type="html"><![CDATA[<p>jenkins默认的权限管理并没有用户组的概念，所以我们需要第三方插件的支持来解决问题</p><h3 id="1-插件安装"><a href="#1-插件安装" class="headerlink" title="1.插件安装"></a>1.插件安装</h3><p>插件：Role-based Authorization Strategy<br>版本：2.3.2</p><h3 id="2-全局安全配置"><a href="#2-全局安全配置" class="headerlink" title="2.全局安全配置"></a>2.全局安全配置</h3><p>进入Jenkins后点击系统管理进入全局安全配置,当插件安装好的时候，授权策略会多出一个Role-Based Strategy选项，选择该项并保存<br><img src="/img/Jenkins/jenkins1.png" alt="jenkins1"></p><h3 id="3-管理和分配角色"><a href="#3-管理和分配角色" class="headerlink" title="3.管理和分配角色"></a>3.管理和分配角色</h3><p>在系统管理页面进入 Manage and Assign Roles</p><ol><li>管理角色<br>点击manage roles<br>1)设置全局角色（全局角色可以对jenkins系统进行设置与项目的操作）<br>admin:对整个jenkins都可以进行操作<br>ops:可以对所有的job进行管理<br>other:只有读的权限<br><img src="/img/Jenkins/jenkins2.png" alt="jenkins2"><br>2)设置项目角色（项目角色只能对项目进行操作)<br>假设目前jenkins工作中有一个simple-java-maven-app的项目，设置如下roles。<br>jenkins_test_manage:simple-java-maven-app的管理人员<br>jenkins_test_user:simple-java-maven-app的普通用户<br><img src="/img/Jenkins/jenkins3.png" alt="jenkins3"></li><li>创建用户<br>系统管理页面的管理用户,分别创建几个用户,我这边除了之前的admin用户，另外新增了test,test2,test3三个用户，用于测试。</li><li>分配角色<br>系统管理页面进入Manage and Assign Roles,点击assign roles<br>1) 分配全局角色<br><img src="/img/Jenkins/jenkins4.png" alt="jenkins4"><br>2) 分配项目角色<br><img src="/img/Jenkins/jenkins5.png" alt="jenkins5"></li></ol><h3 id="4-查看分配结果"><a href="#4-查看分配结果" class="headerlink" title="4.查看分配结果"></a>4.查看分配结果</h3><ol><li>admin用户进入系统可以看到所有的系统管理权限和所有的项目</li><li>test2和test3没有系统管理权限但是可以管理项目</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;jenkins默认的权限管理并没有用户组的概念，所以我们需要第三方插件的支持来解决问题&lt;/p&gt;
-&lt;h3 id=&quot;1-插件安装&quot;&gt;&lt;a href=&quot;#1-插件安装&quot; class=&quot;headerlink&quot; title=&quot;1.插件安装&quot;&gt;&lt;/a&gt;1.插件安装&lt;/h3&gt;&lt;p&gt;插件：
-      
-    
-    </summary>
-    
-      <category term="jenkins" scheme="http://macintosh-c.coding.me/categories/jenkins/"/>
-    
-    
-      <category term="jenkins用户权限管理" scheme="http://macintosh-c.coding.me/tags/jenkins%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
