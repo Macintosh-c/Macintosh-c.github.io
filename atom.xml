@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2021-05-07T02:47:29.113Z</updated>
+  <updated>2021-05-07T03:22:22.199Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sftp常用命令介绍</title>
+    <link href="http://macintosh-c.coding.me/2021/05/07/Linux/sftp%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://macintosh-c.coding.me/2021/05/07/Linux/sftp常用命令介绍/</id>
+    <published>2021-05-07T05:56:56.000Z</published>
+    <updated>2021-05-07T03:22:22.199Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="sftp常用命令介绍"><a href="#sftp常用命令介绍" class="headerlink" title="sftp常用命令介绍"></a>sftp常用命令介绍</h3><blockquote><p>sftp是Secure FileTransferProtocol的缩写，安全文件传送协议。可以为传输文件提供一种安全的加密方法。sftp与 ftp有着几乎一样的语法和功能。SFTP为 SSH的一部分，是一种传输档案至Blogger伺服器的安全方式。其实在SSH软件包中，已经包含了一个叫作SFTP(Secure File TransferProtocol)的安全文件传输子系统，SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接操作，所以从某种意义上来说，SFTP并不像一个服务器程序，而更像是一个客户端程序。SFTP同样是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，如果您对网络安全性要求更高时，可以使用SFTP代替FTP。</p></blockquote><ol><li><p>sftp user@ip</p><pre><code>你要用sftp, 当然得登录到sftp服务器啊， 在linux的shell中执行上面的命令后， linux shell会提示用户输入密码， 我们就输入password吧。 这样就成功建立了sftp连接。</code></pre></li><li><p>help</p><pre><code>建立连接后， linux shell中的$编程了sftp&gt;,  这也对。 现在执行以下help, 可以看看sftp支持哪些命令。</code></pre></li><li><p>pwd和lpwd</p><pre><code>pwd是看远端服务器的目录， 即sftp服务器默认的当前目录。  lpwd是看linux本地目录。</code></pre></li><li><p>ls和lls</p><pre><code>ls是看sftp服务器下当前目录下的东东， lls是看linux当前目录下的东东。</code></pre></li><li><p>put a.txt</p><pre><code>这个是把linux当前目录下的a.txt文件上传到sftp服务器的当前目录下。</code></pre></li><li><p>get b.txt</p><pre><code>这个是把sftp服务器当前目录下的b.txt文件下载到linux当前目录下。  </code></pre></li><li><p>!command</p><pre><code>这个是指在linux上执行command这个命令， 比如!ls是列举linux当前目录下的东东， !rm a.txt是删除linux当前目录下的a.txt文件。这个命令非常非常有用， 因为在sftp&gt; 后输入命令， 默认值针对sftp服务器的， 所以执行rm a.txt删除的是sftp服务器上的a.txt文件， 而非本地的linux上的a.txt文件。</code></pre></li><li><p>exit和quit</p><pre><code>退出。</code></pre></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;sftp常用命令介绍&quot;&gt;&lt;a href=&quot;#sftp常用命令介绍&quot; class=&quot;headerlink&quot; title=&quot;sftp常用命令介绍&quot;&gt;&lt;/a&gt;sftp常用命令介绍&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;sftp是Secure FileTransferP
+      
+    
+    </summary>
+    
+      <category term="sftp" scheme="http://macintosh-c.coding.me/categories/sftp/"/>
+    
+    
+      <category term="sftp" scheme="http://macintosh-c.coding.me/tags/sftp/"/>
+    
+  </entry>
   
   <entry>
     <title>Couchbase 数据迁移</title>
@@ -517,31 +543,6 @@
     
     
       <category term="nginx" scheme="http://macintosh-c.coding.me/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux下安装和升级Git</title>
-    <link href="http://macintosh-c.coding.me/2019/12/06/Git/Linux%E4%B8%8A%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7Git/"/>
-    <id>http://macintosh-c.coding.me/2019/12/06/Git/Linux上安装和升级Git/</id>
-    <published>2019-12-06T05:56:56.000Z</published>
-    <updated>2019-12-06T07:23:16.950Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Linux-下安装和升级Git-系统版本为CentOS7"><a href="#Linux-下安装和升级Git-系统版本为CentOS7" class="headerlink" title="Linux 下安装和升级Git 系统版本为CentOS7"></a>Linux 下安装和升级Git 系统版本为CentOS7</h3><p>yum 安装<br><code>yum install git</code><br>查看git版本<br><code>git --version</code><br>但是通过 yum 安装的 git 版本为 1.8.3 版本太老，本人近期就遇到了git版本太老，导致clone代码仓库报错的问题，以下为升级操作，升级之前先要卸载之前的老版本Git<br><code>yum remove git</code></p><h4 id="1、查看-git-的版本发版界面"><a href="#1、查看-git-的版本发版界面" class="headerlink" title="1、查看 git 的版本发版界面"></a>1、查看 git 的版本发版界面</h4><p><a href="https://github.com/git/git/releases；发现最新版本为2.2.0" target="_blank" rel="noopener">https://github.com/git/git/releases；发现最新版本为2.2.0</a></p><h4 id="2、下载安装包"><a href="#2、下载安装包" class="headerlink" title="2、下载安装包"></a>2、下载安装包</h4><p>进入/usr/src目录，通过wget执行下载包的操作，我习惯在/usr/src下使用wget下载，只是个人习惯<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/src</span><br><span class="line">wget https://github.com/git/git/archive/v2.22.0.tar.gz</span><br></pre></td></tr></table></figure></p><h4 id="3、解压压缩包"><a href="#3、解压压缩包" class="headerlink" title="3、解压压缩包"></a>3、解压压缩包</h4><p><code>tar -zxvf v2.22.0.tar.gz</code></p><h4 id="4、安装依赖"><a href="#4、安装依赖" class="headerlink" title="4、安装依赖"></a>4、安装依赖</h4><p>安装编译码所需依赖，出现提示输入 Y 剩下只需等待即可<br><code>yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</code>  </p><h4 id="5、执行安装"><a href="#5、执行安装" class="headerlink" title="5、执行安装"></a>5、执行安装</h4><p>进入解压的文件夹，执行安装命令  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cd git-2.22.0</span><br><span class="line"></span><br><span class="line"># 执行编译，命令为</span><br><span class="line">make prefix=/usr/local/git all</span><br><span class="line"># 执行安装，命令为，安装到/usr/local/git</span><br><span class="line">make prefix=/usr/local/git install</span><br><span class="line"></span><br><span class="line">### 建议使用下面这组命令，上面的命令有可能会报错</span><br><span class="line"># 执行编译，命令为</span><br><span class="line">make CFLAGS=-liconv prefix=/usr/local/git all</span><br><span class="line"># 执行安装，命令为，安装到/usr/local/git</span><br><span class="line">make CFLAGS=-liconv prefix=/usr/local/git install</span><br></pre></td></tr></table></figure><p>如果执行的是 make prefix=/usr/local/git all，有可能出现以下错误</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/usr/src/git-2.22.0/utf8.c:492：对‘libiconv’未定义的引用</span><br><span class="line">libgit.a(utf8.o)：在函数‘reencode_string_len’中：</span><br><span class="line">/usr/src/git-2.22.0/utf8.c:587：对‘libiconv_open’未定义的引用</span><br><span class="line">/usr/src/git-2.22.0/utf8.c:597：对‘libiconv_close’未定义的引用</span><br><span class="line">/usr/src/git-2.22.0/utf8.c:592：对‘libiconv_open’未定义的引用</span><br><span class="line">collect2: 错误：ld 返回 1</span><br><span class="line">make: *** [git-credential-store] 错误 1</span><br></pre></td></tr></table></figure><h4 id="6、建立软连接"><a href="#6、建立软连接" class="headerlink" title="6、建立软连接"></a>6、建立软连接</h4><p>以上正确安装后，查看 Git 版本 git –version 会报 -bash: git: 未找到命令 错误，原因是我们把git安装到了 /usr/local/git 目录下，git –version默认找的是 /usr/bin/git命令，刚才我们已经卸载了，可通过软连来操作  </p><pre><code># 先删除 /usr/bin/gitrm -rf /usr/bin/git# 创建ln -s /usr/local/git/bin/git /usr/bin/git</code></pre><p>再查看git –version即可<br>同时更新一下nss yum update -y nss curl libcurl<br>至此操作成功！！！</p><p>参考网址：<br><a href="http://www.baiyongj.com/news/493.html" target="_blank" rel="noopener">http://www.baiyongj.com/news/493.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;Linux-下安装和升级Git-系统版本为CentOS7&quot;&gt;&lt;a href=&quot;#Linux-下安装和升级Git-系统版本为CentOS7&quot; class=&quot;headerlink&quot; title=&quot;Linux 下安装和升级Git 系统版本为CentOS7&quot;&gt;&lt;/a&gt;Li
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://macintosh-c.coding.me/categories/Git/"/>
-    
-    
-      <category term="Git基础" scheme="http://macintosh-c.coding.me/tags/Git%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
