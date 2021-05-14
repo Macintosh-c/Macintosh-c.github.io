@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
 <meta property="og:description" content="Redis 持久化存储Redis的数据回写机制 Redis的数据回写机制分同步和异步两种，  同步回写即SAVE命令，主进程直接向磁盘回写数据。在数据大的情况下会导致系统假死很长时间，所以一般不是推荐的。 异步回写即BGSAVE命令，主进程fork后，复制自身并通过这个新的进程回写磁盘，回写结束后新进程自行关闭。由于这样做不需要主进程阻塞，系统不会假死，一般默认会采用这个方法。  Redis持久化">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-05-14T06:05:32.147Z">
+<meta property="og:updated_time" content="2021-05-14T06:07:56.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 持久化存储">
 <meta name="twitter:description" content="Redis 持久化存储Redis的数据回写机制 Redis的数据回写机制分同步和异步两种，  同步回写即SAVE命令，主进程直接向磁盘回写数据。在数据大的情况下会导致系统假死很长时间，所以一般不是推荐的。 异步回写即BGSAVE命令，主进程fork后，复制自身并通过这个新的进程回写磁盘，回写结束后新进程自行关闭。由于这样做不需要主进程阻塞，系统不会假死，一般默认会采用这个方法。  Redis持久化">
@@ -135,6 +135,7 @@
 <p>但在我们目前的线上环境中，由于数据都设置有过期时间，采用AOF的方式会不太实用，过于频繁的写操作会使AOF文件增长到异常的庞大，大大超过了我们实际的数据量，这也会导致在进行数据恢复时耗用大量的时间。</p>
 <p>因此，可以在Slave上仅开启Snapshot来进行本地化，同时可以考虑将save中的频率调高一些或者调用一个计划任务来进行定期bgsave的快照存储，来尽可能的保障本地化数据的完整性。<br>在这样的架构下，如果仅仅是Master挂掉，Slave完整，数据恢复可达到100%。</p>
 <p>如果Master与Slave同时挂掉的话，数据的恢复也可以达到一个可接受的程度。</p>
+<p>参考：<a href="https://blog.csdn.net/jack85986370/article/details/51453041?utm_term=redis集群rdb文件&amp;utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~sobaiduweb~default-1-51453041&amp;spm=3001.4430" target="_blank" rel="noopener">https://blog.csdn.net/jack85986370/article/details/51453041?utm_term=redis集群rdb文件&amp;utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~sobaiduweb~default-1-51453041&amp;spm=3001.4430</a></p>
 
 	</div>
 
@@ -490,19 +491,15 @@
 			
 		
 			
-				<li><a href="/tags/ansible详解/" title="ansible详解">ansible详解<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Springboot/" title="Springboot">Springboot<sup>2</sup></a></li>
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Maven/" title="Maven">Maven<sup>2</sup></a></li>
+				<li><a href="/tags/ansible详解/" title="ansible详解">ansible详解<sup>2</sup></a></li>
 			
 		
 			
@@ -530,11 +527,19 @@
 			
 		
 			
-				<li><a href="/tags/Memcached安装/" title="Memcached安装">Memcached安装<sup>1</sup></a></li>
+				<li><a href="/tags/Springboot/" title="Springboot">Springboot<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Docker-Compose/" title="Docker-Compose">Docker-Compose<sup>1</sup></a></li>
+				<li><a href="/tags/YApi学习/" title="YApi学习">YApi学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jenkins/" title="jenkins">jenkins<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
 			
 		
 			
@@ -542,15 +547,11 @@
 			
 		
 			
-				<li><a href="/tags/python安装/" title="python安装">python安装<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/mybatis基础/" title="mybatis基础">mybatis基础<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/jenkins/" title="jenkins">jenkins<sup>1</sup></a></li>
+				<li><a href="/tags/python安装/" title="python安装">python安装<sup>1</sup></a></li>
 			
 		
 			
