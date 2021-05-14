@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://macintosh-c.coding.me/2021/05/12/Databases/Redis/Redis%E6%8C%81%E4%B9%85%E5%8C%96/</loc>
+    
+    <lastmod>2021-05-14T06:05:32.147Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2021/05/13/Databases/Redis/Redis5.0%20redis-cli%20--cluster%20help%E8%AF%B4%E6%98%8E/</loc>
+    
+    <lastmod>2021-05-14T05:46:09.569Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2021/05/14/Databases/Redis/Redis%E5%8D%95%E5%AE%9E%E4%BE%8B%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BBCluster%E6%96%B9%E6%A1%88blog/</loc>
+    
+    <lastmod>2021-05-14T05:26:54.714Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://macintosh-c.coding.me/2021/05/10/YApi/YApi%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2021-05-10T02:28:30.343Z</lastmod>
@@ -450,14 +471,14 @@
   </url>
   
   <url>
-    <loc>http://macintosh-c.coding.me/baidu_verify_bT5h2zR7xk.html</loc>
+    <loc>http://macintosh-c.coding.me/baidu_verify_Tk6ZakeChA.html</loc>
     
     <lastmod>2019-08-01T09:07:49.117Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://macintosh-c.coding.me/baidu_verify_Tk6ZakeChA.html</loc>
+    <loc>http://macintosh-c.coding.me/baidu_verify_bT5h2zR7xk.html</loc>
     
     <lastmod>2019-08-01T09:07:49.117Z</lastmod>
     
