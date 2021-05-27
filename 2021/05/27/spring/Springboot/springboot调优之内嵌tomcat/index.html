@@ -4,25 +4,27 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Redis指令整理 | macintosh-c&#39;s blog</title>
+    <title>Springboot调优之内嵌Tomcat | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
     
 
     
-    <meta name="description" content="平时用到的redis指令整理：  查询所以key：keys * 查看redis状态：info 获取随机一个key：randomkey 清空库：flushall 删除某个key: del key 查询list的长度：llen key 往list里存入一条数据：LPUSH key value 查询key的有效时间：ttl key 查询某个hash：HGETALL key 将key中储存的数字值增一：I">
-<meta name="keywords" content="redis指令">
+    <meta name="description" content="Springboot调优之内嵌Tomcat怎么配置tomcat，才能使得自己的服务效率更高呢？ 首先，这和tomcat的使用的IO模式有关，其次，也和tomcat的配置参数有关，尤其是以下三个配置项：maxConnections、maxThreads、acceptCount。 Tomcat的高效配置Tomcat的maxConnections、maxThreads、acceptCount三大配置，分">
+<meta name="keywords" content="Springboot调优">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis指令整理">
-<meta property="og:url" content="http://macintosh-c.coding.me/2019/12/13/Databases/Redis/redis指令/index.html">
+<meta property="og:title" content="Springboot调优之内嵌Tomcat">
+<meta property="og:url" content="http://macintosh-c.coding.me/2021/05/27/spring/Springboot/springboot调优之内嵌tomcat/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
-<meta property="og:description" content="平时用到的redis指令整理：  查询所以key：keys * 查看redis状态：info 获取随机一个key：randomkey 清空库：flushall 删除某个key: del key 查询list的长度：llen key 往list里存入一条数据：LPUSH key value 查询key的有效时间：ttl key 查询某个hash：HGETALL key 将key中储存的数字值增一：I">
+<meta property="og:description" content="Springboot调优之内嵌Tomcat怎么配置tomcat，才能使得自己的服务效率更高呢？ 首先，这和tomcat的使用的IO模式有关，其次，也和tomcat的配置参数有关，尤其是以下三个配置项：maxConnections、maxThreads、acceptCount。 Tomcat的高效配置Tomcat的maxConnections、maxThreads、acceptCount三大配置，分">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-19T06:53:44.094Z">
+<meta property="og:image" content="http://macintosh-c.coding.me/img/Springboot/1.png">
+<meta property="og:updated_time" content="2021-05-27T09:02:00.823Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis指令整理">
-<meta name="twitter:description" content="平时用到的redis指令整理：  查询所以key：keys * 查看redis状态：info 获取随机一个key：randomkey 清空库：flushall 删除某个key: del key 查询list的长度：llen key 往list里存入一条数据：LPUSH key value 查询key的有效时间：ttl key 查询某个hash：HGETALL key 将key中储存的数字值增一：I">
+<meta name="twitter:title" content="Springboot调优之内嵌Tomcat">
+<meta name="twitter:description" content="Springboot调优之内嵌Tomcat怎么配置tomcat，才能使得自己的服务效率更高呢？ 首先，这和tomcat的使用的IO模式有关，其次，也和tomcat的配置参数有关，尤其是以下三个配置项：maxConnections、maxThreads、acceptCount。 Tomcat的高效配置Tomcat的maxConnections、maxThreads、acceptCount三大配置，分">
+<meta name="twitter:image" content="http://macintosh-c.coding.me/img/Springboot/1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
@@ -81,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/12/13/Databases/Redis/redis指令/" title="Redis指令整理" itemprop="url">Redis指令整理</a>
+      <a href="/2021/05/27/spring/Springboot/springboot调优之内嵌tomcat/" title="Springboot调优之内嵌Tomcat" itemprop="url">Springboot调优之内嵌Tomcat</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
 		
   <p class="article-time">
-    <time datetime="2019-12-13T04:20:29.000Z" itemprop="datePublished"> 发表于 2019-12-13</time>
+    <time datetime="2021-05-26T17:29:05.000Z" itemprop="datePublished"> 发表于 2021-05-27</time>
 		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
   </p>
 </header>
@@ -98,31 +100,36 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Springboot调优之内嵌Tomcat"><span class="toc-number">1.</span> <span class="toc-text">Springboot调优之内嵌Tomcat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tomcat的高效配置"><span class="toc-number">1.0.1.</span> <span class="toc-text">Tomcat的高效配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#详解：maxConnections、maxThreads、acceptCount"><span class="toc-number">1.0.2.</span> <span class="toc-text">详解：maxConnections、maxThreads、acceptCount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图解：maxConnections、maxThreads、acceptCount关系"><span class="toc-number">1.0.3.</span> <span class="toc-text">图解：maxConnections、maxThreads、acceptCount关系</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
-		<p>平时用到的redis指令整理：</p>
-<ol>
-<li>查询所以key：keys *</li>
-<li>查看redis状态：info</li>
-<li>获取随机一个key：randomkey</li>
-<li>清空库：flushall</li>
-<li>删除某个key: del key</li>
-<li>查询list的长度：llen key</li>
-<li>往list里存入一条数据：LPUSH key value</li>
-<li>查询key的有效时间：ttl key</li>
-<li>查询某个hash：HGETALL key</li>
-<li>将key中储存的数字值增一：INCR key（如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCR 操作）</li>
-<li>redis使用 Lua 解释器执行脚本：EVAL script numkeys key [key …] arg [arg …]<br>参数说明：</li>
-</ol>
-<ul>
-<li>script： 参数是一段 Lua 5.1 脚本程序。脚本不必(也不应该)定义为一个 Lua 函数。</li>
-<li>numkeys： 用于指定键名参数的个数。</li>
-<li>key [key …]： 从 EVAL 的第三个参数开始算起，表示在脚本中所用到的那些 Redis 键(key)，这些键名参数可以在 Lua 中通过全局变量 KEYS 数组，用 1 为基址的形式访问( KEYS[1] ， KEYS[2] ，以此类推)。</li>
-<li>arg [arg …]： 附加参数，在 Lua 中通过全局变量 ARGV 数组访问，访问的形式和 KEYS 变量类似( ARGV[1] 、 ARGV[2] ，诸如此类)。<br>实例：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; eval &quot;return &#123;KEYS[1],KEYS[2],ARGV[1],ARGV[2]&#125;&quot; 2 key1 key2 first second</span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;key2&quot;</span><br><span class="line">3) &quot;first&quot;</span><br><span class="line">4) &quot;second&quot;</span><br></pre></td></tr></table></figure>
+		<h2 id="Springboot调优之内嵌Tomcat"><a href="#Springboot调优之内嵌Tomcat" class="headerlink" title="Springboot调优之内嵌Tomcat"></a>Springboot调优之内嵌Tomcat</h2><p>怎么配置tomcat，才能使得自己的服务效率更高呢？</p>
+<p>首先，这和tomcat的使用的IO模式有关，其次，也和tomcat的配置参数有关，尤其是以下三个配置项：maxConnections、maxThreads、acceptCount。</p>
+<h4 id="Tomcat的高效配置"><a href="#Tomcat的高效配置" class="headerlink" title="Tomcat的高效配置"></a>Tomcat的高效配置</h4><p>Tomcat的maxConnections、maxThreads、acceptCount三大配置，分别表示最大连接数，最大线程数、最大的等待数，可以通过application.yml配置文件来改变这个三个值，一个标准的示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  tomcat:</span><br><span class="line">    uri-encoding: UTF-8</span><br><span class="line">    #最大工作线程数，默认200, 4核8g内存，线程数经验值800</span><br><span class="line">    #操作系统做线程之间的切换调度是有系统开销的，所以不是越多越好。</span><br><span class="line">    max-threads: 1000</span><br><span class="line">    # 等待队列长度，默认100</span><br><span class="line">   accept-count: 1000</span><br><span class="line">    max-connections: 20000</span><br><span class="line">    # 最小工作空闲线程数，默认10, 适当增大一些，以便应对突然增长的访问量</span><br><span class="line">   min-spare-threads: 100</span><br></pre></td></tr></table></figure>
+<h4 id="详解：maxConnections、maxThreads、acceptCount"><a href="#详解：maxConnections、maxThreads、acceptCount" class="headerlink" title="详解：maxConnections、maxThreads、acceptCount"></a>详解：maxConnections、maxThreads、acceptCount</h4><p>一、accept-count：最大等待数</p>
+<p>官方文档的说明为：当所有的请求处理线程都在使用时，所能接收的连接请求的队列的最大长度。当队列已满时，任何的连接请求都将被拒绝。accept-count的默认值为100。<br>详细的来说：当调用HTTP请求数达到tomcat的最大线程数时，还有新的HTTP请求到来，这时tomcat会将该请求放在等待队列中，这个acceptCount就是指能够接受的最大等待数，默认100。如果等待队列也被放满了，这个时候再来新的请求就会被tomcat拒绝（connection refused）。</p>
+<p>二、maxThreads：最大线程数</p>
+<p>每一次HTTP请求到达Web服务，tomcat都会创建一个线程来处理该请求，那么最大线程数决定了Web服务容器可以同时处理多少个请求。maxThreads默认200，肯定建议增加。但是，增加线程是有成本的，更多的线程，不仅仅会带来更多的线程上下文切换成本，而且意味着带来更多的内存消耗。JVM中默认情况下在创建新线程时会分配大小为1M的线程栈，所以，更多的线程异味着需要更多的内存。线程数的经验值为：1核2g内存为200，线程数经验值200；4核8g内存，线程数经验值800。</p>
+<p>三、maxConnections：最大连接数</p>
+<p>官方文档的说明为：</p>
+<p>这个参数是指在同一时间，tomcat能够接受的最大连接数。对于Java的阻塞式BIO，默认值是maxthreads的值；如果在BIO模式使用定制的Executor执行器，默认值将是执行器中maxthreads的值。对于Java 新的NIO模式，maxConnections 默认值是10000。<br>对于windows上APR/native IO模式，maxConnections默认值为8192，这是出于性能原因，如果配置的值不是1024的倍数，maxConnections 的实际值将减少到1024的最大倍数。<br>如果设置为-1，则禁用maxconnections功能，表示不限制tomcat容器的连接数。<br>maxConnections和accept-count的关系为：当连接数达到最大值maxConnections后，系统会继续接收连接，但不会超过acceptCount的值。</p>
+<h4 id="图解：maxConnections、maxThreads、acceptCount关系"><a href="#图解：maxConnections、maxThreads、acceptCount关系" class="headerlink" title="图解：maxConnections、maxThreads、acceptCount关系"></a>图解：maxConnections、maxThreads、acceptCount关系</h4><p>用一个形象的比喻，通俗易懂的解释一下tomcat的最大线程数（maxThreads）、最大等待数（acceptCount）和最大连接数（maxConnections）三者之间的关系。</p>
+<p>我们可以把tomcat比做一个火锅店，流程是取号、入座、叫服务员，可以做一下三个形象的类比：</p>
+<p>（1）acceptCount 最大等待数</p>
+<p>可以类比为火锅店的排号处能够容纳排号的最大数量；排号的数量不是无限制的，火锅店的排号到了一定数据量之后，服务往往会说：已经客满。</p>
+<p>（2）maxConnections 最大连接数</p>
+<p>可以类比为火锅店的大堂的餐桌数量，也就是可以就餐的桌数。如果所有的桌子都已经坐满，则表示餐厅已满，已经达到了服务的数量上线，不能再有顾客进入餐厅了。</p>
+<p>（3）maxThreads：最大线程数</p>
+<p>可以类比为厨师的个数。每一个厨师，在同一时刻，只能给一张餐桌炒菜，就像极了JVM中的一条线程。</p>
+<p>整个就餐的流程，大致如下：</p>
+<p>（1）取号：如果maxConnections连接数没有满，就不需要取号，因为还有空余的餐桌，直接被大堂服务员领上餐桌，点菜就餐即可。如果 maxConnections 连接数满了，但是取号人数没有达到 acceptCount，则取号成功。如果取号人数已达到acceptCount，则拿号失败，会得到Tomcat的Connection refused connect 的回复信息。</p>
+<p>（2）上桌：如果有餐桌空出来了，表示maxConnections连接数没有满，排队的人，可以进入大堂上桌就餐。</p>
+<p>（3）就餐：就餐需要厨师炒菜。厨师的数量，比顾客的数量，肯定会少一些。一个厨师一定需要给多张餐桌炒菜，如果就餐的人越多，厨师也会忙不过来。这时候就可以增加厨师，一增加到上限maxThreads的值，如果还是不够，只能是拖慢每一张餐桌的上菜速度，这种情况，就是大家常见的“上一道菜吃光了，下一道菜还没有上”尴尬场景。</p>
+<p><strong>maxConnections、maxThreads、acceptCount关系图如下</strong></p>
+<p><img src="/img/Springboot/1.png" alt="image"></p>
+<p>参考：<a href="https://www.cnblogs.com/crazymakercircle/p/11748214.html" target="_blank" rel="noopener">https://www.cnblogs.com/crazymakercircle/p/11748214.html</a></p>
 
 	</div>
 
@@ -234,13 +241,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Redis/">Redis</a>
+  <a class="article-category-link" href="/categories/Springboot/">Springboot</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/redis指令/">redis指令</a>
+  <span></span> <a href="/tags/Springboot调优/">Springboot调优</a>
   </div>
 
 </div>
@@ -249,7 +256,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2019/12/13/Databases/Redis/redis指令/" data-title="Redis指令整理 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2021/05/27/spring/Springboot/springboot调优之内嵌tomcat/" data-title="Springboot调优之内嵌Tomcat | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -261,19 +268,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2019/12/13/Databases/ehcache/认识ehcache/" title="认识Ehcache">
-  <strong>上一篇：</strong><br/>
-  <span>
-  认识Ehcache</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/12/13/spring/SpringMVC/log4j日志不输出的问题/"  title="log4j日志不输出的问题">
+<a href="/2021/05/14/Databases/Redis/Redis单实例数据迁移Cluster方案blog/"  title="Redis数据迁移">
  <strong>下一篇：</strong><br/> 
- <span>log4j日志不输出的问题
+ <span>Redis数据迁移
 </span>
 </a>
 </div>
@@ -310,7 +309,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Springboot调优之内嵌Tomcat"><span class="toc-number">1.</span> <span class="toc-text">Springboot调优之内嵌Tomcat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tomcat的高效配置"><span class="toc-number">1.0.1.</span> <span class="toc-text">Tomcat的高效配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#详解：maxConnections、maxThreads、acceptCount"><span class="toc-number">1.0.2.</span> <span class="toc-text">详解：maxConnections、maxThreads、acceptCount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图解：maxConnections、maxThreads、acceptCount关系"><span class="toc-number">1.0.3.</span> <span class="toc-text">图解：maxConnections、maxThreads、acceptCount关系</span></a></li></ol></li></ol></li></ol>
  
   </div>
 

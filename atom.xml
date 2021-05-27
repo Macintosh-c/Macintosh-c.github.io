@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2021-05-14T05:26:54.714Z</updated>
+  <updated>2021-05-27T09:02:00.823Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Springboot调优之内嵌Tomcat</title>
+    <link href="http://macintosh-c.coding.me/2021/05/27/spring/Springboot/springboot%E8%B0%83%E4%BC%98%E4%B9%8B%E5%86%85%E5%B5%8Ctomcat/"/>
+    <id>http://macintosh-c.coding.me/2021/05/27/spring/Springboot/springboot调优之内嵌tomcat/</id>
+    <published>2021-05-26T17:29:05.000Z</published>
+    <updated>2021-05-27T09:02:00.823Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Springboot调优之内嵌Tomcat"><a href="#Springboot调优之内嵌Tomcat" class="headerlink" title="Springboot调优之内嵌Tomcat"></a>Springboot调优之内嵌Tomcat</h2><p>怎么配置tomcat，才能使得自己的服务效率更高呢？</p><p>首先，这和tomcat的使用的IO模式有关，其次，也和tomcat的配置参数有关，尤其是以下三个配置项：maxConnections、maxThreads、acceptCount。</p><h4 id="Tomcat的高效配置"><a href="#Tomcat的高效配置" class="headerlink" title="Tomcat的高效配置"></a>Tomcat的高效配置</h4><p>Tomcat的maxConnections、maxThreads、acceptCount三大配置，分别表示最大连接数，最大线程数、最大的等待数，可以通过application.yml配置文件来改变这个三个值，一个标准的示例如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  tomcat:</span><br><span class="line">    uri-encoding: UTF-8</span><br><span class="line">    #最大工作线程数，默认200, 4核8g内存，线程数经验值800</span><br><span class="line">    #操作系统做线程之间的切换调度是有系统开销的，所以不是越多越好。</span><br><span class="line">    max-threads: 1000</span><br><span class="line">    # 等待队列长度，默认100</span><br><span class="line">   accept-count: 1000</span><br><span class="line">    max-connections: 20000</span><br><span class="line">    # 最小工作空闲线程数，默认10, 适当增大一些，以便应对突然增长的访问量</span><br><span class="line">   min-spare-threads: 100</span><br></pre></td></tr></table></figure><h4 id="详解：maxConnections、maxThreads、acceptCount"><a href="#详解：maxConnections、maxThreads、acceptCount" class="headerlink" title="详解：maxConnections、maxThreads、acceptCount"></a>详解：maxConnections、maxThreads、acceptCount</h4><p>一、accept-count：最大等待数</p><p>官方文档的说明为：当所有的请求处理线程都在使用时，所能接收的连接请求的队列的最大长度。当队列已满时，任何的连接请求都将被拒绝。accept-count的默认值为100。<br>详细的来说：当调用HTTP请求数达到tomcat的最大线程数时，还有新的HTTP请求到来，这时tomcat会将该请求放在等待队列中，这个acceptCount就是指能够接受的最大等待数，默认100。如果等待队列也被放满了，这个时候再来新的请求就会被tomcat拒绝（connection refused）。</p><p>二、maxThreads：最大线程数</p><p>每一次HTTP请求到达Web服务，tomcat都会创建一个线程来处理该请求，那么最大线程数决定了Web服务容器可以同时处理多少个请求。maxThreads默认200，肯定建议增加。但是，增加线程是有成本的，更多的线程，不仅仅会带来更多的线程上下文切换成本，而且意味着带来更多的内存消耗。JVM中默认情况下在创建新线程时会分配大小为1M的线程栈，所以，更多的线程异味着需要更多的内存。线程数的经验值为：1核2g内存为200，线程数经验值200；4核8g内存，线程数经验值800。</p><p>三、maxConnections：最大连接数</p><p>官方文档的说明为：</p><p>这个参数是指在同一时间，tomcat能够接受的最大连接数。对于Java的阻塞式BIO，默认值是maxthreads的值；如果在BIO模式使用定制的Executor执行器，默认值将是执行器中maxthreads的值。对于Java 新的NIO模式，maxConnections 默认值是10000。<br>对于windows上APR/native IO模式，maxConnections默认值为8192，这是出于性能原因，如果配置的值不是1024的倍数，maxConnections 的实际值将减少到1024的最大倍数。<br>如果设置为-1，则禁用maxconnections功能，表示不限制tomcat容器的连接数。<br>maxConnections和accept-count的关系为：当连接数达到最大值maxConnections后，系统会继续接收连接，但不会超过acceptCount的值。</p><h4 id="图解：maxConnections、maxThreads、acceptCount关系"><a href="#图解：maxConnections、maxThreads、acceptCount关系" class="headerlink" title="图解：maxConnections、maxThreads、acceptCount关系"></a>图解：maxConnections、maxThreads、acceptCount关系</h4><p>用一个形象的比喻，通俗易懂的解释一下tomcat的最大线程数（maxThreads）、最大等待数（acceptCount）和最大连接数（maxConnections）三者之间的关系。</p><p>我们可以把tomcat比做一个火锅店，流程是取号、入座、叫服务员，可以做一下三个形象的类比：</p><p>（1）acceptCount 最大等待数</p><p>可以类比为火锅店的排号处能够容纳排号的最大数量；排号的数量不是无限制的，火锅店的排号到了一定数据量之后，服务往往会说：已经客满。</p><p>（2）maxConnections 最大连接数</p><p>可以类比为火锅店的大堂的餐桌数量，也就是可以就餐的桌数。如果所有的桌子都已经坐满，则表示餐厅已满，已经达到了服务的数量上线，不能再有顾客进入餐厅了。</p><p>（3）maxThreads：最大线程数</p><p>可以类比为厨师的个数。每一个厨师，在同一时刻，只能给一张餐桌炒菜，就像极了JVM中的一条线程。</p><p>整个就餐的流程，大致如下：</p><p>（1）取号：如果maxConnections连接数没有满，就不需要取号，因为还有空余的餐桌，直接被大堂服务员领上餐桌，点菜就餐即可。如果 maxConnections 连接数满了，但是取号人数没有达到 acceptCount，则取号成功。如果取号人数已达到acceptCount，则拿号失败，会得到Tomcat的Connection refused connect 的回复信息。</p><p>（2）上桌：如果有餐桌空出来了，表示maxConnections连接数没有满，排队的人，可以进入大堂上桌就餐。</p><p>（3）就餐：就餐需要厨师炒菜。厨师的数量，比顾客的数量，肯定会少一些。一个厨师一定需要给多张餐桌炒菜，如果就餐的人越多，厨师也会忙不过来。这时候就可以增加厨师，一增加到上限maxThreads的值，如果还是不够，只能是拖慢每一张餐桌的上菜速度，这种情况，就是大家常见的“上一道菜吃光了，下一道菜还没有上”尴尬场景。</p><p><strong>maxConnections、maxThreads、acceptCount关系图如下</strong></p><p><img src="/img/Springboot/1.png" alt="image"></p><p>参考：<a href="https://www.cnblogs.com/crazymakercircle/p/11748214.html" target="_blank" rel="noopener">https://www.cnblogs.com/crazymakercircle/p/11748214.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Springboot调优之内嵌Tomcat&quot;&gt;&lt;a href=&quot;#Springboot调优之内嵌Tomcat&quot; class=&quot;headerlink&quot; title=&quot;Springboot调优之内嵌Tomcat&quot;&gt;&lt;/a&gt;Springboot调优之内嵌Tomcat&lt;/
+      
+    
+    </summary>
+    
+      <category term="Springboot" scheme="http://macintosh-c.coding.me/categories/Springboot/"/>
+    
+    
+      <category term="Springboot调优" scheme="http://macintosh-c.coding.me/tags/Springboot%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
   
   <entry>
     <title>Redis数据迁移</title>
@@ -495,32 +520,6 @@
       
         &lt;p&gt;问题：在使用Ehcache缓存，采用RMI(UDP传输协议)进行数据广播同步，启动项目时报异常： net.sf.ehcache.CacheException: Can’t assign requested address&lt;/p&gt;
 &lt;figure class=&quot;highlig
-      
-    
-    </summary>
-    
-      <category term="Ehcache" scheme="http://macintosh-c.coding.me/categories/Ehcache/"/>
-    
-    
-      <category term="Ehcache" scheme="http://macintosh-c.coding.me/tags/Ehcache/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>认识Ehcache</title>
-    <link href="http://macintosh-c.coding.me/2019/12/13/Databases/ehcache/%E8%AE%A4%E8%AF%86ehcache/"/>
-    <id>http://macintosh-c.coding.me/2019/12/13/Databases/ehcache/认识ehcache/</id>
-    <published>2019-12-13T04:40:29.000Z</published>
-    <updated>2019-12-13T09:19:22.119Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近接手一个老项目，里面有用到EhCache，而且启动时总是报错，于是百度认识了一下Ehcache，记录如下，加强理解，报错详细及解决办法见下篇</p><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>EhCache 是一个纯Java的进程内缓存框架，具有快速、精干等特点，是Hibernate中默认CacheProvider。Ehcache是一种广泛使用的开源Java分布式缓存。主要面向通用缓存,Java EE和轻量级容器。它具有内存和磁盘存储，缓存加载器,缓存扩展,缓存异常处理程序,一个gzip缓存servlet过滤器,支持REST和SOAP api等特点。</p><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul><li>快速、简单</li><li>多种缓存策略</li><li>缓存数据有两级：内存和磁盘，因此无需担心容量问题</li><li>缓存数据会在虚拟机重启的过程中写入磁盘</li><li>可以通过RMI、可插入API等方式进行分布式缓存</li><li>具有缓存和缓存管理器的侦听接口</li><li>支持多缓存管理器实例，以及一个实例的多个缓存区域</li><li>提供Hibernate的缓存实现</li></ul><h4 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h4><p>可以单独使用，一般在第三方库中被用到的比较多（如mybatis、shiro等）ehcache 对分布式支持不够好，多个节点不能同步，通常和redis一块使用</p><h4 id="灵活性"><a href="#灵活性" class="headerlink" title="灵活性"></a>灵活性</h4><p>ehcache具备对象api接口和可序列化api接口<br>不能序列化的对象可以使用出磁盘存储外ehcache的所有功能<br>支持基于Cache和基于Element的过期策略，每个Cache的存活时间都是可以设置和控制的。<br>提供了LRU、LFU和FIFO缓存淘汰算法，Ehcache 1.2引入了最少使用和先进先出缓存淘汰算法，构成了完整的缓存淘汰算法。<br>提供内存和磁盘存储，Ehcache和大多数缓存解决方案一样，提供高性能的内存和磁盘存储。<br>动态、运行时缓存配置，存活时间、空闲时间、内存和磁盘存放缓存的最大数目都是可以在运行时修改的。</p><h4 id="应用持久化"><a href="#应用持久化" class="headerlink" title="应用持久化"></a>应用持久化</h4><p>在vm重启后，持久化到磁盘的存储可以复原数据<br>Ehache是第一个引入缓存数据持久化存储的开源java缓存框架，缓存的数据可以在机器重启后从磁盘上重新获得<br>根据需要将缓存刷到磁盘。将缓存条目刷到磁盘的操作可以通过cache.fiush方法执行,这大大方便了ehcache的使用</p><h4 id="ehcache-和-redis-比较"><a href="#ehcache-和-redis-比较" class="headerlink" title="ehcache 和 redis 比较"></a>ehcache 和 redis 比较</h4><p>ehcache直接在jvm虚拟机中缓存，速度快，效率高；但是缓存共享麻烦，集群分布式应用不方便。<br>redis是通过socket访问到缓存服务，效率比ecache低，比数据库要快很多，<br>处理集群和分布式缓存方便，有成熟的方案。如果是单个应用或者对缓存访问要求很高的应用，用ehcache。如果是大型系统，存在缓存共享、分布式部署、缓存内容很大的，建议用redis。<br>Redis：属于独立的运行程序，需要单独安装后，使用JAVA中的Jedis来操纵。因为它是独立，所以如果你写个单元测试程序，放一些数据在Redis中，然后又写一个程序去拿数据，那么是可以拿到这个数据的。，<br>ehcache：与Redis明显不同，它与java程序是绑在一起的，java程序活着，它就活着。譬如，写一个独立程序放数据，再写一个独立程序拿数据，那么是拿不到数据的。只能在独立程序中才能拿到数据。</p><h4 id="贴一段基本使用代码"><a href="#贴一段基本使用代码" class="headerlink" title="贴一段基本使用代码"></a>贴一段基本使用代码</h4><p>CacheManager manager = CacheManager.newInstance(“src/config/ehcache.xml”);<br>Ehcache cache = new Cache(“testCache”, 5000, false, false, 5, 2);<br>cacheManager.addCache(cache);</p><h4 id="配置文件细解"><a href="#配置文件细解" class="headerlink" title="配置文件细解"></a>配置文件细解</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;ehcache xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:noNamespaceSchemaLocation=&quot;http://ehcache.org/ehcache.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 磁盘缓存位置 --&gt;</span><br><span class="line">  &lt;diskStore path=&quot;java.io.tmpdir/ehcache&quot;/&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 默认缓存 --&gt;</span><br><span class="line">  &lt;defaultCache</span><br><span class="line">          maxEntriesLocalHeap=&quot;10000&quot;</span><br><span class="line">          eternal=&quot;false&quot;</span><br><span class="line">          timeToIdleSeconds=&quot;120&quot;</span><br><span class="line">          timeToLiveSeconds=&quot;120&quot;</span><br><span class="line">          maxEntriesLocalDisk=&quot;10000000&quot;</span><br><span class="line">          diskExpiryThreadIntervalSeconds=&quot;120&quot;</span><br><span class="line">          memoryStoreEvictionPolicy=&quot;LRU&quot;&gt;</span><br><span class="line">    &lt;persistence strategy=&quot;localTempSwap&quot;/&gt;</span><br><span class="line">  &lt;/defaultCache&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- helloworld缓存 --&gt;</span><br><span class="line">  &lt;cache name=&quot;HelloWorldCache&quot;</span><br><span class="line">         maxElementsInMemory=&quot;1000&quot;</span><br><span class="line">         eternal=&quot;false&quot;</span><br><span class="line">         timeToIdleSeconds=&quot;5&quot;</span><br><span class="line">         timeToLiveSeconds=&quot;5&quot;</span><br><span class="line">         overflowToDisk=&quot;false&quot;</span><br><span class="line">         memoryStoreEvictionPolicy=&quot;LRU&quot;/&gt;</span><br><span class="line">&lt;/ehcache&gt;</span><br></pre></td></tr></table></figure><p>配置文件说明：<br>diskStore </p><ul><li>path ：指定磁盘存储的位置</li></ul><p>defaultCache:默认的缓存</p><p>cache</p><ul><li>name:缓存名称。</li><li>maxElementsInMemory：缓存最大个数。</li><li>eternal:对象是否永久有效，一但设置了，timeout将不起作用。</li><li>timeToIdleSeconds：设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。</li><li>timeToLiveSeconds：设置对象在失效前允许存活时间,最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时 间无穷大。</li><li>overflowToDisk：当内存中对象数量达到maxElementsInMemory时，Ehcache将会对象写到磁盘中。</li><li>diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。</li><li>maxElementsOnDisk：硬盘最大缓存个数。</li><li>diskPersistent： 是否缓存虚拟机重启期数 据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.</li><li>diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。</li><li>memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU。你可以设置为 FIFO或是LFU。</li><li>clearOnFlush：内存数量最大时是否清除。</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近接手一个老项目，里面有用到EhCache，而且启动时总是报错，于是百度认识了一下Ehcache，记录如下，加强理解，报错详细及解决办法见下篇&lt;/p&gt;
-&lt;h4 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;
       
     
     </summary>
