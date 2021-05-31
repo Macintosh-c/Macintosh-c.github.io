@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://macintosh-c.coding.me/2021/05/31/Databases/Redis/redis-Sentinel/</loc>
+    <lastmod>2021-05-31</lastmod>
+  </url>  <url>
     <loc>http://macintosh-c.coding.me/2021/05/27/spring/Springboot/springboot%E8%B0%83%E4%BC%98%E4%B9%8B%E5%86%85%E5%B5%8Ctomcat/</loc>
     <lastmod>2021-05-27</lastmod>
   </url>  <url>

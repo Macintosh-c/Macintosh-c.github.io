@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2021-05-27T09:02:00.823Z</updated>
+  <updated>2021-05-31T09:53:47.644Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis-Sentinel</title>
+    <link href="http://macintosh-c.coding.me/2021/05/31/Databases/Redis/redis-Sentinel/"/>
+    <id>http://macintosh-c.coding.me/2021/05/31/Databases/Redis/redis-Sentinel/</id>
+    <published>2021-05-31T04:20:29.000Z</published>
+    <updated>2021-05-31T09:53:47.644Z</updated>
+    
+    <content type="html"><![CDATA[<p>主从切换技术的方法是：当主服务器宕机后，需要手动把一台从服务器切换为主服务器，这就需要人工干预，费事费力，还会造成一段时间内服务不可用。这不是一种推荐的方式，更多时候，我们优先考虑哨兵模式。</p><p>哨兵模式是一种特殊的模式，首先Redis提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。其原理是哨兵通过发送命令，等待Redis服务器响应，从而监控运行的多个Redis例。</p><p>这里的哨兵有两个作用</p><ul><li><p>通过发送命令，让Redis服务器返回监控其运行状态，包括主服务器和从服务器。</p></li><li><p>当哨兵监测到master宕机，会自动将slave切换成master，然后通过发布订阅模式通知其他的从服务器，修改配置文件，让它们切换主机。</p></li></ul><p>然而一个哨兵进程对Redis服务器进行监控，可能会出现问题，为此，我们可以使用多个哨兵进行监控。各个哨兵之间还会进行监控，这样就形成了多哨兵模式。</p><p>用文字描述一下故障切换（failover）的过程。假设主服务器宕机，哨兵1先检测到这个结果，系统并不会马上进行failover过程，仅仅是哨兵1主观的认为主服务器不可用，这个现象成为主观下线。当后面的哨兵也检测到主服务器不可用，并且数量达到一定值时，那么哨兵之间就会进行一次投票，投票的结果由一个哨兵发起，进行failover操作。切换成功后，就会通过发布订阅模式，让各个哨兵把自己监控的从服务器实现切换主机，这个过程称为客观下线。这样对于客户端而言，一切都是透明的。</p><p><img src="/img/Databases/redis/1.png" alt="image"></p><p>哨兵模式，搭建略</p><p>下面只介绍两条指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">./redis-cli -h 172.17.36.53  -p 26379 info sentinel</span><br><span class="line"></span><br><span class="line"># Sentinel</span><br><span class="line">sentinel_masters:10</span><br><span class="line">sentinel_tilt:0</span><br><span class="line">sentinel_running_scripts:0</span><br><span class="line">sentinel_scripts_queue_length:0</span><br><span class="line">sentinel_simulate_failure_flags:0</span><br><span class="line">master0:name=mymaster,status=ok,address=172.17.53.12:6379,slaves=1,sentinels=3</span><br></pre></td></tr></table></figure><p>可查看到：</p><p>sentinel.master 为mymaster，以及redis-master得ip及端口，redis-slaves只有一个节点，一主一从，sentinel为三节点，高可用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">172.17.36.64:6379&gt; info replication</span><br><span class="line"># Replication</span><br><span class="line">role:master</span><br><span class="line">connected_slaves:1</span><br><span class="line">slave0:ip=172.17.36.65,port=6379,state=online,offset=460794372,lag=0</span><br><span class="line">master_replid:2a496f16e40b6f4d48c89fa77495244b983b0a1e</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:460794372</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:32000000</span><br><span class="line">repl_backlog_first_byte_offset:428794373</span><br><span class="line">repl_backlog_histlen:32000000</span><br></pre></td></tr></table></figure><p>通过连接到master节点查看，可看到slaves所有节点的ip，端口</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;主从切换技术的方法是：当主服务器宕机后，需要手动把一台从服务器切换为主服务器，这就需要人工干预，费事费力，还会造成一段时间内服务不可用。这不是一种推荐的方式，更多时候，我们优先考虑哨兵模式。&lt;/p&gt;
+&lt;p&gt;哨兵模式是一种特殊的模式，首先Redis提供了哨兵的命令，哨兵是一个
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://macintosh-c.coding.me/categories/Redis/"/>
+    
+    
+      <category term="Redis-Sentinel" scheme="http://macintosh-c.coding.me/tags/Redis-Sentinel/"/>
+    
+  </entry>
   
   <entry>
     <title>Springboot调优之内嵌Tomcat</title>
@@ -502,32 +528,6 @@
     
     
       <category term="Springboot response" scheme="http://macintosh-c.coding.me/tags/Springboot-response/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用Ehcache缓存同步启动时抛出异常Can&#39;t assign requested address</title>
-    <link href="http://macintosh-c.coding.me/2019/12/13/Databases/ehcache/%E4%BD%BF%E7%94%A8Ehcache%E7%BC%93%E5%AD%98%E5%90%8C%E6%AD%A5%E5%90%AF%E5%8A%A8%E6%97%B6%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8Can&#39;t%20assign%20requested%20address/"/>
-    <id>http://macintosh-c.coding.me/2019/12/13/Databases/ehcache/使用Ehcache缓存同步启动时抛出异常Can&#39;t assign requested address/</id>
-    <published>2019-12-13T05:40:29.000Z</published>
-    <updated>2019-12-13T09:26:41.691Z</updated>
-    
-    <content type="html"><![CDATA[<p>问题：在使用Ehcache缓存，采用RMI(UDP传输协议)进行数据广播同步，启动项目时报异常： net.sf.ehcache.CacheException: Can’t assign requested address</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;cacheManagerFactory&apos; defined in class path resource [app-ehcache.xml]: Invocation of init method failed; nested exception is net.sf.ehcache.CacheException: Can&apos;t assign requested address</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1553)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:539)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:304)</span><br><span class="line">    at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:300)</span><br><span class="line">    at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:195)</span><br><span class="line">    at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:328)</span><br><span class="line">    ... 128 more</span><br><span class="line">Caused by: net.sf.ehcache.CacheException: Can&apos;t assign requested address</span><br></pre></td></tr></table></figure><p>问题分析：<br>定位：“无法分配请求地址”的异常常出现在网络分配问题上。这个问题之前在Windows电脑上使用ehcache未出现此问题。当前使用的电脑是Macbook Pro无线网络环境，网络环境使用的公司内网。防火墙处于关闭状态。网络是可以正常指配的。<br>经过调试发现，在创建心跳接受器时，调用java虚拟机，系统默认使用的网络接口是ipv6，配置的ipv4的广播端口230.0.0.1，无法join进去，所以报了无法分配请求地址的异常。</p><p>解决办法：<br>在启动服务时，指定使用默认ipv4的网络接口。可以在启动jvm时添加参数-Djava.net.preferIPv4Stack=true。<br>打包时同理加上：mvn package -Djava.net.preferIPv4Stack=true -Dmaven.test.skip=true -Pdev</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;问题：在使用Ehcache缓存，采用RMI(UDP传输协议)进行数据广播同步，启动项目时报异常： net.sf.ehcache.CacheException: Can’t assign requested address&lt;/p&gt;
-&lt;figure class=&quot;highlig
-      
-    
-    </summary>
-    
-      <category term="Ehcache" scheme="http://macintosh-c.coding.me/categories/Ehcache/"/>
-    
-    
-      <category term="Ehcache" scheme="http://macintosh-c.coding.me/tags/Ehcache/"/>
     
   </entry>
   
