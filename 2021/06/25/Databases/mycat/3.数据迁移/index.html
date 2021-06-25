@@ -1,0 +1,860 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>三、数据迁移 | macintosh-c&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Macintosh-c">
+    
+
+    
+    <meta name="description" content="涉及到数据迁移，即原数据库的数据导出，以及新数据库的导入，这里主要是使用mysqldump进行数据迁移，mycat即使用mycat端口号，提前配置号分库分表规则，来初始化数据即可。对于非mysql的原数据源，可以使用文件方式通过load data批量导入形式来进行数据迁移。 1. 使用mysqldump进行数据迁移备份源数据库全库备份：1./mysqldump -uroot -p -h10.87.">
+<meta name="keywords" content="mycat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三、数据迁移">
+<meta property="og:url" content="http://macintosh-c.coding.me/2021/06/25/Databases/mycat/3.数据迁移/index.html">
+<meta property="og:site_name" content="macintosh-c&#39;s blog">
+<meta property="og:description" content="涉及到数据迁移，即原数据库的数据导出，以及新数据库的导入，这里主要是使用mysqldump进行数据迁移，mycat即使用mycat端口号，提前配置号分库分表规则，来初始化数据即可。对于非mysql的原数据源，可以使用文件方式通过load data批量导入形式来进行数据迁移。 1. 使用mysqldump进行数据迁移备份源数据库全库备份：1./mysqldump -uroot -p -h10.87.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-06-25T06:59:35.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="三、数据迁移">
+<meta name="twitter:description" content="涉及到数据迁移，即原数据库的数据导出，以及新数据库的导入，这里主要是使用mysqldump进行数据迁移，mycat即使用mycat端口号，提前配置号分库分表规则，来初始化数据即可。对于非mysql的原数据源，可以使用文件方式通过load data批量导入形式来进行数据迁移。 1. 使用mysqldump进行数据迁移备份源数据库全库备份：1./mysqldump -uroot -p -h10.87.">
+
+    
+    <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo_me.jpg" alt="macintosh-c&#39;s blog" title="macintosh-c&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="macintosh-c&#39;s blog">macintosh-c&#39;s blog</a></h1>
+				<h2 class="blog-motto">当你的才华撑不起你的野心时，就应该静下心来好好学习。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页(Home)</a></li>
+					
+						<li><a href="/archives">归档(Archives)</a></li>
+					
+						<li><a href="/tags">标签(Tags)</a></li>
+					
+						<li><a href="/categories">分类(Categories)</a></li>
+					
+					<li>
+ 					
+						<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=10231555544562790968' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/06/25/Databases/mycat/3.数据迁移/" title="三、数据迁移" itemprop="url">三、数据迁移</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
+		
+  <p class="article-time">
+    <time datetime="2021-06-25T06:49:36.000Z" itemprop="datePublished"> 发表于 2021-06-25</time>
+		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
+  </p>
+</header>
+
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用mysqldump进行数据迁移"><span class="toc-number">1.</span> <span class="toc-text">1. 使用mysqldump进行数据迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#备份"><span class="toc-number">1.1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#还原"><span class="toc-number">1.2.</span> <span class="toc-text">还原</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用binlog增量还原"><span class="toc-number">1.3.</span> <span class="toc-text">使用binlog增量还原</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用load-data批量导入"><span class="toc-number">2.</span> <span class="toc-text">2. 使用load data批量导入</span></a></li></ol>
+		
+		</div>
+		
+		<p>涉及到数据迁移，即原数据库的数据导出，以及新数据库的导入，这里主要是使用mysqldump进行数据迁移，mycat即使用mycat端口号，提前配置号分库分表规则，来初始化数据即可。对于非mysql的原数据源，可以使用文件方式通过load data批量导入形式来进行数据迁移。</p>
+<h3 id="1-使用mysqldump进行数据迁移"><a href="#1-使用mysqldump进行数据迁移" class="headerlink" title="1. 使用mysqldump进行数据迁移"></a>1. 使用mysqldump进行数据迁移</h3><h4 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h4><p>源数据库全库备份：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -uroot -p -h10.87.20.62 -c --skip-add-locks --flush-logs --single-transaction --master-data=2  --set-gtid-purged=OFF customer_center &gt; /data/mysqldump/customer_center2.sql</span><br></pre></td></tr></table></figure></p>
+<p>当然也可以迁移一个库中的某几个表:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -c -–skip-add-locks databaseName table1 table2&gt; /root/someTables.sql</span><br></pre></td></tr></table></figure>
+<p>也可迁移一个表中的部分数据，加参数–where实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -c -–skip-add-locks databaseName tableName --where=&quot; id &gt; 900 &quot; &gt; /root/onetableDataWithCondition.sql</span><br></pre></td></tr></table></figure>
+<p>参数详细说明：<br>迁移前确保mysql库和mycat库中的表名一样（mycat库中只需要有表名配置在schema.xml文件中即可）<br>-c参数不可少，-c, 全称为–complete-insert 表示使用完整的insert语句(用列名字)。 不带列名，mycat导入会报错。mycat需要根据列名来分库分表。<br>-–skip-add-locks表示导数据时不加锁，如果加锁涉及多分片时容易导致死锁。<br>–flush-logs表示备份之前刷新bin_log  后面的增量备份就从新的bin-log开始<br>–set-gtid-purged=OFF时，在会记录binlog日志，如果不加，不记录binlog日志，所以在我们做主从用了gtid时，用mysqldump备份时就要加–set-gtid-purged=OFF，否则你在主上导入恢复了数据，主没有了binlog日志，从库则不会被同步<br>-B 表示仅复制testdb并且包含create database testdb<br>–single-transaction  innodb下保证数据一致性<br>–master-data 该参数有两个值1和2，默认为1，mysqldump导出数据时，当这个参数的值为1的时候，mysqldump出来的文件就会包括CHANGE MASTER TO这个语句，CHANGE MASTER TO后面紧接着就是file和position的记录，在slave上导入数据时就会执行这个语句，salve就会根据指定这个文件位置从master端复制binlog。当这个值是2的时候，chang master to也是会写到dump文件里面去的，但是这个语句是被注释的状态。</p>
+<p>备份存储过程触发器及事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    --events: 事件调度，默认为开启，显示关闭使用--skip-events </span><br><span class="line">    --routines: 存储过程及函数, 默认为开启，显示关闭使用--skip-routines </span><br><span class="line">    --triggers: 触发器，默认为开启，关闭使用--skip-triggers</span><br></pre></td></tr></table></figure></p>
+<p>只备份表结构或数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--no-data：只导出建表语句。 </span><br><span class="line">--no-create-info：只导出数据，不导出表结构。</span><br></pre></td></tr></table></figure></p>
+<p>更详解参数：<a href="https://www.cnblogs.com/chenmh/p/5300370.html" target="_blank" rel="noopener">https://www.cnblogs.com/chenmh/p/5300370.html</a></p>
+<h4 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h4><p>连接mycat：<br>mysql -uusername -ppassword -h172.17.xxx.xxx -P8066<br>切换到指定的数据库： use databaseName;<br>导入脚本： source /root/databaseName.sql; </p>
+<h4 id="使用binlog增量还原"><a href="#使用binlog增量还原" class="headerlink" title="使用binlog增量还原"></a>使用binlog增量还原</h4><p>此方式对于基于mycat的增量导入没成功，仅实验mysql到mysql的增量迁移成功，且仅限迁移前后数据库名必须相同。</p>
+<p>mysqldump后查看binlog日记状态，并记录文件名<br>将后续新增的binlog文件拷贝到目标数据库服务器，使用mysqlbinlog来读取binlog二进制文件，并导入到目标库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlbinlog --database=testdb /var/backup/mysql-bin.000003 | mysql -uroot -pPassword.123 -v testdb</span><br></pre></td></tr></table></figure>
+<p>补充：mysqlbinlog使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">简单了解binlog</span><br><span class="line">MySQL的二进制日志binlog可以说是MySQL最重要的日志，它记录了所有的DDL和DML语句（除了数据查询语句select），以事件形式记录，还包含语句所执行的消耗的时间，MySQL的二进制日志是事务安全型的。</span><br><span class="line">===========================================================</span><br><span class="line">DDL</span><br><span class="line">   - Data Definition Language 数据库定义语言</span><br><span class="line">主要的命令有CREATE、ALTER、DROP等，DDL主要是用在定义或改变表（TABLE）的结构，数据类型，表之间的链接和约束等初始化工作上，他们大多在建立表时使用。</span><br><span class="line"></span><br><span class="line">DML</span><br><span class="line">   - Data Manipulation Language 数据操纵语言</span><br><span class="line">主要的命令是SELECT、UPDATE、INSERT、DELETE，就象它的名字一样，这4条命令是用来对数据库里的数据进行操作的语言</span><br><span class="line">===========================================================</span><br><span class="line"></span><br><span class="line">mysqlbinlog常见的选项有以下几个：</span><br><span class="line">--start-datetime：从二进制日志中读取指定等于时间戳或者晚于本地服务器的时间</span><br><span class="line">--stop-datetime：从二进制日志中读取指定小于时间戳或者等于本地服务器的时间 取值和上述一样</span><br><span class="line">--start-position：从二进制日志中读取指定position 事件位置作为开始。</span><br><span class="line">--stop-position：从二进制日志中读取指定position 事件位置作为事件截至</span><br><span class="line"></span><br><span class="line">===========================================================</span><br><span class="line"></span><br><span class="line">一般来说开启binlog日志大概会有1%的性能损耗。</span><br><span class="line"></span><br><span class="line">binlog日志有两个最重要的使用场景</span><br><span class="line">1）MySQL主从复制：MySQL Replication在Master端开启binlog，Master把它的二进制日志传递给slaves来达到</span><br><span class="line">master-slave数据一致的目的。</span><br><span class="line">2）自然就是数据恢复了，通过使用mysqlbinlog工具来使恢复数据。</span><br><span class="line"></span><br><span class="line">binlog日志包括两类文件</span><br><span class="line">1）二进制日志索引文件（文件名后缀为.index）用于记录所有的二进制文件</span><br><span class="line">2）二进制日志文件（文件名后缀为.00000*）记录数据库所有的DDL和DML(除了数据查询语句select)语句事件。</span><br><span class="line"></span><br><span class="line">常用举例：</span><br><span class="line">1）binlog内容输出到终端或文本文件 </span><br><span class="line">mysqlbinlog binlog_files | more</span><br><span class="line">mysqlbinlog binlog_files &gt; tmpfile</span><br><span class="line"></span><br><span class="line">2）多个binlog log日志的还原最好将所有文件使用一个连接完成，如果使用不同连接的话有时会导致不安全 ，例如：</span><br><span class="line">[root@localhost /]# mysqlbinlog binlog.000001 | mysql -u root -p # DANGER!!</span><br><span class="line">[root@localhost /]# mysqlbinlog binlog.000002 | mysql -u root -p # DANGER!!</span><br><span class="line"></span><br><span class="line">如果第一个日志包含创建临时表语句CREATE TEMPORARY TABLE，第二个日志要使用该临时表，第一个导入binlog日志的进程退出后临时表会被删除，执行第二个日志文件要使用临时表时会因找不到而报 “unknown table.” </span><br><span class="line"></span><br><span class="line">建议的方法： </span><br><span class="line">方法1： 所有二进制文件放在单个连接里</span><br><span class="line">[root@localhost /]# mysqlbinlog binlog.000001 binlog.000002 | mysql -u root -p</span><br><span class="line"></span><br><span class="line">方法2： 将所有二进制文件写在一个文件里执行 </span><br><span class="line">[root@localhost /]# mysqlbinlog binlog.000001 &gt;  /tmp/statements.sql</span><br><span class="line">[root@localhost /]# mysqlbinlog binlog.000002 &gt;&gt; /tmp/statements.sql</span><br><span class="line">[root@localhost /]# mysql -u root -p -e &quot;source /tmp/statements.sql&quot;</span><br><span class="line"></span><br><span class="line">使用方法二如果二进制文件里包含GTID信息需要过滤掉</span><br><span class="line">[root@localhost /]# mysqlbinlog --skip-gtids binlog.000001 &gt;  /tmp/dump.sql</span><br><span class="line">[root@localhost /]# mysqlbinlog --skip-gtids binlog.000002 &gt;&gt; /tmp/dump.sql</span><br><span class="line">[root@localhost /]# mysql -u root -p -e &quot;source /tmp/dump.sql&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3）通过事件的时间来恢复 </span><br><span class="line">我们可以通过参数--start-datetime 和 --stop-datetime指定恢复binlog日志的起止时间点，时间使用DATETIME格式。 比如在时间点2005-04-20 10:00:00我们删除掉一个库，我们要恢复该时间点前的所有日志 </span><br><span class="line">[root@localhost /]# mysqlbinlog --stop-datetime=&quot;2005-04-20 9:59:59&quot; /usr/local/mysql/data/binlog.123456 | mysql -u root -p</span><br><span class="line"></span><br><span class="line">4）通过事件的位置来恢复</span><br><span class="line">我们可以通过参数--start-position 和 --stop-position指定恢复binlog日志的起止位置点，通过位置的恢复需要我们有更加精细的操作，例如在某个时间点我们执行了错误的语句，且这个时间点前后都有大并发操作，要确定破坏性sql的时间点，我们可以先导出大致的时间段的日志到文件以缩小查找范围，再去分析和确定，确定好需要跳过的位置之后，我们就可以进行恢复了</span><br><span class="line">[root@localhost /]# mysqlbinlog --stop-position=368312 /usr/local/mysql/data/binlog.123456 | mysql -u root -p</span><br><span class="line">[root@localhost /]# mysqlbinlog --start-position=368315 /usr/local/mysql/data/binlog.123456 | mysql -u root -p</span><br><span class="line"></span><br><span class="line">注：mysqlbinlog工具的输出会在每条sql语句前增加 SET TIMESTAMP语句，恢复的数据及mysql日志反映当前时间。</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-使用load-data批量导入"><a href="#2-使用load-data批量导入" class="headerlink" title="2. 使用load data批量导入"></a>2. 使用load data批量导入</h3><p>导出为CSV文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from sys_user into outfile &apos;/var/lib/mysql-files/sys_user.csv&apos; FIELDS TERMINATED BY &apos;,&apos; OPTIONALLY ENCLOSED BY &apos;&quot;&apos; ESCAPED BY &apos;\\&apos; LINES TERMINATED BY &apos;\n&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>导入CSV文件数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data infile &apos;/opt/data/dump/sys_user.csv&apos; REPLACE INTO TABLE SYS_USER FIELDS TERMINATED BY &apos;,&apos; OPTIONALLY ENCLOSED BY &apos;&quot;&apos; ESCAPED BY &apos;\\&apos; LINES TERMINATED BY &apos;\n&apos; (USER_ID,DEPT_ID,USER_NAME,NICK_NAME,USER_TYPE,EMAIL,PHONENUMBER,SEX,AVATAR,PASSWORD,STATUS,DEL_FLAG,LOGIN_IP,LOGIN_DATE,CREATE_BY,CREATE_TIME,UPDATE_BY,UPDATE_TIME,REMARK);</span><br></pre></td></tr></table></figure></p>
+<p>注意：如果数据中可能包含一些特殊字符，比如分割符转义符等，建议用引号扩起来，通过OPTIONALLY ENCLOSED BY ‘”’指定。如果这样还不行，可以把字段值中的引号替换成\”。<br>如果指定local关键词，则表明从客户端主机读文件。如果local没指定，文件必须位于mycat所在的服务器上。<br>可以通过fields terminated by指定字符之间的分割符号，默认值为\t<br>通过lines terminated by可以指定行之间的换行符。默认为\n,这里注意有些windows上的文本文件的换行符可能为\r\n，由于是不可见字符，所以请小心检查。<br>character set 指定文件的编码，建议跟mysql的编码一致，否则可能乱码。其中字符集编码必须用引号扩起来，否则会解析出错。<br>还可以通过replace | ignore指定遇到重复记录是替换还是忽略。<br>目前列名必须指定，且必须包括分片字段，否则没办法确定路由。<br>标准load data语句： LOAD DATA语句,同样被记录到binlog,不过是内部的机制。</p>
+<p>参考：<a href="https://blog.csdn.net/kimva/article/details/78875154" target="_blank" rel="noopener">https://blog.csdn.net/kimva/article/details/78875154</a></p>
+
+	</div>
+
+	
+	<!-- css -->
+	<style type="text/css">
+	    .center {
+	        text-align: center;
+	    }
+	    .hidden {
+	        display: none;
+	    }
+		.donate_bar a.btn_donate{
+			display: inline-block;
+			width: 82px;
+			height: 82px;
+			background: url("/img/btn_reward.gif") no-repeat;
+			_background: url("/img/btn_reward.gif") no-repeat;
+
+			<!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+			     因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+				 为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+				 嵌入其它博客时不一定要它们。-->
+			-webkit-transition: background 0s;
+			-moz-transition: background 0s;
+			-o-transition: background 0s;
+			-ms-transition: background 0s;
+			transition: background 0s;
+			<!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束-->
+		}
+
+		.donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+		.donate_bar .donate_txt {
+			display: block;
+			color: #9d9d9d;
+			font: 14px/2 "Microsoft Yahei";
+		}
+		.bold{ font-weight: bold; }
+	</style>
+	<!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+	<!-- btn_donate & tips -->
+	<div id="donate_board" class="donate_bar center">
+	    <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差哦~
+		</span>
+
+
+	</div>
+	<!-- /btn_donate & tips -->
+
+	<!-- donate guide -->
+
+	<div id="donate_guide" class="donate_bar center hidden">
+        <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+	    
+
+		<a href="/img/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+			<img src="/img/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+        &nbsp;&nbsp;
+
+		<a href="/img/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+			<img src="/img/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="支付宝打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差哦~
+		</span>
+
+	</div>
+	<!-- /donate guide -->
+
+	<!-- donate script -->
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function() {
+			$('#donate_board').addClass('hidden');
+	    $('#donate_guide').removeClass('hidden');
+		}
+
+		function donate_on_web(){
+			$('#donate').submit();
+        }
+
+		var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+		}
+	</script>
+	<!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Mycat/">Mycat</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/mycat/">mycat</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://macintosh-c.coding.me/2021/06/25/Databases/mycat/3.数据迁移/" data-title="三、数据迁移 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2021/06/25/Databases/mycat/2.Mycat安装与配置/"  title="二、Mycat安装与配置">
+ <strong>下一篇：</strong><br/> 
+ <span>二、Mycat安装与配置
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+
+	<div id="lv-container" data-id="city" data-uid="MTAyMC8zODk4Mi8xNTUwOQ==">
+	<script type="text/javascript">
+	   (function(d, s) {
+	       var j, e = d.getElementsByTagName(s)[0];
+
+	       if (typeof LivereTower === 'function') { return; }
+
+	       j = d.createElement(s);
+	       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+	       j.async = true;
+
+	       e.parentNode.insertBefore(j, e);
+	   })(document, 'script');
+	</script>
+	<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+	</div>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用mysqldump进行数据迁移"><span class="toc-number">1.</span> <span class="toc-text">1. 使用mysqldump进行数据迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#备份"><span class="toc-number">1.1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#还原"><span class="toc-number">1.2.</span> <span class="toc-text">还原</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用binlog增量还原"><span class="toc-number">1.3.</span> <span class="toc-text">使用binlog增量还原</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用load-data批量导入"><span class="toc-number">2.</span> <span class="toc-text">2. 使用load data批量导入</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="Macintosh-c" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Ansible/" title="Ansible">Ansible<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Couchbase/" title="Couchbase">Couchbase<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Docker/" title="Docker">Docker<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ehcache/" title="Ehcache">Ehcache<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Kubernetes/" title="Kubernetes">Kubernetes<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Maven/" title="Maven">Maven<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Memcache/" title="Memcache">Memcache<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mycat/" title="Mycat">Mycat<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Postgre/" title="Postgre">Postgre<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SonarQube/" title="SonarQube">SonarQube<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring-Cloud-Alibaba/" title="Spring Cloud Alibaba">Spring Cloud Alibaba<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring-cloud/" title="Spring cloud">Spring cloud<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Springboot/" title="Springboot">Springboot<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SqlService/" title="SqlService">SqlService<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VirtualBox/" title="VirtualBox">VirtualBox<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/YApi/" title="YApi">YApi<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java基础/" title="java基础">java基础<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/jenkins/" title="jenkins">jenkins<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/kafka/" title="kafka">kafka<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mybatis/" title="mybatis">mybatis<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/nginx/" title="nginx">nginx<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/rabbitmq/" title="rabbitmq">rabbitmq<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sftp/" title="sftp">sftp<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/博客相关/" title="博客相关">博客相关<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/成长之路/" title="成长之路">成长之路<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mycat/" title="mycat">mycat<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/blog搭建/" title="blog搭建">blog搭建<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ehcache/" title="Ehcache">Ehcache<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql安装/" title="mysql安装">mysql安装<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ansible详解/" title="ansible详解">ansible详解<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fastjson/" title="fastjson">fastjson<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Springboot/" title="Springboot">Springboot<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/rabbitmq安装/" title="rabbitmq安装">rabbitmq安装<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Kubernetes安装/" title="Kubernetes安装">Kubernetes安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mybatis基础/" title="mybatis基础">mybatis基础<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/YApi学习/" title="YApi学习">YApi学习<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python安装/" title="python安装">python安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis-Cluster/" title="Redis Cluster">Redis Cluster<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Couchbase数据迁移/" style="font-size: 10px;">Couchbase数据迁移</a> <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/Docker-Compose/" style="font-size: 10px;">Docker-Compose</a> <a href="/tags/Dockerfile/" style="font-size: 10px;">Dockerfile</a> <a href="/tags/Ehcache/" style="font-size: 13.33px;">Ehcache</a> <a href="/tags/Git基础/" style="font-size: 10px;">Git基础</a> <a href="/tags/Kubernetes安装/" style="font-size: 10px;">Kubernetes安装</a> <a href="/tags/Linux基础/" style="font-size: 13.33px;">Linux基础</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 13.33px;">Maven</a> <a href="/tags/Memcached安装/" style="font-size: 10px;">Memcached安装</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Postgre安装/" style="font-size: 10px;">Postgre安装</a> <a href="/tags/Redis-Cluster/" style="font-size: 10px;">Redis Cluster</a> <a href="/tags/Redis-持久化存储/" style="font-size: 10px;">Redis 持久化存储</a> <a href="/tags/Redis-Sentinel/" style="font-size: 10px;">Redis-Sentinel</a> <a href="/tags/Redis批量写入/" style="font-size: 10px;">Redis批量写入</a> <a href="/tags/Redis数据迁移/" style="font-size: 10px;">Redis数据迁移</a> <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/Spring-Cloud-Alibaba/" style="font-size: 10px;">Spring Cloud Alibaba</a> <a href="/tags/Spring-aop/" style="font-size: 10px;">Spring aop</a> <a href="/tags/Spring-cloud/" style="font-size: 10px;">Spring cloud</a> <a href="/tags/Springboot/" style="font-size: 13.33px;">Springboot</a> <a href="/tags/Springboot-response/" style="font-size: 10px;">Springboot response</a> <a href="/tags/Springboot-test/" style="font-size: 10px;">Springboot test</a> <a href="/tags/Springboot调优/" style="font-size: 10px;">Springboot调优</a> <a href="/tags/SqlService安装/" style="font-size: 10px;">SqlService安装</a> <a href="/tags/VirtualBox安装/" style="font-size: 10px;">VirtualBox安装</a> <a href="/tags/YApi学习/" style="font-size: 10px;">YApi学习</a> <a href="/tags/ansible详解/" style="font-size: 13.33px;">ansible详解</a> <a href="/tags/blog搭建/" style="font-size: 16.67px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 13.33px;">fastjson</a> <a href="/tags/jdk安装/" style="font-size: 10px;">jdk安装</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/jenkins用户权限管理/" style="font-size: 10px;">jenkins用户权限管理</a> <a href="/tags/kafka安装/" style="font-size: 10px;">kafka安装</a> <a href="/tags/log4j日志/" style="font-size: 10px;">log4j日志</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mycat/" style="font-size: 16.67px;">mycat</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 13.33px;">mysql安装</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/python安装/" style="font-size: 10px;">python安装</a> <a href="/tags/rabbitmq安装/" style="font-size: 13.33px;">rabbitmq安装</a> <a href="/tags/redis安装/" style="font-size: 10px;">redis安装</a> <a href="/tags/redis指令/" style="font-size: 10px;">redis指令</a> <a href="/tags/serialVersionUID/" style="font-size: 10px;">serialVersionUID</a> <a href="/tags/sftp/" style="font-size: 10px;">sftp</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 13.33px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://toutiao.io/" target="_blank" title="开发者头条">开发者头条</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/peace1213" target="_blank" title="csdn">csdn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 静下心来，好好做你该做的事！ <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Macintosh-c" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021
+		
+		<a href="/about" target="_blank" title="Macintosh-c">Macintosh-c</a>
+		
+		</br>
+				<script async src="http://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+		    &nbsp;&nbsp;Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span>
+		</span>
+		<span id="busuanzi_container_site_uv">
+		  &nbsp;&nbsp;You are Visiter No.<span id="busuanzi_value_site_uv"></span>
+		</span>
+		</p>
+
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?3491d96f9fc7f28103bc4230e5fca4e0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63":"https://jspassport.ssl.qhimg.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+  </body>
+</html>
