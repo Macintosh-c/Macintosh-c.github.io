@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2021-06-25T06:59:35.017Z</updated>
+  <updated>2021-06-29T06:34:26.376Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring AOP</title>
+    <link href="http://macintosh-c.coding.me/2021/06/28/spring/Springboot/spring%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
+    <id>http://macintosh-c.coding.me/2021/06/28/spring/Springboot/spring动态代理/</id>
+    <published>2021-06-27T17:29:05.000Z</published>
+    <updated>2021-06-29T06:34:26.376Z</updated>
+    
+    <content type="html"><![CDATA[<p>近日在迁移一个项目时，需要升级springboot版本，从1.5到2.0，碰到一个关于动态代理的坑，加深了对于spring动态代理的理解。由于项目中用到webservice，当时使用的apache cxf，在升级后，一直报错，一番查找原因发现该jar内有用final修饰的方法，在升级到2.0默认采用Cglib的代理方式不行，还是需要使用jdk的代理方式，使用spring.aop.proxy-target-class=false属性设置后，依然不生效，这一块还是走到Cglib的代理，但是实际debug却发现默认加载的应该是jdk的代理方式，就比较纳闷，继续跟踪方法，springboot中有很多标签都会改变动态代理的方式，如@EnableAsync，@EnableCaching，于是发现出问题的类上使用了@RefreshScope标签，为了动态刷新nacos的配置，点进源码一看，默认采用的是CGLIB，于是去掉该注解测试，程序立即通畅了。</p><h2 id="动态代理介绍"><a href="#动态代理介绍" class="headerlink" title="动态代理介绍"></a>动态代理介绍</h2><p>与AspectJ的静态代理不同，Spring AOP使用的动态代理，所谓的动态代理就是说AOP框架不会去修改字节码，而是在内存中临时为方法生成一个AOP对象，这个AOP对象包含了目标对象的全部方法，并且在特定的切点做了增强处理，并回调原对象的方法。</p><p>　　Spring AOP中的动态代理主要有两种方式，JDK动态代理和CGLIB动态代理。JDK动态代理通过反射来接收被代理的类，并且要求被代理的类必须实现一个接口。JDK动态代理的核心是InvocationHandler接口和Proxy类。</p><p>　　如果目标类没有实现接口，那么Spring AOP会选择使用CGLIB来动态代理目标类。CGLIB（Code Generation Library），是一个代码生成的类库，是利用asm开源包，可以在运行时动态的生成某个类的子类。注意，CGLIB是通过继承的方式做的动态代理，因此如果某个类被标记为final，那么它是无法使用CGLIB做动态代理的。</p><p>这里有注意的几点如下：</p><ul><li><p>从Spring 3.2以后不再将CGLIB放在项目的classpath下，而是将CGLIB类打包放在spring-core下面的org.springframework中。这个就意味着基于CGLIB的动态代理与JDK的动态代理在支持“just works”就一样了。</p></li><li><p>在Spring 4.0中，因为CGLIB代理实例是通过Objenesis创建的，所以代理对象的构造器不再有两次调用。</p></li><li><p>在 Spring Boot 2.0 中，Spring Boot现在默认使用CGLIB动态代理(基于类的动态代理), 包括AOP. 如果需要基于接口的动态代理(JDK基于接口的动态代理) , 需要设置spring.aop.proxy-target-class属性为false。</p></li></ul><p>参考：</p><p><a href="https://www.cnblogs.com/onlymate/p/9630788.html" target="_blank" rel="noopener">https://www.cnblogs.com/onlymate/p/9630788.html</a></p><p><a href="https://blog.csdn.net/weixin_41325595/article/details/103576207" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41325595/article/details/103576207</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;近日在迁移一个项目时，需要升级springboot版本，从1.5到2.0，碰到一个关于动态代理的坑，加深了对于spring动态代理的理解。由于项目中用到webservice，当时使用的apache cxf，在升级后，一直报错，一番查找原因发现该jar内有用final修饰的方
+      
+    
+    </summary>
+    
+      <category term="Springboot" scheme="http://macintosh-c.coding.me/categories/Springboot/"/>
+    
+    
+      <category term="Spring aop" scheme="http://macintosh-c.coding.me/tags/Spring-aop/"/>
+    
+  </entry>
   
   <entry>
     <title>三、数据迁移</title>
@@ -507,32 +532,6 @@
     
     
       <category term="rabbitmq安装" scheme="http://macintosh-c.coding.me/tags/rabbitmq%E5%AE%89%E8%A3%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac上使用docker安装sql server</title>
-    <link href="http://macintosh-c.coding.me/2020/06/08/Databases/sqlservice/Mac%E4%B8%8Bdocker%E5%AE%89%E8%A3%85sqlservice/"/>
-    <id>http://macintosh-c.coding.me/2020/06/08/Databases/sqlservice/Mac下docker安装sqlservice/</id>
-    <published>2020-06-08T04:20:29.000Z</published>
-    <updated>2020-06-08T02:54:57.756Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="一-docker安装"><a href="#一-docker安装" class="headerlink" title="一.docker安装"></a>一.docker安装</h3><p>略</p><h3 id="二-拉取并运行容器镜像"><a href="#二-拉取并运行容器镜像" class="headerlink" title="二. 拉取并运行容器镜像"></a>二. 拉取并运行容器镜像</h3><p>1&gt; 从 Microsoft 容器注册表中拉取 SQL Server 2017 Linux 容器镜像。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mcr.microsoft.com/mssql/server:2017-latest</span><br></pre></td></tr></table></figure><p>2&gt; 使用 Docker 运行容器镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -e &quot;ACCEPT_EULA=Y&quot; -e &quot;SA_PASSWORD=&lt;YourStrong@Passw0rd&gt;&quot; \</span><br><span class="line">   -p 1433:1433 --name mssql \</span><br><span class="line">   -d mcr.microsoft.com/mssql/server:2017-latest</span><br></pre></td></tr></table></figure></p><p><strong>注意:</strong><br>默认情况下，密码长度必须至少为8个字符，并且包含以下四个集合中的三个字符：大写字母，小写字母，数字和符号。</p><p>下表提供了先前docker run示例中的参数说明：</p><table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>-e ‘ACCEPT_EULA=Y’</td><td>将ACCEPT_EULA变量设置为任何值以确认你接受最终用户许可协议。</td></tr><tr><td>-e ‘SA_PASSWORD=YourStrong!Passw0rd’</td><td>设置强密码</td></tr><tr><td>-p 1433:1433</td><td>使用容器中的TCP端口（第二个值）映射主机环境（第一个值）上的TCP端口。 在此示例中，SQL Server正在侦听容器中的TCP 1433，并且它将暴露给主机上的端口1433。</td></tr><tr><td>–name mssql</td><td>为容器指定自定义名称，而不是随机生成的名称。 如果你运行多个容器，则无法重复使用此名称。</td></tr></tbody></table><p>3&gt; 查看Docker运行状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure></p><p>4&gt; 更改SA密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \</span><br><span class="line">   -S localhost -U SA -P &quot;&lt;YourStrong@Passw0rd&gt;&quot; \</span><br><span class="line">   -Q &apos;ALTER LOGIN SA WITH PASSWORD=&quot;&lt;SWW455@sql&gt;&quot;&apos;</span><br></pre></td></tr></table></figure></p><h3 id="三-连接到sqlservice"><a href="#三-连接到sqlservice" class="headerlink" title="三.连接到sqlservice"></a>三.连接到sqlservice</h3><p>1&gt; 使用 docker exec -it 命令在运行的容器内部启动交互式 Bash Shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it mssql &quot;bash&quot;</span><br></pre></td></tr></table></figure></p><p>2&gt; 在容器内部使用 sqlcmd 进行本地连接。 默认情况下，sqlcmd 不在路径之中，因此需要指定完整路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P &quot;&lt;SWW455@sql&gt;&quot;</span><br></pre></td></tr></table></figure></p><p>3&gt; 如果成功，应会显示 sqlcmd 命令提示符：1&gt;<br>可通过以下简单命令查看：<br>1&gt; CREATE DATABASE TestDB<br>2&gt; SELECT Name from sys.Databases<br>3&gt; GO</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;一-docker安装&quot;&gt;&lt;a href=&quot;#一-docker安装&quot; class=&quot;headerlink&quot; title=&quot;一.docker安装&quot;&gt;&lt;/a&gt;一.docker安装&lt;/h3&gt;&lt;p&gt;略&lt;/p&gt;
-&lt;h3 id=&quot;二-拉取并运行容器镜像&quot;&gt;&lt;a href=&quot;#二
-      
-    
-    </summary>
-    
-      <category term="SqlService" scheme="http://macintosh-c.coding.me/categories/SqlService/"/>
-    
-    
-      <category term="SqlService安装" scheme="http://macintosh-c.coding.me/tags/SqlService%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
