@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Spring AOP | macintosh-c&#39;s blog</title>
+    <title>动态代理 | macintosh-c&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Macintosh-c">
@@ -14,14 +14,14 @@
     <meta name="description" content="近日在迁移一个项目时，需要升级springboot版本，从1.5到2.0，碰到一个关于动态代理的坑，加深了对于spring动态代理的理解。由于项目中用到webservice，当时使用的apache cxf，在升级后，一直报错，一番查找原因发现该jar内有用final修饰的方法，在升级到2.0默认采用Cglib的代理方式不行，还是需要使用jdk的代理方式，使用spring.aop.proxy-tar">
 <meta name="keywords" content="Spring aop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring AOP">
+<meta property="og:title" content="动态代理">
 <meta property="og:url" content="http://macintosh-c.coding.me/2021/06/28/spring/Springboot/spring动态代理/index.html">
 <meta property="og:site_name" content="macintosh-c&#39;s blog">
 <meta property="og:description" content="近日在迁移一个项目时，需要升级springboot版本，从1.5到2.0，碰到一个关于动态代理的坑，加深了对于spring动态代理的理解。由于项目中用到webservice，当时使用的apache cxf，在升级后，一直报错，一番查找原因发现该jar内有用final修饰的方法，在升级到2.0默认采用Cglib的代理方式不行，还是需要使用jdk的代理方式，使用spring.aop.proxy-tar">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-29T06:34:26.376Z">
+<meta property="og:updated_time" content="2021-06-29T06:40:50.576Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring AOP">
+<meta name="twitter:title" content="动态代理">
 <meta name="twitter:description" content="近日在迁移一个项目时，需要升级springboot版本，从1.5到2.0，碰到一个关于动态代理的坑，加深了对于spring动态代理的理解。由于项目中用到webservice，当时使用的apache cxf，在升级后，一直报错，一番查找原因发现该jar内有用final修饰的方法，在升级到2.0默认采用Cglib的代理方式不行，还是需要使用jdk的代理方式，使用spring.aop.proxy-tar">
 
     
@@ -81,7 +81,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2021/06/28/spring/Springboot/spring动态代理/" title="Spring AOP" itemprop="url">Spring AOP</a>
+      <a href="/2021/06/28/spring/Springboot/spring动态代理/" title="动态代理" itemprop="url">动态代理</a>
   </h1>
   <p class="article-author">By
        
@@ -244,7 +244,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://macintosh-c.coding.me/2021/06/28/spring/Springboot/spring动态代理/" data-title="Spring AOP | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://macintosh-c.coding.me/2021/06/28/spring/Springboot/spring动态代理/" data-title="动态代理 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -469,15 +469,11 @@
 			
 		
 			
+				<li><a href="/tags/ansible详解/" title="ansible详解">ansible详解<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Spring-aop/" title="Spring aop">Spring aop<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/rabbitmq安装/" title="rabbitmq安装">rabbitmq安装<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>2</sup></a></li>
 			
 		
 			
@@ -485,7 +481,19 @@
 			
 		
 			
+				<li><a href="/tags/fastjson/" title="fastjson">fastjson<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql安装/" title="mysql安装">mysql安装<sup>2</sup></a></li>
 			
 		
 			
@@ -493,19 +501,7 @@
 			
 		
 			
-				<li><a href="/tags/fastjson/" title="fastjson">fastjson<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ansible详解/" title="ansible详解">ansible详解<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/mysql安装/" title="mysql安装">mysql安装<sup>2</sup></a></li>
 			
 		
 			
@@ -517,7 +513,15 @@
 			
 		
 			
-				<li><a href="/tags/sql案例/" title="sql案例">sql案例<sup>1</sup></a></li>
+				<li><a href="/tags/rabbitmq安装/" title="rabbitmq安装">rabbitmq安装<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Memcached安装/" title="Memcached安装">Memcached安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
 			
 		
 			
@@ -529,11 +533,7 @@
 			
 		
 			
-				<li><a href="/tags/Kubernetes安装/" title="Kubernetes安装">Kubernetes安装<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Redis-Cluster/" title="Redis Cluster">Redis Cluster<sup>1</sup></a></li>
+				<li><a href="/tags/redis安装/" title="redis安装">redis安装<sup>1</sup></a></li>
 			
 		
 		</ul>
