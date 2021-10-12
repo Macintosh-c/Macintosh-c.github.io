@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://macintosh-c.coding.me/2021/09/23/Databases/postgre/mycat%E9%83%A8%E7%BD%B2postgre%E5%B9%B6%E9%83%A8%E7%BD%B2K8s/</loc>
+    
+    <lastmod>2021-10-12T02:07:10.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2021/09/23/Databases/postgre/PostgreSql%E7%9A%84pg_hba.conf%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</loc>
+    
+    <lastmod>2021-10-12T01:56:56.633Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2021/06/25/Databases/mycat/3.%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/</loc>
+    
+    <lastmod>2021-10-09T10:10:17.327Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2021/09/23/Databases/postgre/Postgre%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/</loc>
+    
+    <lastmod>2021-09-23T07:24:48.130Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/2019/09/18/Databases/postgre/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Postgre/</loc>
+    
+    <lastmod>2021-09-23T07:23:55.573Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://macintosh-c.coding.me/2021/06/25/Databases/mycat/2.Mycat%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2021-08-12T01:49:47.994Z</lastmod>
@@ -19,13 +54,6 @@
     <loc>http://macintosh-c.coding.me/2021/06/25/Databases/mycat/1.mysql%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</loc>
     
     <lastmod>2021-06-25T09:24:24.523Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://macintosh-c.coding.me/2021/06/25/Databases/mycat/3.%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/</loc>
-    
-    <lastmod>2021-06-25T06:59:35.017Z</lastmod>
     
   </url>
   
@@ -289,13 +317,6 @@
   </url>
   
   <url>
-    <loc>http://macintosh-c.coding.me/2019/09/18/Databases/postgre/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Postgre/</loc>
-    
-    <lastmod>2019-12-13T08:44:04.891Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://macintosh-c.coding.me/2019/12/06/Maven/%E8%BE%93%E5%87%BA%E5%B7%A5%E7%A8%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/</loc>
     
     <lastmod>2019-12-12T08:41:11.081Z</lastmod>
@@ -513,14 +534,21 @@
   </url>
   
   <url>
-    <loc>http://macintosh-c.coding.me/baidu_verify_bT5h2zR7xk.html</loc>
+    <loc>http://macintosh-c.coding.me/baidu_verify_AiG62rR9en.html</loc>
     
     <lastmod>2019-08-01T09:07:49.117Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://macintosh-c.coding.me/baidu_verify_AiG62rR9en.html</loc>
+    <loc>http://macintosh-c.coding.me/baidu_verify_Tk6ZakeChA.html</loc>
+    
+    <lastmod>2019-08-01T09:07:49.117Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://macintosh-c.coding.me/baidu_verify_bT5h2zR7xk.html</loc>
     
     <lastmod>2019-08-01T09:07:49.117Z</lastmod>
     
@@ -535,13 +563,6 @@
   
   <url>
     <loc>http://macintosh-c.coding.me/search/index.html</loc>
-    
-    <lastmod>2019-08-01T09:07:49.117Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://macintosh-c.coding.me/baidu_verify_Tk6ZakeChA.html</loc>
     
     <lastmod>2019-08-01T09:07:49.117Z</lastmod>
     
