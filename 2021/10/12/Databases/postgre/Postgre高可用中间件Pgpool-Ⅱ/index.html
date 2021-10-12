@@ -1,0 +1,901 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>PostgreSQL高可用中间件—Pgpool-Ⅱ | macintosh-c&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Macintosh-c">
+    
+
+    
+    <meta name="description" content="之前调研过，使用mycat来做postgresql的中间件来实现读写分离，但mycat在postgre的兼容上总存在很多不足，比如select for update，还有连接mycat要修改应该端连接驱动为mysql。今天介绍Pgpool-Ⅱ，一款PostgreSQL高可用中间件。 一、Pgpool-Ⅱ简介Pgpool-II是位于PostgreSQL服务器和 PostgreSQL数据库客户端之间的">
+<meta name="keywords" content="Postgre高可用中间件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PostgreSQL高可用中间件—Pgpool-Ⅱ">
+<meta property="og:url" content="http://macintosh-c.coding.me/2021/10/12/Databases/postgre/Postgre高可用中间件Pgpool-Ⅱ/index.html">
+<meta property="og:site_name" content="macintosh-c&#39;s blog">
+<meta property="og:description" content="之前调研过，使用mycat来做postgresql的中间件来实现读写分离，但mycat在postgre的兼容上总存在很多不足，比如select for update，还有连接mycat要修改应该端连接驱动为mysql。今天介绍Pgpool-Ⅱ，一款PostgreSQL高可用中间件。 一、Pgpool-Ⅱ简介Pgpool-II是位于PostgreSQL服务器和 PostgreSQL数据库客户端之间的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://macintosh-c.coding.me/img/Databases/postgre/pg1.png">
+<meta property="og:updated_time" content="2021-10-12T07:38:51.436Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PostgreSQL高可用中间件—Pgpool-Ⅱ">
+<meta name="twitter:description" content="之前调研过，使用mycat来做postgresql的中间件来实现读写分离，但mycat在postgre的兼容上总存在很多不足，比如select for update，还有连接mycat要修改应该端连接驱动为mysql。今天介绍Pgpool-Ⅱ，一款PostgreSQL高可用中间件。 一、Pgpool-Ⅱ简介Pgpool-II是位于PostgreSQL服务器和 PostgreSQL数据库客户端之间的">
+<meta name="twitter:image" content="http://macintosh-c.coding.me/img/Databases/postgre/pg1.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo_me.jpg" alt="macintosh-c&#39;s blog" title="macintosh-c&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="macintosh-c&#39;s blog">macintosh-c&#39;s blog</a></h1>
+				<h2 class="blog-motto">当你的才华撑不起你的野心时，就应该静下心来好好学习。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页(Home)</a></li>
+					
+						<li><a href="/archives">归档(Archives)</a></li>
+					
+						<li><a href="/tags">标签(Tags)</a></li>
+					
+						<li><a href="/categories">分类(Categories)</a></li>
+					
+					<li>
+ 					
+						<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=10231555544562790968' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/10/12/Databases/postgre/Postgre高可用中间件Pgpool-Ⅱ/" title="PostgreSQL高可用中间件—Pgpool-Ⅱ" itemprop="url">PostgreSQL高可用中间件—Pgpool-Ⅱ</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
+		
+  <p class="article-time">
+    <time datetime="2021-10-12T04:20:29.000Z" itemprop="datePublished"> 发表于 2021-10-12</time>
+		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
+  </p>
+</header>
+
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、Pgpool-Ⅱ简介"><span class="toc-number">1.</span> <span class="toc-text">一、Pgpool-Ⅱ简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、PostgreSQL主备部署"><span class="toc-number">2.</span> <span class="toc-text">二、PostgreSQL主备部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-关闭防火墙（主备均操作）"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 关闭防火墙（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-关闭selinux（主备均操作）"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 关闭selinux（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-操作系统限制（主备均操作）"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 操作系统限制（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-关闭numa（主备均操作）"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 关闭numa（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-编译安装（主备均操作）"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 编译安装（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-配置用户、目录及权限（主备均操作）"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 配置用户、目录及权限（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-配置环境变量（主备均操作）"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 配置环境变量（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-初始化数据库（主备均操作）"><span class="toc-number">2.8.</span> <span class="toc-text">2.8 初始化数据库（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-9-修改pg-hba-conf文件（主库操作）"><span class="toc-number">2.9.</span> <span class="toc-text">2.9 修改pg_hba.conf文件（主库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-修改修改postgresql-conf配置文件（主库操作）"><span class="toc-number">2.10.</span> <span class="toc-text">2.10 修改修改postgresql.conf配置文件（主库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-启动数据库（主库操作）"><span class="toc-number">2.11.</span> <span class="toc-text">2.11 启动数据库（主库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-备库删除data（备库操作）"><span class="toc-number">2.12.</span> <span class="toc-text">2.12 备库删除data（备库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-13-备端基础备份（备库操作）"><span class="toc-number">2.13.</span> <span class="toc-text">2.13 备端基础备份（备库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-14-备库启动数据库服务（备库操作）"><span class="toc-number">2.14.</span> <span class="toc-text">2.14 备库启动数据库服务（备库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-验证复制"><span class="toc-number">2.15.</span> <span class="toc-text">2.15 验证复制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Pgpool-Ⅱ部署"><span class="toc-number">3.</span> <span class="toc-text">三、Pgpool-Ⅱ部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-软件安装（主备均操作）"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 软件安装（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-互信配置"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 互信配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-配置Pgpool-Ⅱ（主备均执行）"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 配置Pgpool-Ⅱ（主备均执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-创建pgpool-node-id（主备分别执行）"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 创建pgpool_node_id（主备分别执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-follow-primary-command（主备均执行）"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 follow_primary_command（主备均执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-enable-pool-hba（主备均操作）"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 enable_pool_hba（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-Failover-configuration（主备均执行）"><span class="toc-number">3.7.</span> <span class="toc-text">3.7 Failover configuration（主备均执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-pgpool-recovery安装（主执行）"><span class="toc-number">3.8.</span> <span class="toc-text">3.8 pgpool_recovery安装（主执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-9-创建pgpool目录（主备均执行）"><span class="toc-number">3.9.</span> <span class="toc-text">3.9 创建pgpool目录（主备均执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-10-启动pgpool（主备均执行）"><span class="toc-number">3.10.</span> <span class="toc-text">3.10 启动pgpool（主备均执行）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、管理命令"><span class="toc-number">4.</span> <span class="toc-text">四、管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-查看集群配置信息"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 查看集群配置信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-查看集群节点信息"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 查看集群节点信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-查看节点数量"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 查看节点数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-查看指定节点信息"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 查看指定节点信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-增加一个集群节点"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 增加一个集群节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-脱离一个集群节点"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 脱离一个集群节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-提升一个备用节点为活动节点"><span class="toc-number">4.7.</span> <span class="toc-text">4.7 提升一个备用节点为活动节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-8-恢复一个离线节点为集群节点"><span class="toc-number">4.8.</span> <span class="toc-text">4.8 恢复一个离线节点为集群节点</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>之前调研过，使用mycat来做postgresql的中间件来实现读写分离，但mycat在postgre的兼容上总存在很多不足，比如select for update，还有连接mycat要修改应该端连接驱动为mysql。<br>今天介绍Pgpool-Ⅱ，一款PostgreSQL高可用中间件。</p>
+<h3 id="一、Pgpool-Ⅱ简介"><a href="#一、Pgpool-Ⅱ简介" class="headerlink" title="一、Pgpool-Ⅱ简介"></a>一、Pgpool-Ⅱ简介</h3><p>Pgpool-II是位于PostgreSQL服务器和 PostgreSQL数据库客户端之间的代理软件。它提供以下功能：</p>
+<ul>
+<li>连接池（Connection Pooling）<br>Pgpool II维护到PostgreSQL服务器的已建立的连接，并在出现具有相同属性（即用户名、数据库、协议版本和其他连接参数）的新连接时重用这些连接。它减少了连接开销，提高了系统的整体吞吐量。</li>
+<li>负载均衡（Load Balancing）<br>如果复制了数据库（因为在复制模式或本机复制模式下运行），则在任何服务器上执行SELECT查询都将返回相同的结果。Pgpool-II利用复制特性来减少每个PostgreSQL服务器上的负载。它通过在可用服务器之间分发SELECT查询来实现这一点，从而提高系统的整体吞吐量。在理想情况下，读取性能可以与PostgreSQL服务器的数量成比例地提高。负载平衡在许多用户同时执行许多只读查询的情况下效果最好。</li>
+<li>自动故障转移（Automatic failover）<br>如果其中一台数据库服务器出现故障或无法访问，则 Pgpool-II会将其分离，并将继续使用其余的数据库服务器进行操作。有一些复杂的功能可以帮助自动故障转移，包括超时和重试。</li>
+<li>在线恢复（Online recovery）<br>Pgpool-II可以通过执行一个命令来执行数据库节点的联机恢复。当联机恢复与自动故障转移一起使用时，可以通过故障转移将分离的节点自动附加为备用节点。也可以同步并附加新的 PostgreSQL服务器。</li>
+<li>复制（Replication）<br>Pgpool-II可以管理多个PostgreSQL 服务器。激活复制功能可以在两个或多个PostgreSQL群集上创建实时备份，因此，如果其中一个群集发生故障，该服务可以继续运行而不会中断。Pgpool-II具有内置复制（本机复制）。但是，用户可以使用外部复制功能，包括PostgreSQL的流复制。</li>
+<li>超出限制连接（Limiting Exceeding Connections）<br>PostgreSQL的最大并发连接数是有限制的，达到此数量时，新连接将被拒绝。但是，增加此最大连接数会增加资源消耗，并对整体系统性能产生负面影响。Pgpool-II也对最大连接数有限制，但是额外的连接将排队，而不是立即返回错误。但是，可以配置为在超过连接限制时返回错误。</li>
+<li>看门狗（Watchdog）<br>Watchdog可以协调多个Pgpool-II，创建强大的群集系统，并避免单点故障或大脑裂开。为了避免大脑分裂，您至少需要3个Pgpool-II节点。看门狗可以对其他执行lifecheck pgpool-II的节点，以检测故障Pgpool-II。如果活动Pgpool-II发生故障，则备用 Pgpool-II可以提升为活动状态，并接管虚拟IP。</li>
+<li>查询缓存（In Memory Query Cache）<br>Watchdog在内存中查询缓存允许保存一对SELECT语句及其结果。如果出现相同的SELECT，则Pgpool-II从缓存中返回该值。由于不 涉及SQL解析和对PostgreSQL的访问，因此在内存缓存中使用非常快。另一方面，在某些情况下，它可能比正常路径慢，因为它增加了存储缓存数据的开销。</li>
+</ul>
+<p><img src="/img/Databases/postgre/pg1.png" alt="image"></p>
+<h3 id="二、PostgreSQL主备部署"><a href="#二、PostgreSQL主备部署" class="headerlink" title="二、PostgreSQL主备部署"></a>二、PostgreSQL主备部署</h3><h4 id="2-1-关闭防火墙（主备均操作）"><a href="#2-1-关闭防火墙（主备均操作）" class="headerlink" title="2.1 关闭防火墙（主备均操作）"></a>2.1 关闭防火墙（主备均操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service #停止防火墙</span><br><span class="line">systemctl disable firewalld.service #禁止开机启动</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-关闭selinux（主备均操作）"><a href="#2-2-关闭selinux（主备均操作）" class="headerlink" title="2.2 关闭selinux（主备均操作）"></a>2.2 关闭selinux（主备均操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0</span><br><span class="line">sed -i &apos;s/SELINUX=enforcing/SELINUX=disabled/g&apos; /etc/selinux/config</span><br><span class="line">cat /etc/sysconfig/selinux</span><br><span class="line">/usr/sbin/sestatus -v</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-操作系统限制（主备均操作）"><a href="#2-3-操作系统限制（主备均操作）" class="headerlink" title="2.3 操作系统限制（主备均操作）"></a>2.3 操作系统限制（主备均操作）</h4><p>设置swap分区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;vm.swappiness = 1&quot; &gt;&gt;/etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br><span class="line">#通过sysctl -a 查看</span><br><span class="line">PS :swappiness值在0-100之间，0尽力使用物理内存，100尽力使用swap分区。</span><br></pre></td></tr></table></figure></p>
+<p>资源配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/security/limits.conf</span><br><span class="line">...</span><br><span class="line">* soft nproc 65536</span><br><span class="line">* hard nproc 65536</span><br><span class="line">* soft nofile 65536</span><br><span class="line">* hard nofile 65536</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>关闭透明大页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo never &gt;&gt;  /sys/kernel/mm/transparent_hugepage/enabled</span><br><span class="line">echo never &gt;&gt;  /sys/kernel/mm/transparent_hugepage/defrag</span><br></pre></td></tr></table></figure></p>
+<p>打开noatime<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">每个文件上都有以下上个时间：</span><br><span class="line">ctime: 改变时间</span><br><span class="line">mtime: 修改时间</span><br><span class="line">atime: 访问时间</span><br><span class="line">通常Postgresql 并不使用这三个时间；</span><br><span class="line">首先禁止的是：atime</span><br><span class="line">mtime 和 ctime 有时还有些作用</span><br><span class="line">设置 noatime 如下：vim /etc/fstab</span><br><span class="line">/dev/vda1 / xfs noatime,errors=remount-ro 0 1</span><br></pre></td></tr></table></figure></p>
+<p>调整预读<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Linux 下块设备通常都默认打开了预读，可以使用下面的命令查看预读的大小：</span><br><span class="line">blockdev --getra /dev/sdf</span><br><span class="line">注意，上面的命令中值的单位为扇区，即 512bytes. 在下面的示例中：</span><br><span class="line">sudo blockdev --getra /dev/sda</span><br><span class="line">返回值为256，表示是256个扇区，即为128KB</span><br><span class="line">设置预读的命令如下：</span><br><span class="line">blockdev --setra 4096 /dev/sdf</span><br><span class="line">上面的设置并不会永久生效，机器重启后就会失效，如果想要永久生效，应该</span><br><span class="line">把命令放到自动脚本中</span><br><span class="line">如果想让全表扫描更快一些，可以把预读调整大一些，如像上例那样把预读设置为2MB</span><br></pre></td></tr></table></figure></p>
+<p>调整IO调度器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">linux 下通常有一下三种I/O调度器：</span><br><span class="line">1.cfq: completely fair queuing,完全公平队列，尝试为所有的请求分配公平的I/O带宽，注意时带宽，而不是响应时间</span><br><span class="line">2.deadline: 平衡所有的请求，避免某个请求被饿死，让响应时间最优化</span><br><span class="line">3.noop： 除了基本的块合并及排序工作，其他基本里上什么都不做。</span><br><span class="line"></span><br><span class="line">echo deadline &gt; /sys/block/vda/queue/scheduler</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-4-关闭numa（主备均操作）"><a href="#2-4-关闭numa（主备均操作）" class="headerlink" title="2.4 关闭numa（主备均操作）"></a>2.4 关闭numa（主备均操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s/GRUB_CMDLINE_LINUX.*/GRUB_CMDLINE_LINUX=&quot;crashkernel=auto rd.lvm.lv=centos\/root rd.lvm.lv=centos\/swap rhgb quiet numa=off&quot;/g&apos; /etc/default/grub</span><br><span class="line">grub2-mkconfig -o /etc/grub2.cfg</span><br><span class="line">cat /etc/grub2.cfg</span><br><span class="line">reboot</span><br><span class="line">cat /proc/cmdline</span><br><span class="line">dmesg | grep -i numa</span><br></pre></td></tr></table></figure>
+<h4 id="2-5-编译安装（主备均操作）"><a href="#2-5-编译安装（主备均操作）" class="headerlink" title="2.5 编译安装（主备均操作）"></a>2.5 编译安装（主备均操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@db01 ~]# tar xf postgresql-12.4.tar.gz -C /var/soft/</span><br><span class="line">[root@db01 ~]# ln -s /var/soft/postgresql-12.4/ /var/soft/postgresql</span><br><span class="line">[root@db01 ~]# cd /var/soft/postgresql</span><br><span class="line">[root@db01 ~]# ./configure --prefix=/usr/local/pgsql --with-perl --with-tcl --with-python --with-openssl --with-pam --without-ldap --with-libxml --with-libxslt --enable-thread-safety --with-wal-blocksize=16 --with-blocksize=16 --enable-dtrace --enable-debug  </span><br><span class="line">[root@db01 ~]# make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>报错处理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">问题1： </span><br><span class="line">checking for dtrace... no </span><br><span class="line">configure: error: dtrace not found </span><br><span class="line">解决方法： yum install -y systemtap-sdt-devel.x86_64 </span><br><span class="line"> </span><br><span class="line">问题2： </span><br><span class="line">checking for flags to link embedded Perl... Can&apos;t locate ExtUtils/Embed.pm in @INC (@INC contains: /usr/local/lib64/perl5 /usr/local/share/perl5 /usr/lib64/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5 .). </span><br><span class="line">BEGIN failed--compilation aborted. </span><br><span class="line">no </span><br><span class="line">configure: error: could not determine flags for linking embedded Perl. </span><br><span class="line">This probably means that ExtUtils::Embed or ExtUtils::MakeMaker is not </span><br><span class="line">installed. </span><br><span class="line">解决方法： </span><br><span class="line">yum install perl-ExtUtils-Embed -y </span><br><span class="line"> </span><br><span class="line">问题3： </span><br><span class="line">checking build system type... x86_64-pc-linux-gnu</span><br><span class="line">checking host system type... x86_64-pc-linux-gnu</span><br><span class="line">checking which template to use... linux</span><br><span class="line">checking whether NLS is wanted... no</span><br><span class="line">checking for default port number... 5432</span><br><span class="line">checking for dtrace... /usr/bin/dtrace</span><br><span class="line">checking for block size... 16kB</span><br><span class="line">checking for segment size... 1GB</span><br><span class="line">checking for WAL block size... 16kB</span><br><span class="line">checking for gcc... no</span><br><span class="line">checking for cc... no</span><br><span class="line">configure: error: in `/var/soft/postgresql&apos;:</span><br><span class="line">configure: error: no acceptable C compiler found in $PATH</span><br><span class="line">解决方法：</span><br><span class="line">yum install gcc</span><br><span class="line">   </span><br><span class="line">问题4： </span><br><span class="line">configure: error: readline library not found </span><br><span class="line">If you have readline already installed, see config.log for details on the </span><br><span class="line">failure. It is possible the compiler isn&apos;t looking in the proper directory. </span><br><span class="line">Use --without-readline to disable readline support. </span><br><span class="line">   </span><br><span class="line">解决方法： </span><br><span class="line">yum install readline readline-devel </span><br><span class="line">   </span><br><span class="line">问题5： </span><br><span class="line">checking for inflate in -lz... no </span><br><span class="line">configure: error: zlib library not found </span><br><span class="line">If you have zlib already installed, see config.log for details on the </span><br><span class="line">failure. It is possible the compiler isn&apos;t looking in the proper directory. </span><br><span class="line">Use --without-zlib to disable zlib support. </span><br><span class="line">解决方法： </span><br><span class="line">yum install zlib zlib-devel </span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">问题6： </span><br><span class="line">checking for CRYPTO_new_ex_data in -lcrypto... no </span><br><span class="line">configure: error: library &apos;crypto&apos; is required for OpenSSL </span><br><span class="line">解决方法： </span><br><span class="line">yum install openssl openssl-devel </span><br><span class="line">   </span><br><span class="line">问题7： </span><br><span class="line">checking for pam_start in -lpam... no </span><br><span class="line">configure: error: library &apos;pam&apos; is required for PAM </span><br><span class="line">解决方法： </span><br><span class="line">yum install pam pam-devel </span><br><span class="line">   </span><br><span class="line">问题8： </span><br><span class="line">checking for xmlSaveToBuffer in -lxml2... no </span><br><span class="line">configure: error: library &apos;xml2&apos; (version &gt;= 2.6.23) is required for XML support </span><br><span class="line">解决方法： </span><br><span class="line">yum install libxml2 libxml2-devel </span><br><span class="line">   </span><br><span class="line">问题9： </span><br><span class="line">checking for xsltCleanupGlobals in -lxslt... no </span><br><span class="line">configure: error: library &apos;xslt&apos; is required for XSLT support </span><br><span class="line">解决方法： </span><br><span class="line">yum install libxslt libxslt-devel </span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">问题10： </span><br><span class="line">configure: error: Tcl shell not found </span><br><span class="line">解决方法： </span><br><span class="line">yum install tcl tcl-devel </span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">问题11： </span><br><span class="line">checking for ldap.h... no </span><br><span class="line">configure: error: header file is required for LDAP </span><br><span class="line">解决方法： </span><br><span class="line">yum install openldap openldap-devel </span><br><span class="line">   </span><br><span class="line">问题12： </span><br><span class="line">checking for Python.h... no </span><br><span class="line">configure: error: header file  is required for Python </span><br><span class="line">解决方法： </span><br><span class="line">yum install python python-devel</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-6-配置用户、目录及权限（主备均操作）"><a href="#2-6-配置用户、目录及权限（主备均操作）" class="headerlink" title="2.6 配置用户、目录及权限（主备均操作）"></a>2.6 配置用户、目录及权限（主备均操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@db01 postgresql]# groupadd postgres</span><br><span class="line">[root@db01 postgresql]# useradd postgres -g postgres</span><br><span class="line">[root@db01 postgresql]# passwd postgres</span><br><span class="line">[root@db01 postgresql]# mkdir -p /data/pgsql/data</span><br><span class="line">[root@db01 postgresql]# chown -R postgres:postgres /data/pgsql/</span><br><span class="line">[root@db01 postgresql]# chown -R postgres:postgres /usr/local/pgsql/</span><br></pre></td></tr></table></figure>
+<h4 id="2-7-配置环境变量（主备均操作）"><a href="#2-7-配置环境变量（主备均操作）" class="headerlink" title="2.7 配置环境变量（主备均操作）"></a>2.7 配置环境变量（主备均操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#修改环境变量</span><br><span class="line">export LD_LIBRARY_PATH=/usr/local/pgsql/lib:$LD_LIBRARY_PATH</span><br><span class="line">export PGDATA=/data/pgsql/data</span><br><span class="line">export PGHOST=/tmp</span><br><span class="line">export PGHOME=/usr/local/pgsql</span><br><span class="line">export PATH=$PATH:$PGHOME/bin</span><br><span class="line">#使其生效</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<h4 id="2-8-初始化数据库（主备均操作）"><a href="#2-8-初始化数据库（主备均操作）" class="headerlink" title="2.8 初始化数据库（主备均操作）"></a>2.8 初始化数据库（主备均操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[root@db01 postgresql]# su - postgres</span><br><span class="line">Last login: Sun Aug 30 22:11:36 CST 2020 on pts/2</span><br><span class="line">[postgres@db01 ~]$ initdb</span><br><span class="line">The files belonging to this database system will be owned by user &quot;postgres&quot;.</span><br><span class="line">This user must also own the server process.</span><br><span class="line"></span><br><span class="line">The database cluster will be initialized with locale &quot;en_US.UTF-8&quot;.</span><br><span class="line">The default database encoding has accordingly been set to &quot;UTF8&quot;.</span><br><span class="line">The default text search configuration will be set to &quot;english&quot;.</span><br><span class="line"></span><br><span class="line">Data page checksums are disabled.</span><br><span class="line"></span><br><span class="line">fixing permissions on existing directory /data/pgsql/data ... ok</span><br><span class="line">creating subdirectories ... ok</span><br><span class="line">selecting dynamic shared memory implementation ... posix</span><br><span class="line">selecting default max_connections ... 100</span><br><span class="line">selecting default shared_buffers ... 128MB</span><br><span class="line">selecting default time zone ... Asia/Shanghai</span><br><span class="line">creating configuration files ... ok</span><br><span class="line">running bootstrap script ... ok</span><br><span class="line">performing post-bootstrap initialization ... ok</span><br><span class="line">syncing data to disk ... ok</span><br><span class="line"></span><br><span class="line">initdb: warning: enabling &quot;trust&quot; authentication for local connections</span><br><span class="line">You can change this by editing pg_hba.conf or using the option -A, or</span><br><span class="line">--auth-local and --auth-host, the next time you run initdb.</span><br><span class="line"></span><br><span class="line">Success. You can now start the database server using:</span><br><span class="line"></span><br><span class="line">    pg_ctl -D /data/pgsql/data -l logfile start</span><br></pre></td></tr></table></figure>
+<h4 id="2-9-修改pg-hba-conf文件（主库操作）"><a href="#2-9-修改pg-hba-conf文件（主库操作）" class="headerlink" title="2.9 修改pg_hba.conf文件（主库操作）"></a>2.9 修改pg_hba.conf文件（主库操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">local   all             all                                     trust</span><br><span class="line"># IPv4 local connections:</span><br><span class="line">host    all             all             0.0.0.0/0               md5</span><br><span class="line"># IPv6 local connections:</span><br><span class="line"># Allow replication connections from localhost, by a user with the</span><br><span class="line"># replication privilege.</span><br><span class="line">local   replication     all                                     trust</span><br><span class="line">host    replication     all             192.168.137.0/24     trust</span><br></pre></td></tr></table></figure>
+<h4 id="2-10-修改修改postgresql-conf配置文件（主库操作）"><a href="#2-10-修改修改postgresql-conf配置文件（主库操作）" class="headerlink" title="2.10 修改修改postgresql.conf配置文件（主库操作）"></a>2.10 修改修改postgresql.conf配置文件（主库操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">archive_mode = on</span><br><span class="line">archive_command = &apos;cp &quot;%p&quot; &quot;/data/pgsql/data/arch/%f&quot;&apos;</span><br><span class="line">max_wal_senders = 10</span><br><span class="line">max_replication_slots = 10</span><br><span class="line">wal_level = logical</span><br><span class="line">hot_standby = on</span><br><span class="line">wal_log_hints = on</span><br><span class="line">synchronous_commit = on</span><br><span class="line">synchronous_standby_names = &apos;walreceiver&apos;</span><br><span class="line">logging_collector = on</span><br><span class="line">log_filename = &apos;postgresql-%a.log&apos;</span><br><span class="line">log_truncate_on_rotation = on</span><br><span class="line">log_rotation_age = 1d</span><br><span class="line">log_rotation_size = 0</span><br></pre></td></tr></table></figure>
+<h4 id="2-11-启动数据库（主库操作）"><a href="#2-11-启动数据库（主库操作）" class="headerlink" title="2.11 启动数据库（主库操作）"></a>2.11 启动数据库（主库操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[postgres@db02 ~]$ pg_ctl -D /data/pgsql/data start</span><br><span class="line">[postgres@db02 ~]$ psql</span><br><span class="line">postgres=# CREATE ROLE pgpool WITH LOGIN;</span><br><span class="line">postgres=# CREATE ROLE repl WITH REPLICATION LOGIN;</span><br><span class="line">postgres=# \password pgpool</span><br><span class="line">postgres=# \password repl</span><br><span class="line">postgres=# \password postgres</span><br><span class="line"># pgpool_status中显示</span><br><span class="line">postgres=# GRANT pg_monitor TO pgpool;</span><br><span class="line"># 查看结果 replication_state</span><br><span class="line">postgres=# \du</span><br><span class="line">postgres=# exit</span><br></pre></td></tr></table></figure>
+<h4 id="2-12-备库删除data（备库操作）"><a href="#2-12-备库删除data（备库操作）" class="headerlink" title="2.12 备库删除data（备库操作）"></a>2.12 备库删除data（备库操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /data/pgsql/data</span><br></pre></td></tr></table></figure>
+<h4 id="2-13-备端基础备份（备库操作）"><a href="#2-13-备端基础备份（备库操作）" class="headerlink" title="2.13 备端基础备份（备库操作）"></a>2.13 备端基础备份（备库操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[postgres@db02 ~]$ cd /data/pgsql/</span><br><span class="line">[postgres@db02 ~]$ pg_basebackup -h 192.168.137.129 -U repl -Xs -Fp -R -Pv -D data</span><br></pre></td></tr></table></figure>
+<h4 id="2-14-备库启动数据库服务（备库操作）"><a href="#2-14-备库启动数据库服务（备库操作）" class="headerlink" title="2.14 备库启动数据库服务（备库操作）"></a>2.14 备库启动数据库服务（备库操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[postgres@db02 ~]$ pg_ctl -D /data/pgsql/data start</span><br></pre></td></tr></table></figure>
+<h4 id="2-15-验证复制"><a href="#2-15-验证复制" class="headerlink" title="2.15 验证复制"></a>2.15 验证复制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#主库</span><br><span class="line">[postgres@db01 data]$ ps -ef | grep postgres</span><br><span class="line">postgres  84008      1  0 16:54 ?        00:00:00 /usr/local/pgsql/bin/postgres -D /data/pgsql/data</span><br><span class="line">postgres  84009  84008  0 16:54 ?        00:00:00 postgres: logger   </span><br><span class="line">postgres  84011  84008  0 16:54 ?        00:00:00 postgres: checkpointer   </span><br><span class="line">postgres  84012  84008  0 16:54 ?        00:00:00 postgres: background writer   </span><br><span class="line">postgres  84013  84008  0 16:54 ?        00:00:00 postgres: walwriter   </span><br><span class="line">postgres  84014  84008  0 16:54 ?        00:00:00 postgres: autovacuum launcher   </span><br><span class="line">postgres  84015  84008  0 16:54 ?        00:00:00 postgres: archiver   last was 000000010000000000000019.00000028.backup</span><br><span class="line">postgres  84016  84008  0 16:54 ?        00:00:00 postgres: stats collector   </span><br><span class="line">postgres  84017  84008  0 16:54 ?        00:00:00 postgres: logical replication launcher   </span><br><span class="line">postgres  85904  84008  0 17:09 ?        00:00:00 postgres: walsender repl 192.168.137.130(33968) streaming 0/1A000148</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">postgres=# select client_addr,sync_state from pg_stat_replication;</span><br><span class="line">   client_addr   | sync_state </span><br><span class="line">-----------------+------------</span><br><span class="line"> 192.168.137.130 | sync</span><br><span class="line">(1 row)</span><br><span class="line"></span><br><span class="line">postgres=# </span><br><span class="line">postgres=# select pg_is_in_recovery();</span><br><span class="line"> pg_is_in_recovery </span><br><span class="line">-------------------</span><br><span class="line"> f</span><br><span class="line">(1 row)</span><br><span class="line"></span><br><span class="line">#备库</span><br><span class="line">[postgres@db02 pgsql]$ ps -ef | grep postgres</span><br><span class="line">postgres  91113      1  0 17:09 ?        00:00:00 /usr/local/pgsql/bin/postgres</span><br><span class="line">postgres  91114  91113  0 17:09 ?        00:00:00 postgres: logger   </span><br><span class="line">postgres  91115  91113  0 17:09 ?        00:00:00 postgres: startup   recovering 00000001000000000000001A</span><br><span class="line">postgres  91116  91113  0 17:09 ?        00:00:00 postgres: checkpointer   </span><br><span class="line">postgres  91117  91113  0 17:09 ?        00:00:00 postgres: background writer  </span><br><span class="line">postgres  91118  91113  0 17:09 ?        00:00:00 postgres: stats collector   </span><br><span class="line">postgres  91119  91113  0 17:09 ?        00:00:01 postgres: walreceiver   streaming 0/1A000148</span><br><span class="line"></span><br><span class="line">postgres=# select pg_is_in_recovery();</span><br><span class="line"> pg_is_in_recovery </span><br><span class="line">-------------------</span><br><span class="line"> t</span><br><span class="line">(1 row)</span><br></pre></td></tr></table></figure>
+<h3 id="三、Pgpool-Ⅱ部署"><a href="#三、Pgpool-Ⅱ部署" class="headerlink" title="三、Pgpool-Ⅱ部署"></a>三、Pgpool-Ⅱ部署</h3><h4 id="3-1-软件安装（主备均操作）"><a href="#3-1-软件安装（主备均操作）" class="headerlink" title="3.1 软件安装（主备均操作）"></a>3.1 软件安装（主备均操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall pgpool-II-pg12*</span><br><span class="line">chown postgres.postgres /etc/pgpool-II/*</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-互信配置"><a href="#3-2-互信配置" class="headerlink" title="3.2 互信配置"></a>3.2 互信配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 每个节点都执行</span><br><span class="line">ssh-keygen -t rsa # 一路回车</span><br><span class="line"># 将公钥添加到认证文件中</span><br><span class="line">cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line"># 并设置authorized_keys的访问权限</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"># 只要在一个节点执行即可</span><br><span class="line">ssh db02 cat ~/.ssh/id_rsa.pub &gt;&gt;~/.ssh/authorized_keys</span><br><span class="line"># 分发整合后的文件到其它节点</span><br><span class="line">scp ~/.ssh/authorized_keys db02:~/.ssh/</span><br><span class="line"></span><br><span class="line">#各节点执行</span><br><span class="line">ssh db01 date</span><br><span class="line">ssh db02 date</span><br></pre></td></tr></table></figure>
+<h4 id="3-3-配置Pgpool-Ⅱ（主备均执行）"><a href="#3-3-配置Pgpool-Ⅱ（主备均执行）" class="headerlink" title="3.3 配置Pgpool-Ⅱ（主备均执行）"></a>3.3 配置Pgpool-Ⅱ（主备均执行）</h4><p>配置密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[postgres@db01 pgpool-II]$ pg_md5 -p -m -u postgres postgres</span><br><span class="line">password: </span><br><span class="line">[postgres@db01 pgpool-II]$ cat pool_passwd </span><br><span class="line">postgres:md53175bce1d3201d16594cebf9d7eb3f9d</span><br><span class="line">[postgres@db01 pgpool-II]$ pg_md5 -p -m -u pgpool pgpool</span><br><span class="line">password: </span><br><span class="line">[postgres@db01 pgpool-II]$ cat /etc/pgpool-II/pool_passwd </span><br><span class="line">postgres:md53175bce1d3201d16594cebf9d7eb3f9d</span><br><span class="line">pgpool:md5f24aeb1c3b7d05d7eaf2cd648c307092</span><br></pre></td></tr></table></figure></p>
+<p>pgpool.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"># [CONNECTIONS]</span><br><span class="line">listen_addresses = &apos;*&apos;</span><br><span class="line">port = 9999</span><br><span class="line">socket_dir = &apos;/data/pgpool&apos;</span><br><span class="line">## - Backend Connection Settings -</span><br><span class="line">backend_hostname0 = &apos;db01&apos;</span><br><span class="line">backend_data_directory0 = &apos;/data/pgsql/data&apos;</span><br><span class="line">backend_application_name0 = &apos;server1&apos;</span><br><span class="line">backend_flag0 = &apos;ALLOW_TO_FAILOVER&apos;</span><br><span class="line">backend_port0 = 5432</span><br><span class="line">backend_weight0 = 1</span><br><span class="line"></span><br><span class="line">backend_hostname1 = &apos;db02&apos;</span><br><span class="line">backend_data_directory1 = &apos;/data/pgsql/data&apos;</span><br><span class="line">backend_application_name1 = &apos;server2&apos;</span><br><span class="line">backend_flag1 = &apos;ALLOW_TO_FAILOVER&apos;</span><br><span class="line">backend_port1 = 5432</span><br><span class="line">backend_weight1 = 0</span><br><span class="line"></span><br><span class="line">## - Authentication -</span><br><span class="line">enable_pool_hba = on</span><br><span class="line">pool_passwd = &apos;pool_passwd&apos;</span><br><span class="line"></span><br><span class="line"># [LOGS]</span><br><span class="line">logging_collector = on</span><br><span class="line">log_directory = &apos;/data/pgpool&apos;</span><br><span class="line">log_filename = &apos;pgpool-%Y-%m-%d_%H%M%S.log&apos;</span><br><span class="line">log_file_mode = 0600</span><br><span class="line">log_truncate_on_rotation = on</span><br><span class="line">log_rotation_age = 1d</span><br><span class="line">log_rotation_size = 10MB</span><br><span class="line"></span><br><span class="line"># [FILE LOCATIONS]</span><br><span class="line">pid_file_name = &apos;/data/pgpool/pgpool.pid&apos;</span><br><span class="line">## 此目录用来存放 pgpool_status 文件，此文件保存集群状态（刷新有问题时会造成show pool_status不正确）</span><br><span class="line">logdir = &apos;/data/pgpool&apos;</span><br><span class="line"># [NATIVE REPLICATION MODE]</span><br><span class="line">sr_check_user = &apos;pgpool&apos;</span><br><span class="line">## 为&apos;&apos;时查找 pool_passwd</span><br><span class="line">sr_check_password = &apos;pgpool&apos;</span><br><span class="line">follow_primary_command = &apos;/etc/pgpool-II/follow_primary.sh %d %h %p %D %m %H %M %P %r %R&apos;</span><br><span class="line"></span><br><span class="line"># [HEALTH CHECK GLOBAL PARAMETERS]</span><br><span class="line">health_check_period = 5</span><br><span class="line">health_check_timeout = 30</span><br><span class="line">health_check_user = &apos;pgpool&apos;</span><br><span class="line">## 为&apos;&apos;时查找 pool_passwd</span><br><span class="line">health_check_password = &apos;pgpool&apos;</span><br><span class="line">health_check_max_retries = 3</span><br><span class="line"></span><br><span class="line"># [FAILOVER AND FAILBACK]</span><br><span class="line">failover_command = &apos;/etc/pgpool-II/failover.sh %d %h %p %D %m %H %M %P %r %R %N %S&apos;</span><br><span class="line"></span><br><span class="line"># [ONLINE RECOVERY]</span><br><span class="line">recovery_user = &apos;postgres&apos;</span><br><span class="line">recovery_password = &apos;postgres&apos;</span><br><span class="line">recovery_1st_stage_command = &apos;recovery_1st_stage&apos;</span><br><span class="line"></span><br><span class="line"># [WATCHDOG]</span><br><span class="line">use_watchdog = on</span><br><span class="line">hostname0 = &apos;db01&apos;</span><br><span class="line">wd_port0 = 9000</span><br><span class="line">pgpool_port0 = 9999</span><br><span class="line"></span><br><span class="line">hostname1 = &apos;db02&apos;</span><br><span class="line">wd_port1 = 9000</span><br><span class="line">pgpool_port1 = 9999</span><br><span class="line">wd_ipc_socket_dir = &apos;/data/pgpool&apos;</span><br><span class="line"></span><br><span class="line">## - Virtual IP control Setting -</span><br><span class="line">delegate_IP = &apos;192.168.137.128&apos;</span><br><span class="line">if_up_cmd = &apos;/sbin/ip addr add 192.168.137.128/24 dev ens32 label ens32:0&apos;</span><br><span class="line">if_down_cmd = &apos;/sbin/ip addr del 192.168.137.128/24 dev ens32&apos;</span><br><span class="line"></span><br><span class="line">## - Behaivor on escalation Setting -</span><br><span class="line">wd_escalation_command = &apos;/etc/pgpool-II/escalation.sh&apos;</span><br><span class="line"></span><br><span class="line">## - Lifecheck Setting -</span><br><span class="line">wd_lifecheck_method = &apos;heartbeat&apos;</span><br><span class="line">### -- heartbeat mode --</span><br><span class="line">heartbeat_hostname0 = &apos;db01&apos;</span><br><span class="line">heartbeat_port0 = 9694</span><br><span class="line">heartbeat_device0 = &apos;ens32&apos;</span><br><span class="line"></span><br><span class="line">heartbeat_hostname1 = &apos;db02&apos;</span><br><span class="line">heartbeat_port1 = 9694</span><br><span class="line">heartbeat_device1 = &apos;ens32&apos;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-4-创建pgpool-node-id（主备分别执行）"><a href="#3-4-创建pgpool-node-id（主备分别执行）" class="headerlink" title="3.4 创建pgpool_node_id（主备分别执行）"></a>3.4 创建pgpool_node_id（主备分别执行）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo 0 &gt; /etc/pgpool-II/pgpool_node_id</span><br><span class="line">echo 1 &gt; /etc/pgpool-II/pgpool_node_id</span><br></pre></td></tr></table></figure>
+<h4 id="3-5-follow-primary-command（主备均执行）"><a href="#3-5-follow-primary-command（主备均执行）" class="headerlink" title="3.5 follow_primary_command（主备均执行）"></a>3.5 follow_primary_command（主备均执行）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[postgres@db01 pgpool-II]$ echo &apos;pgpool:&apos;`pg_md5 pgpool` &gt;&gt; /etc/pgpool-II/pcp.conf</span><br><span class="line">[postgres@db01 pgpool-II]$ echo &apos;localhost:9898:pgpool:pgpool&apos; &gt; ~/.pcppass</span><br><span class="line">[postgres@db01 pgpool-II]$ chmod 600 ~/.pcppass</span><br></pre></td></tr></table></figure>
+<h4 id="3-6-enable-pool-hba（主备均操作）"><a href="#3-6-enable-pool-hba（主备均操作）" class="headerlink" title="3.6 enable_pool_hba（主备均操作）"></a>3.6 enable_pool_hba（主备均操作）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[postgres@db01 pgpool-II]$ vi /etc/pgpool-II/pool_hba.conf</span><br><span class="line"># 官方文档为 scram-sha-256，改为md5</span><br><span class="line">host    all         pgpool           0.0.0.0/0          md5</span><br><span class="line">host    all         postgres         0.0.0.0/0          md5</span><br></pre></td></tr></table></figure>
+<h4 id="3-7-Failover-configuration（主备均执行）"><a href="#3-7-Failover-configuration（主备均执行）" class="headerlink" title="3.7 Failover configuration（主备均执行）"></a>3.7 Failover configuration（主备均执行）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[postgres@db01 pgpool-II]$ cd /etc/pgpool-II</span><br><span class="line">#以下脚本需进行相应修改</span><br><span class="line">[postgres@db01 pgpool-II]$ mv escalation.sh.sample escalation.sh</span><br><span class="line">[postgres@db01 pgpool-II]$ mv failover.sh.sample failover.sh</span><br><span class="line">[postgres@db01 pgpool-II]$ mv follow_primary.sh.sample follow_primary.sh</span><br><span class="line">[postgres@db01 pgpool-II]$ mv pgpool_remote_start.sample /data/pgsql/data/pgpool_remote_start</span><br><span class="line">[postgres@db01 pgpool-II]$ mv recovery_1st_stage.sample /data/pgsql/data/recovery_1st_stage</span><br><span class="line">[postgres@db01 pgpool-II]$ mv recovery_2nd_stage.sample /data/pgsql/data/recovery_2nd_stage</span><br></pre></td></tr></table></figure>
+<h4 id="3-8-pgpool-recovery安装（主执行）"><a href="#3-8-pgpool-recovery安装（主执行）" class="headerlink" title="3.8 pgpool_recovery安装（主执行）"></a>3.8 pgpool_recovery安装（主执行）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#获取libdir</span><br><span class="line">pg_config --pkglibdir</span><br><span class="line">cp pgpool_recovery* /usr/local/pgsql/share/extension/</span><br><span class="line">cp pgpool-recovery.sql /usr/local/pgsql/share/extension/</span><br><span class="line">cp pgpool-recovery.so /usr/local/pgsql/lib/</span><br><span class="line">psql -f pgpool-recovery.sql template1</span><br></pre></td></tr></table></figure>
+<h4 id="3-9-创建pgpool目录（主备均执行）"><a href="#3-9-创建pgpool目录（主备均执行）" class="headerlink" title="3.9 创建pgpool目录（主备均执行）"></a>3.9 创建pgpool目录（主备均执行）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data/pgpool</span><br><span class="line">chown  -R /data/pgpool</span><br></pre></td></tr></table></figure>
+<h4 id="3-10-启动pgpool（主备均执行）"><a href="#3-10-启动pgpool（主备均执行）" class="headerlink" title="3.10 启动pgpool（主备均执行）"></a>3.10 启动pgpool（主备均执行）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system start pgpool</span><br></pre></td></tr></table></figure>
+<h3 id="四、管理命令"><a href="#四、管理命令" class="headerlink" title="四、管理命令"></a>四、管理命令</h3><h4 id="4-1-查看集群配置信息"><a href="#4-1-查看集群配置信息" class="headerlink" title="4.1 查看集群配置信息"></a>4.1 查看集群配置信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcp_pool_status -h 192.168.137.128 -p 9898 -U pgpool -v</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-查看集群节点信息"><a href="#4-2-查看集群节点信息" class="headerlink" title="4.2 查看集群节点信息"></a>4.2 查看集群节点信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcp_watchdog_info -h 192.168.137.128 -p 9898 -U pgpool -v</span><br></pre></td></tr></table></figure>
+<h4 id="4-3-查看节点数量"><a href="#4-3-查看节点数量" class="headerlink" title="4.3 查看节点数量"></a>4.3 查看节点数量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcp_node_count -h 192.168.137.128 -p 9898 -U pgpool</span><br></pre></td></tr></table></figure>
+<h4 id="4-4-查看指定节点信息"><a href="#4-4-查看指定节点信息" class="headerlink" title="4.4 查看指定节点信息"></a>4.4 查看指定节点信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcp_node_info -h 192.168.137.128 -p 9898 -U pgpool -n 0 -v</span><br></pre></td></tr></table></figure>
+<h4 id="4-5-增加一个集群节点"><a href="#4-5-增加一个集群节点" class="headerlink" title="4.5 增加一个集群节点"></a>4.5 增加一个集群节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcp_attach_node -h 192.168.137.128 -p 9898 -U pgpool -n 0 -v</span><br></pre></td></tr></table></figure>
+<h4 id="4-6-脱离一个集群节点"><a href="#4-6-脱离一个集群节点" class="headerlink" title="4.6 脱离一个集群节点"></a>4.6 脱离一个集群节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcp_detach_node -h 192.168.137.128 -p 9898 -U pgpool -n 0 -v</span><br></pre></td></tr></table></figure>
+<h4 id="4-7-提升一个备用节点为活动节点"><a href="#4-7-提升一个备用节点为活动节点" class="headerlink" title="4.7 提升一个备用节点为活动节点"></a>4.7 提升一个备用节点为活动节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcp_promote_node -h 192.168.137.128 -p 9898 -U pgpool -n 0 -v</span><br></pre></td></tr></table></figure>
+<h4 id="4-8-恢复一个离线节点为集群节点"><a href="#4-8-恢复一个离线节点为集群节点" class="headerlink" title="4.8 恢复一个离线节点为集群节点"></a>4.8 恢复一个离线节点为集群节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcp_recovery_node -h 192.168.137.128 -p 9898 -U pgpool -n 0 -v</span><br></pre></td></tr></table></figure>
+<p>转载于：<a href="http://okgoes.cn/blog/detail?blog_id=26310#_665" target="_blank" rel="noopener">http://okgoes.cn/blog/detail?blog_id=26310#_665</a></p>
+
+	</div>
+
+	
+	<!-- css -->
+	<style type="text/css">
+	    .center {
+	        text-align: center;
+	    }
+	    .hidden {
+	        display: none;
+	    }
+		.donate_bar a.btn_donate{
+			display: inline-block;
+			width: 82px;
+			height: 82px;
+			background: url("/img/btn_reward.gif") no-repeat;
+			_background: url("/img/btn_reward.gif") no-repeat;
+
+			<!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+			     因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+				 为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+				 嵌入其它博客时不一定要它们。-->
+			-webkit-transition: background 0s;
+			-moz-transition: background 0s;
+			-o-transition: background 0s;
+			-ms-transition: background 0s;
+			transition: background 0s;
+			<!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束-->
+		}
+
+		.donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+		.donate_bar .donate_txt {
+			display: block;
+			color: #9d9d9d;
+			font: 14px/2 "Microsoft Yahei";
+		}
+		.bold{ font-weight: bold; }
+	</style>
+	<!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+	<!-- btn_donate & tips -->
+	<div id="donate_board" class="donate_bar center">
+	    <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差哦~
+		</span>
+
+
+	</div>
+	<!-- /btn_donate & tips -->
+
+	<!-- donate guide -->
+
+	<div id="donate_guide" class="donate_bar center hidden">
+        <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+	    
+
+		<a href="/img/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+			<img src="/img/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+        &nbsp;&nbsp;
+
+		<a href="/img/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+			<img src="/img/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="支付宝打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差哦~
+		</span>
+
+	</div>
+	<!-- /donate guide -->
+
+	<!-- donate script -->
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function() {
+			$('#donate_board').addClass('hidden');
+	    $('#donate_guide').removeClass('hidden');
+		}
+
+		function donate_on_web(){
+			$('#donate').submit();
+        }
+
+		var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+		}
+	</script>
+	<!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Postgre/">Postgre</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Postgre高可用中间件/">Postgre高可用中间件</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://macintosh-c.coding.me/2021/10/12/Databases/postgre/Postgre高可用中间件Pgpool-Ⅱ/" data-title="PostgreSQL高可用中间件—Pgpool-Ⅱ | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2021/10/12/Databases/mysql/mysql共享锁与排他锁/"  title="Mysql共享锁与排他锁">
+ <strong>下一篇：</strong><br/> 
+ <span>Mysql共享锁与排他锁
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+
+	<div id="lv-container" data-id="city" data-uid="MTAyMC8zODk4Mi8xNTUwOQ==">
+	<script type="text/javascript">
+	   (function(d, s) {
+	       var j, e = d.getElementsByTagName(s)[0];
+
+	       if (typeof LivereTower === 'function') { return; }
+
+	       j = d.createElement(s);
+	       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+	       j.async = true;
+
+	       e.parentNode.insertBefore(j, e);
+	   })(document, 'script');
+	</script>
+	<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+	</div>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、Pgpool-Ⅱ简介"><span class="toc-number">1.</span> <span class="toc-text">一、Pgpool-Ⅱ简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、PostgreSQL主备部署"><span class="toc-number">2.</span> <span class="toc-text">二、PostgreSQL主备部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-关闭防火墙（主备均操作）"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 关闭防火墙（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-关闭selinux（主备均操作）"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 关闭selinux（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-操作系统限制（主备均操作）"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 操作系统限制（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-关闭numa（主备均操作）"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 关闭numa（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-编译安装（主备均操作）"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 编译安装（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-配置用户、目录及权限（主备均操作）"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 配置用户、目录及权限（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-配置环境变量（主备均操作）"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 配置环境变量（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-初始化数据库（主备均操作）"><span class="toc-number">2.8.</span> <span class="toc-text">2.8 初始化数据库（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-9-修改pg-hba-conf文件（主库操作）"><span class="toc-number">2.9.</span> <span class="toc-text">2.9 修改pg_hba.conf文件（主库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-10-修改修改postgresql-conf配置文件（主库操作）"><span class="toc-number">2.10.</span> <span class="toc-text">2.10 修改修改postgresql.conf配置文件（主库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-启动数据库（主库操作）"><span class="toc-number">2.11.</span> <span class="toc-text">2.11 启动数据库（主库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-备库删除data（备库操作）"><span class="toc-number">2.12.</span> <span class="toc-text">2.12 备库删除data（备库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-13-备端基础备份（备库操作）"><span class="toc-number">2.13.</span> <span class="toc-text">2.13 备端基础备份（备库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-14-备库启动数据库服务（备库操作）"><span class="toc-number">2.14.</span> <span class="toc-text">2.14 备库启动数据库服务（备库操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-验证复制"><span class="toc-number">2.15.</span> <span class="toc-text">2.15 验证复制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Pgpool-Ⅱ部署"><span class="toc-number">3.</span> <span class="toc-text">三、Pgpool-Ⅱ部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-软件安装（主备均操作）"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 软件安装（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-互信配置"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 互信配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-配置Pgpool-Ⅱ（主备均执行）"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 配置Pgpool-Ⅱ（主备均执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-创建pgpool-node-id（主备分别执行）"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 创建pgpool_node_id（主备分别执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-follow-primary-command（主备均执行）"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 follow_primary_command（主备均执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-enable-pool-hba（主备均操作）"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 enable_pool_hba（主备均操作）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-Failover-configuration（主备均执行）"><span class="toc-number">3.7.</span> <span class="toc-text">3.7 Failover configuration（主备均执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-pgpool-recovery安装（主执行）"><span class="toc-number">3.8.</span> <span class="toc-text">3.8 pgpool_recovery安装（主执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-9-创建pgpool目录（主备均执行）"><span class="toc-number">3.9.</span> <span class="toc-text">3.9 创建pgpool目录（主备均执行）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-10-启动pgpool（主备均执行）"><span class="toc-number">3.10.</span> <span class="toc-text">3.10 启动pgpool（主备均执行）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、管理命令"><span class="toc-number">4.</span> <span class="toc-text">四、管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-查看集群配置信息"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 查看集群配置信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-查看集群节点信息"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 查看集群节点信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-查看节点数量"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 查看节点数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-查看指定节点信息"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 查看指定节点信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-增加一个集群节点"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 增加一个集群节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-脱离一个集群节点"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 脱离一个集群节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-提升一个备用节点为活动节点"><span class="toc-number">4.7.</span> <span class="toc-text">4.7 提升一个备用节点为活动节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-8-恢复一个离线节点为集群节点"><span class="toc-number">4.8.</span> <span class="toc-text">4.8 恢复一个离线节点为集群节点</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="Macintosh-c" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Ansible/" title="Ansible">Ansible<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Couchbase/" title="Couchbase">Couchbase<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Docker/" title="Docker">Docker<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ehcache/" title="Ehcache">Ehcache<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Kubernetes/" title="Kubernetes">Kubernetes<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Maven/" title="Maven">Maven<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Memcache/" title="Memcache">Memcache<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mycat/" title="Mycat">Mycat<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Postgre/" title="Postgre">Postgre<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SonarQube/" title="SonarQube">SonarQube<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring-Cloud-Alibaba/" title="Spring Cloud Alibaba">Spring Cloud Alibaba<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring-cloud/" title="Spring cloud">Spring cloud<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Springboot/" title="Springboot">Springboot<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SqlService/" title="SqlService">SqlService<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VirtualBox/" title="VirtualBox">VirtualBox<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/YApi/" title="YApi">YApi<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java基础/" title="java基础">java基础<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/jenkins/" title="jenkins">jenkins<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/kafka/" title="kafka">kafka<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mybatis/" title="mybatis">mybatis<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mycat/" title="mycat">mycat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/nginx/" title="nginx">nginx<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/rabbitmq/" title="rabbitmq">rabbitmq<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sftp/" title="sftp">sftp<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/博客相关/" title="博客相关">博客相关<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/成长之路/" title="成长之路">成长之路<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/blog搭建/" title="blog搭建">blog搭建<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mycat/" title="mycat">mycat<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Postgre安装/" title="Postgre安装">Postgre安装<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ansible详解/" title="ansible详解">ansible详解<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql安装/" title="mysql安装">mysql安装<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Springboot/" title="Springboot">Springboot<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ehcache/" title="Ehcache">Ehcache<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fastjson/" title="fastjson">fastjson<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/rabbitmq安装/" title="rabbitmq安装">rabbitmq安装<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-aop/" title="Spring aop">Spring aop<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Memcached安装/" title="Memcached安装">Memcached安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VirtualBox安装/" title="VirtualBox安装">VirtualBox安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis安装/" title="redis安装">redis安装<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Couchbase数据迁移/" style="font-size: 10px;">Couchbase数据迁移</a> <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/Docker-Compose/" style="font-size: 10px;">Docker-Compose</a> <a href="/tags/Dockerfile/" style="font-size: 10px;">Dockerfile</a> <a href="/tags/Ehcache/" style="font-size: 13.33px;">Ehcache</a> <a href="/tags/Git基础/" style="font-size: 10px;">Git基础</a> <a href="/tags/Kubernetes安装/" style="font-size: 10px;">Kubernetes安装</a> <a href="/tags/Linux基础/" style="font-size: 13.33px;">Linux基础</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 13.33px;">Maven</a> <a href="/tags/Memcached安装/" style="font-size: 10px;">Memcached安装</a> <a href="/tags/Mysql/" style="font-size: 13.33px;">Mysql</a> <a href="/tags/Postgre安装/" style="font-size: 16.67px;">Postgre安装</a> <a href="/tags/Postgre高可用中间件/" style="font-size: 10px;">Postgre高可用中间件</a> <a href="/tags/Redis-Cluster/" style="font-size: 10px;">Redis Cluster</a> <a href="/tags/Redis-持久化存储/" style="font-size: 10px;">Redis 持久化存储</a> <a href="/tags/Redis-Sentinel/" style="font-size: 10px;">Redis-Sentinel</a> <a href="/tags/Redis批量写入/" style="font-size: 10px;">Redis批量写入</a> <a href="/tags/Redis数据迁移/" style="font-size: 10px;">Redis数据迁移</a> <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/Spring-Cloud-Alibaba/" style="font-size: 10px;">Spring Cloud Alibaba</a> <a href="/tags/Spring-aop/" style="font-size: 13.33px;">Spring aop</a> <a href="/tags/Spring-cloud/" style="font-size: 10px;">Spring cloud</a> <a href="/tags/Springboot/" style="font-size: 13.33px;">Springboot</a> <a href="/tags/Springboot-response/" style="font-size: 10px;">Springboot response</a> <a href="/tags/Springboot-test/" style="font-size: 10px;">Springboot test</a> <a href="/tags/Springboot调优/" style="font-size: 10px;">Springboot调优</a> <a href="/tags/SqlService安装/" style="font-size: 10px;">SqlService安装</a> <a href="/tags/VirtualBox安装/" style="font-size: 10px;">VirtualBox安装</a> <a href="/tags/YApi学习/" style="font-size: 10px;">YApi学习</a> <a href="/tags/ansible详解/" style="font-size: 13.33px;">ansible详解</a> <a href="/tags/blog搭建/" style="font-size: 16.67px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 13.33px;">fastjson</a> <a href="/tags/jdk安装/" style="font-size: 10px;">jdk安装</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/jenkins用户权限管理/" style="font-size: 10px;">jenkins用户权限管理</a> <a href="/tags/kafka安装/" style="font-size: 10px;">kafka安装</a> <a href="/tags/log4j日志/" style="font-size: 10px;">log4j日志</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mycat/" style="font-size: 16.67px;">mycat</a> <a href="/tags/mycat容器化部署/" style="font-size: 10px;">mycat容器化部署</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 13.33px;">mysql安装</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/python安装/" style="font-size: 10px;">python安装</a> <a href="/tags/rabbitmq安装/" style="font-size: 13.33px;">rabbitmq安装</a> <a href="/tags/redis安装/" style="font-size: 10px;">redis安装</a> <a href="/tags/redis指令/" style="font-size: 10px;">redis指令</a> <a href="/tags/serialVersionUID/" style="font-size: 10px;">serialVersionUID</a> <a href="/tags/sftp/" style="font-size: 10px;">sftp</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 13.33px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://toutiao.io/" target="_blank" title="开发者头条">开发者头条</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/peace1213" target="_blank" title="csdn">csdn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 静下心来，好好做你该做的事！ <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Macintosh-c" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021
+		
+		<a href="/about" target="_blank" title="Macintosh-c">Macintosh-c</a>
+		
+		</br>
+				<script async src="http://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+		    &nbsp;&nbsp;Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span>
+		</span>
+		<span id="busuanzi_container_site_uv">
+		  &nbsp;&nbsp;You are Visiter No.<span id="busuanzi_value_site_uv"></span>
+		</span>
+		</p>
+
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?3491d96f9fc7f28103bc4230e5fca4e0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63":"https://jspassport.ssl.qhimg.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+  </body>
+</html>
