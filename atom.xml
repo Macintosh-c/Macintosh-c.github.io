@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://macintosh-c.coding.me/"/>
-  <updated>2021-10-12T07:38:51.436Z</updated>
+  <updated>2021-11-15T01:33:43.036Z</updated>
   <id>http://macintosh-c.coding.me/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux文件合并，去重，分割</title>
+    <link href="http://macintosh-c.coding.me/2021/11/14/Linux/Linux%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6%EF%BC%8C%E5%8E%BB%E9%87%8D%EF%BC%8C%E5%88%86%E5%89%B2/"/>
+    <id>http://macintosh-c.coding.me/2021/11/14/Linux/Linux文件合并，去重，分割/</id>
+    <published>2021-11-14T05:56:56.000Z</published>
+    <updated>2021-11-15T01:33:43.036Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Linux常用基础指令"><a href="#Linux常用基础指令" class="headerlink" title="Linux常用基础指令"></a>Linux常用基础指令</h3><h5 id="第一：两个文件的交集，并集"><a href="#第一：两个文件的交集，并集" class="headerlink" title="第一：两个文件的交集，并集"></a>第一：两个文件的交集，并集</h5><p>前提条件：每个文件中不得有重复行</p><ol><li>取出两个文件的并集(重复的行只保留一份)</li><li>取出两个文件的交集(只留下同时存在于两个文件中的文件)</li><li>删除交集，留下其他的行</li><li>cat file1 file2 | sort | uniq &gt; file3</li><li>cat file1 file2 | sort | uniq -d &gt; file3</li><li>cat file1 file2 | sort | uniq -u &gt; file3</li></ol><h5 id="第二：两个文件合并"><a href="#第二：两个文件合并" class="headerlink" title="第二：两个文件合并"></a>第二：两个文件合并</h5><p>一个文件在上，一个文件在下<br>cat file1 file2 &gt; file3<br>一个文件在左，一个文件在右<br>paste file1 file2 &gt; file3</p><h5 id="第三：一个文件去掉重复的行："><a href="#第三：一个文件去掉重复的行：" class="headerlink" title="第三：一个文件去掉重复的行："></a>第三：一个文件去掉重复的行：</h5><p>sort file |uniq<br>注意：重复的多行记为一行，也就是说这些重复的行还在，只是全部省略为一行！<br>sort file |uniq -u<br>上面的命令可以把重复的行全部去掉，也就是文件中的非重复行！</p><p>具体细节可以查看，cat，sort，uniq等命令的详细介绍</p><h5 id="第四：将一个大的文件分割成多个小文件："><a href="#第四：将一个大的文件分割成多个小文件：" class="headerlink" title="第四：将一个大的文件分割成多个小文件："></a>第四：将一个大的文件分割成多个小文件：</h5><p>采用一个50M大小的日志文件进行测试。<br>日志文件名：log.txt.gz。<br>文件行数：208363</p><p>方法1：（split分割）<br>语法：split [-&lt;行数&gt;][-b &lt;字节&gt;][-C &lt;字节&gt;][-l &lt;行数&gt;][要切割的文件][输出文件名]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># gunzip log.txt.gz             //一定要先解压，否则分割的文件是不能cat/zcat显示；</span><br><span class="line"># wc -l log.txt                 //计算一个文件的总行数；</span><br><span class="line"></span><br><span class="line">208363 log.txt</span><br><span class="line"># split -l 120000 log.txt newlog    //通过指定行数，将日志分割成两个文件；</span><br><span class="line"># du -sh *50M     log.txt</span><br><span class="line">29M     newlogaa</span><br><span class="line">22M     newlogab</span><br><span class="line"># file *                         //分割后的文件与原文件属性一样</span><br><span class="line">log.txt: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line">newlogaa: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line">newlogab: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line"># gzip newlogaa newlogab         //将分割后的文件进行压缩，以便传输</span><br></pre></td></tr></table></figure></p><p>方法2：（dd分割）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># gunzip log.txt.gz             //一定要先解压，否则分割的文件是不能cat/zcat显示；</span><br><span class="line">#dd bs=20480 count=1500 if=log.txt of=newlogaa      //按大小分第一个文件</span><br><span class="line"></span><br><span class="line">#dd bs=20480 count=1500 if=log.txt of=newlogab skip=1500  //将大小之后的生成另一个文件#file *</span><br><span class="line"></span><br><span class="line">log.txt: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line">newlogaa: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line">newlogab: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line"> </span><br><span class="line">分割没问题，但会出现同一行分到不同文件的情况，除非你以及日志分析系统可以“容忍”。</span><br></pre></td></tr></table></figure></p><p>方法3：（head+tail 分割）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#gzip log.txt.gz               //如不解压缩，下面请用zcat。</span><br><span class="line">#wc -l log.txt                //统计一个行数</span><br><span class="line">208363 log.txt</span><br><span class="line"># head -n `echo $((208363/2+1))` log.txt &gt; newloga.txt      //前x行重定向输出到一个文件中；</span><br><span class="line">#tail –n `echo $((208363-208362/2-1))` log.txt &gt;newlogb.txt //后x行重定向输出到一个文件中；</span><br><span class="line"></span><br><span class="line">#gzip newloga.txt newlogb.txt          //将两个文件进行压缩</span><br></pre></td></tr></table></figure></p><p>方法4：（awk分割）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#gzip log.txt.gz#awk ‘&#123;if (NR&lt;120000) print $0&#125;’ log.txt &gt;newloga.txt#awk ‘&#123;if (NR&gt;=120000) print $0&#125;’ log.txt &gt;newlogb.txt</span><br><span class="line"> </span><br><span class="line">以上两个命令，都要遍历整个文件，所以考虑到效率，应使用合并成：</span><br><span class="line">#awk ‘&#123;if (NR&lt;120000) print $0 &gt;”newloga.txt”;if (NR&gt;=120000) print $0&gt;”newlogb.txt”&#125;’ log.txt</span><br></pre></td></tr></table></figure></p><p>以上四种方法，除了dd之外的三种方式都可以很好的整行分割日志文件。进行分割时，应考虑在读一次文件的同时完成，如不然，按下面的方式分割：<br>Cat log.txt| head –12000 &gt;newloga.txt<br>Cat log.txt | tail –23000 &gt;newlogb.txt<br>如用此方法分割文件的后一部分，那么执行第二行命令文件时，前x行是白白读一遍的，执行的效率将很差，如文件过大，还可能出现内存不够的情况。</p><p>参考：<a href="https://www.cnblogs.com/giraffe/p/3193085.html" target="_blank" rel="noopener">https://www.cnblogs.com/giraffe/p/3193085.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Linux常用基础指令&quot;&gt;&lt;a href=&quot;#Linux常用基础指令&quot; class=&quot;headerlink&quot; title=&quot;Linux常用基础指令&quot;&gt;&lt;/a&gt;Linux常用基础指令&lt;/h3&gt;&lt;h5 id=&quot;第一：两个文件的交集，并集&quot;&gt;&lt;a href=&quot;#第一：两
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://macintosh-c.coding.me/categories/Linux/"/>
+    
+    
+      <category term="Linux基础" scheme="http://macintosh-c.coding.me/tags/Linux%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>PostgreSQL高可用中间件—Pgpool-Ⅱ</title>
@@ -505,31 +530,6 @@
     
     
       <category term="Spring Cloud Alibaba" scheme="http://macintosh-c.coding.me/tags/Spring-Cloud-Alibaba/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux top命令详解</title>
-    <link href="http://macintosh-c.coding.me/2021/03/05/Linux/top%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://macintosh-c.coding.me/2021/03/05/Linux/top命令详解/</id>
-    <published>2021-03-05T05:56:56.000Z</published>
-    <updated>2021-03-08T01:55:30.344Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Linux-top命令详解"><a href="#Linux-top命令详解" class="headerlink" title="Linux top命令详解"></a>Linux top命令详解</h3><p>top命令经常用来监控<a href="http://lib.csdn.net/base/linux" target="_blank" rel="noopener">Linux</a>的系统状况，比如cpu、内存的使用</p><p><img src="/img/Linux/1.jpg" alt="image"></p><h5 id="1-1-系统运行时间和平均负载："><a href="#1-1-系统运行时间和平均负载：" class="headerlink" title="1.1 系统运行时间和平均负载："></a>1.1 系统运行时间和平均负载：</h5><p><code>top - 09:40:41 up 2 days, 15:45,  2 users,  load average: 0.25, 0.41, 0.41</code><br>top命令的顶部显示与uptime命令相似的输出<br>这些字段显示：</p><p>当前时间</p><ul><li>系统已运行的时间</li><li>当前登录用户的数量</li><li>相应最近5、10和15分钟内的平均负载。</li><li>可以使用’l’命令切换uptime的显示。</li></ul><p>09:40:41 — 当前系统时间<br>2 days, 15:45— 系统已经运行2天了15小时45分钟（在这期间没有重启过）<br>2 users — 当前有2个用户登录系统<br>load average:0.25, 0.41, 0.41— load average后面的三个数分别是5分钟、10分钟、15分钟的负载情况。<br>load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑CPU的数量，结果高于5的时候就表明系统在超负荷运转了。</p><h5 id="1-2-任务"><a href="#1-2-任务" class="headerlink" title="1.2 任务:"></a>1.2 任务:</h5><p><code>Tasks: 239 total,   1 running, 238 sleeping,   0 stopped,   0 zombie</code></p><p>Tasks — 任务（进程），系统现在共有239个进程，其中处于运行中的有1个，238个在休眠（sleep），stoped状态的有0个，zombie状态（僵尸）的有0个。</p><p>第二行显示的是任务或者进程的总结。进程可以处于不同的状态。这里显示了全部进程的数量。除此之外，还有正在运行、睡眠、停止、僵尸进程的数量（僵尸是一种进程的状态）。这些进程概括信息可以用’t’切换显示</p><h5 id="1-3-CPU-状态"><a href="#1-3-CPU-状态" class="headerlink" title="1.3 CPU 状态:"></a>1.3 CPU 状态:</h5><p><code>%Cpu(s):  7.3 us,  2.2 sy,  0.0 ni, 90.5 id,  0.0 wa,  0.0 hi,  0.1 si,  0.0 st</code></p><p>这里显示不同模式下所占cpu时间百分比，这些不同的cpu时间表示：<br>us, user： 运行(未调整优先级的) 用户进程的CPU时间<br>sy，system: 运行内核进程的CPU时间<br>ni，niced：运行已调整优先级的用户进程的CPU时间<br>wa，IO wait: 用于等待IO完成的CPU时间<br>hi：处理硬件中断的CPU时间<br>si: 处理软件中断的CPU时间<br>st：这个虚拟机被hypervisor偷去的CPU时间（译注：如果当前处于一个hypervisor下的vm，实际上hypervisor也是要消耗一部分CPU处理时间的）。<br>可以使用’t’命令切换显示。</p><p>7.3% us — 用户空间占用CPU的百分比。<br>2.2% sy — 内核空间占用CPU的百分比。<br>0.0% ni — 改变过优先级的进程占用CPU的百分比<br>90.5% id — 空闲CPU百分比<br>0.0% wa — IO等待占用CPU的百分比<br>0.0% hi — 硬中断（Hardware IRQ）占用CPU的百分比<br>0.1% si — 软中断（Software Interrupts）占用CPU的百分比<br>在这里CPU的使用比率和windows概念不同，如果你不理解用户空间和内核空间，需要充充电了。</p><h5 id="1-4-内存使用"><a href="#1-4-内存使用" class="headerlink" title="1.4 内存使用:"></a>1.4 内存使用:</h5><p><code>KiB Mem :  8009768 total,   674540 free,  6877808 used,   457420 buff/cache</code><br><code>KiB Swap:  6291452 total,  5215484 free,  1075968 used.   708664 avail Mem</code></p><p>接下来两行显示内存使用率，有点像’free’命令。第一行是物理内存使用，第二行是虚拟内存使用(交换空间)。</p><p>物理内存显示如下:全部可用内存、已使用内存、空闲内存、缓冲内存。相似地：交换部分显示的是：全部、已使用、空闲和缓冲交换空间。</p><p>内存显示可以用’m’命令切换。</p><p>8009768k total — 物理内存总量<br>6877808k used — 使用中的内存总量<br>674540k free — 空闲内存总量<br>457420k buffers — 缓存的内存量 </p><p>swap交换分区<br>6291452k total — 交换区总量<br>1075968k used — 使用的交换区总量<br>5215484k free — 空闲交换区总量<br>708664k cached — 缓冲的交换区总量</p><p>这里要说明的是不能用windows的内存概念理解这些数据，如果按windows的方式此台服务器“危矣”：8G的内存总量只剩下530M的可用内存。Linux的内存管理有其特殊性，复杂点需要一本书来说明，这里只是简单说点和我们传统概念（windows）的不同。</p><p>第四行中使用中的内存总量（used）指的是现在系统内核控制的内存数，空闲内存总量（free）是内核还未纳入其管控范围的数量。纳入内核管理的内存不见得都在使用中，还包括过去使用过的现在可以被重复利用的内存，内核并不把这些可被重新使用的内存交还到free中去，因此在linux上free内存会越来越少，但不用为此担心。</p><p>如果出于习惯去计算可用内存数，这里有个近似的计算公式：第四行的free + 第四行的buffers + 第五行的cached，按这个公式此台服务器的可用内存：</p><p>674540+457420+708664= 1797M。</p><p>对于内存监控，在top里我们要时刻监控第五行swap交换分区的used，如果这个数值在不断的变化，说明内核在不断进行内存和swap的数据交换，这是真正的内存不够用了。</p><h5 id="1-5-各进程（任务）的状态监控"><a href="#1-5-各进程（任务）的状态监控" class="headerlink" title="1.5 各进程（任务）的状态监控:"></a>1.5 各进程（任务）的状态监控:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND</span><br><span class="line">1612 couchba+  20   0 1970628 608324   1880 S  13.6  7.6 905:12.91 beam.smp                                                                                                                                      </span><br><span class="line">1932 couchba+  20   0  927008 119432   4496 S  10.9  1.5 359:43.62 indexer                                                                                                                                       </span><br><span class="line">1980 couchba+  20   0 1844964 164968   1024 S   4.3  2.1 138:56.54 memcached                                                                                                                                     </span><br><span class="line">1933 couchba+  20   0  814696 246604   1492 S   3.6  3.1 120:51.86 projector                                                                                                                                     </span><br><span class="line">1046 root      20   0 1296944  41968  10024 S   2.0  0.5 358:00.09 auditbeat</span><br></pre></td></tr></table></figure><p>PID：进程ID，进程的唯一标识符</p><p>USER：进程所有者的实际用户名。</p><p>PR：进程的调度优先级。这个字段的一些值是’rt’。这意味这这些进程运行在实时态。</p><p>NI：进程的nice值（优先级）。越小的值意味着越高的优先级。负值表示高优先级，正值表示低优先级</p><p>VIRT：进程使用的虚拟内存。进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES</p><p>RES：驻留内存大小。驻留内存是任务使用的非交换物理内存大小。进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA</p><p>SHR：SHR是进程使用的共享内存。共享内存大小，单位kb</p><p>S：这个是进程的状态。它有以下不同的值:</p><p>D - 不可中断的睡眠态。<br>R – 运行态<br>S – 睡眠态<br>T – 被跟踪或已停止<br>Z – 僵尸态<br>%CPU：自从上一次更新时到现在任务所使用的CPU时间百分比。</p><p>%MEM：进程使用的可用物理内存百分比。</p><p>TIME+：任务启动后到现在所使用的全部CPU时间，精确到百分之一秒。</p><p>COMMAND：运行进程所使用的命令。进程名称（命令名/命令行）</p><p>还有许多在默认情况下不会显示的输出，它们可以显示进程的页错误、有效组和组ID和其他更多的信息。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;Linux-top命令详解&quot;&gt;&lt;a href=&quot;#Linux-top命令详解&quot; class=&quot;headerlink&quot; title=&quot;Linux top命令详解&quot;&gt;&lt;/a&gt;Linux top命令详解&lt;/h3&gt;&lt;p&gt;top命令经常用来监控&lt;a href=&quot;http:/
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://macintosh-c.coding.me/categories/Linux/"/>
-    
-    
-      <category term="Linux基础" scheme="http://macintosh-c.coding.me/tags/Linux%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   

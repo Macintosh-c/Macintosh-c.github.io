@@ -1,0 +1,864 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Linux文件合并，去重，分割 | macintosh-c&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Macintosh-c">
+    
+
+    
+    <meta name="description" content="Linux常用基础指令第一：两个文件的交集，并集前提条件：每个文件中不得有重复行  取出两个文件的并集(重复的行只保留一份) 取出两个文件的交集(只留下同时存在于两个文件中的文件) 删除交集，留下其他的行 cat file1 file2 | sort | uniq &amp;gt; file3 cat file1 file2 | sort | uniq -d &amp;gt; file3 cat file1 fi">
+<meta name="keywords" content="Linux基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux文件合并，去重，分割">
+<meta property="og:url" content="http://macintosh-c.coding.me/2021/11/14/Linux/Linux文件合并，去重，分割/index.html">
+<meta property="og:site_name" content="macintosh-c&#39;s blog">
+<meta property="og:description" content="Linux常用基础指令第一：两个文件的交集，并集前提条件：每个文件中不得有重复行  取出两个文件的并集(重复的行只保留一份) 取出两个文件的交集(只留下同时存在于两个文件中的文件) 删除交集，留下其他的行 cat file1 file2 | sort | uniq &amp;gt; file3 cat file1 file2 | sort | uniq -d &amp;gt; file3 cat file1 fi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-11-15T01:33:43.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux文件合并，去重，分割">
+<meta name="twitter:description" content="Linux常用基础指令第一：两个文件的交集，并集前提条件：每个文件中不得有重复行  取出两个文件的并集(重复的行只保留一份) 取出两个文件的交集(只留下同时存在于两个文件中的文件) 删除交集，留下其他的行 cat file1 file2 | sort | uniq &amp;gt; file3 cat file1 file2 | sort | uniq -d &amp;gt; file3 cat file1 fi">
+
+    
+    <link rel="alternative" href="/atom.xml" title="macintosh-c&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo_me.jpg" alt="macintosh-c&#39;s blog" title="macintosh-c&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="macintosh-c&#39;s blog">macintosh-c&#39;s blog</a></h1>
+				<h2 class="blog-motto">当你的才华撑不起你的野心时，就应该静下心来好好学习。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页(Home)</a></li>
+					
+						<li><a href="/archives">归档(Archives)</a></li>
+					
+						<li><a href="/tags">标签(Tags)</a></li>
+					
+						<li><a href="/categories">分类(Categories)</a></li>
+					
+					<li>
+ 					
+						<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=10231555544562790968' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/11/14/Linux/Linux文件合并，去重，分割/" title="Linux文件合并，去重，分割" itemprop="url">Linux文件合并，去重，分割</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Macintosh-c" target="_blank" itemprop="author">Macintosh-c</a>
+		
+  <p class="article-time">
+    <time datetime="2021-11-14T05:56:56.000Z" itemprop="datePublished"> 发表于 2021-11-14</time>
+		<span id="busuanzi_container_page_pv"> 总阅读 <span id="busuanzi_value_page_pv"></span> </span> 次
+  </p>
+</header>
+
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux常用基础指令"><span class="toc-number">1.</span> <span class="toc-text">Linux常用基础指令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#第一：两个文件的交集，并集"><span class="toc-number">1.0.1.</span> <span class="toc-text">第一：两个文件的交集，并集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第二：两个文件合并"><span class="toc-number">1.0.2.</span> <span class="toc-text">第二：两个文件合并</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第三：一个文件去掉重复的行："><span class="toc-number">1.0.3.</span> <span class="toc-text">第三：一个文件去掉重复的行：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第四：将一个大的文件分割成多个小文件："><span class="toc-number">1.0.4.</span> <span class="toc-text">第四：将一个大的文件分割成多个小文件：</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h3 id="Linux常用基础指令"><a href="#Linux常用基础指令" class="headerlink" title="Linux常用基础指令"></a>Linux常用基础指令</h3><h5 id="第一：两个文件的交集，并集"><a href="#第一：两个文件的交集，并集" class="headerlink" title="第一：两个文件的交集，并集"></a>第一：两个文件的交集，并集</h5><p>前提条件：每个文件中不得有重复行</p>
+<ol>
+<li>取出两个文件的并集(重复的行只保留一份)</li>
+<li>取出两个文件的交集(只留下同时存在于两个文件中的文件)</li>
+<li>删除交集，留下其他的行</li>
+<li>cat file1 file2 | sort | uniq &gt; file3</li>
+<li>cat file1 file2 | sort | uniq -d &gt; file3</li>
+<li>cat file1 file2 | sort | uniq -u &gt; file3</li>
+</ol>
+<h5 id="第二：两个文件合并"><a href="#第二：两个文件合并" class="headerlink" title="第二：两个文件合并"></a>第二：两个文件合并</h5><p>一个文件在上，一个文件在下<br>cat file1 file2 &gt; file3<br>一个文件在左，一个文件在右<br>paste file1 file2 &gt; file3</p>
+<h5 id="第三：一个文件去掉重复的行："><a href="#第三：一个文件去掉重复的行：" class="headerlink" title="第三：一个文件去掉重复的行："></a>第三：一个文件去掉重复的行：</h5><p>sort file |uniq<br>注意：重复的多行记为一行，也就是说这些重复的行还在，只是全部省略为一行！<br>sort file |uniq -u<br>上面的命令可以把重复的行全部去掉，也就是文件中的非重复行！</p>
+<p>具体细节可以查看，cat，sort，uniq等命令的详细介绍</p>
+<h5 id="第四：将一个大的文件分割成多个小文件："><a href="#第四：将一个大的文件分割成多个小文件：" class="headerlink" title="第四：将一个大的文件分割成多个小文件："></a>第四：将一个大的文件分割成多个小文件：</h5><p>采用一个50M大小的日志文件进行测试。<br>日志文件名：log.txt.gz。<br>文件行数：208363</p>
+<p>方法1：（split分割）<br>语法：split [-&lt;行数&gt;][-b &lt;字节&gt;][-C &lt;字节&gt;][-l &lt;行数&gt;][要切割的文件][输出文件名]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># gunzip log.txt.gz             //一定要先解压，否则分割的文件是不能cat/zcat显示；</span><br><span class="line"># wc -l log.txt                 //计算一个文件的总行数；</span><br><span class="line"></span><br><span class="line">208363 log.txt</span><br><span class="line"># split -l 120000 log.txt newlog    //通过指定行数，将日志分割成两个文件；</span><br><span class="line"># du -sh *50M     log.txt</span><br><span class="line">29M     newlogaa</span><br><span class="line">22M     newlogab</span><br><span class="line"># file *                         //分割后的文件与原文件属性一样</span><br><span class="line">log.txt: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line">newlogaa: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line">newlogab: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line"># gzip newlogaa newlogab         //将分割后的文件进行压缩，以便传输</span><br></pre></td></tr></table></figure></p>
+<p>方法2：（dd分割）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># gunzip log.txt.gz             //一定要先解压，否则分割的文件是不能cat/zcat显示；</span><br><span class="line">#dd bs=20480 count=1500 if=log.txt of=newlogaa      //按大小分第一个文件</span><br><span class="line"></span><br><span class="line">#dd bs=20480 count=1500 if=log.txt of=newlogab skip=1500  //将大小之后的生成另一个文件#file *</span><br><span class="line"></span><br><span class="line">log.txt: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line">newlogaa: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line">newlogab: ASCII text, with very long lines, with CRLF line terminators</span><br><span class="line"> </span><br><span class="line">分割没问题，但会出现同一行分到不同文件的情况，除非你以及日志分析系统可以“容忍”。</span><br></pre></td></tr></table></figure></p>
+<p>方法3：（head+tail 分割）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#gzip log.txt.gz               //如不解压缩，下面请用zcat。</span><br><span class="line">#wc -l log.txt                //统计一个行数</span><br><span class="line">208363 log.txt</span><br><span class="line"># head -n `echo $((208363/2+1))` log.txt &gt; newloga.txt      //前x行重定向输出到一个文件中；</span><br><span class="line">#tail –n `echo $((208363-208362/2-1))` log.txt &gt;newlogb.txt //后x行重定向输出到一个文件中；</span><br><span class="line"></span><br><span class="line">#gzip newloga.txt newlogb.txt          //将两个文件进行压缩</span><br></pre></td></tr></table></figure></p>
+<p>方法4：（awk分割）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#gzip log.txt.gz#awk ‘&#123;if (NR&lt;120000) print $0&#125;’ log.txt &gt;newloga.txt#awk ‘&#123;if (NR&gt;=120000) print $0&#125;’ log.txt &gt;newlogb.txt</span><br><span class="line"> </span><br><span class="line">以上两个命令，都要遍历整个文件，所以考虑到效率，应使用合并成：</span><br><span class="line">#awk ‘&#123;if (NR&lt;120000) print $0 &gt;”newloga.txt”;if (NR&gt;=120000) print $0&gt;”newlogb.txt”&#125;’ log.txt</span><br></pre></td></tr></table></figure></p>
+<p>以上四种方法，除了dd之外的三种方式都可以很好的整行分割日志文件。进行分割时，应考虑在读一次文件的同时完成，如不然，按下面的方式分割：<br>Cat log.txt| head –12000 &gt;newloga.txt<br>Cat log.txt | tail –23000 &gt;newlogb.txt<br>如用此方法分割文件的后一部分，那么执行第二行命令文件时，前x行是白白读一遍的，执行的效率将很差，如文件过大，还可能出现内存不够的情况。</p>
+<p>参考：<a href="https://www.cnblogs.com/giraffe/p/3193085.html" target="_blank" rel="noopener">https://www.cnblogs.com/giraffe/p/3193085.html</a></p>
+
+	</div>
+
+	
+	<!-- css -->
+	<style type="text/css">
+	    .center {
+	        text-align: center;
+	    }
+	    .hidden {
+	        display: none;
+	    }
+		.donate_bar a.btn_donate{
+			display: inline-block;
+			width: 82px;
+			height: 82px;
+			background: url("/img/btn_reward.gif") no-repeat;
+			_background: url("/img/btn_reward.gif") no-repeat;
+
+			<!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+			     因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+				 为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+				 嵌入其它博客时不一定要它们。-->
+			-webkit-transition: background 0s;
+			-moz-transition: background 0s;
+			-o-transition: background 0s;
+			-ms-transition: background 0s;
+			transition: background 0s;
+			<!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束-->
+		}
+
+		.donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+		.donate_bar .donate_txt {
+			display: block;
+			color: #9d9d9d;
+			font: 14px/2 "Microsoft Yahei";
+		}
+		.bold{ font-weight: bold; }
+	</style>
+	<!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+	<!-- btn_donate & tips -->
+	<div id="donate_board" class="donate_bar center">
+	    <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+		<a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差哦~
+		</span>
+
+
+	</div>
+	<!-- /btn_donate & tips -->
+
+	<!-- donate guide -->
+
+	<div id="donate_guide" class="donate_bar center hidden">
+        <br>
+	    ------------------------------------------------------------------------------------------------------------------------------
+	    <br>
+	    
+
+		<a href="/img/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+			<img src="/img/006qxJmqgy1fu5w4jmxxsj307w08ot9i.jpg" title="微信打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+        &nbsp;&nbsp;
+
+		<a href="/img/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+			<img src="/img/006qxJmqgy1fu5w4ly4ovj308x08oab4.jpg" title="支付宝打赏 Donate" height="190px" width="auto"/>
+		</a>
+
+		<span class="donate_txt">
+			打赏我的人，运气都不会太差哦~
+		</span>
+
+	</div>
+	<!-- /donate guide -->
+
+	<!-- donate script -->
+	<script type="text/javascript">
+		document.getElementById('btn_donate').onclick = function() {
+			$('#donate_board').addClass('hidden');
+	    $('#donate_guide').removeClass('hidden');
+		}
+
+		function donate_on_web(){
+			$('#donate').submit();
+        }
+
+		var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+		}
+	</script>
+	<!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux基础/">Linux基础</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://macintosh-c.coding.me/2021/11/14/Linux/Linux文件合并，去重，分割/" data-title="Linux文件合并，去重，分割 | macintosh-c&#39;s blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2021/10/12/Databases/postgre/Postgre高可用中间件Pgpool-Ⅱ/"  title="PostgreSQL高可用中间件—Pgpool-Ⅱ">
+ <strong>下一篇：</strong><br/> 
+ <span>PostgreSQL高可用中间件—Pgpool-Ⅱ
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+
+	<div id="lv-container" data-id="city" data-uid="MTAyMC8zODk4Mi8xNTUwOQ==">
+	<script type="text/javascript">
+	   (function(d, s) {
+	       var j, e = d.getElementsByTagName(s)[0];
+
+	       if (typeof LivereTower === 'function') { return; }
+
+	       j = d.createElement(s);
+	       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+	       j.async = true;
+
+	       e.parentNode.insertBefore(j, e);
+	   })(document, 'script');
+	</script>
+	<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+	</div>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux常用基础指令"><span class="toc-number">1.</span> <span class="toc-text">Linux常用基础指令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#第一：两个文件的交集，并集"><span class="toc-number">1.0.1.</span> <span class="toc-text">第一：两个文件的交集，并集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第二：两个文件合并"><span class="toc-number">1.0.2.</span> <span class="toc-text">第二：两个文件合并</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第三：一个文件去掉重复的行："><span class="toc-number">1.0.3.</span> <span class="toc-text">第三：一个文件去掉重复的行：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第四：将一个大的文件分割成多个小文件："><span class="toc-number">1.0.4.</span> <span class="toc-text">第四：将一个大的文件分割成多个小文件：</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="Macintosh-c" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Ansible/" title="Ansible">Ansible<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Couchbase/" title="Couchbase">Couchbase<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Docker/" title="Docker">Docker<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ehcache/" title="Ehcache">Ehcache<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Kubernetes/" title="Kubernetes">Kubernetes<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Maven/" title="Maven">Maven<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Memcache/" title="Memcache">Memcache<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mycat/" title="Mycat">Mycat<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mysql/" title="Mysql">Mysql<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Postgre/" title="Postgre">Postgre<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SonarQube/" title="SonarQube">SonarQube<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring-Cloud-Alibaba/" title="Spring Cloud Alibaba">Spring Cloud Alibaba<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring-cloud/" title="Spring cloud">Spring cloud<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Springboot/" title="Springboot">Springboot<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SqlService/" title="SqlService">SqlService<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/VirtualBox/" title="VirtualBox">VirtualBox<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/YApi/" title="YApi">YApi<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/java基础/" title="java基础">java基础<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/jenkins/" title="jenkins">jenkins<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/kafka/" title="kafka">kafka<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mybatis/" title="mybatis">mybatis<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/mycat/" title="mycat">mycat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/nginx/" title="nginx">nginx<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/rabbitmq/" title="rabbitmq">rabbitmq<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/sftp/" title="sftp">sftp<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/博客相关/" title="博客相关">博客相关<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/成长之路/" title="成长之路">成长之路<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/blog搭建/" title="blog搭建">blog搭建<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux基础/" title="Linux基础">Linux基础<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Postgre安装/" title="Postgre安装">Postgre安装<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mycat/" title="mycat">mycat<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sql语句基础/" title="sql语句基础">sql语句基础<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Markdown/" title="Markdown">Markdown<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql安装/" title="mysql安装">mysql安装<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Maven/" title="Maven">Maven<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ansible详解/" title="ansible详解">ansible详解<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ehcache/" title="Ehcache">Ehcache<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/fastjson/" title="fastjson">fastjson<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-aop/" title="Spring aop">Spring aop<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Springboot/" title="Springboot">Springboot<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/rabbitmq安装/" title="rabbitmq安装">rabbitmq安装<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python安装/" title="python安装">python安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis数据迁移/" title="Redis数据迁移">Redis数据迁移<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Couchbase数据迁移/" style="font-size: 10px;">Couchbase数据迁移</a> <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/Docker-Compose/" style="font-size: 10px;">Docker-Compose</a> <a href="/tags/Dockerfile/" style="font-size: 10px;">Dockerfile</a> <a href="/tags/Ehcache/" style="font-size: 13.33px;">Ehcache</a> <a href="/tags/Git基础/" style="font-size: 10px;">Git基础</a> <a href="/tags/Kubernetes安装/" style="font-size: 10px;">Kubernetes安装</a> <a href="/tags/Linux基础/" style="font-size: 16.67px;">Linux基础</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 13.33px;">Maven</a> <a href="/tags/Memcached安装/" style="font-size: 10px;">Memcached安装</a> <a href="/tags/Mysql/" style="font-size: 13.33px;">Mysql</a> <a href="/tags/Postgre安装/" style="font-size: 16.67px;">Postgre安装</a> <a href="/tags/Postgre高可用中间件/" style="font-size: 10px;">Postgre高可用中间件</a> <a href="/tags/Redis-Cluster/" style="font-size: 10px;">Redis Cluster</a> <a href="/tags/Redis-持久化存储/" style="font-size: 10px;">Redis 持久化存储</a> <a href="/tags/Redis-Sentinel/" style="font-size: 10px;">Redis-Sentinel</a> <a href="/tags/Redis批量写入/" style="font-size: 10px;">Redis批量写入</a> <a href="/tags/Redis数据迁移/" style="font-size: 10px;">Redis数据迁移</a> <a href="/tags/SonarQube/" style="font-size: 10px;">SonarQube</a> <a href="/tags/Spring-Cloud-Alibaba/" style="font-size: 10px;">Spring Cloud Alibaba</a> <a href="/tags/Spring-aop/" style="font-size: 13.33px;">Spring aop</a> <a href="/tags/Spring-cloud/" style="font-size: 10px;">Spring cloud</a> <a href="/tags/Springboot/" style="font-size: 13.33px;">Springboot</a> <a href="/tags/Springboot-response/" style="font-size: 10px;">Springboot response</a> <a href="/tags/Springboot-test/" style="font-size: 10px;">Springboot test</a> <a href="/tags/Springboot调优/" style="font-size: 10px;">Springboot调优</a> <a href="/tags/SqlService安装/" style="font-size: 10px;">SqlService安装</a> <a href="/tags/VirtualBox安装/" style="font-size: 10px;">VirtualBox安装</a> <a href="/tags/YApi学习/" style="font-size: 10px;">YApi学习</a> <a href="/tags/ansible详解/" style="font-size: 13.33px;">ansible详解</a> <a href="/tags/blog搭建/" style="font-size: 16.67px;">blog搭建</a> <a href="/tags/fastjson/" style="font-size: 13.33px;">fastjson</a> <a href="/tags/jdk安装/" style="font-size: 10px;">jdk安装</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/jenkins用户权限管理/" style="font-size: 10px;">jenkins用户权限管理</a> <a href="/tags/kafka安装/" style="font-size: 10px;">kafka安装</a> <a href="/tags/log4j日志/" style="font-size: 10px;">log4j日志</a> <a href="/tags/mybatis基础/" style="font-size: 10px;">mybatis基础</a> <a href="/tags/mycat/" style="font-size: 16.67px;">mycat</a> <a href="/tags/mycat容器化部署/" style="font-size: 10px;">mycat容器化部署</a> <a href="/tags/mysql主从/" style="font-size: 10px;">mysql主从</a> <a href="/tags/mysql安装/" style="font-size: 13.33px;">mysql安装</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/python安装/" style="font-size: 10px;">python安装</a> <a href="/tags/rabbitmq安装/" style="font-size: 13.33px;">rabbitmq安装</a> <a href="/tags/redis安装/" style="font-size: 10px;">redis安装</a> <a href="/tags/redis指令/" style="font-size: 10px;">redis指令</a> <a href="/tags/serialVersionUID/" style="font-size: 10px;">serialVersionUID</a> <a href="/tags/sftp/" style="font-size: 10px;">sftp</a> <a href="/tags/sql案例/" style="font-size: 10px;">sql案例</a> <a href="/tags/sql语句基础/" style="font-size: 13.33px;">sql语句基础</a> <a href="/tags/基本概念/" style="font-size: 10px;">基本概念</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://toutiao.io/" target="_blank" title="开发者头条">开发者头条</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/peace1213" target="_blank" title="csdn">csdn</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 静下心来，好好做你该做的事！ <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/Macintosh-c" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021
+		
+		<a href="/about" target="_blank" title="Macintosh-c">Macintosh-c</a>
+		
+		</br>
+				<script async src="http://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+		    &nbsp;&nbsp;Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span>
+		</span>
+		<span id="busuanzi_container_site_uv">
+		  &nbsp;&nbsp;You are Visiter No.<span id="busuanzi_value_site_uv"></span>
+		</span>
+		</p>
+
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    $('#toc.toc-aside').css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?3491d96f9fc7f28103bc4230e5fca4e0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63":"https://jspassport.ssl.qhimg.com/11.0.1.js?485f6dcaf5a398e5f4565997bbc23f63";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+  </body>
+</html>
